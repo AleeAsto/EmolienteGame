@@ -65,7 +65,15 @@ public class IlusionesConfusionJugador : MonoBehaviour
         {
             Fantasma fantasma = fantasmas[i];
             if (fantasma.objeto == null) { fantasmas.RemoveAt(i); continue; }
-            fantasma.objeto.transform.position += Vector3.right * fantasma.velocidad * delta;
+            Vector3 posicion = fantasma.objeto.transform.position;
+            if (!fantasma.consumido && AuraOlorJugador.CalcularPaso(posicion, Mathf.Abs(fantasma.velocidad), delta,
+                zona.bounds, gameObject.scene, fantasma.objeto.GetEntityId().GetHashCode(), out Vector3 pasoOlor, out bool repelido))
+            {
+                if (repelido && Mathf.Abs(pasoOlor.x - posicion.x) > 0.0001f)
+                    fantasma.velocidad = Mathf.Abs(fantasma.velocidad) * Mathf.Sign(pasoOlor.x - posicion.x);
+                fantasma.objeto.transform.position = pasoOlor;
+            }
+            else fantasma.objeto.transform.position += Vector3.right * fantasma.velocidad * delta;
             fantasma.vida += delta;
             bool fuera = fantasma.objeto.transform.position.x < izquierda - 2f ||
                 fantasma.objeto.transform.position.x > derecha + 2f;

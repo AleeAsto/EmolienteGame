@@ -213,7 +213,7 @@ public class GeneradorEstudiantes : MonoBehaviour
             float minima = Mathf.Max(0.1f, Mathf.Min(rangoVelocidad.x, rangoVelocidad.y));
             float maxima = Mathf.Max(minima, Mathf.Max(rangoVelocidad.x, rangoVelocidad.y));
             nuevo.ConfigurarRecorrido(Random.value < 0.5f ? -1f : 1f,
-                Random.Range(minima, maxima), zona.min.x - margenSalida, zona.max.x + margenSalida);
+                Random.Range(minima, maxima), zona.min.x - margenSalida, zona.max.x + margenSalida, zonaPasillo);
             estudiantes.Add(nuevo);
             return true;
         }

@@ -96,7 +96,7 @@
                 {
                     "name": "",
                     "id": "e203e6a5-b732-4781-8489-b63434cd28ee",
-                    "path": "<Keyboard>/e",
+                    "path": "<Keyboard>/x",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -135,7 +135,7 @@
                     "name": "Succionar",
                     "type": "Button",
                     "id": "82f6f1bf-a1af-4e90-8f2a-afd1ae6036ed",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false,
@@ -266,7 +266,7 @@
                 {
                     "name": "",
                     "id": "70d42753-713f-4394-9769-9a11357bf645",
-                    "path": "<Keyboard>/o",
+                    "path": "<Keyboard>/n",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

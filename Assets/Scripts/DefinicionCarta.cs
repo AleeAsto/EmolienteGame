@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public enum DestinoCarta { Propio, Rival }
-public enum EfectoCarta { Ninguno, Velocidad, Confusion }
+public enum EfectoCarta { Ninguno, Velocidad, Confusion, Perfume, BombaApestosa }
 
 [CreateAssetMenu(menuName = "Emoliente/Carta", fileName = "Carta")]
 public class DefinicionCarta : ScriptableObject
@@ -17,6 +17,8 @@ public class DefinicionCarta : ScriptableObject
     [SerializeField, Min(0.1f)] private float multiplicadorVelocidad = 1f;
     [SerializeField, Min(0.1f)] private float duracionEfecto = 8f;
     [SerializeField] private bool potente;
+    [SerializeField, Min(0.5f)] private float radioOlor = 8f;
+    [SerializeField, Min(1f)] private float multiplicadorRetirada = 1.25f;
 
     public string Identificador => identificador;
     public string Titulo => titulo;
@@ -29,10 +31,14 @@ public class DefinicionCarta : ScriptableObject
     public EfectoCarta Efecto => efecto;
     public float MultiplicadorVelocidad => Mathf.Max(0.1f, multiplicadorVelocidad);
     public float DuracionEfecto => Mathf.Max(0.1f, duracionEfecto);
+    public float RadioOlor => Mathf.Max(0.5f, radioOlor);
+    public float MultiplicadorRetirada => Mathf.Max(1f, multiplicadorRetirada);
     public Color ColorCarta => destino == DestinoCarta.Propio
         ? new Color(0.52f, 1f, 0.62f) : new Color(1f, 0.48f, 0.48f);
     public string Descripcion => efecto == EfectoCarta.Velocidad
         ? $"Movimiento, absorcion\ny golpes\n{(MultiplicadorVelocidad - 1f) * 100f:+0;-0;0}% por {DuracionEfecto:0.#} s"
         : efecto == EfectoCarta.Confusion
-            ? $"Estudiantes falsos\ny mano oculta\n{DuracionEfecto:0.#} segundos" : "Sin efecto";
+            ? $"Estudiantes falsos\ny mano oculta\n{DuracionEfecto:0.#} segundos"
+            : efecto == EfectoCarta.Perfume ? $"Atrae estudiantes\nRadio {RadioOlor:0.#}\n{DuracionEfecto:0.#} segundos"
+            : efecto == EfectoCarta.BombaApestosa ? $"Aleja estudiantes\nRadio {RadioOlor:0.#}\n{DuracionEfecto:0.#} segundos" : "Sin efecto";
 }

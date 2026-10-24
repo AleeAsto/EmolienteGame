@@ -9,8 +9,8 @@ tienen `ManoCartasJugador` usan pulsacion corta/mantener para golpear o abrir ca
 
 ## Probar
 
-- P1: mantener C durante 0.35 s para abrir; A/D para elegir; E para usar.
-- P2: mantener M para abrir; J/L o flechas para elegir; O para usar.
+- P1: mantener C durante 0.35 s para abrir; A/D para elegir; boton de absorcion para usar.
+- P2: mantener M para abrir; J/L o flechas para elegir; boton de absorcion para usar.
 - Soltar C/M conserva el menu abierto. Volver a pulsarlo cierra sin golpear.
 - Una pulsacion corta de C/M golpea al soltar, respetando el cooldown existente.
 - G entrega una carta aleatoria del catalogo a P1; H a P2. Solo durante la ronda, en el editor o builds
@@ -26,11 +26,12 @@ tienen `ManoCartasJugador` usan pulsacion corta/mantener para golpear o abrir ca
   distinguir 8 s de 20 s sin necesitar ver la parte inferior de la descripcion.
 - B suma 100 puntos a cada jugador por pulsacion, con las mismas condiciones
   de los atajos de desarrollo.
-- F entrega Confusion normal a P1; N a P2. Shift+F / Shift+N entregan su potente.
-  Se usan como las otras cartas y afectan al rival, no al receptor de la carta.
+- F/U entregan Perfume a P1/P2; R/P entregan Bomba apestosa a P1/P2.
+  Mantener Shift con esos atajos entrega la version potente. Ya no hay un atajo
+  especifico de Confusion; sigue disponible en el catalogo aleatorio de G/H.
 - La carta cuesta 20 puntos reales. Absorber estudiantes para alcanzarlos o modificar
   `Cantidad` de `AlmasJugador` en Play, o pulsar B. El numero del marcador puede estar redondeado.
-- Con menos puntos, E/O muestra el costo sin consumir la carta ni cerrar el menu.
+- Con menos puntos, confirmar muestra el costo sin consumir la carta ni cerrar el menu.
 - Al usarla, desaparece de la mano y descuenta su costo en puntos. Sube verticalmente hasta salir
   por arriba de la camara propia (0.4 s). Luego entra a la presentacion central desde
   abajo para P1 o desde arriba para P2 (0.45 s), muestra el frente quieto (1.2 s),
@@ -134,8 +135,8 @@ pendientes. Las cartas recibidas se conservan aunque cambie el lider.
 
 ## Assets y responsabilidades
 
-- `Assets/Resources/CatalogoCartas.asset`: catalogo compartido con las tres normales
-  y las tres potentes. `SistemaCartas` lo carga automaticamente al iniciar y tras
+- `Assets/Resources/CatalogoCartas.asset`: catalogo compartido con las cinco normales
+  y las cinco potentes. `SistemaCartas` lo carga automaticamente al iniciar y tras
   una recarga de scripts. La lista antigua guardada en una escena deja de decidir
   que cartas salen. `Catalogo Compartido` permite asignar otro catalogo explicitamente.
 
@@ -226,6 +227,31 @@ se reubican solo al quedar invisibles y reaparecen gradualmente. No se pueden
 absorber mientras aun son invisibles o ya estan desapareciendo. Los fades respetan
 la pausa. Desactivar el sistema o terminar la partida limpia todo inmediatamente.
 
-Para probar en ConfusionCard: B para puntos; F/N para dar la carta al lanzador;
-C/M para abrir, E/O para usar y observar la camara contraria. Shift+F/N prueba la
-version potente con su giro de recepcion, incluso antes de mitad de partida.
+Para probar Confusion, recibirla con G/H (Shift fuerza nivel potente), abrir la
+mano con C/M y confirmar con el boton de absorcion configurado. No tiene atajo propio.
+
+## Perfume y Bomba apestosa
+
+La carta Perfume es verde (buff) y su efecto visual rosa. Se aplica al lanzador y atrae estudiantes disponibles dentro de
+8 unidades. Esperan en distintos puntos alrededor del jugador, dentro del alcance
+de absorcion. La carta Bomba apestosa es roja (debuff), con efecto visual verde, y se aplica al rival: los estudiantes se
+alejan caminando un 25 % mas rapido (1.25x), sin entrar en huida permanente.
+Con la bomba giran horizontalmente para alejarse y conservan ese nuevo sentido al
+salir del alcance o terminar el efecto, retomando su rapidez normal. No se empujan
+contra los bordes verticales ni se quedan detenidos en el limite de ZoneMov.
+
+Normal: 20 puntos, 8 segundos. Potente: 40 puntos, 20 segundos. Solo cambia la
+duracion; radio e intensidad son iguales. Renovar una normal no acorta una potente.
+El alcance de las auras es invisible. Solo se ve un halo difuminado alrededor de la
+silueta del personaje: rosa para Perfume, verde para Bomba, sin anillos ni lineas de olor.
+Si un jugador tiene ambos efectos, Bomba domina mientras coinciden. Ante varios
+jugadores se sigue el olor mas cercano; en igualdad de distancia gana Bomba.
+
+Los estudiantes ocupados, agotados o asustados no cambian de comportamiento;
+ninguna aura interrumpe una absorcion en curso. Los fantasmas imitan la reaccion
+para no delatar a los estudiantes reales. Los movimientos respetan ZoneMov.
+Las auras no alteran puntos, controles ni velocidad de los jugadores. Se limpian
+al finalizar la ronda o desactivar el sistema y sus duraciones respetan la pausa.
+
+F/U entregan Perfume a P1/P2; R/P entregan Bomba a P1/P2. Shift elige potente.
+N queda libre para la absorcion de P2, sin generar cartas al pulsarlo.

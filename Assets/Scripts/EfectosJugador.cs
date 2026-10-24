@@ -16,6 +16,9 @@ public class EfectosJugador : MonoBehaviour
     public void Inicializar(CicloPartida ciclo)
     {
         partida = ciclo;
+        var olor = GetComponent<AuraOlorJugador>();
+        if (olor == null) olor = gameObject.AddComponent<AuraOlorJugador>();
+        olor.Inicializar(ciclo);
         Limpiar();
     }
 
@@ -43,6 +46,9 @@ public class EfectosJugador : MonoBehaviour
         velocidad.Limpiar();
         finConfusion = 0f;
         GetComponent<IlusionesConfusionJugador>()?.Limpiar();
+        GetComponent<AuraOlorJugador>()?.Limpiar();
     }
+    public void AplicarOlor(bool repeler, float duracion, float radio, float retirada) =>
+        GetComponent<AuraOlorJugador>()?.Aplicar(repeler, duracion, radio, retirada);
     private void OnDisable() => Limpiar();
 }

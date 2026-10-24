@@ -63,6 +63,17 @@ public static class VerificarCartas
             AssetDatabase.ImportAsset("Assets/Cartas/CartaConfusionPotente.asset", ImportAssetOptions.ForceUpdate);
             DefinicionCarta confusion = AssetDatabase.LoadAssetAtPath<DefinicionCarta>("Assets/Cartas/CartaConfusion.asset");
             DefinicionCarta confusionPotente = AssetDatabase.LoadAssetAtPath<DefinicionCarta>("Assets/Cartas/CartaConfusionPotente.asset");
+            string[] nombresOlor = { "CartaPerfume", "CartaPerfumePotente", "CartaBombaApestosa", "CartaBombaApestosaPotente" };
+            var cartasOlor = new DefinicionCarta[4];
+            for (int i = 0; i < nombresOlor.Length; i++)
+            {
+                string ruta = "Assets/Cartas/" + nombresOlor[i] + ".asset";
+                AssetDatabase.ImportAsset(ruta, ImportAssetOptions.ForceUpdate);
+                cartasOlor[i] = AssetDatabase.LoadAssetAtPath<DefinicionCarta>(ruta);
+                Exigir(cartasOlor[i] != null && cartasOlor[i].DuracionEfecto == (i % 2 == 0 ? 8f : 20f) &&
+                    cartasOlor[i].PuntosNecesarios == (i % 2 == 0 ? 20f : 40f) && cartasOlor[i].RadioOlor == 8f,
+                    "Assets de olor: 8/20 s, costo 20/40, radio 8");
+            }
             Exigir(confusion != null && confusion.Efecto == EfectoCarta.Confusion && confusion.DuracionEfecto == 10f &&
                 confusionPotente != null && confusionPotente.EsPotente && confusionPotente.DuracionEfecto == 16f,
                 "Confusion normal 10 s y potente 16 s");
@@ -101,13 +112,13 @@ public static class VerificarCartas
             foreach (string campo in new[] { "partida", "jugador1", "jugador2", "camara1", "camara2" })
                 Exigir(serializado.FindProperty(campo).objectReferenceValue != null, "Referencia " + campo);
             var catalogo = serializado.FindProperty("catalogo");
-            Exigir(catalogo.arraySize == 6 && catalogo.GetArrayElementAtIndex(0).objectReferenceValue == carta &&
+            Exigir(catalogo.arraySize == 10 && catalogo.GetArrayElementAtIndex(0).objectReferenceValue == carta &&
                 catalogo.GetArrayElementAtIndex(1).objectReferenceValue == pesadez &&
                 catalogo.GetArrayElementAtIndex(2).objectReferenceValue == aceleracionPotente &&
                 catalogo.GetArrayElementAtIndex(3).objectReferenceValue == pesadezPotente &&
                 catalogo.GetArrayElementAtIndex(4).objectReferenceValue == confusion &&
                 catalogo.GetArrayElementAtIndex(5).objectReferenceValue == confusionPotente,
-                "Catalogo conectado a normales y potentes");
+                $"Catalogo conectado a normales y potentes: {catalogo.arraySize} entradas cargadas; compartido {((CatalogoCartas)serializado.FindProperty("catalogoCompartido").objectReferenceValue).Cartas.Length}");
 
             var partida = (CicloPartida)serializado.FindProperty("partida").objectReferenceValue;
             var p1 = (ManoCartasJugador)serializado.FindProperty("jugador1").objectReferenceValue;
@@ -186,6 +197,7 @@ public static class VerificarCartas
             efectos2.Limpiar();
             Exigir(efectos1.MultiplicadorVelocidad == 1f && efectos2.MultiplicadorVelocidad == 1f, "Limpieza de efectos");
             VerificarConfusion(sistema, p1, p2, carta, pesadez, confusion, confusionPotente);
+            VerificarOlores(sistema, p1, p2, cartasOlor);
 
             // Acelera unicamente el preview para comprobar entrega, espera y empate.
             Campo(sistema, "inicioFraccionPartida", 0f);
@@ -211,7 +223,7 @@ public static class VerificarCartas
 
             VerificarRepartos(sistema, partida, p1, p2, carta, pesadez, aceleracionPotente, pesadezPotente);
             VerificarSeguimiento(escena);
-            const string mensaje = "OK: Confusion 10/16 s, mezcla unica, fantasmas privados, interaccion sin puntos, limpieza y catalogo de seis; repartos, velocidad y camaras.";
+            const string mensaje = "OK: Perfume rosa, bomba verde, atraccion, retirada +25%, prioridad de olores, renovacion y absorcion en curso; catalogo de diez, Confusion, repartos y camaras.";
             Directory.CreateDirectory("Temp");
             File.WriteAllText(Resultado, mensaje);
             Debug.Log(mensaje);
@@ -230,6 +242,106 @@ public static class VerificarCartas
     private static void Exigir(bool condicion, string mensaje)
     {
         if (!condicion) throw new InvalidOperationException(mensaje);
+    }
+
+    private static void VerificarOlores(SistemaCartas sistema, ManoCartasJugador p1, ManoCartasJugador p2,
+        DefinicionCarta[] cartas)
+    {
+        Color buff = cartas[0].ColorCarta;
+        Color debuff = cartas[2].ColorCarta;
+        Exigir(buff.g > buff.r && buff.g > buff.b && debuff.r > debuff.g && debuff.r > debuff.b,
+            "Carta Perfume verde y Bomba roja; las auras conservan rosa/verde");
+        AuraOlorJugador a1 = p1.GetComponent<AuraOlorJugador>();
+        AuraOlorJugador a2 = p2.GetComponent<AuraOlorJugador>();
+        BoxCollider2D zona = p1.GetComponent<MovimientoJugador2D>().ZonaMovimiento;
+        Vector3 original1 = p1.transform.position;
+        Vector3 original2 = p2.transform.position;
+        GameObject npc = null;
+        try
+        {
+            Vector3 centro = zona.bounds.center;
+            p1.transform.position = centro;
+            p2.transform.position = centro + Vector3.right * 4f;
+            var aplicar = typeof(SistemaCartas).GetMethod("AplicarCarta", BindingFlags.NonPublic | BindingFlags.Instance);
+            aplicar.Invoke(sistema, new object[] { p1, cartas[0] });
+            Exigir(a1.TienePerfume && !a2.TienePerfume, "Perfume propio");
+            typeof(AuraOlorJugador).GetMethod("LateUpdate", BindingFlags.NonPublic | BindingFlags.Instance).Invoke(a1, null);
+            var halos = (System.Collections.IList)LeerCampo(a1, "halos");
+            Exigir(halos.Count > 0 && p1.transform.Find("RadioOlor") == null && p1.transform.Find("OndaOlor") == null,
+                "Halo de silueta sin anillo de alcance ni lineas de olor");
+            foreach (object halo in halos)
+            {
+                var copia = (SpriteRenderer)halo.GetType().GetField("copia").GetValue(halo);
+                var fuente = (SpriteRenderer)halo.GetType().GetField("fuente").GetValue(halo);
+                Exigir(copia.sprite == fuente.sprite && copia.color.a > 0f && copia.color.a < 0.1f &&
+                    copia.sortingOrder < fuente.sortingOrder, "Halo difuminado detras del sprite");
+            }
+            Vector3 inicio = centro + Vector3.right * 3f;
+            Exigir(AuraOlorJugador.CalcularPaso(inicio, 2f, 0.1f, zona.bounds, p1.gameObject.scene, 1, out Vector3 atraido) &&
+                Vector2.Distance(atraido, centro) < Vector2.Distance(inicio, centro), "Perfume acerca al estudiante");
+            aplicar.Invoke(sistema, new object[] { p1, cartas[2] });
+            Exigir(a2.TieneMalOlor && !a1.TieneMalOlor, "Bomba aplicada al rival");
+            Vector3 cercaBomba = p2.transform.position + Vector3.right * 2f;
+            Exigir(AuraOlorJugador.CalcularPaso(cercaBomba, 2f, 0.1f, zona.bounds, p1.gameObject.scene, 2, out Vector3 alejado) &&
+                alejado.x > cercaBomba.x && Mathf.Approximately(Vector3.Distance(alejado, cercaBomba), 0.25f),
+                "Retirada moderada a 1.25x, sin huida permanente");
+            AuraOlorJugador.Resolver(centro + Vector3.right * 2f, p1.gameObject.scene, out _, out bool repeler, out _);
+            Exigir(repeler, "En empate gana bomba");
+            AuraOlorJugador.Resolver(centro + Vector3.right * 0.1f, p1.gameObject.scene, out _, out repeler, out _);
+            Exigir(!repeler, "Gana el olor mas cercano");
+            aplicar.Invoke(sistema, new object[] { p1, cartas[3] });
+            float fin = (float)LeerCampo(a2, "finBomba");
+            aplicar.Invoke(sistema, new object[] { p1, cartas[2] });
+            Exigir((float)LeerCampo(a2, "finBomba") == fin, "Bomba normal no acorta potente");
+            a2.Limpiar();
+
+            GameObject prefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/Estudiante.prefab");
+            npc = (GameObject)PrefabUtility.InstantiatePrefab(prefab, p1.gameObject.scene);
+            var estudiante = npc.GetComponent<EstudiantePasillo>();
+            typeof(EstudiantePasillo).GetMethod("Awake", BindingFlags.NonPublic | BindingFlags.Instance).Invoke(estudiante, null);
+            estudiante.ConfigurarRecorrido(1f, 2f, zona.bounds.min.x - 10f, zona.bounds.max.x + 10f, zona);
+            npc.transform.position = inicio;
+            var avanzar = typeof(EstudiantePasillo).GetMethod("AvanzarMovimiento", BindingFlags.NonPublic | BindingFlags.Instance);
+            avanzar.Invoke(estudiante, new object[] { 0.1f });
+            Exigir(npc.transform.position.x < inicio.x, "Estudiante real responde a perfume");
+            a1.Limpiar();
+            Vector3 antesNormal = npc.transform.position;
+            avanzar.Invoke(estudiante, new object[] { 0.1f });
+            Exigir(Mathf.Approximately(npc.transform.position.x, antesNormal.x + 0.2f), "Recupera recorrido al terminar olor");
+            aplicar.Invoke(sistema, new object[] { p1, cartas[2] });
+            npc.transform.position = cercaBomba;
+            estudiante.ConfigurarRecorrido(-1f, 2f, zona.bounds.min.x - 10f, zona.bounds.max.x + 10f, zona);
+            avanzar.Invoke(estudiante, new object[] { 0.1f });
+            Exigir(estudiante.Direccion == 1f && npc.transform.position.x > cercaBomba.x,
+                "Bomba cambia el sentido del estudiante que venia hacia ella");
+            a2.Limpiar();
+            Vector3 despuesGiro = npc.transform.position;
+            avanzar.Invoke(estudiante, new object[] { 0.1f });
+            Exigir(Mathf.Approximately(npc.transform.position.x, despuesGiro.x + 0.2f),
+                "Mantiene el nuevo sentido al terminar el mal olor");
+            p2.transform.position = new Vector3(zona.bounds.max.x - 2f, centro.y, centro.z);
+            aplicar.Invoke(sistema, new object[] { p1, cartas[2] });
+            npc.transform.position = new Vector3(zona.bounds.max.x - 0.1f, centro.y, centro.z);
+            avanzar.Invoke(estudiante, new object[] { 0.1f });
+            Exigir(npc.transform.position.x > zona.bounds.max.x, "No se queda inmovil en el borde del aura/pasillo");
+            p2.transform.position = centro + Vector3.right * 4f;
+            npc.transform.position = cercaBomba;
+            var alma = npc.GetComponent<AlmaEstudiante>();
+            Exigir(alma.IntentarOcupar(p1.Almas), "Reservar absorcion en curso");
+            aplicar.Invoke(sistema, new object[] { p1, cartas[2] });
+            Vector3 ocupado = npc.transform.position;
+            avanzar.Invoke(estudiante, new object[] { 0.5f });
+            Exigir(npc.transform.position == ocupado && alma.Ocupante == p1.Almas && !alma.Asustado,
+                "Bomba no interrumpe absorcion ni asusta permanentemente");
+            Campo(a2, "finBomba", Time.time - 1f);
+            Exigir(!AuraOlorJugador.Resolver(inicio, p1.gameObject.scene, out _, out _, out _), "Olor expira");
+        }
+        finally
+        {
+            a1.Limpiar(); a2.Limpiar();
+            p1.transform.position = original1; p2.transform.position = original2;
+            if (npc != null) UnityEngine.Object.DestroyImmediate(npc);
+        }
     }
 
     private static void VerificarConfusion(SistemaCartas sistema, ManoCartasJugador p1, ManoCartasJugador p2,

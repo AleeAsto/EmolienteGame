@@ -80,10 +80,13 @@ public class SistemaCartas : MonoBehaviour
     {
         if (catalogoInicializado) return;
         if (catalogoCompartido == null) catalogoCompartido = Resources.Load<CatalogoCartas>("CatalogoCartas");
-        if (catalogoCompartido != null && catalogoCompartido.Cartas != null &&
-            catalogoCompartido.Cartas.Length > 0 && !System.Array.Exists(catalogoCompartido.Cartas, c => c == null))
+        if (catalogoCompartido != null && catalogoCompartido.Cartas != null && catalogoCompartido.Cartas.Length > 0)
         {
-            catalogo = (DefinicionCarta[])catalogoCompartido.Cartas.Clone();
+            var validas = System.Array.FindAll(catalogoCompartido.Cartas, c => c != null);
+            if (validas.Length == 0) return;
+            if (validas.Length != catalogoCompartido.Cartas.Length)
+                Debug.LogWarning("El catalogo compartido contiene referencias vacias; se omiten sin volver a la lista antigua de la escena.", this);
+            catalogo = validas;
             catalogoInicializado = true;
         }
     }
@@ -141,8 +144,10 @@ public class SistemaCartas : MonoBehaviour
             bool forzarPotente = Keyboard.current.leftShiftKey.isPressed || Keyboard.current.rightShiftKey.isPressed;
             if (Keyboard.current.gKey.wasPressedThisFrame) EntregarCarta(jugador1, true, forzarPotente ? true : (bool?)null);
             if (Keyboard.current.hKey.wasPressedThisFrame) EntregarCarta(jugador2, true, forzarPotente ? true : (bool?)null);
-            if (Keyboard.current.fKey.wasPressedThisFrame) EntregarCarta(jugador1, true, forzarPotente, EfectoCarta.Confusion);
-            if (Keyboard.current.nKey.wasPressedThisFrame) EntregarCarta(jugador2, true, forzarPotente, EfectoCarta.Confusion);
+            if (Keyboard.current.fKey.wasPressedThisFrame) EntregarCarta(jugador1, true, forzarPotente, EfectoCarta.Perfume);
+            if (Keyboard.current.uKey.wasPressedThisFrame) EntregarCarta(jugador2, true, forzarPotente, EfectoCarta.Perfume);
+            if (Keyboard.current.rKey.wasPressedThisFrame) EntregarCarta(jugador1, true, forzarPotente, EfectoCarta.BombaApestosa);
+            if (Keyboard.current.pKey.wasPressedThisFrame) EntregarCarta(jugador2, true, forzarPotente, EfectoCarta.BombaApestosa);
             if (Keyboard.current.bKey.wasPressedThisFrame)
             {
                 jugador1.Almas.Recibir(100f);
@@ -315,6 +320,9 @@ public class SistemaCartas : MonoBehaviour
             objetivo?.AplicarVelocidad(carta.MultiplicadorVelocidad, carta.DuracionEfecto);
         else if (carta.Efecto == EfectoCarta.Confusion)
             objetivo?.AplicarConfusion(carta.DuracionEfecto);
+        else if (carta.Efecto == EfectoCarta.Perfume || carta.Efecto == EfectoCarta.BombaApestosa)
+            objetivo?.AplicarOlor(carta.Efecto == EfectoCarta.BombaApestosa, carta.DuracionEfecto,
+                carta.RadioOlor, carta.MultiplicadorRetirada);
     }
 
     private void CancelarPresentaciones()
