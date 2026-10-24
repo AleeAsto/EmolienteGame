@@ -61,6 +61,9 @@ public class GeneradorEstudiantes : MonoBehaviour
 
     private void LateUpdate()
     {
+        if (Time.timeScale <= 0f)
+            return;
+
         if (Time.time < proximaAparicion)
             return;
 

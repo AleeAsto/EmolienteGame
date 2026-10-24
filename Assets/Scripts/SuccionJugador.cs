@@ -40,6 +40,9 @@ public class SuccionJugador : MonoBehaviour
 
     private void Update()
     {
+        if (Time.timeScale <= 0f)
+            return;
+
         if (!Application.isFocused || almas == null || !almas.isActiveAndEnabled ||
             accionSuccionar == null || !accionSuccionar.IsPressed())
         {

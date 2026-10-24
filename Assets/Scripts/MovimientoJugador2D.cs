@@ -38,6 +38,9 @@ public class MovimientoJugador2D : MonoBehaviour
 
     private void Update()
     {
+        if (Time.timeScale <= 0f)
+            return;
+
         Vector2 entrada = Application.isFocused && accionMovimiento != null
             ? Vector2.ClampMagnitude(accionMovimiento.ReadValue<Vector2>(), 1f)
             : Vector2.zero;

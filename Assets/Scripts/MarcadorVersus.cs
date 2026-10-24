@@ -72,6 +72,9 @@ public class MarcadorVersus : MonoBehaviour
 
     private void LateUpdate()
     {
+        if (Time.timeScale <= 0f)
+            return;
+
         if (!ReferenciasValidas)
             return;
 
