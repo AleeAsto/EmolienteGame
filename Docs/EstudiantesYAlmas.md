@@ -47,9 +47,25 @@ cancela la succion y reinicia el progreso, sin entregar almas. Tras completar o
 cancelar un drenaje hay que soltar y volver a pulsar para iniciar otro; mantener
 la tecla no encadena objetivos automaticamente. Cada jugador solo usa su accion.
 
-## Integracion con ataque y HUD
+## Marcador versus
 
-El ataque PvP y el marcador visual siguen pendientes. `SuccionJugador.CancelarSuccion()`
+`HUDVersus/MarcadorVersus` muestra la puntuacion de ambos jugadores en la
+division horizontal entre camaras. P1 ocupa el tramo celeste y P2 el rojo.
+El aro se desplaza con una transicion breve cuando cambian las almas.
+
+El reparto compara los puntos actuales: P1 ocupa `P1 / (P1 + P2)` del carril.
+Con 20 contra 10, el celeste ocupa dos tercios. Con 0 contra 0, el reparto es
+50/50. Los numeros de un tramo muy estrecho se elevan sobre la barra para seguir
+visibles cuando el aro llega a un extremo. El reparto visual no termina la partida.
+
+En el Inspector de `MarcadorVersus` se pueden ajustar colores y tiempo de
+transicion. Los textos, aro y barra son objetos UI editables dentro del Canvas.
+El Canvas se adapta a la resolucion y las referencias de puntuacion apuntan
+directamente a `AlmasJugador` de P1/P2 mediante `CantidadCambiada`.
+
+## Integracion con ataque
+
+El ataque PvP sigue pendiente. `SuccionJugador.CancelarSuccion()`
 permite que un ataque interrumpa al ocupante y libere al estudiante. Internamente:
 
 1. Llamar a `AlmaEstudiante.IntentarOcupar(almasJugador)` al iniciar. Devuelve
