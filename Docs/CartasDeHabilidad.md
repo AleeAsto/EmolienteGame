@@ -17,6 +17,12 @@ tienen `ManoCartasJugador` usan pulsacion corta/mantener para golpear o abrir ca
   de recompensas. Pulsar varias veces permite comprobar el limite de tres.
   Estos atajos ignoran el requisito de mitad de partida para potentes, pero conservan
   su giro de recepcion y los limites de inventario (tres cartas, una potente como maximo).
+- Shift+G / Shift+H fuerzan una potente para P1/P2, incluso antes de mitad de partida.
+  Necesitan un cupo libre y no tener ya otra potente (incluidas entregas en animacion).
+  La consola indica la carta sorteada, costo, duracion, candidatas normales/potentes
+  y los motivos de un intento bloqueado. G/H sin Shift conservan el sorteo aleatorio.
+  El encabezado dentro de la carta muestra NORMAL/POTENTE y la duracion, para
+  distinguir 8 s de 20 s sin necesitar ver la parte inferior de la descripcion.
 - B suma 100 puntos a cada jugador por pulsacion, con las mismas condiciones
   de los atajos de desarrollo.
 - La carta cuesta 20 puntos reales. Absorber estudiantes para alcanzarlos o modificar
@@ -85,7 +91,24 @@ de efecto desde el asset. El color verde/rojo depende del destino propio/rival y
 mantiene en la mano y durante la animacion; las cartas no seleccionadas se oscurecen.
 `EfectosJugador` se agrega a P1/P2 al iniciar la escena y administra sus modificadores.
 
-## Entrega normal
+## Repartos a ambos jugadores
+
+Ademas de la ayuda por desventaja, hay cuatro repartos independientes: a los
+60, 90, 120 y 150 segundos transcurridos. `Momentos Reparto` en `SistemaCartas`
+permite modificar esos tiempos. Son segundos de juego, sin contar pausas ni la
+cuenta inicial, y cada evento se ejecuta una sola vez aunque se salten frames.
+
+Ambos reciben una carta del mismo nivel, aunque las habilidades pueden ser distintas.
+Antes de mitad de partida solo salen normales. Despues, si ambos pueden recibir
+potentes, se sortea normal/potente al 50 %. Si uno ya tiene una potente, el reparto
+comun es normal para respetar el maximo de una potente por mano. Las potentes
+conservan su giro de recepcion.
+
+Una mano llena (incluidas reservas en animacion) omite su entrega; el otro jugador
+puede recibir la suya. No queda deuda al liberar espacio despues. Los repartos no
+reinician ni consumen el cooldown o la persistencia de la ayuda por desventaja.
+
+## Ayuda por desventaja
 
 `SistemaCartas` esta en `HUDVersus/MarcadorVersus`, junto con `CicloPartida`.
 Todos estos valores se editan en su Inspector:
@@ -106,6 +129,11 @@ salir de la ventana de entregas reinicia la persistencia. No se almacenan entreg
 pendientes. Las cartas recibidas se conservan aunque cambie el lider.
 
 ## Assets y responsabilidades
+
+- `Assets/Resources/CatalogoCartas.asset`: catalogo compartido con las dos normales
+  y las dos potentes. `SistemaCartas` lo carga automaticamente al iniciar y tras
+  una recarga de scripts. La lista antigua guardada en una escena deja de decidir
+  que cartas salen. `Catalogo Compartido` permite asignar otro catalogo explicitamente.
 
 - `Assets/Cartas/CartaAceleracion.asset` y `CartaPesadez.asset`: definiciones
   `ScriptableObject`; identificador, titulo, frente, reverso, costo, destino y efecto.

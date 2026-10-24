@@ -83,7 +83,14 @@ public static class VerificarCartas
                 if (sistema == null) sistema = raiz.GetComponentInChildren<SistemaCartas>(true);
             }
             Exigir(sistema != null, "Sistema presente en ActionCards");
+            AssetDatabase.ImportAsset("Assets/Resources/CatalogoCartas.asset", ImportAssetOptions.ForceUpdate);
+            // Reproducir la escena cargada con una lista antigua: debe migrar al catalogo comun.
+            Campo(sistema, "catalogo", new[] { carta, pesadez });
+            typeof(SistemaCartas).GetMethod("CargarCatalogo", BindingFlags.NonPublic | BindingFlags.Instance)
+                .Invoke(sistema, null);
             var serializado = new SerializedObject(sistema);
+            Exigir(serializado.FindProperty("catalogoCompartido").objectReferenceValue != null,
+                "Catalogo compartido cargado sin depender de reabrir la escena");
             foreach (string campo in new[] { "partida", "jugador1", "jugador2", "camara1", "camara2" })
                 Exigir(serializado.FindProperty(campo).objectReferenceValue != null, "Referencia " + campo);
             var catalogo = serializado.FindProperty("catalogo");
@@ -116,6 +123,12 @@ public static class VerificarCartas
             typeof(SistemaCartas).GetMethod("CancelarPresentaciones", BindingFlags.NonPublic | BindingFlags.Instance)
                 .Invoke(sistema, null);
             Exigir(p2.EspaciosOcupados == 0, "Cancelar presentaciones libera cupos pendientes");
+            Campo(sistema, "catalogo", catalogoCompleto);
+            Exigir(sistema.EntregarCarta(p2, true, true) && p2.TienePotente && p2.Cantidad == 0,
+                "Debug forzado elige potente de catalogo mixto antes de mitad");
+            typeof(SistemaCartas).GetMethod("CancelarPresentaciones", BindingFlags.NonPublic | BindingFlags.Instance)
+                .Invoke(sistema, null);
+            Campo(sistema, "catalogo", new[] { aceleracionPotente, pesadezPotente });
             Propiedad(partida, "TiempoRestante", 90.01f);
             Exigir(!sistema.PuedeEntregar(p2, aceleracionPotente), "Bloqueada antes del limite exacto");
             Propiedad(partida, "TiempoRestante", 90f);
@@ -186,8 +199,9 @@ public static class VerificarCartas
             Propiedad(partida, "Terminada", true);
             Exigir(!p1.Recibir(carta), "No entregar despues del final");
 
+            VerificarRepartos(sistema, partida, p1, p2, carta, pesadez, aceleracionPotente, pesadezPotente);
             VerificarSeguimiento(escena);
-            const string mensaje = "OK: normales/potentes, mitad de partida, debug con giro, reservas y limite de una potente, cobro, efectos y camaras. La animacion visual se verifica en Play.";
+            const string mensaje = "OK: repartos 60/90/120/150 a ambos, sin repeticiones ni deuda, nivel comun e independencia de ayuda; potentes, debug, cobro, efectos y camaras.";
             Directory.CreateDirectory("Temp");
             File.WriteAllText(Resultado, mensaje);
             Debug.Log(mensaje);
@@ -206,6 +220,74 @@ public static class VerificarCartas
     private static void Exigir(bool condicion, string mensaje)
     {
         if (!condicion) throw new InvalidOperationException(mensaje);
+    }
+
+    private static void VerificarRepartos(SistemaCartas sistema, CicloPartida partida,
+        ManoCartasJugador p1, ManoCartasJugador p2, DefinicionCarta normal1, DefinicionCarta normal2,
+        DefinicionCarta potente1, DefinicionCarta potente2)
+    {
+        var evaluar = typeof(SistemaCartas).GetMethod("EvaluarRepartosProgramados", BindingFlags.NonPublic | BindingFlags.Instance);
+        var cancelar = typeof(SistemaCartas).GetMethod("CancelarPresentaciones", BindingFlags.NonPublic | BindingFlags.Instance);
+        var mano1 = (System.Collections.Generic.List<DefinicionCarta>)LeerCampo(p1, "cartas");
+        var mano2 = (System.Collections.Generic.List<DefinicionCarta>)LeerCampo(p2, "cartas");
+        var realizados = (System.Collections.Generic.List<int>)LeerCampo(sistema, "repartosRealizados");
+        mano1.Clear(); mano2.Clear(); realizados.Clear();
+        cancelar.Invoke(sistema, null);
+        Propiedad(partida, "Terminada", false);
+        Propiedad(partida, "EnCurso", true);
+        Campo(sistema, "catalogo", new[] { normal1, normal2 });
+        Campo(sistema, "momentosReparto", new[] { 60f, 90f, 120f, 150f });
+        float[] esperas = (float[])LeerCampo(sistema, "espera");
+        esperas[0] = 17f; esperas[1] = 19f;
+        Propiedad(partida, "TiempoRestante", 120.01f);
+        evaluar.Invoke(sistema, null);
+        Exigir(p1.Cantidad == 0 && p2.Cantidad == 0, "No repartir antes de 60 segundos");
+        Propiedad(partida, "TiempoRestante", 120f);
+        evaluar.Invoke(sistema, null);
+        Exigir(p1.Cantidad == 1 && p2.Cantidad == 1 && !p1.Cartas[0].EsPotente && !p2.Cartas[0].EsPotente,
+            "Reparto a ambos a los 60 segundos");
+        evaluar.Invoke(sistema, null);
+        Exigir(p1.Cantidad == 1 && p2.Cantidad == 1, "No repetir reparto en siguientes frames");
+        p1.Recibir(normal1); p1.Recibir(normal1);
+        Propiedad(partida, "TiempoRestante", 90f);
+        evaluar.Invoke(sistema, null);
+        Exigir(p1.Cantidad == 3 && p2.Cantidad == 2, "Reparto 90 omite solo la mano llena");
+        mano1.Clear();
+        evaluar.Invoke(sistema, null);
+        Exigir(p1.Cantidad == 0, "Liberar mano despues no recupera entrega omitida");
+        mano2.Clear();
+        Campo(sistema, "catalogo", new[] { potente1, potente2 });
+        Propiedad(partida, "TiempoRestante", 60f);
+        evaluar.Invoke(sistema, null);
+        Exigir(p1.TienePotente && p2.TienePotente && p1.Cantidad == 0 && p2.Cantidad == 0,
+            "Reparto 120 reserva potentes del mismo nivel y conserva su animacion");
+        cancelar.Invoke(sistema, null);
+        evaluar.Invoke(sistema, null);
+        Exigir(p1.EspaciosOcupados == 0 && p2.EspaciosOcupados == 0, "No repetir reparto 120");
+        Propiedad(partida, "TiempoRestante", 30f);
+        evaluar.Invoke(sistema, null);
+        Exigir(p1.TienePotente && p2.TienePotente && realizados.Count == 4, "Cuarto reparto a los 150 segundos");
+        Exigir(esperas[0] == 17f && esperas[1] == 19f, "Repartos no alteran cooldown de ayuda por desventaja");
+        cancelar.Invoke(sistema, null);
+        realizados.Clear();
+        Campo(sistema, "catalogo", new[] { normal1, normal2 });
+        evaluar.Invoke(sistema, null);
+        Exigir(p1.Cantidad == 3 && p2.Cantidad == 3 && realizados.Count == 4,
+            "Saltar el reloj procesa eventos cruzados una vez sin superar capacidad");
+        mano1.Clear(); mano2.Clear();
+        evaluar.Invoke(sistema, null);
+        Exigir(p1.Cantidad == 0 && p2.Cantidad == 0, "No hay deuda tras salto temporal y manos llenas");
+        Campo(sistema, "catalogo", new[] { normal1, normal2, potente1, potente2 });
+        Exigir(p1.Recibir(potente1), "Preparar mano con potente");
+        typeof(SistemaCartas).GetMethod("RepartirAmbos", BindingFlags.NonPublic | BindingFlags.Instance)
+            .Invoke(sistema, null);
+        Exigir(p1.Cantidad == 2 && !p1.Cartas[1].EsPotente && p2.Cantidad == 1 && !p2.Cartas[0].EsPotente,
+            "Si uno ya tiene potente, ambos reciben normales");
+        mano1.Clear(); mano2.Clear();
+        realizados.Clear();
+        Propiedad(partida, "Terminada", true);
+        evaluar.Invoke(sistema, null);
+        Exigir(p1.Cantidad == 0 && p2.Cantidad == 0, "No repartir despues del final");
     }
 
     private static void VerificarSeguimiento(UnityEngine.SceneManagement.Scene escena)

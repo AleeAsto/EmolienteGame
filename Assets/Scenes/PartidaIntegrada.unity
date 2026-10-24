@@ -5704,6 +5704,8 @@ MonoBehaviour:
   catalogo:
   - {fileID: 11400000, guid: c664b297c8804b81925f5e38de706a17, type: 2}
   - {fileID: 11400000, guid: 4ab534dcb7be4a6ba480d230ad32be5c, type: 2}
+  - {fileID: 11400000, guid: abe83ac1ca244e19b1561fa6ef97a02c, type: 2}
+  - {fileID: 11400000, guid: 06d26aa755824ffcb505257ac72cdc1f, type: 2}
   inicioFraccionPartida: 0.33333334
   diferenciaMinima: 25
   proporcionMaxima: 0.75

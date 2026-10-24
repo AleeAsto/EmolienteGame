@@ -130,7 +130,7 @@ public class VistaCartas : MonoBehaviour
                 Color colorCarta = carta.ColorCarta * brillo;
                 colorCarta.a = 1f;
                 imagenes[i, j].color = colorCarta;
-                textos[i, j].text = $"{(carta.EsPotente ? "★ " : "")}Costo {carta.PuntosNecesarios:0.#}\n\n{carta.TituloVisible}\n\n{carta.Descripcion}";
+                textos[i, j].text = $"{(carta.EsPotente ? "POTENTE ★" : "NORMAL")} · {carta.DuracionEfecto:0.#} s\nCosto {carta.PuntosNecesarios:0.#}\n\n{carta.TituloVisible}\n\n{carta.Descripcion}";
                 textos[i, j].color = suficiente ? new Color(0.12f, 0.16f, 0.22f) : new Color(0.48f, 0.12f, 0.1f);
                 if (mano.MenuAbierto && !seleccionada)
                 {

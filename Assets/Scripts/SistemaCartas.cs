@@ -12,7 +12,13 @@ public class SistemaCartas : MonoBehaviour
     [SerializeField] private ManoCartasJugador jugador2;
     [SerializeField] private Camera camara1;
     [SerializeField] private Camera camara2;
-    [SerializeField] private DefinicionCarta[] catalogo;
+    [Tooltip("Sin asignar se usa el catalogo compartido de Resources/CatalogoCartas.")]
+    [SerializeField] private CatalogoCartas catalogoCompartido;
+    [SerializeField, HideInInspector] private DefinicionCarta[] catalogo;
+    private bool catalogoInicializado;
+    [Header("Repartos a ambos (segundos transcurridos)")]
+    [SerializeField] private float[] momentosReparto = { 60f, 90f, 120f, 150f };
+    [SerializeField, HideInInspector] private List<int> repartosRealizados = new List<int>();
     [Header("Entrega por desventaja")]
     [SerializeField, Range(0f, 1f)] private float inicioFraccionPartida = 1f / 3f;
     [SerializeField, Min(0f)] private float diferenciaMinima = 25f;
@@ -53,6 +59,7 @@ public class SistemaCartas : MonoBehaviour
 
     private void Awake()
     {
+        CargarCatalogo();
         if (partida == null || jugador1 == null || jugador2 == null || camara1 == null || camara2 == null ||
             catalogo == null || catalogo.Length == 0 || System.Array.Exists(catalogo, c => c == null))
         {
@@ -64,6 +71,19 @@ public class SistemaCartas : MonoBehaviour
         jugador2.Inicializar(this);
         efectos1 = PrepararEfectos(jugador1);
         efectos2 = PrepararEfectos(jugador2);
+        repartosRealizados.Clear();
+    }
+
+    private void CargarCatalogo()
+    {
+        if (catalogoInicializado) return;
+        if (catalogoCompartido == null) catalogoCompartido = Resources.Load<CatalogoCartas>("CatalogoCartas");
+        if (catalogoCompartido != null && catalogoCompartido.Cartas != null &&
+            catalogoCompartido.Cartas.Length > 0 && !System.Array.Exists(catalogoCompartido.Cartas, c => c == null))
+        {
+            catalogo = (DefinicionCarta[])catalogoCompartido.Cartas.Clone();
+            catalogoInicializado = true;
+        }
     }
 
     private EfectosJugador PrepararEfectos(ManoCartasJugador jugador)
@@ -94,12 +114,14 @@ public class SistemaCartas : MonoBehaviour
         }
         if (!EnCurso)
             return;
+        CargarCatalogo();
 
         if (atajosDesarrollo && (Application.isEditor || Debug.isDebugBuild) && Application.isFocused && Keyboard.current != null)
         {
             // Atajos de prueba, sin alterar el reloj de entregas normales.
-            if (Keyboard.current.gKey.wasPressedThisFrame) EntregarCarta(jugador1, true);
-            if (Keyboard.current.hKey.wasPressedThisFrame) EntregarCarta(jugador2, true);
+            bool forzarPotente = Keyboard.current.leftShiftKey.isPressed || Keyboard.current.rightShiftKey.isPressed;
+            if (Keyboard.current.gKey.wasPressedThisFrame) EntregarCarta(jugador1, true, forzarPotente ? true : (bool?)null);
+            if (Keyboard.current.hKey.wasPressedThisFrame) EntregarCarta(jugador2, true, forzarPotente ? true : (bool?)null);
             if (Keyboard.current.bKey.wasPressedThisFrame)
             {
                 jugador1.Almas.Recibir(100f);
@@ -107,6 +129,7 @@ public class SistemaCartas : MonoBehaviour
             }
         }
 
+        EvaluarRepartosProgramados();
         EvaluarEntrega(0, jugador1, jugador2);
         EvaluarEntrega(1, jugador2, jugador1);
         ActualizarPresentacion();
@@ -144,13 +167,64 @@ public class SistemaCartas : MonoBehaviour
             partida.DuracionSegundos - partida.TiempoRestante >= partida.DuracionSegundos * inicioPotentes);
     }
 
-    public bool EntregarCarta(ManoCartasJugador jugador, bool debug = false)
+    private void EvaluarRepartosProgramados()
     {
+        if (!EnCurso || momentosReparto == null) return;
+        float transcurrido = partida.DuracionSegundos - partida.TiempoRestante;
+        for (int i = 0; i < momentosReparto.Length; i++)
+        {
+            float momento = momentosReparto[i];
+            if (float.IsNaN(momento) || float.IsInfinity(momento) || momento < 0f ||
+                momento >= partida.DuracionSegundos || transcurrido < momento || repartosRealizados.Contains(i))
+                continue;
+            // Se consume el evento aunque una mano este llena; no guarda entregas atrasadas.
+            repartosRealizados.Add(i);
+            RepartirAmbos();
+        }
+    }
+
+    private bool HayCartaElegible(ManoCartasJugador jugador, bool? potente = null)
+    {
+        foreach (DefinicionCarta carta in catalogo)
+            if (PuedeEntregar(jugador, carta) && (!potente.HasValue || carta.EsPotente == potente.Value))
+                return true;
+        return false;
+    }
+
+    private void RepartirAmbos()
+    {
+        bool recibe1 = HayCartaElegible(jugador1);
+        bool recibe2 = HayCartaElegible(jugador2);
+        if (!recibe1 && !recibe2) return;
+        // Sortear un nivel comun; las habilidades concretas pueden ser distintas.
+        bool normal = (!recibe1 || HayCartaElegible(jugador1, false)) &&
+            (!recibe2 || HayCartaElegible(jugador2, false));
+        bool potente = (!recibe1 || HayCartaElegible(jugador1, true)) &&
+            (!recibe2 || HayCartaElegible(jugador2, true));
+        if (!normal && !potente) return;
+        bool nivelPotente = potente && (!normal || Random.value < 0.5f);
+        if (recibe1) EntregarCarta(jugador1, false, nivelPotente);
+        if (recibe2) EntregarCarta(jugador2, false, nivelPotente);
+    }
+
+    public bool EntregarCarta(ManoCartasJugador jugador, bool debug = false, bool? potente = null)
+    {
+        CargarCatalogo();
         var candidatas = new List<DefinicionCarta>();
         foreach (DefinicionCarta carta in catalogo)
-            if (PuedeEntregar(jugador, carta, debug)) candidatas.Add(carta);
-        if (candidatas.Count == 0) return false;
+            if (PuedeEntregar(jugador, carta, debug) && (!potente.HasValue || carta.EsPotente == potente.Value))
+                candidatas.Add(carta);
+        if (candidatas.Count == 0)
+        {
+            if (debug) Debug.Log($"[Cartas debug] {jugador.name}: sin cartas elegibles. Cupos {jugador.EspaciosOcupados}/3; potente en mano o pendiente: {jugador.TienePotente}; forzar potente: {potente == true}.", this);
+            return false;
+        }
         DefinicionCarta elegida = candidatas[Random.Range(0, candidatas.Count)];
+        if (debug)
+        {
+            int potentes = candidatas.FindAll(c => c.EsPotente).Count;
+            Debug.Log($"[Cartas debug] {jugador.name}: {elegida.TituloVisible}; costo {elegida.PuntosNecesarios}; {elegida.DuracionEfecto} s. Candidatas: {candidatas.Count - potentes} normales, {potentes} potentes. Tiempo ignorado.", this);
+        }
         if (!elegida.EsPotente) return jugador.Recibir(elegida);
         if (!jugador.ReservarEntrega(elegida)) return false;
         Encolar(new Lanzamiento { jugador = jugador, carta = elegida, frame = Time.frameCount, esEntrega = true });
