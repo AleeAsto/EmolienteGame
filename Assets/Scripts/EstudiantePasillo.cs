@@ -5,6 +5,8 @@ using UnityEngine;
 public class EstudiantePasillo : MonoBehaviour
 {
     [SerializeField, Min(1f)] private float multiplicadorHuida = 15f;
+    [Tooltip("Tiempo que camina y se desvanece tras completar la extraccion.")]
+    [SerializeField, Min(0.1f)] private float duracionSalidaAgotado = 2f;
     private AlmaEstudiante alma;
     private float direccion;
     private float velocidad;
@@ -13,6 +15,8 @@ public class EstudiantePasillo : MonoBehaviour
     private bool configurado;
 
     public float Direccion => direccion;
+    public float OpacidadAgotado => alma != null && alma.Agotado
+        ? 1f - Mathf.Clamp01(alma.SegundosAgotado / Mathf.Max(0.1f, duracionSalidaAgotado)) : 1f;
 
     private void Awake()
     {
@@ -40,6 +44,12 @@ public class EstudiantePasillo : MonoBehaviour
     {
         if (Time.timeScale <= 0f)
             return;
+
+        if (alma.Agotado && alma.SegundosAgotado >= Mathf.Max(0.1f, duracionSalidaAgotado))
+        {
+            Destroy(gameObject);
+            return;
+        }
 
         if (!configurado || alma.EstaOcupado)
             return;

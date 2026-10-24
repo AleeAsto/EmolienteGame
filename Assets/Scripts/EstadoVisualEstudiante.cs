@@ -10,10 +10,12 @@ public class EstadoVisualEstudiante : MonoBehaviour
     private AlmaEstudiante alma;
     private SpriteRenderer[] sprites;
     private Color[] coloresOriginales;
+    private EstudiantePasillo recorrido;
 
     private void Awake()
     {
         alma = GetComponent<AlmaEstudiante>();
+        recorrido = GetComponent<EstudiantePasillo>();
         sprites = GetComponentsInChildren<SpriteRenderer>(true);
         coloresOriginales = new Color[sprites.Length];
         for (int i = 0; i < sprites.Length; i++)
@@ -35,9 +37,14 @@ public class EstadoVisualEstudiante : MonoBehaviour
 
             Color color = alma.Asustado ? colorAsustado :
                 (alma.Disponible ? coloresOriginales[i] : colorAgotado);
-            color.a = coloresOriginales[i].a;
+            color.a = coloresOriginales[i].a * (recorrido != null ? recorrido.OpacidadAgotado : 1f);
             sprites[i].color = color;
         }
+    }
+
+    private void LateUpdate()
+    {
+        if (alma.Agotado) ActualizarColor();
     }
 
     private void OnDisable()

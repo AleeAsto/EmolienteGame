@@ -6,11 +6,14 @@ public class AlmaEstudiante : MonoBehaviour
 {
     [SerializeField, Min(1)] private int valorAlmas = 10;
     private bool agotado;
+    private float tiempoAgotado;
     private bool asustado;
     private AlmasJugador ocupante;
 
     public int ValorAlmas => valorAlmas;
     public bool Asustado => asustado;
+    public bool Agotado => agotado;
+    public float SegundosAgotado => agotado ? Mathf.Max(0f, Time.time - tiempoAgotado) : 0f;
     public bool Disponible => isActiveAndEnabled && !agotado && !asustado;
     public bool EstaOcupado => ocupante != null;
     public AlmasJugador Ocupante => ocupante;
@@ -49,6 +52,7 @@ public class AlmaEstudiante : MonoBehaviour
             return false;
 
         agotado = true;
+        tiempoAgotado = Time.time;
         ocupante = null;
         jugador.Recibir(Mathf.Max(1, valorAlmas));
         EstadoCambiado?.Invoke();

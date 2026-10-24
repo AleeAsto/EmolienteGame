@@ -26,4 +26,15 @@ public class AlmasJugador : MonoBehaviour
         cantidad = Mathf.Max(0f, cantidad - almas);
         CantidadCambiada?.Invoke(cantidad);
     }
+
+    public bool IntentarGastar(float almas)
+    {
+        if (float.IsNaN(almas) || float.IsInfinity(almas) || almas < 0f || cantidad < almas)
+            return false;
+        if (almas == 0f)
+            return true;
+        cantidad -= almas;
+        CantidadCambiada?.Invoke(cantidad);
+        return true;
+    }
 }

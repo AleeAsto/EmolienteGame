@@ -19,6 +19,7 @@ public class SuccionJugador : MonoBehaviour
     private EstadoCombateJugador estadoCombate;
     private AtaqueJugador ataque;
     private ManoCartasJugador cartas;
+    private EfectosJugador efectos;
     public InputAction AccionSuccionar => accionSuccionar;
 
     public AlmaEstudiante Objetivo => objetivo;
@@ -32,6 +33,7 @@ public class SuccionJugador : MonoBehaviour
         estadoCombate = GetComponent<EstadoCombateJugador>();
         ataque = GetComponent<AtaqueJugador>();
         cartas = GetComponent<ManoCartasJugador>();
+        efectos = GetComponent<EfectosJugador>();
         if (succionar == null || succionar.action == null)
         {
             Debug.LogError("Asigna la accion Succionar del jugador en el Inspector.", this);
@@ -90,7 +92,8 @@ public class SuccionJugador : MonoBehaviour
 
         float duracion = Mathf.Max(0.1f, tiempoDrenaje);
         // Limitar el ultimo frame para no premiar tiempo posterior a la conversion.
-        float tiempoAbsorbido = Mathf.Min(Time.deltaTime, duracion - tiempoAcumulado);
+        float multiplicador = efectos != null ? efectos.MultiplicadorVelocidad : 1f;
+        float tiempoAbsorbido = Mathf.Min(Time.deltaTime * multiplicador, duracion - tiempoAcumulado);
         tiempoAcumulado = Mathf.Min(duracion, tiempoAcumulado + tiempoAbsorbido);
         almas.Recibir(tiempoAbsorbido * Mathf.Max(0f, puntosPorSegundo));
         if (tiempoAcumulado < duracion)

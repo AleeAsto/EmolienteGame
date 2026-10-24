@@ -121,8 +121,10 @@ public class VistaCartas : MonoBehaviour
                 bool suficiente = mano.Almas.Cantidad >= carta.PuntosNecesarios;
                 float brillo = (suficiente ? 1f : 0.72f) *
                     (mano.MenuAbierto && !seleccionada ? 0.45f : 1f);
-                imagenes[i, j].color = new Color(brillo, brillo, brillo, 1f);
-                textos[i, j].text = $"Requiere {carta.PuntosNecesarios:0.#}\n\n{carta.Titulo}\n\nSin efecto";
+                Color colorCarta = carta.ColorCarta * brillo;
+                colorCarta.a = 1f;
+                imagenes[i, j].color = colorCarta;
+                textos[i, j].text = $"Costo {carta.PuntosNecesarios:0.#}\n\n{carta.Titulo}\n\n{carta.Descripcion}";
                 textos[i, j].color = suficiente ? new Color(0.12f, 0.16f, 0.22f) : new Color(0.48f, 0.12f, 0.1f);
                 if (mano.MenuAbierto && !seleccionada)
                 {
@@ -215,8 +217,9 @@ public class VistaCartas : MonoBehaviour
         presentacion.anchoredPosition = posicion;
         presentacion.sizeDelta = new Vector2(230, 320) * escala;
         imagenPresentacion.sprite = frente ? carta.Frente : carta.Reverso;
+        imagenPresentacion.color = carta.ColorCarta;
         textoPresentacion.gameObject.SetActive(frente);
-        textoPresentacion.text = $"{carta.Titulo}\n\nRequiere {carta.PuntosNecesarios:0.#}\n\nSin efecto\nP{origen + 1}";
+        textoPresentacion.text = $"{carta.Titulo}\n\nCosto {carta.PuntosNecesarios:0.#}\n\n{carta.Descripcion}\nP{origen + 1}";
     }
 
     public void OcultarPresentacion()

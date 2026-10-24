@@ -1,5 +1,20 @@
 # Estudiantes y almas
 
+## Ampliar el mapa y mover el spawn
+
+Mover los objetos raiz `P1` y `P2` cambia sus posiciones iniciales. Mover solamente
+su hijo `Sprite` cambia el dibujo, pero no el jugador seguido por la camara.
+`CamaraPasillo` sigue horizontalmente a cada jugador durante Play y tambien al
+editar cuando `Seguir En Editor` esta activo. Se coloca al activar la camara,
+antes de generar estudiantes; mover la camara en X manualmente no cambia el spawn.
+
+Las camaras toman los bordes del mismo `ZoneMov` usado por movimiento y generacion.
+Al ampliar su collider o escala, los limites de seguimiento se actualizan sin mover
+`ExtremoI`/`ExtremoD`. `Zona Pasillo` permite asignar otra zona explicitamente; los
+extremos solo se usan si no existe una zona asignada ni una zona en el jugador.
+La camara se detiene cerca de los bordes para no mostrar fuera del mapa. Si el
+mapa es mas estrecho que la vista, se centra. La altura Y sigue siendo manual.
+
 La escena de juego es `Assets/Scenes/PartidaCycle.unity` y es la unica habilitada
 en Build Settings. Contiene el objeto `Estudiantes`,
 con un `GeneradorEstudiantes` conectado a `ZoneMov`, `CameraP1` y `CameraP2`.
@@ -31,7 +46,10 @@ Salir de una camara no elimina al estudiante; se elimina al cruzar la salida
 del pasillo en su sentido de marcha, con un margen para ocultar el sprite completo.
 
 Un estudiante ocupado se detiene. Tras completar la extraccion, entrega su
-valor directamente al jugador y continua caminando agotado hasta salir del pasillo.
+valor directamente al jugador y continua caminando agotado durante 2 segundos,
+reduciendo gradualmente el alfa de sus sprites hasta cero. Entonces se destruye y
+libera su cupo en el generador. `Duracion Salida Agotado` en `EstudiantePasillo`
+permite ajustar ese tiempo en el prefab. La pausa detiene movimiento y desvanecimiento.
 Cada estudiante entrega almas una sola vez; no se recupera automaticamente.
 `SortingGroup` usa la posicion del objeto raiz junto con la ordenacion Y ya
 configurada en el Renderer2D, para mantener juntos los sprites de cada personaje.
@@ -44,7 +62,7 @@ Las acciones `Jugador1/Succionar` y `Jugador2/Succionar` estan en
 
 Acercate al estudiante y pulsa succionar: se elige el mas cercano disponible
 dentro del alcance. El estudiante se detiene durante el drenaje. Mantener la
-tecla durante 3 segundos entrega +10 almas y lo deja gris permanentemente.
+tecla durante 3 segundos entrega +10 almas y lo deja gris mientras camina y desaparece.
 Durante la absorcion tambien se suman puntos fraccionarios (2 por segundo,
 ajustables en `Puntos Por Segundo`).
 

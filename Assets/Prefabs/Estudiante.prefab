@@ -215,6 +215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EstudiantePasillo
   multiplicadorHuida: 15
+  duracionSalidaAgotado: 2
 --- !u!114 &6695174300251102869
 MonoBehaviour:
   m_ObjectHideFlags: 0

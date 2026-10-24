@@ -18,13 +18,16 @@ public class MovimientoJugador2D : MonoBehaviour
 
     public float DireccionHorizontal { get; private set; } = 1f;
     public InputAction AccionMovimiento => accionMovimiento;
+    public BoxCollider2D ZonaMovimiento => zonaMovimiento;
     private ManoCartasJugador cartas;
+    private EfectosJugador efectos;
 
     private void Awake()
     {
         cuerpo = GetComponent<BoxCollider2D>();
         estadoCombate = GetComponent<EstadoCombateJugador>();
         cartas = GetComponent<ManoCartasJugador>();
+        efectos = GetComponent<EfectosJugador>();
         DireccionHorizontal = direccionInicial < 0f ? -1f : 1f;
         if (zonaMovimiento == null || movimiento == null || movimiento.action == null)
         {
@@ -64,7 +67,8 @@ public class MovimientoJugador2D : MonoBehaviour
         Vector2 empujon = Vector2.ClampMagnitude(empujonPendiente,
             Mathf.Max(0.1f, rapidezEmpujon) * Time.deltaTime);
         empujonPendiente -= empujon;
-        Vector3 destino = transform.position + (Vector3)(entrada * velocidad * Time.deltaTime + empujon);
+        float multiplicador = efectos != null ? efectos.MultiplicadorVelocidad : 1f;
+        Vector3 destino = transform.position + (Vector3)(entrada * velocidad * multiplicador * Time.deltaTime + empujon);
         transform.position = LimitarPosicion(destino);
     }
 

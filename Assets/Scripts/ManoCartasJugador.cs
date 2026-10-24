@@ -127,7 +127,7 @@ public class ManoCartasJugador : MonoBehaviour
         if (!MenuAbierto || sistema == null || !sistema.EnCurso || estado.EstaAturdido || Cantidad == 0)
             return false;
         DefinicionCarta carta = cartas[Seleccion];
-        if (almas.Cantidad < carta.PuntosNecesarios)
+        if (!almas.IntentarGastar(carta.PuntosNecesarios))
         {
             MostrarAviso($"Necesitas {carta.PuntosNecesarios:0.#} puntos");
             return false;

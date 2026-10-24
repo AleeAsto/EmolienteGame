@@ -33,6 +33,8 @@ public class SistemaCartas : MonoBehaviour
     private bool presentando;
     private float tiempoPresentacion;
     private Lanzamiento actual;
+    private EfectosJugador efectos1;
+    private EfectosJugador efectos2;
 
     public bool EnCurso => isActiveAndEnabled && partida != null && partida.EnCurso &&
         !partida.Terminada && Time.timeScale > 0f;
@@ -57,6 +59,16 @@ public class SistemaCartas : MonoBehaviour
         }
         jugador1.Inicializar(this);
         jugador2.Inicializar(this);
+        efectos1 = PrepararEfectos(jugador1);
+        efectos2 = PrepararEfectos(jugador2);
+    }
+
+    private EfectosJugador PrepararEfectos(ManoCartasJugador jugador)
+    {
+        EfectosJugador efectos = jugador.GetComponent<EfectosJugador>();
+        if (efectos == null) efectos = jugador.gameObject.AddComponent<EfectosJugador>();
+        efectos.Inicializar(partida);
+        return efectos;
     }
 
     private void Start()
@@ -73,6 +85,8 @@ public class SistemaCartas : MonoBehaviour
         if (partida.Terminada)
         {
             CancelarPresentaciones();
+            efectos1?.Limpiar();
+            efectos2?.Limpiar();
             return;
         }
         if (!EnCurso)
@@ -81,8 +95,8 @@ public class SistemaCartas : MonoBehaviour
         if (atajosDesarrollo && (Application.isEditor || Debug.isDebugBuild) && Application.isFocused && Keyboard.current != null)
         {
             // Atajos de prueba, sin alterar el reloj de entregas normales.
-            if (Keyboard.current.gKey.wasPressedThisFrame) jugador1.Recibir(catalogo[0]);
-            if (Keyboard.current.hKey.wasPressedThisFrame) jugador2.Recibir(catalogo[0]);
+            if (Keyboard.current.gKey.wasPressedThisFrame) jugador1.Recibir(catalogo[Random.Range(0, catalogo.Length)]);
+            if (Keyboard.current.hKey.wasPressedThisFrame) jugador2.Recibir(catalogo[Random.Range(0, catalogo.Length)]);
             if (Keyboard.current.bKey.wasPressedThisFrame)
             {
                 jugador1.Almas.Recibir(100f);
@@ -148,8 +162,18 @@ public class SistemaCartas : MonoBehaviour
         {
             vista.OcultarPresentacion();
             presentando = false;
-            // Punto de extension para aplicar la habilidad al llegar. Prueba: ningun efecto.
+            AplicarCarta(actual.jugador, actual.carta);
         }
+    }
+
+    private void AplicarCarta(ManoCartasJugador lanzador, DefinicionCarta carta)
+    {
+        if (!EnCurso || carta.Efecto != EfectoCarta.Velocidad)
+            return;
+        bool objetivoEsP1 = carta.Destino == DestinoCarta.Propio
+            ? lanzador == jugador1 : lanzador != jugador1;
+        EfectosJugador objetivo = objetivoEsP1 ? efectos1 : efectos2;
+        objetivo?.AplicarVelocidad(carta.MultiplicadorVelocidad, carta.DuracionEfecto);
     }
 
     private void CancelarPresentaciones()
@@ -164,6 +188,8 @@ public class SistemaCartas : MonoBehaviour
     private void OnDisable()
     {
         CancelarPresentaciones();
+        efectos1?.Limpiar();
+        efectos2?.Limpiar();
         if (vista != null) vista.gameObject.SetActive(false);
     }
 

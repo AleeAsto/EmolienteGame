@@ -3387,7 +3387,8 @@ MonoBehaviour:
   camara1: {fileID: 1781125910}
   camara2: {fileID: 1040551876}
   catalogo:
-  - {fileID: 11400000, guid: fa6addba7ae44d6a8525cf7d199cf038, type: 2}
+  - {fileID: 11400000, guid: c664b297c8804b81925f5e38de706a17, type: 2}
+  - {fileID: 11400000, guid: 4ab534dcb7be4a6ba480d230ad32be5c, type: 2}
   inicioFraccionPartida: 0.33333334
   diferenciaMinima: 25
   proporcionMaxima: 0.75
