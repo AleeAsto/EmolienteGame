@@ -13,7 +13,7 @@ public class GeneradorEstudiantes : MonoBehaviour
     [Header("Poblacion")]
     [SerializeField, Min(0)] private int estudiantesIniciales = 10;
     [SerializeField, Min(1)] private int maximoEstudiantes = 16;
-    [SerializeField, Min(0.1f)] private float intervaloAparicion = 2.5f;
+    [SerializeField] private Vector2 intervaloAparicion = new Vector2(2f, 4f);
     [SerializeField] private Vector2 rangoVelocidad = new Vector2(1.2f, 2.2f);
 
     [Header("Espacio")]
@@ -22,9 +22,11 @@ public class GeneradorEstudiantes : MonoBehaviour
     [SerializeField, Min(0f)] private float margenSalida = 2f;
     [SerializeField, Min(0f)] private float margenPies = 0.5f;
     [SerializeField, Min(0f)] private float separacionMinima = 1.2f;
+    [SerializeField, Min(1)] private int tramos = 6;
 
     private readonly List<EstudiantePasillo> estudiantes = new List<EstudiantePasillo>();
     private readonly List<Vector2> intervalosOcultos = new List<Vector2>();
+    private readonly List<Vector3> candidatos = new List<Vector3>();
     private float proximaAparicion;
 
     public int CantidadActiva
@@ -47,7 +49,6 @@ public class GeneradorEstudiantes : MonoBehaviour
 
         Bounds zona = zonaPasillo.bounds;
         int cantidad = Mathf.Min(estudiantesIniciales, maximoEstudiantes);
-        // Una franja por estudiante reparte la poblacion inicial por todo el pasillo.
         for (int i = 0; i < cantidad; i++)
         {
             float desde = Mathf.Lerp(zona.min.x, zona.max.x, (float)i / cantidad);
@@ -55,39 +56,82 @@ public class GeneradorEstudiantes : MonoBehaviour
             IntentarCrear(new Vector2(desde, hasta), zona);
         }
 
-        proximaAparicion = Time.time + Mathf.Max(0.1f, intervaloAparicion);
+        ProgramarAparicion();
     }
 
-    // Se ejecuta despues de que las camaras hayan seguido a los jugadores.
     private void LateUpdate()
     {
         if (Time.time < proximaAparicion)
             return;
 
-        proximaAparicion = Time.time + Mathf.Max(0.1f, intervaloAparicion);
+        ProgramarAparicion();
         if (CantidadActiva >= maximoEstudiantes)
             return;
 
         Bounds zona = zonaPasillo.bounds;
         CalcularIntervalosOcultos(zona);
-        float longitudTotal = 0f;
-        foreach (Vector2 intervalo in intervalosOcultos)
-            longitudTotal += intervalo.y - intervalo.x;
-
-        if (longitudTotal <= 0f)
-            return;
-
-        float eleccion = Random.value * longitudTotal;
-        foreach (Vector2 intervalo in intervalosOcultos)
+        candidatos.Clear();
+        int cantidadTramos = Mathf.Max(1, tramos);
+        for (int tramo = 0; tramo < cantidadTramos; tramo++)
         {
-            float longitud = intervalo.y - intervalo.x;
-            if (eleccion <= longitud)
+            float desde = Mathf.Lerp(zona.min.x, zona.max.x, (float)tramo / cantidadTramos);
+            float hasta = Mathf.Lerp(zona.min.x, zona.max.x, (float)(tramo + 1) / cantidadTramos);
+            int poblacion = 0;
+            foreach (EstudiantePasillo estudiante in estudiantes)
             {
-                IntentarCrear(intervalo, zona);
-                return;
+                int indice = Mathf.Clamp(Mathf.FloorToInt(
+                    Mathf.InverseLerp(zona.min.x, zona.max.x, estudiante.transform.position.x) * cantidadTramos),
+                    0, cantidadTramos - 1);
+                if (indice == tramo)
+                    poblacion++;
             }
-            eleccion -= longitud;
+
+            foreach (Vector2 intervalo in intervalosOcultos)
+            {
+                float inicio = Mathf.Max(desde, intervalo.x);
+                float fin = Mathf.Min(hasta, intervalo.y);
+                if (fin > inicio)
+                    candidatos.Add(new Vector3(inicio, fin, poblacion));
+            }
         }
+
+        while (candidatos.Count > 0)
+        {
+            float menorPoblacion = float.PositiveInfinity;
+            foreach (Vector3 candidato in candidatos)
+                menorPoblacion = Mathf.Min(menorPoblacion, candidato.z);
+
+            float longitudTotal = 0f;
+            foreach (Vector3 candidato in candidatos)
+                if (candidato.z == menorPoblacion)
+                    longitudTotal += candidato.y - candidato.x;
+
+            float eleccion = Random.value * longitudTotal;
+            int elegido = -1;
+            for (int i = 0; i < candidatos.Count; i++)
+            {
+                Vector3 candidato = candidatos[i];
+                if (candidato.z != menorPoblacion)
+                    continue;
+
+                elegido = i;
+                eleccion -= candidato.y - candidato.x;
+                if (eleccion <= 0f)
+                    break;
+            }
+
+            Vector3 seleccionado = candidatos[elegido];
+            candidatos.RemoveAt(elegido);
+            if (IntentarCrear(new Vector2(seleccionado.x, seleccionado.y), zona))
+                return;
+        }
+    }
+
+    private void ProgramarAparicion()
+    {
+        float minima = Mathf.Max(0.1f, Mathf.Min(intervaloAparicion.x, intervaloAparicion.y));
+        float maxima = Mathf.Max(minima, Mathf.Max(intervaloAparicion.x, intervaloAparicion.y));
+        proximaAparicion = Time.time + Random.Range(minima, maxima);
     }
 
     private bool ReferenciasValidas()

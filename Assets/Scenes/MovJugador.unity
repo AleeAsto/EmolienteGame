@@ -1431,7 +1431,7 @@ MonoBehaviour:
   - {fileID: 1707020731826580904, guid: 107e496a2a8a3bf4696b9cf88bd50f37, type: 3}
   estudiantesIniciales: 10
   maximoEstudiantes: 16
-  intervaloAparicion: 2.5
+  intervaloAparicion: {x: 2, y: 4}
   rangoVelocidad: {x: 1.2, y: 2.2}
   margenCamaras: 2
   margenSalida: 2

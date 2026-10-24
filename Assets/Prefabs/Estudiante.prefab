@@ -82,7 +82,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.85, g: 0.78, b: 0.3, a: 1}
+  m_Color: {r: 0.9433962, g: 0.88033897, b: 0.4494482, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -201,7 +201,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AlmaEstudiante
   valorAlmas: 10
-  tiempoRecuperacion: 15
 --- !u!114 &1707020731826580904
 MonoBehaviour:
   m_ObjectHideFlags: 0
