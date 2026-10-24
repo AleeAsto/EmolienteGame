@@ -1,6 +1,7 @@
 # Estudiantes y almas
 
-La escena `Assets/Scenes/PasilloEstudiantesAlmas.unity` contiene el objeto `Estudiantes`,
+La escena de juego es `Assets/Scenes/PartidaCycle.unity` y es la unica habilitada
+en Build Settings. Contiene el objeto `Estudiantes`,
 con un `GeneradorEstudiantes` conectado a `ZoneMov`, `CameraP1` y `CameraP2`.
 El prefab `Assets/Prefabs/Estudiante.prefab` usa un sprite provisional.
 
@@ -59,10 +60,11 @@ la tecla no encadena objetivos automaticamente. Cada jugador solo usa su accion.
 division horizontal entre camaras. P1 ocupa el tramo celeste y P2 el rojo.
 El aro se desplaza con una transicion breve cuando cambian las almas.
 
-El reparto compara los puntos actuales: P1 ocupa `P1 / (P1 + P2)` del carril.
-Con 20 contra 10, el celeste ocupa dos tercios. Con 0 contra 0, el reparto es
-50/50. Los numeros de un tramo muy estrecho se elevan sobre la barra para seguir
-visibles cuando el aro llega a un extremo. El reparto visual no termina la partida.
+El reparto incluye una base visual de 20 puntos por lado, que no suma puntuacion
+real: P1 ocupa `(P1 + base) / (P1 + P2 + 2 * base)` del carril. Con 20 contra 10,
+el celeste ocupa 40/70 del ancho. Con 0 contra 0, el reparto es 50/50 y se ocultan
+los ceros. Los numeros de un tramo muy estrecho se elevan sobre la barra.
+El reparto visual no termina la partida.
 
 En el Inspector de `MarcadorVersus` se pueden ajustar colores y tiempo de
 transicion. Los textos, aro y barra son objetos UI editables dentro del Canvas.
@@ -77,11 +79,12 @@ directamente a `AlmasJugador` de P1/P2 mediante `CantidadCambiada`.
   ultimo lado horizontal al que miro el jugador. P1 empieza mirando a la
   derecha y P2 a la izquierda; moverse verticalmente no cambia ese lado.
 - Un impacto normal agrega 2 segundos de stun. Si la victima estaba succionando,
-  agrega 5 segundos, cancela su progreso y libera inmediatamente al estudiante.
+  aplica 5 segundos, cancela su progreso y libera inmediatamente al estudiante.
   El estudiante interrumpido se asusta y huye, siguiendo el comportamiento de
   cancelacion del estudiante; ya no admite otra absorcion.
-- El stun se acumula sobre el tiempo que aun quedaba: un golpe normal recibido
-  con 4 segundos restantes deja 6 segundos. No hay inmunidad adicional.
+- Durante todo el stun y durante 0.5 segundos adicionales tras recuperarse,
+  el jugador es invulnerable: los golpes no agregan ni reinician stun y tampoco
+  aplican empujon ni cancelan succion. Durante la proteccion posterior puede actuar.
 - Durante el stun se bloquean movimiento, golpe y succion. El empujon de
   0.3 unidades se aplica suavemente y respeta los limites del pasillo.
 - Si chocan los circulos de ataques opuestos, ambos golpes se cancelan y cada
@@ -94,8 +97,9 @@ directamente a `AlmasJugador` de P1/P2 mediante `CantidadCambiada`.
 - El combate respeta la pausa de la cuenta atras y del final de partida:
   con el tiempo detenido no se inician golpes ni se resuelven impactos o choques.
 
-Un circulo amarillo sobre la cabeza indica stun y un destello blanco indica
-choque. Son placeholders editables en los hijos `GolpePvP`, `AturdimientoPvP`
+Un circulo amarillo sobre la cabeza indica stun; el mismo indicador celeste
+senala la proteccion posterior. Un destello blanco indica choque.
+Son placeholders editables en los hijos `GolpePvP`, `AturdimientoPvP`
 y `CombatePvP/DestelloBloqueo`.
 
 En cada `AtaqueJugador` se ajustan cooldown, duracion (0.4 s), preparacion
@@ -104,7 +108,9 @@ y empujones. La tolerancia Y compara posiciones en el piso para evitar golpear
 a alguien que pasa por otra profundidad. `MovimientoJugador2D` controla la
 rapidez del empujon (3 unidades/s).
 
-`EstadoCombateJugador` guarda el stun y emite `Interrumpido` para cancelar
+`EstadoCombateJugador` permite ajustar `Invulnerabilidad Tras Stun` y los colores.
+`RecibirGolpe` devuelve `false` si rechaza un golpe por proteccion o pausa.
+Guarda el stun y emite `Interrumpido` para cancelar
 acciones. `CombatePvP` resuelve ambos ataques una vez por frame despues de leer
 ambas entradas y antes de que avance la succion, sin favorecer a P1 por orden
 de componentes. La reserva del estudiante funciona asi:
@@ -119,3 +125,11 @@ de componentes. La reserva del estudiante funciona asi:
 
 `AlmasJugador.CantidadCambiada` y `AlmaEstudiante.EstadoCambiado` permiten
 conectar el marcador y el feedback sin acoplarlos al spawner.
+
+## Ciclo de partida
+
+`CicloPartida` conserva la cuenta inicial 3-2-1-GO y el temporizador de 180 s.
+El tiempo de juego se congela durante la cuenta atras y al terminar la ronda;
+movimiento, succion y PvP respetan esa pausa. Gana quien tenga mas puntos reales,
+incluyendo las fracciones de absorcion. La tecla T mantiene el atajo de desarrollo
+para adelantar el final a tres segundos.

@@ -78,8 +78,9 @@ public class CombatePvP : MonoBehaviour
     private void ResolverChoque()
     {
         Vector2 punto = (jugador1.PosicionGolpe + jugador2.PosicionGolpe) * 0.5f;
-        jugador1.ConsumirImpacto();
-        jugador2.ConsumirImpacto();
+        // El choque cancela ambas animaciones incluso si uno esta protegido.
+        jugador1.CancelarAtaque();
+        jugador2.CancelarAtaque();
         Vector2 hacia2 = DireccionEmpujon(jugador1, jugador2);
         jugador1.Estado.RecibirGolpe(jugador2.StunBloqueo, -hacia2 * jugador2.EmpujonBloqueo);
         jugador2.Estado.RecibirGolpe(jugador1.StunBloqueo, hacia2 * jugador1.EmpujonBloqueo);
