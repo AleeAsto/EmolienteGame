@@ -39,6 +39,8 @@ public class AtaqueJugador : MonoBehaviour
     private float recargaRestante;
     private float direccion = 1f;
     private bool impactoConsumido;
+    private ManoCartasJugador cartas;
+    public InputAction AccionGolpear => accionGolpear;
 
     public bool EstaAtacando { get; private set; }
     public bool PuedeImpactar => EstaAtacando && !impactoConsumido &&
@@ -63,6 +65,7 @@ public class AtaqueJugador : MonoBehaviour
         movimiento = GetComponent<MovimientoJugador2D>();
         succion = GetComponent<SuccionJugador>();
         estado = GetComponent<EstadoCombateJugador>();
+        cartas = GetComponent<ManoCartasJugador>();
         if (golpear == null || golpear.action == null || visualGolpe == null)
         {
             Debug.LogError("Asigna Golpear y Visual Golpe en el Inspector del jugador.", this);
@@ -104,14 +107,14 @@ public class AtaqueJugador : MonoBehaviour
                 ActualizarVisual();
         }
 
-        if (Application.isFocused && accionGolpear != null && accionGolpear.WasPressedThisFrame())
+        if (cartas == null && Application.isFocused && accionGolpear != null && accionGolpear.WasPressedThisFrame())
             IntentarAtacar();
     }
 
     public bool IntentarAtacar()
     {
         if (Time.timeScale <= 0f || !isActiveAndEnabled || estado == null || estado.EstaAturdido ||
-            EstaAtacando || recargaRestante > 0f)
+            EstaAtacando || recargaRestante > 0f || (cartas != null && cartas.MenuAbierto))
             return false;
 
         succion?.CancelarSuccion();

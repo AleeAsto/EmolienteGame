@@ -17,11 +17,14 @@ public class MovimientoJugador2D : MonoBehaviour
     private Vector2 empujonPendiente;
 
     public float DireccionHorizontal { get; private set; } = 1f;
+    public InputAction AccionMovimiento => accionMovimiento;
+    private ManoCartasJugador cartas;
 
     private void Awake()
     {
         cuerpo = GetComponent<BoxCollider2D>();
         estadoCombate = GetComponent<EstadoCombateJugador>();
+        cartas = GetComponent<ManoCartasJugador>();
         DireccionHorizontal = direccionInicial < 0f ? -1f : 1f;
         if (zonaMovimiento == null || movimiento == null || movimiento.action == null)
         {
@@ -51,7 +54,8 @@ public class MovimientoJugador2D : MonoBehaviour
             return;
 
         Vector2 entrada = Application.isFocused && accionMovimiento != null &&
-            (estadoCombate == null || !estadoCombate.EstaAturdido)
+            (estadoCombate == null || !estadoCombate.EstaAturdido) &&
+            (cartas == null || !cartas.MenuAbierto)
             ? Vector2.ClampMagnitude(accionMovimiento.ReadValue<Vector2>(), 1f)
             : Vector2.zero;
         if (Mathf.Abs(entrada.x) > 0.01f)

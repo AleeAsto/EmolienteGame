@@ -17,6 +17,7 @@ public class CicloPartida : MonoBehaviour
     public float TiempoRestante { get; private set; }
     public bool Terminada { get; private set; }
     public bool EnCurso { get; private set; }
+    public float DuracionSegundos => duracionSegundos;
     private bool controlaTiempo;
     // 1 = jugador 1, 2 = jugador 2, 0 = empate.
     public event Action<int> PartidaTerminada;

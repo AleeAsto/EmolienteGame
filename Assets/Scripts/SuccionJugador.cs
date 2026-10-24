@@ -18,6 +18,8 @@ public class SuccionJugador : MonoBehaviour
     private float tiempoAcumulado;
     private EstadoCombateJugador estadoCombate;
     private AtaqueJugador ataque;
+    private ManoCartasJugador cartas;
+    public InputAction AccionSuccionar => accionSuccionar;
 
     public AlmaEstudiante Objetivo => objetivo;
     public float Progreso01 => objetivo != null
@@ -29,6 +31,7 @@ public class SuccionJugador : MonoBehaviour
         almas = GetComponent<AlmasJugador>();
         estadoCombate = GetComponent<EstadoCombateJugador>();
         ataque = GetComponent<AtaqueJugador>();
+        cartas = GetComponent<ManoCartasJugador>();
         if (succionar == null || succionar.action == null)
         {
             Debug.LogError("Asigna la accion Succionar del jugador en el Inspector.", this);
@@ -56,7 +59,8 @@ public class SuccionJugador : MonoBehaviour
         if (!Application.isFocused || almas == null || !almas.isActiveAndEnabled ||
             accionSuccionar == null || !accionSuccionar.IsPressed() ||
             (estadoCombate != null && estadoCombate.EstaAturdido) ||
-            (ataque != null && ataque.EstaAtacando))
+            (ataque != null && ataque.EstaAtacando) ||
+            (cartas != null && cartas.BloqueaSuccion))
         {
             CancelarSuccion();
             return;
