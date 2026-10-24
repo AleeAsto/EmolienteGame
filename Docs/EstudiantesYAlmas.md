@@ -128,6 +128,25 @@ de componentes. La reserva del estudiante funciona asi:
 `AlmasJugador.CantidadCambiada` y `AlmaEstudiante.EstadoCambiado` permiten
 conectar el marcador y el feedback sin acoplarlos al spawner.
 
+## Profesora
+
+`Profesora` es un cuadrado morado provisional en `PartidaCycle`. Recorre el
+pasillo horizontalmente a 2.5 unidades/s, conservando su Y. Cada pasada comienza
+fuera de un extremo del pasillo y de ambas camaras, con margen adicional de
+2 unidades para que el cubito entero quede oculto. Cruza hasta salir por el otro extremo y desaparecer
+fuera de ambas vistas. Espera 4 s antes de otra pasada en sentido contrario;
+no gira ni reaparece dentro de la pantalla. Al cruzarse con un jugador a no mas
+de 0.65 unidades en Y y
+0.8 en X, aplica 3.5 s de stun y cancela succion y ataque mediante el estado
+de combate compartido. Respeta la invulnerabilidad durante el stun y los 0.5 s
+posteriores. Empuja 0.5 unidades en su direccion de avance (el golpe PvP empuja
+0.3), sin quitar almas. El empujon es suave y respeta los limites del pasillo.
+
+En `ProfesoraPasillo` se ajustan velocidad, direccion inicial, margen fuera de
+vista, intervalo entre pasadas, alcance, stun y empujon.
+Para mover su carril, cambia la Y del objeto raiz.
+El recorrido se pausa durante la cuenta inicial y al terminar la partida.
+
 ## Ciclo de partida
 
 `CicloPartida` conserva la cuenta inicial 3-2-1-GO y el temporizador de 180 s.
