@@ -657,7 +657,7 @@ Transform:
   m_GameObject: {fileID: 534948275}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 39.3, y: -3.7193, z: 0}
+  m_LocalPosition: {x: 80, y: -3.7193, z: 0}
   m_LocalScale: {x: -2.146032, y: 2.9909413, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -982,7 +982,7 @@ Transform:
   m_GameObject: {fileID: 1040551873}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.72, z: -10}
+  m_LocalPosition: {x: 66.46818, y: -0.72, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1003,6 +1003,8 @@ MonoBehaviour:
   jugador: {fileID: 1775270132}
   extremoIzquierdo: {fileID: 1688151180}
   extremoDerecho: {fileID: 534948278}
+  zonaPasillo: {fileID: 0}
+  seguirEnEditor: 1
 --- !u!1 &1118460671
 GameObject:
   m_ObjectHideFlags: 0
@@ -2297,7 +2299,7 @@ Transform:
   m_GameObject: {fileID: 1775270127}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.56, y: -3.1541, z: 0}
+  m_LocalPosition: {x: 70.77, y: -3.1541, z: 0}
   m_LocalScale: {x: 1, y: 0.89737314, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2480,7 +2482,7 @@ Transform:
   m_GameObject: {fileID: 1781125908}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: -1.72, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2545,6 +2547,8 @@ MonoBehaviour:
   jugador: {fileID: 1202282252}
   extremoIzquierdo: {fileID: 1688151180}
   extremoDerecho: {fileID: 534948278}
+  zonaPasillo: {fileID: 0}
+  seguirEnEditor: 1
 --- !u!1 &1885894446
 GameObject:
   m_ObjectHideFlags: 0
@@ -2678,8 +2682,8 @@ Transform:
   m_GameObject: {fileID: 1885894446}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.3466, y: -3.7193, z: 0}
-  m_LocalScale: {x: 57.844532, y: 2.9909413, z: 1}
+  m_LocalPosition: {x: 29.6666, y: -3.7193, z: 0}
+  m_LocalScale: {x: 98.48113, y: 2.9909413, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -3389,6 +3393,8 @@ MonoBehaviour:
   catalogo:
   - {fileID: 11400000, guid: c664b297c8804b81925f5e38de706a17, type: 2}
   - {fileID: 11400000, guid: 4ab534dcb7be4a6ba480d230ad32be5c, type: 2}
+  - {fileID: 11400000, guid: abe83ac1ca244e19b1561fa6ef97a02c, type: 2}
+  - {fileID: 11400000, guid: 06d26aa755824ffcb505257ac72cdc1f, type: 2}
   inicioFraccionPartida: 0.33333334
   diferenciaMinima: 25
   proporcionMaxima: 0.75

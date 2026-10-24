@@ -8,6 +8,7 @@ public class ManoCartasJugador : MonoBehaviour
 {
     public const int Capacidad = 3;
     private readonly List<DefinicionCarta> cartas = new List<DefinicionCarta>(Capacidad);
+    private readonly List<DefinicionCarta> entregasPendientes = new List<DefinicionCarta>();
     private SistemaCartas sistema;
     private AlmasJugador almas;
     private MovimientoJugador2D movimiento;
@@ -24,6 +25,8 @@ public class ManoCartasJugador : MonoBehaviour
     public bool BloqueaSuccion => MenuAbierto || frameBloqueado == Time.frameCount;
     public int Seleccion { get; private set; }
     public int Cantidad => cartas.Count;
+    public int EspaciosOcupados => Cantidad + entregasPendientes.Count;
+    public bool TienePotente => cartas.Exists(c => c.EsPotente) || entregasPendientes.Exists(c => c.EsPotente);
     public IReadOnlyList<DefinicionCarta> Cartas => cartas;
     public AlmasJugador Almas => almas;
     public float AvisoHasta { get; private set; }
@@ -45,7 +48,7 @@ public class ManoCartasJugador : MonoBehaviour
 
     public bool Recibir(DefinicionCarta carta)
     {
-        if (carta == null || Cantidad >= Capacidad || sistema == null || !sistema.EnCurso)
+        if (!PuedeRecibir(carta))
             return false;
         cartas.Add(carta);
         IndiceRecibida = Cantidad - 1;
@@ -54,6 +57,24 @@ public class ManoCartasJugador : MonoBehaviour
         Cambiada?.Invoke();
         return true;
     }
+
+    private bool PuedeRecibir(DefinicionCarta carta) => carta != null && EspaciosOcupados < Capacidad &&
+        sistema != null && sistema.EnCurso && (!carta.EsPotente || !TienePotente);
+
+    public bool ReservarEntrega(DefinicionCarta carta)
+    {
+        if (!PuedeRecibir(carta)) return false;
+        entregasPendientes.Add(carta);
+        return true;
+    }
+
+    public bool CompletarEntrega(DefinicionCarta carta)
+    {
+        if (!entregasPendientes.Remove(carta)) return false;
+        return Recibir(carta);
+    }
+
+    public void CancelarEntregas() => entregasPendientes.Clear();
 
     private void Update()
     {

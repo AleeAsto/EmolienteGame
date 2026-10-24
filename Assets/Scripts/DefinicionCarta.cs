@@ -16,9 +16,12 @@ public class DefinicionCarta : ScriptableObject
     [SerializeField] private EfectoCarta efecto;
     [SerializeField, Min(0.1f)] private float multiplicadorVelocidad = 1f;
     [SerializeField, Min(0.1f)] private float duracionEfecto = 8f;
+    [SerializeField] private bool potente;
 
     public string Identificador => identificador;
     public string Titulo => titulo;
+    public bool EsPotente => potente;
+    public string TituloVisible => potente ? titulo + " ★" : titulo;
     public Sprite Frente => frente;
     public Sprite Reverso => reverso;
     public float PuntosNecesarios => Mathf.Max(0f, puntosNecesarios);
@@ -29,6 +32,6 @@ public class DefinicionCarta : ScriptableObject
     public Color ColorCarta => destino == DestinoCarta.Propio
         ? new Color(0.52f, 1f, 0.62f) : new Color(1f, 0.48f, 0.48f);
     public string Descripcion => efecto == EfectoCarta.Velocidad
-        ? $"Movimiento y absorcion\n{(MultiplicadorVelocidad - 1f) * 100f:+0;-0;0}% por {DuracionEfecto:0.#} s"
+        ? $"Movimiento, absorcion\ny golpes\n{(MultiplicadorVelocidad - 1f) * 100f:+0;-0;0}% por {DuracionEfecto:0.#} s"
         : "Sin efecto";
 }

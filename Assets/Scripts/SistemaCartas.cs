@@ -20,6 +20,8 @@ public class SistemaCartas : MonoBehaviour
     [SerializeField, Min(0f)] private float persistencia = 8f;
     [SerializeField, Min(0f)] private float esperaEntreEntregas = 25f;
     [SerializeField, Min(0f)] private float cierreEntregas = 10f;
+    [Header("Cartas potentes")]
+    [SerializeField, Range(0.5f, 1f)] private float inicioPotentes = 0.5f;
     [Header("Controles y presentacion")]
     [SerializeField, Min(0.1f)] private float tiempoMantener = 0.35f;
     [SerializeField, Min(0.1f)] private float duracionGiro = 2f;
@@ -46,6 +48,7 @@ public class SistemaCartas : MonoBehaviour
         public DefinicionCarta carta;
         public int frame;
         public Vector2 origenPantalla;
+        public bool esEntrega;
     }
 
     private void Awake()
@@ -95,8 +98,8 @@ public class SistemaCartas : MonoBehaviour
         if (atajosDesarrollo && (Application.isEditor || Debug.isDebugBuild) && Application.isFocused && Keyboard.current != null)
         {
             // Atajos de prueba, sin alterar el reloj de entregas normales.
-            if (Keyboard.current.gKey.wasPressedThisFrame) jugador1.Recibir(catalogo[Random.Range(0, catalogo.Length)]);
-            if (Keyboard.current.hKey.wasPressedThisFrame) jugador2.Recibir(catalogo[Random.Range(0, catalogo.Length)]);
+            if (Keyboard.current.gKey.wasPressedThisFrame) EntregarCarta(jugador1, true);
+            if (Keyboard.current.hKey.wasPressedThisFrame) EntregarCarta(jugador2, true);
             if (Keyboard.current.bKey.wasPressedThisFrame)
             {
                 jugador1.Almas.Recibir(100f);
@@ -115,7 +118,7 @@ public class SistemaCartas : MonoBehaviour
         float transcurrido = partida.DuracionSegundos - partida.TiempoRestante;
         bool elegible = transcurrido >= partida.DuracionSegundos * inicioFraccionPartida &&
             partida.TiempoRestante > cierreEntregas && espera[indice] <= 0f &&
-            jugador.Cantidad < ManoCartasJugador.Capacidad && rival.Almas.Cantidad > jugador.Almas.Cantidad &&
+            jugador.EspaciosOcupados < ManoCartasJugador.Capacidad && rival.Almas.Cantidad > jugador.Almas.Cantidad &&
             rival.Almas.Cantidad - jugador.Almas.Cantidad >= diferenciaMinima &&
             jugador.Almas.Cantidad <= rival.Almas.Cantidad * proporcionMaxima;
         if (!elegible)
@@ -126,19 +129,47 @@ public class SistemaCartas : MonoBehaviour
         desventaja[indice] += Time.deltaTime;
         if (desventaja[indice] < persistencia)
             return;
-        if (jugador.Recibir(catalogo[Random.Range(0, catalogo.Length)]))
+        if (EntregarCarta(jugador))
             espera[indice] = esperaEntreEntregas;
         desventaja[indice] = 0f;
+    }
+
+    public bool PuedeEntregar(ManoCartasJugador jugador, DefinicionCarta carta, bool debug = false)
+    {
+        if (!EnCurso || carta == null || (jugador != jugador1 && jugador != jugador2) ||
+            jugador.EspaciosOcupados >= ManoCartasJugador.Capacidad)
+            return false;
+        if (!carta.EsPotente) return true;
+        return !jugador.TienePotente && (debug ||
+            partida.DuracionSegundos - partida.TiempoRestante >= partida.DuracionSegundos * inicioPotentes);
+    }
+
+    public bool EntregarCarta(ManoCartasJugador jugador, bool debug = false)
+    {
+        var candidatas = new List<DefinicionCarta>();
+        foreach (DefinicionCarta carta in catalogo)
+            if (PuedeEntregar(jugador, carta, debug)) candidatas.Add(carta);
+        if (candidatas.Count == 0) return false;
+        DefinicionCarta elegida = candidatas[Random.Range(0, candidatas.Count)];
+        if (!elegida.EsPotente) return jugador.Recibir(elegida);
+        if (!jugador.ReservarEntrega(elegida)) return false;
+        Encolar(new Lanzamiento { jugador = jugador, carta = elegida, frame = Time.frameCount, esEntrega = true });
+        return true;
+    }
+
+    private void Encolar(Lanzamiento lanzamiento)
+    {
+        cola.Add(lanzamiento);
+        cola.Sort((a, b) => a.frame != b.frame ? a.frame.CompareTo(b.frame) :
+            (a.jugador == jugador1 ? 0 : 1).CompareTo(b.jugador == jugador1 ? 0 : 1));
     }
 
     public void Presentar(ManoCartasJugador jugador, DefinicionCarta carta)
     {
         if (EnCurso && carta != null && (jugador == jugador1 || jugador == jugador2))
         {
-            cola.Add(new Lanzamiento { jugador = jugador, carta = carta, frame = Time.frameCount,
+            Encolar(new Lanzamiento { jugador = jugador, carta = carta, frame = Time.frameCount,
                 origenPantalla = vista != null ? vista.ObtenerOrigenLanzamiento(jugador) : Vector2.one * 0.5f });
-            cola.Sort((a, b) => a.frame != b.frame ? a.frame.CompareTo(b.frame) :
-                (a.jugador == jugador1 ? 0 : 1).CompareTo(b.jugador == jugador1 ? 0 : 1));
         }
     }
 
@@ -156,6 +187,17 @@ public class SistemaCartas : MonoBehaviour
         if (!presentando)
             return;
         tiempoPresentacion += Time.deltaTime;
+        if (actual.esEntrega)
+        {
+            vista.AnimarEntregaPotente(actual.jugador, actual.carta, tiempoPresentacion);
+            if (tiempoPresentacion >= VistaCartas.DuracionEntregaPotente)
+            {
+                vista.OcultarPresentacion();
+                presentando = false;
+                actual.jugador.CompletarEntrega(actual.carta);
+            }
+            return;
+        }
         vista.Animar(actual.jugador, actual.carta, actual.origenPantalla, tiempoPresentacion,
             duracionVistaFrente, duracionGiro);
         if (tiempoPresentacion >= VistaCartas.DuracionAnimacion(duracionVistaFrente, duracionGiro))
@@ -182,6 +224,8 @@ public class SistemaCartas : MonoBehaviour
         presentando = false;
         jugador1?.Cerrar();
         jugador2?.Cerrar();
+        jugador1?.CancelarEntregas();
+        jugador2?.CancelarEntregas();
         if (vista != null) vista.OcultarPresentacion();
     }
 

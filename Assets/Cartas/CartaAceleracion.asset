@@ -19,6 +19,7 @@ MonoBehaviour:
   puntosNecesarios: 20
   destino: 0
   efecto: 1
-  multiplicadorVelocidad: 1.4
+  multiplicadorVelocidad: 3
   duracionEfecto: 8
+  potente: 0
 

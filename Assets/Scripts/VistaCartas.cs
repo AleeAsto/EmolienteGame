@@ -20,6 +20,8 @@ public class VistaCartas : MonoBehaviour
     private const float DuracionSalida = 0.5f;
     private Image imagenPresentacion;
     private Text textoPresentacion;
+    private Outline bordePresentacion;
+    public const float DuracionEntregaPotente = 2.2f;
     private Font fuente;
     private readonly Color[] colores = { new Color(0.48f, 0.83f, 1f), new Color(0.95f, 0.2f, 0.25f) };
 
@@ -73,6 +75,10 @@ public class VistaCartas : MonoBehaviour
         presentacion.anchorMin = presentacion.anchorMax = Vector2.zero;
         imagenPresentacion = presentacion.gameObject.AddComponent<Image>();
         imagenPresentacion.raycastTarget = false;
+        bordePresentacion = presentacion.gameObject.AddComponent<Outline>();
+        bordePresentacion.effectColor = new Color(1f, 0.8f, 0.2f);
+        bordePresentacion.effectDistance = new Vector2(5f, -5f);
+        bordePresentacion.enabled = false;
         // El HUD versus usa orden 100 y la cuenta regresiva 200. El vuelo
         // necesita su propio orden para pasar por encima de ambos.
         Canvas canvasVuelo = capaVuelo.gameObject.AddComponent<Canvas>();
@@ -124,7 +130,7 @@ public class VistaCartas : MonoBehaviour
                 Color colorCarta = carta.ColorCarta * brillo;
                 colorCarta.a = 1f;
                 imagenes[i, j].color = colorCarta;
-                textos[i, j].text = $"Costo {carta.PuntosNecesarios:0.#}\n\n{carta.Titulo}\n\n{carta.Descripcion}";
+                textos[i, j].text = $"{(carta.EsPotente ? "★ " : "")}Costo {carta.PuntosNecesarios:0.#}\n\n{carta.TituloVisible}\n\n{carta.Descripcion}";
                 textos[i, j].color = suficiente ? new Color(0.12f, 0.16f, 0.22f) : new Color(0.48f, 0.12f, 0.1f);
                 if (mano.MenuAbierto && !seleccionada)
                 {
@@ -175,6 +181,7 @@ public class VistaCartas : MonoBehaviour
         bool frente = true;
         Vector2 posicion;
         presentacion.localScale = Vector3.one;
+        presentacion.localRotation = Quaternion.identity;
         if (tiempo < DuracionDespegue)
         {
             // Despegue vertical, recortado a la camara propia hasta desaparecer arriba.
@@ -218,8 +225,46 @@ public class VistaCartas : MonoBehaviour
         presentacion.sizeDelta = new Vector2(230, 320) * escala;
         imagenPresentacion.sprite = frente ? carta.Frente : carta.Reverso;
         imagenPresentacion.color = carta.ColorCarta;
+        bordePresentacion.enabled = carta.EsPotente;
         textoPresentacion.gameObject.SetActive(frente);
-        textoPresentacion.text = $"{carta.Titulo}\n\nCosto {carta.PuntosNecesarios:0.#}\n\n{carta.Descripcion}\nP{origen + 1}";
+        textoPresentacion.text = $"{carta.TituloVisible}\n\nCosto {carta.PuntosNecesarios:0.#}\n\n{carta.Descripcion}\nP{origen + 1}";
+    }
+
+    public void AnimarEntregaPotente(ManoCartasJugador jugador, DefinicionCarta carta, float tiempo)
+    {
+        int indice = jugador == manos[0] ? 0 : 1;
+        Rect viewport = camaras[indice].rect;
+        Vector2 tamano = raiz.rect.size;
+        Vector2 centro = Vector2.Scale(viewport.center, tamano);
+        if (presentacion.parent != capaVuelo) presentacion.SetParent(capaVuelo, false);
+        float escalaDiseno = Mathf.Clamp(Mathf.Min(paneles[indice].rect.height / 440f,
+            paneles[indice].rect.width / 510f), 0.3f, 1f);
+        // La carta aun no esta en la mano. Reservar el cupo impide llenarlo durante el giro.
+        int hueco = jugador.Cantidad;
+        float x = indice == 0 ? 124f + hueco * 116f : -124f;
+        float y = jugador.MenuAbierto ? -82f : 124f;
+        Vector3 localDestino = new Vector3(x * escalaDiseno, y * escalaDiseno, 0f);
+        // La mano usa esquinas distintas: TransformPoint espera coordenadas desde su pivote central.
+        localDestino.x += indice == 0 ? paneles[indice].rect.xMin : paneles[indice].rect.xMax;
+        localDestino.y += paneles[indice].rect.yMin;
+        Vector3 destinoLocal = raiz.InverseTransformPoint(paneles[indice].TransformPoint(localDestino));
+        Vector2 destino = new Vector2(destinoLocal.x - raiz.rect.xMin, destinoLocal.y - raiz.rect.yMin);
+        float giro = Mathf.Clamp01((tiempo - 0.25f) / 1f);
+        float coseno = Mathf.Cos(giro * Mathf.PI * 4f);
+        bool frente = coseno >= 0f;
+        float llegada = Mathf.SmoothStep(0f, 1f, (tiempo - 1.6f) / 0.6f);
+        float aparicion = Mathf.SmoothStep(0.15f, 1f, tiempo / 0.25f);
+        float escala = Mathf.Lerp(aparicion, 170f / 230f * escalaDiseno, llegada);
+        presentacion.gameObject.SetActive(true);
+        presentacion.anchoredPosition = Vector2.Lerp(centro, destino, llegada);
+        presentacion.sizeDelta = new Vector2(230f, 320f) * escala;
+        presentacion.localScale = new Vector3(Mathf.Max(0.02f, Mathf.Abs(coseno)), 1f, 1f);
+        presentacion.localRotation = Quaternion.Euler(0f, 0f, Mathf.Sin(giro * Mathf.PI * 2f) * 8f);
+        imagenPresentacion.sprite = frente ? carta.Frente : carta.Reverso;
+        imagenPresentacion.color = carta.ColorCarta;
+        bordePresentacion.enabled = true;
+        textoPresentacion.gameObject.SetActive(frente);
+        textoPresentacion.text = $"{carta.TituloVisible}\n\nCosto {carta.PuntosNecesarios:0.#}\n\n{carta.Descripcion}";
     }
 
     public void OcultarPresentacion()

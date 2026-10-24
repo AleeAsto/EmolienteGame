@@ -40,6 +40,7 @@ public class AtaqueJugador : MonoBehaviour
     private float direccion = 1f;
     private bool impactoConsumido;
     private ManoCartasJugador cartas;
+    private EfectosJugador efectos;
     public InputAction AccionGolpear => accionGolpear;
 
     public bool EstaAtacando { get; private set; }
@@ -66,6 +67,7 @@ public class AtaqueJugador : MonoBehaviour
         succion = GetComponent<SuccionJugador>();
         estado = GetComponent<EstadoCombateJugador>();
         cartas = GetComponent<ManoCartasJugador>();
+        efectos = GetComponent<EfectosJugador>();
         if (golpear == null || golpear.action == null || visualGolpe == null)
         {
             Debug.LogError("Asigna Golpear y Visual Golpe en el Inspector del jugador.", this);
@@ -90,7 +92,9 @@ public class AtaqueJugador : MonoBehaviour
         if (Time.timeScale <= 0f)
             return;
 
-        recargaRestante = Mathf.Max(0f, recargaRestante - Time.deltaTime);
+        float multiplicador = efectos != null ? efectos.MultiplicadorVelocidad : 1f;
+        float tiempoCombate = Time.deltaTime * multiplicador;
+        recargaRestante = Mathf.Max(0f, recargaRestante - tiempoCombate);
         if (estado.EstaAturdido)
         {
             CancelarAtaque();
@@ -100,7 +104,7 @@ public class AtaqueJugador : MonoBehaviour
         if (EstaAtacando)
         {
             PosicionAnteriorGolpe = PosicionGolpe;
-            tiempoAtaque += Time.deltaTime;
+            tiempoAtaque += tiempoCombate;
             if (tiempoAtaque >= duracionGolpe)
                 CancelarAtaque();
             else

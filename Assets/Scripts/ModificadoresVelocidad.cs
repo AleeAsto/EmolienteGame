@@ -14,13 +14,15 @@ public sealed class ModificadoresVelocidad
         // Una instancia de cada tipo: repetir renueva, sin acumular copias.
         if (multiplicador > 1f)
         {
+            if (ahora >= finBuff || multiplicador != buff) finBuff = ahora + duracion;
+            else finBuff = System.Math.Max(finBuff, ahora + duracion);
             buff = multiplicador;
-            finBuff = ahora + duracion;
         }
         else if (multiplicador < 1f)
         {
+            if (ahora >= finDebuff || multiplicador != debuff) finDebuff = ahora + duracion;
+            else finDebuff = System.Math.Max(finDebuff, ahora + duracion);
             debuff = multiplicador;
-            finDebuff = ahora + duracion;
         }
     }
 

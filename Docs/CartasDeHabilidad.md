@@ -15,6 +15,8 @@ tienen `ManoCartasJugador` usan pulsacion corta/mantener para golpear o abrir ca
 - G entrega una carta aleatoria del catalogo a P1; H a P2. Solo durante la ronda, en el editor o builds
   de desarrollo, con `Atajos Desarrollo` activo. No cambia puntos ni genera una deuda
   de recompensas. Pulsar varias veces permite comprobar el limite de tres.
+  Estos atajos ignoran el requisito de mitad de partida para potentes, pero conservan
+  su giro de recepcion y los limites de inventario (tres cartas, una potente como maximo).
 - B suma 100 puntos a cada jugador por pulsacion, con las mismas condiciones
   de los atajos de desarrollo.
 - La carta cuesta 20 puntos reales. Absorber estudiantes para alcanzarlos o modificar
@@ -56,19 +58,26 @@ Canvas de cuenta regresiva (200).
 
 | Carta | Tipo y color | Destino | Multiplicador | Duracion | Costo |
 | --- | --- | --- | --- | --- | --- |
-| Aceleracion | Buff verde | Lanzador | 1.4 (+40 %) | 8 s | 20 puntos |
-| Pesadez | Debuff rojo | Rival | 0.6 (-40 %) | 8 s | 20 puntos |
+| Aceleracion | Buff verde | Lanzador | 3 (+200 %) | 8 s | 20 puntos |
+| Pesadez | Debuff rojo | Rival | 0.5 (-50 %) | 8 s | 20 puntos |
+| Aceleracion ★ | Potente verde | Lanzador | 3 (+200 %) | 20 s | 40 puntos |
+| Pesadez ★ | Potente roja | Rival | 0.5 (-50 %) | 20 s | 40 puntos |
 
-Ambas afectan movimiento voluntario y progreso de absorcion, incluidos sus puntos
-por segundo. Una extraccion completa conserva su premio: los 3 segundos base pasan
-a 5 s con Pesadez o aproximadamente 2.14 s con Aceleracion si se mantiene el efecto.
-Cambiar de velocidad durante una absorcion conserva su progreso. Los empujones,
-golpes, cooldowns y tiempos de stun no cambian.
+Ambas afectan movimiento voluntario, rapidez y recarga del golpe, y progreso de absorcion, incluidos sus puntos
+por segundo. Una extraccion completa conserva su premio: Aceleracion permite
+completar los 3 segundos base en 1 segundo. Pesadez hace avanzar la absorcion a
+la mitad del ritmo normal mientras esta activa; al expirar recupera el ritmo base.
+Cambiar de velocidad durante una absorcion conserva su progreso. El ataque tambien
+conserva el progreso de su preparacion, arco y recarga cuando cambia el multiplicador.
+Con Aceleracion x3, el golpe base de 0.4 s dura aproximadamente 0.13 s y su recarga
+de 2 s tarda 0.67 s. Con Pesadez x0.5, tarda 0.8 s y recarga en 4 s.
+Los empujones, alcance, perdida de puntos por impacto y tiempos de stun no cambian.
 
 La duracion empieza al terminar la animacion, usa tiempo de juego y respeta pausas.
-Repetir el mismo tipo renueva sus 8 s sin acumular copias. Un buff y un debuff pueden
+Repetir el mismo tipo renueva su duracion sin acumular copias. Una normal nunca
+acorta el tiempo restante de una potente activa. Un buff y un debuff pueden
 coexistir con temporizadores independientes: mientras coinciden, el multiplicador
-es 1.4 * 0.6 = 0.84. Al expirar uno queda el otro. Se limpian al finalizar la ronda
+es 3 * 0.5 = 1.5. Al expirar uno queda el otro. Se limpian al finalizar la ronda
 o desactivar el sistema. Un golpe no los elimina.
 
 `DefinicionCarta` permite editar multiplicador, duracion, costo, destino y tipo
@@ -103,6 +112,8 @@ pendientes. Las cartas recibidas se conservan aunque cambie el lider.
   `CartaPrueba.asset` se conserva como referencia sin efecto, fuera del catalogo.
   Cambiar sus sprites reemplaza el arte
   provisional sin tocar codigo. El costo se dibuja como texto encima del frente.
+  `CartaAceleracionPotente.asset` y `CartaPesadezPotente.asset` son las variantes
+  con `Potente` activo, costo 40 y duracion 20 s.
 - `ManoCartasJugador`: inventario, seleccion, controles y validacion del costo.
   `Recibir` sera la entrada para los futuros NPC especiales; devuelve false con mano
   llena o fuera de partida.
@@ -113,8 +124,25 @@ pendientes. Las cartas recibidas se conservan aunque cambie el lider.
 
 La seleccion y el vuelo usan el tiempo de juego. La pausa detiene sus animaciones.
 Los NPC especiales y las demas habilidades quedan pendientes.
-Estas dos cartas son normales. Las potentes quedan pendientes del balance de esta
-primera prueba; por ahora no se agregan bonus de puntos a las habilidades de velocidad.
+Las potentes se distinguen con ★ en el titulo y el costo. Mantienen los mismos
+multiplicadores que las normales; solo duran mas. No agregan bonus de puntos.
+
+## Recepcion de potentes
+
+En las entregas automaticas, el catalogo de potentes se habilita al llegar a la
+mitad de la duracion de la ronda: 90 s transcurridos en una partida de 180 s.
+`Inicio Potentes` en `SistemaCartas` permite retrasarlo, nunca adelantarlo a menos
+de la mitad. Desde ese momento se sortean normales y potentes del catalogo elegible.
+Cada mano admite como maximo una potente, contando tambien las entregas en animacion.
+
+Antes de entrar en la mano, la potente aparece grande en la camara del receptor,
+gira mostrando frente/reverso con borde dorado, mantiene brevemente el frente y
+viaja a su hueco (2.2 s en total). Mientras gira reserva un cupo: no puede usarse
+todavia ni permitir que otra entrega exceda el limite. El jugador puede seguir jugando.
+G/H usan exactamente la misma animacion y solo omiten la restriccion temporal.
+Las normales conservan su recepcion corta habitual. Las entregas potentes y los
+usos comparten una cola de presentacion para no taparse unos a otros. El final
+de ronda cancela las animaciones y libera las reservas pendientes.
 
 ## Verificacion
 

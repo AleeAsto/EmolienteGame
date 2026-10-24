@@ -55,6 +55,17 @@ public static class VerificarCartas
             AssetDatabase.ImportAsset("Assets/Cartas/CartaPesadez.asset", ImportAssetOptions.ForceUpdate);
             DefinicionCarta carta = AssetDatabase.LoadAssetAtPath<DefinicionCarta>("Assets/Cartas/CartaAceleracion.asset");
             DefinicionCarta pesadez = AssetDatabase.LoadAssetAtPath<DefinicionCarta>("Assets/Cartas/CartaPesadez.asset");
+            AssetDatabase.ImportAsset("Assets/Cartas/CartaAceleracionPotente.asset", ImportAssetOptions.ForceUpdate);
+            AssetDatabase.ImportAsset("Assets/Cartas/CartaPesadezPotente.asset", ImportAssetOptions.ForceUpdate);
+            DefinicionCarta aceleracionPotente = AssetDatabase.LoadAssetAtPath<DefinicionCarta>("Assets/Cartas/CartaAceleracionPotente.asset");
+            DefinicionCarta pesadezPotente = AssetDatabase.LoadAssetAtPath<DefinicionCarta>("Assets/Cartas/CartaPesadezPotente.asset");
+            Exigir(aceleracionPotente != null && pesadezPotente != null &&
+                aceleracionPotente.EsPotente && pesadezPotente.EsPotente &&
+                aceleracionPotente.DuracionEfecto == 20f && pesadezPotente.DuracionEfecto == 20f &&
+                aceleracionPotente.PuntosNecesarios == 40f && pesadezPotente.PuntosNecesarios == 40f &&
+                aceleracionPotente.MultiplicadorVelocidad == carta.MultiplicadorVelocidad &&
+                pesadezPotente.MultiplicadorVelocidad == pesadez.MultiplicadorVelocidad,
+                $"Potentes: 40 puntos, 20 segundos e intensidad normal. A: {aceleracionPotente?.EsPotente}, {aceleracionPotente?.PuntosNecesarios}, {aceleracionPotente?.DuracionEfecto}, {aceleracionPotente?.MultiplicadorVelocidad}; P: {pesadezPotente?.EsPotente}, {pesadezPotente?.PuntosNecesarios}, {pesadezPotente?.DuracionEfecto}, {pesadezPotente?.MultiplicadorVelocidad}");
             Exigir(carta != null && carta.Frente != null && carta.Reverso != null, "Definicion y ambos sprites validos");
             Exigir(pesadez != null && pesadez.Frente != null && pesadez.Reverso != null, "Sprites de Pesadez validos");
             Exigir(carta.PuntosNecesarios == 20f && pesadez.PuntosNecesarios == 20f &&
@@ -76,9 +87,11 @@ public static class VerificarCartas
             foreach (string campo in new[] { "partida", "jugador1", "jugador2", "camara1", "camara2" })
                 Exigir(serializado.FindProperty(campo).objectReferenceValue != null, "Referencia " + campo);
             var catalogo = serializado.FindProperty("catalogo");
-            Exigir(catalogo.arraySize == 2 && catalogo.GetArrayElementAtIndex(0).objectReferenceValue == carta &&
-                catalogo.GetArrayElementAtIndex(1).objectReferenceValue == pesadez,
-                "Catalogo conectado a ambas habilidades");
+            Exigir(catalogo.arraySize == 4 && catalogo.GetArrayElementAtIndex(0).objectReferenceValue == carta &&
+                catalogo.GetArrayElementAtIndex(1).objectReferenceValue == pesadez &&
+                catalogo.GetArrayElementAtIndex(2).objectReferenceValue == aceleracionPotente &&
+                catalogo.GetArrayElementAtIndex(3).objectReferenceValue == pesadezPotente,
+                "Catalogo conectado a normales y potentes");
 
             var partida = (CicloPartida)serializado.FindProperty("partida").objectReferenceValue;
             var p1 = (ManoCartasJugador)serializado.FindProperty("jugador1").objectReferenceValue;
@@ -89,6 +102,34 @@ public static class VerificarCartas
             Propiedad(partida, "EnCurso", true);
             Propiedad(partida, "TiempoRestante", 180f);
             Exigir(sistema.EnCurso, "Ronda simulada habilitada en preview");
+            var catalogoCompleto = (DefinicionCarta[])LeerCampo(sistema, "catalogo");
+            Campo(sistema, "catalogo", new[] { aceleracionPotente, pesadezPotente });
+            Exigir(!sistema.EntregarCarta(p2), "No entregar potentes antes de mitad de partida");
+            Exigir(sistema.EntregarCarta(p2, true) && p2.Cantidad == 0 && p2.EspaciosOcupados == 1,
+                "Debug entrega potente temprano reservando cupo antes de llegar a mano");
+            var colaEntrega = (System.Collections.IList)LeerCampo(sistema, "cola");
+            Exigir((bool)colaEntrega[0].GetType().GetField("esEntrega").GetValue(colaEntrega[0]),
+                "Debug conserva animacion de entrega potente");
+            Exigir(!sistema.EntregarCarta(p2, true), "Maximo una potente contando pendientes");
+            Exigir(p2.ReservarEntrega(carta) && p2.ReservarEntrega(carta) &&
+                p2.EspaciosOcupados == 3 && !p2.Recibir(carta), "Reservas respetan capacidad total de tres");
+            typeof(SistemaCartas).GetMethod("CancelarPresentaciones", BindingFlags.NonPublic | BindingFlags.Instance)
+                .Invoke(sistema, null);
+            Exigir(p2.EspaciosOcupados == 0, "Cancelar presentaciones libera cupos pendientes");
+            Propiedad(partida, "TiempoRestante", 90.01f);
+            Exigir(!sistema.PuedeEntregar(p2, aceleracionPotente), "Bloqueada antes del limite exacto");
+            Propiedad(partida, "TiempoRestante", 90f);
+            Exigir(sistema.EntregarCarta(p2), "Potentes habilitadas desde mitad exacta de partida");
+            var pendientes = (System.Collections.Generic.List<DefinicionCarta>)LeerCampo(p2, "entregasPendientes");
+            DefinicionCarta entregada = pendientes[0];
+            Exigir(p2.CompletarEntrega(entregada) && p2.Cantidad == 1 && p2.EspaciosOcupados == 1,
+                "Entrega termina en mano sin duplicar reserva");
+            Exigir(!p2.CompletarEntrega(entregada) && !sistema.PuedeEntregar(p2, aceleracionPotente, true),
+                "No duplicar entrega ni otra potente en mano");
+            typeof(SistemaCartas).GetMethod("CancelarPresentaciones", BindingFlags.NonPublic | BindingFlags.Instance)
+                .Invoke(sistema, null);
+            Campo(sistema, "catalogo", catalogoCompleto);
+            Propiedad(partida, "TiempoRestante", 180f);
             Exigir(p1.Recibir(carta) && p1.Recibir(carta) && p1.Recibir(carta), "Recibir tres cartas");
             Exigir(!p1.Recibir(carta) && p1.Cantidad == 3, "Limite de tres sin reemplazar cartas");
             Propiedad(p1, "MenuAbierto", true);
@@ -112,13 +153,13 @@ public static class VerificarCartas
             Campo(sistema, "efectos2", efectos2);
             var aplicar = typeof(SistemaCartas).GetMethod("AplicarCarta", BindingFlags.NonPublic | BindingFlags.Instance);
             aplicar.Invoke(sistema, new object[] { p1, carta });
-            Exigir(Mathf.Approximately(efectos1.MultiplicadorVelocidad, 1.4f) &&
+            Exigir(Mathf.Approximately(efectos1.MultiplicadorVelocidad, 3f) &&
                 Mathf.Approximately(efectos2.MultiplicadorVelocidad, 1f), "Buff afecta solo al lanzador");
             aplicar.Invoke(sistema, new object[] { p1, pesadez });
             aplicar.Invoke(sistema, new object[] { p1, pesadez });
-            Exigir(Mathf.Approximately(efectos2.MultiplicadorVelocidad, 0.6f), "Debuff afecta rival y no acumula copias");
+            Exigir(Mathf.Approximately(efectos2.MultiplicadorVelocidad, 0.5f), "Debuff afecta rival y no acumula copias");
             aplicar.Invoke(sistema, new object[] { p2, carta });
-            Exigir(Mathf.Approximately(efectos2.MultiplicadorVelocidad, 0.84f), "Buff y debuff combinados");
+            Exigir(Mathf.Approximately(efectos2.MultiplicadorVelocidad, 1.5f), "Buff y debuff combinados");
             efectos1.Limpiar();
             efectos2.Limpiar();
             Exigir(efectos1.MultiplicadorVelocidad == 1f && efectos2.MultiplicadorVelocidad == 1f, "Limpieza de efectos");
@@ -146,7 +187,7 @@ public static class VerificarCartas
             Exigir(!p1.Recibir(carta), "No entregar despues del final");
 
             VerificarSeguimiento(escena);
-            const string mensaje = "OK: cartas, cobro, efectos y seguimiento de ambas camaras con spawn lejano y mapa ampliado. No prueba input ni animacion en Play.";
+            const string mensaje = "OK: normales/potentes, mitad de partida, debug con giro, reservas y limite de una potente, cobro, efectos y camaras. La animacion visual se verifica en Play.";
             Directory.CreateDirectory("Temp");
             File.WriteAllText(Resultado, mensaje);
             Debug.Log(mensaje);
