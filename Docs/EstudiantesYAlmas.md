@@ -15,7 +15,7 @@ extremos solo se usan si no existe una zona asignada ni una zona en el jugador.
 La camara se detiene cerca de los bordes para no mostrar fuera del mapa. Si el
 mapa es mas estrecho que la vista, se centra. La altura Y sigue siendo manual.
 
-La escena de juego es `Assets/Scenes/PartidaCycle.unity` y es la unica habilitada
+La escena de juego es `Assets/Scenes/PartidaIntegrada.unity` y es la unica habilitada
 en Build Settings. Contiene el objeto `Estudiantes`,
 con un `GeneradorEstudiantes` conectado a `ZoneMov`, `CameraP1` y `CameraP2`.
 El prefab `Assets/Prefabs/Estudiante.prefab` usa un sprite provisional.
@@ -148,7 +148,7 @@ conectar el marcador y el feedback sin acoplarlos al spawner.
 
 ## Profesora
 
-`Profesora` es un cuadrado morado provisional en `PartidaCycle`. Recorre el
+`Profesora` es un cuadrado morado provisional en `PartidaIntegrada`. Recorre el
 pasillo horizontalmente a 2.5 unidades/s, conservando su Y. Cada pasada comienza
 fuera de un extremo del pasillo y de ambas camaras, con margen adicional de
 2 unidades para que el cubito entero quede oculto. Cruza hasta salir por el otro extremo y desaparecer

@@ -1,6 +1,8 @@
 # Cartas de habilidad
 
 La escena de prueba es `Assets/Scenes/ActionCards.unity`. Abrirla y pulsar Play.
+`Assets/Scenes/PartidaIntegrada.unity` combina las cartas actuales con el mapa
+ampliado, las cuatro puertas y la profesora, y es la escena habilitada en Build Settings.
 La escena anterior conserva sus controles originales; solo los jugadores que
 tienen `ManoCartasJugador` usan pulsacion corta/mantener para golpear o abrir cartas.
 

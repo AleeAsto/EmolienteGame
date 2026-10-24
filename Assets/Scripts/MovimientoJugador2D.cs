@@ -77,6 +77,12 @@ public class MovimientoJugador2D : MonoBehaviour
         empujonPendiente += desplazamiento;
     }
 
+    public void Teletransportar(Vector3 destino)
+    {
+        empujonPendiente = Vector2.zero;
+        transform.position = LimitarPosicion(destino);
+    }
+
     private void OnDisable()
     {
         accionMovimiento?.Disable();
