@@ -63,7 +63,7 @@ El aro se desplaza con una transicion breve cuando cambian las almas.
 El reparto incluye una base visual de 20 puntos por lado, que no suma puntuacion
 real: P1 ocupa `(P1 + base) / (P1 + P2 + 2 * base)` del carril. Con 20 contra 10,
 el celeste ocupa 40/70 del ancho. Con 0 contra 0, el reparto es 50/50 y se ocultan
-los ceros. Los numeros de un tramo muy estrecho se elevan sobre la barra.
+los ceros. Los numeros mantienen su altura dentro de la barra incluso si su tramo es muy estrecho.
 El reparto visual no termina la partida.
 
 En el Inspector de `MarcadorVersus` se pueden ajustar colores y tiempo de

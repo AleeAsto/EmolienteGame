@@ -119,22 +119,17 @@ public class MarcadorVersus : MonoBehaviour
         indicador.anchoredPosition = Vector2.zero;
 
         float ancho = carril.rect.width;
-        ColocarNumero(puntosJugador1, division * ancho * 0.5f,
-            division * ancho, ancho, colorJugador1);
-        ColocarNumero(puntosJugador2, (1f + division) * ancho * 0.5f,
-            (1f - division) * ancho, ancho, colorJugador2);
+        ColocarNumero(puntosJugador1, division * ancho * 0.5f, ancho);
+        ColocarNumero(puntosJugador2, (1f + division) * ancho * 0.5f, ancho);
     }
 
-    private void ColocarNumero(Text texto, float centro, float anchoTramo, float anchoCarril, Color colorJugador)
+    private void ColocarNumero(Text texto, float centro, float anchoCarril)
     {
-        // Si un jugador tiene muy pocos puntos, su numero sigue visible
-        // por encima del carril, separado del aro que llega al extremo.
+        // Mantener la misma altura incluso cuando el tramo es muy estrecho.
         float espacioTexto = Mathf.Max(40f, texto.preferredWidth);
-        bool estrecho = anchoTramo < espacioTexto + indicador.sizeDelta.x + 24f;
         float margen = Mathf.Min(espacioTexto * 0.5f + 12f, anchoCarril * 0.5f);
         float x = Mathf.Clamp(centro, margen, Mathf.Max(margen, anchoCarril - margen));
-        float altura = indicador.sizeDelta.y * 0.5f + texto.fontSize * 0.5f + 10f;
-        texto.rectTransform.anchoredPosition = new Vector2(x, estrecho ? altura : 0f);
-        texto.color = estrecho ? colorJugador : colorNumeros;
+        texto.rectTransform.anchoredPosition = new Vector2(x, 0f);
+        texto.color = colorNumeros;
     }
 }
