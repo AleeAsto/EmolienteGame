@@ -1549,6 +1549,7 @@ MonoBehaviour:
   jugador2: {fileID: 1775270136}
   destelloChoque: {fileID: 45187065}
   duracionDestello: 0.16
+  almasPerdidasPorGolpe: 5
 --- !u!4 &1357132549
 Transform:
   m_ObjectHideFlags: 0

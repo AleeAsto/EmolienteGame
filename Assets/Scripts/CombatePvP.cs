@@ -8,6 +8,7 @@ public class CombatePvP : MonoBehaviour
     [SerializeField] private AtaqueJugador jugador2;
     [SerializeField] private SpriteRenderer destelloChoque;
     [SerializeField, Min(0.01f)] private float duracionDestello = 0.16f;
+    [SerializeField, Min(0f)] private float almasPerdidasPorGolpe = 5f;
 
     private float destelloRestante;
     private Vector3 escalaDestello;
@@ -92,11 +93,13 @@ public class CombatePvP : MonoBehaviour
         }
     }
 
-    private static void AplicarGolpe(AtaqueJugador atacante, AtaqueJugador victima, bool succionaba)
+    private void AplicarGolpe(AtaqueJugador atacante, AtaqueJugador victima, bool succionaba)
     {
         atacante.ConsumirImpacto();
         float stun = succionaba ? atacante.StunSuccionando : atacante.StunNormal;
-        victima.Estado.RecibirGolpe(stun, DireccionEmpujon(atacante, victima) * atacante.Empujon);
+        if (victima.Estado.RecibirGolpe(stun, DireccionEmpujon(atacante, victima) * atacante.Empujon) &&
+            victima.TryGetComponent<AlmasJugador>(out var almas))
+            almas.Perder(almasPerdidasPorGolpe);
     }
 
     private static Vector2 DireccionEmpujon(AtaqueJugador atacante, AtaqueJugador victima)

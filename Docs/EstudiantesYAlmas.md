@@ -92,8 +92,10 @@ directamente a `AlmasJugador` de P1/P2 mediante `CantidadCambiada`.
   conservan su cooldown. Se comprueba el recorrido entre frames para detectar
   tambien los circulos que se cruzan entre dos actualizaciones.
 - Cada ataque solo puede impactar una vez. Atacar cancela la propia succion;
-  hay que volver a pulsar E/O para empezar a drenar de nuevo. Los golpes no
-  quitan ni transfieren almas.
+  hay que volver a pulsar E/O para empezar a drenar de nuevo.
+- Cada golpe aceptado quita hasta 5 almas a la victima, sin bajar de cero ni
+  transferirlas al atacante. Los choques y los golpes ignorados por invulnerabilidad
+  no quitan almas. `Almas Perdidas Por Golpe` se ajusta en `CombatePvP`.
 - El combate respeta la pausa de la cuenta atras y del final de partida:
   con el tiempo detenido no se inician golpes ni se resuelven impactos o choques.
 

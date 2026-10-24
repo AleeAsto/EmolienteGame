@@ -17,4 +17,13 @@ public class AlmasJugador : MonoBehaviour
         cantidad += almas;
         CantidadCambiada?.Invoke(cantidad);
     }
+
+    public void Perder(float almas)
+    {
+        if (almas <= 0f || cantidad <= 0f)
+            return;
+
+        cantidad = Mathf.Max(0f, cantidad - almas);
+        CantidadCambiada?.Invoke(cantidad);
+    }
 }
