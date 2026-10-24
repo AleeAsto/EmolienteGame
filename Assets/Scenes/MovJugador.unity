@@ -515,6 +515,8 @@ GameObject:
   - component: {fileID: 1202282251}
   - component: {fileID: 1202282250}
   - component: {fileID: 1202282249}
+  - component: {fileID: 1202282254}
+  - component: {fileID: 1202282253}
   m_Layer: 3
   m_Name: P1
   m_TagString: Untagged
@@ -659,6 +661,32 @@ Transform:
   - {fileID: 520451489}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!210 &1202282253
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1202282248}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 10
+  m_SortAtRoot: 0
+  m_Sort3DAs2D: 0
+--- !u!114 &1202282254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1202282248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 096d5695931f7544fa8e89a4919fc286, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AlmasJugador
+  cantidad: 0
 --- !u!1 &1313320949
 GameObject:
   m_ObjectHideFlags: 0
@@ -902,6 +930,8 @@ GameObject:
   - component: {fileID: 1775270131}
   - component: {fileID: 1775270129}
   - component: {fileID: 1775270128}
+  - component: {fileID: 1775270134}
+  - component: {fileID: 1775270133}
   m_Layer: 3
   m_Name: P2
   m_TagString: Untagged
@@ -1046,6 +1076,32 @@ Transform:
   - {fileID: 1313320950}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!210 &1775270133
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1775270127}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 10
+  m_SortAtRoot: 0
+  m_Sort3DAs2D: 0
+--- !u!114 &1775270134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1775270127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 096d5695931f7544fa8e89a4919fc286, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AlmasJugador
+  cantidad: 0
 --- !u!1 &1781125908
 GameObject:
   m_ObjectHideFlags: 0
@@ -1338,6 +1394,64 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1917717336
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1917717338}
+  - component: {fileID: 1917717337}
+  m_Layer: 0
+  m_Name: Estudiantes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1917717337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1917717336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bcdf54cd9cc16e4a861c316eb3d7d90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GeneradorEstudiantes
+  zonaPasillo: {fileID: 1885894447}
+  camarasJugadores:
+  - {fileID: 1781125910}
+  - {fileID: 1040551876}
+  prefabsEstudiantes:
+  - {fileID: 1707020731826580904, guid: 107e496a2a8a3bf4696b9cf88bd50f37, type: 3}
+  estudiantesIniciales: 10
+  maximoEstudiantes: 16
+  intervaloAparicion: 2.5
+  rangoVelocidad: {x: 1.2, y: 2.2}
+  margenCamaras: 2
+  margenSalida: 2
+  margenPies: 0.5
+  separacionMinima: 1.2
+--- !u!4 &1917717338
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1917717336}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1349,3 +1463,4 @@ SceneRoots:
   - {fileID: 534948278}
   - {fileID: 1202282252}
   - {fileID: 1775270132}
+  - {fileID: 1917717338}

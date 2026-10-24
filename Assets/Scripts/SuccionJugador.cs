@@ -1,0 +1,130 @@
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+[DisallowMultipleComponent]
+[RequireComponent(typeof(AlmasJugador))]
+public class SuccionJugador : MonoBehaviour
+{
+    [SerializeField] private InputActionReference succionar;
+    [SerializeField, Min(0.1f)] private float alcance = 1.6f;
+    [SerializeField, Min(0.1f)] private float tiempoDrenaje = 3f;
+
+    private AlmasJugador almas;
+    private InputAction accionSuccionar;
+    private AlmaEstudiante objetivo;
+    private float tiempoAcumulado;
+
+    public AlmaEstudiante Objetivo => objetivo;
+    public float Progreso01 => objetivo != null
+        ? Mathf.Clamp01(tiempoAcumulado / Mathf.Max(0.1f, tiempoDrenaje))
+        : 0f;
+
+    private void Awake()
+    {
+        almas = GetComponent<AlmasJugador>();
+        if (succionar == null || succionar.action == null)
+        {
+            Debug.LogError("Asigna la accion Succionar del jugador en el Inspector.", this);
+            enabled = false;
+        }
+    }
+
+    private void OnEnable()
+    {
+        if (succionar == null || succionar.action == null)
+            return;
+
+        accionSuccionar = succionar.action;
+        accionSuccionar.Enable();
+    }
+
+    private void Update()
+    {
+        if (!Application.isFocused || almas == null || !almas.isActiveAndEnabled ||
+            accionSuccionar == null || !accionSuccionar.IsPressed())
+        {
+            CancelarSuccion();
+            return;
+        }
+
+        if (objetivo == null)
+        {
+            // Una pulsacion inicia un solo drenaje; mantener no encadena estudiantes.
+            if (!accionSuccionar.WasPressedThisFrame())
+                return;
+
+            objetivo = BuscarEstudianteCercano();
+            if (objetivo == null || !objetivo.IntentarOcupar(almas))
+            {
+                objetivo = null;
+                return;
+            }
+            tiempoAcumulado = 0f;
+        }
+
+        if (!objetivo.Disponible || objetivo.Ocupante != almas ||
+            ((Vector2)(objetivo.transform.position - transform.position)).sqrMagnitude > alcance * alcance)
+        {
+            CancelarSuccion();
+            return;
+        }
+
+        tiempoAcumulado += Time.deltaTime;
+        if (tiempoAcumulado < Mathf.Max(0.1f, tiempoDrenaje))
+            return;
+
+        AlmaEstudiante completado = objetivo;
+        objetivo = null;
+        tiempoAcumulado = 0f;
+        if (!completado.IntentarExtraer(almas))
+            completado.Liberar(almas);
+    }
+
+    private AlmaEstudiante BuscarEstudianteCercano()
+    {
+        AlmaEstudiante cercano = null;
+        float mejorDistancia = alcance * alcance;
+        // Se consulta solo al pulsar; no depende de sincronizar colliders movidos con Transform.
+        foreach (AlmaEstudiante estudiante in FindObjectsByType<AlmaEstudiante>(FindObjectsSortMode.None))
+        {
+            if (!estudiante.Disponible || estudiante.EstaOcupado)
+                continue;
+
+            float distancia = ((Vector2)(estudiante.transform.position - transform.position)).sqrMagnitude;
+            if (distancia <= mejorDistancia)
+            {
+                cercano = estudiante;
+                mejorDistancia = distancia;
+            }
+        }
+        return cercano;
+    }
+
+    public void CancelarSuccion()
+    {
+        AlmaEstudiante anterior = objetivo;
+        objetivo = null;
+        tiempoAcumulado = 0f;
+        if (anterior != null)
+            anterior.Liberar(almas);
+    }
+
+    private void OnApplicationFocus(bool enfocado)
+    {
+        if (!enfocado)
+            CancelarSuccion();
+    }
+
+    private void OnDisable()
+    {
+        CancelarSuccion();
+        accionSuccionar?.Disable();
+        accionSuccionar = null;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(transform.position, alcance);
+    }
+}
