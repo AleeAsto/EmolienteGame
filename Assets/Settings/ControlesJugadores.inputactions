@@ -25,6 +25,16 @@
                     "interactions": "",
                     "initialStateCheck": false,
                     "priority": 0
+                },
+                {
+                    "name": "Golpear",
+                    "type": "Button",
+                    "id": "2d0bbbf6-98a1-4c5c-8631-612578f79eda",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
                 }
             ],
             "bindings": [
@@ -93,6 +103,17 @@
                     "action": "Succionar",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "481f7f46-b0a4-419e-bc46-eeb6d5f88140",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Golpear",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -114,6 +135,16 @@
                     "name": "Succionar",
                     "type": "Button",
                     "id": "82f6f1bf-a1af-4e90-8f2a-afd1ae6036ed",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                },
+                {
+                    "name": "Golpear",
+                    "type": "Button",
+                    "id": "5528002c-2fbf-4ce4-ace3-e4275a11d9fa",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -240,6 +271,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Succionar",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6247e825-f2bc-4edd-974f-8ef9c2882c8e",
+                    "path": "<Keyboard>/m",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Golpear",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
