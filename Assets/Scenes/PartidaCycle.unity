@@ -2323,6 +2323,7 @@ MonoBehaviour:
   colorJugador2: {r: 0.95, g: 0.2, b: 0.25, a: 1}
   colorNumeros: {r: 0.04, g: 0.05, b: 0.07, a: 1}
   tiempoTransicion: 0.18
+  baseVisualPorJugador: 20
 --- !u!114 &2063603545
 MonoBehaviour:
   m_ObjectHideFlags: 0

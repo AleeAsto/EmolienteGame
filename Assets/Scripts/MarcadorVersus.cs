@@ -21,6 +21,8 @@ public class MarcadorVersus : MonoBehaviour
     [SerializeField] private Color colorJugador2 = new Color(0.95f, 0.20f, 0.25f, 1f);
     [SerializeField] private Color colorNumeros = new Color(0.04f, 0.05f, 0.07f, 1f);
     [SerializeField, Min(0f)] private float tiempoTransicion = 0.18f;
+    [Tooltip("Base por lado solo para la proporcion visual; no suma puntos reales.")]
+    [SerializeField, Min(0f)] private float baseVisualPorJugador = 20f;
 
     private float proporcionObjetivo = 0.5f;
     private float proporcionVisible = 0.5f;
@@ -61,8 +63,9 @@ public class MarcadorVersus : MonoBehaviour
     {
         float puntos1 = Mathf.Max(0f, jugador1.Cantidad);
         float puntos2 = Mathf.Max(0f, jugador2.Cantidad);
-        double total = (double)puntos1 + puntos2;
-        proporcionObjetivo = total > 0d ? (float)(puntos1 / total) : 0.5f;
+        double baseVisual = Mathf.Max(0f, baseVisualPorJugador);
+        double total = (double)puntos1 + puntos2 + 2d * baseVisual;
+        proporcionObjetivo = total > 0d ? (float)((puntos1 + baseVisual) / total) : 0.5f;
         puntosJugador1.text = puntos1.ToString("0.#");
         puntosJugador2.text = puntos2.ToString("0.#");
         puntosJugador1.enabled = Mathf.Round(puntos1 * 10f) > 0f;
