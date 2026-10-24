@@ -1,6 +1,7 @@
 # Cartas de habilidad
 
 La escena de prueba es `Assets/Scenes/ActionCards.unity`. Abrirla y pulsar Play.
+Para Confusion, usar `Assets/Scenes/ConfusionCard.unity`.
 `Assets/Scenes/PartidaIntegrada.unity` combina las cartas actuales con el mapa
 ampliado, las cuatro puertas y la profesora, y es la escena habilitada en Build Settings.
 La escena anterior conserva sus controles originales; solo los jugadores que
@@ -25,6 +26,8 @@ tienen `ManoCartasJugador` usan pulsacion corta/mantener para golpear o abrir ca
   distinguir 8 s de 20 s sin necesitar ver la parte inferior de la descripcion.
 - B suma 100 puntos a cada jugador por pulsacion, con las mismas condiciones
   de los atajos de desarrollo.
+- F entrega Confusion normal a P1; N a P2. Shift+F / Shift+N entregan su potente.
+  Se usan como las otras cartas y afectan al rival, no al receptor de la carta.
 - La carta cuesta 20 puntos reales. Absorber estudiantes para alcanzarlos o modificar
   `Cantidad` de `AlmasJugador` en Play, o pulsar B. El numero del marcador puede estar redondeado.
 - Con menos puntos, E/O muestra el costo sin consumir la carta ni cerrar el menu.
@@ -93,6 +96,7 @@ mantiene en la mano y durante la animacion; las cartas no seleccionadas se oscur
 
 ## Repartos a ambos jugadores
 
+
 Ademas de la ayuda por desventaja, hay cuatro repartos independientes: a los
 60, 90, 120 y 150 segundos transcurridos. `Momentos Reparto` en `SistemaCartas`
 permite modificar esos tiempos. Son segundos de juego, sin contar pausas ni la
@@ -130,8 +134,8 @@ pendientes. Las cartas recibidas se conservan aunque cambie el lider.
 
 ## Assets y responsabilidades
 
-- `Assets/Resources/CatalogoCartas.asset`: catalogo compartido con las dos normales
-  y las dos potentes. `SistemaCartas` lo carga automaticamente al iniciar y tras
+- `Assets/Resources/CatalogoCartas.asset`: catalogo compartido con las tres normales
+  y las tres potentes. `SistemaCartas` lo carga automaticamente al iniciar y tras
   una recarga de scripts. La lista antigua guardada en una escena deja de decidir
   que cartas salen. `Catalogo Compartido` permite asignar otro catalogo explicitamente.
 
@@ -185,3 +189,43 @@ manualmente en Play siguiendo los pasos anteriores.
 `Tests/ModificadoresVelocidadTests.cs` verifica expiracion, renovacion sin copias,
 temporizadores independientes, combinacion, rechazo de valores invalidos y limpieza
 sin requerir el runtime de Unity.
+
+## Confusion
+
+Normal: 20 puntos, 10 segundos. Potente roja ★: 40 puntos, 16 segundos. Ambas
+se aplican al rival cuando termina la animacion de uso. Los controles permanecen
+normales; no se invierten movimiento, golpe ni absorcion.
+
+Aparecen 24 estudiantes falsos en la camara del afectado, copiando los sprites,
+materiales y colores de los prefabs del generador. Caminan y se reponen mientras
+dura el efecto. `Cantidad Fantasmas` en `IlusionesConfusionJugador` permite ajustar
+la densidad durante Play. No tienen AlmaEstudiante ni colliders: no ocupan cupos,
+no afectan a la profesora ni entregan puntos. Cada camara excluye la capa privada
+del otro jugador (FantasmasP1 = 8, FantasmasP2 = 9).
+
+Al pulsar absorber, se compara la distancia del estudiante real y del fantasma
+mas cercanos. Si el falso esta mas cerca dentro del alcance, se desvanece en
+0.35 segundos y consume esa pulsacion, sin puntos ni stun. Mantener el boton no
+encadena intentos. Una absorcion real ya iniciada continua normalmente.
+
+La mano se mezcla una sola vez al comenzar el efecto. Las cartas muestran su
+giro durante 0.4 s y despues se deslizan durante 0.55 s hacia los nuevos huecos,
+con una elevacion y arco breve para ver el barajado. Al terminar Confusion giran
+de nuevo para revelar el frente, conservando el orden mezclado.
+Mientras estan volteadas muestran el
+reverso neutro, sin texto, costo, estrella ni tinte verde/rojo. El resaltado de
+seleccion permanece visible, pero no revela la identidad de la carta.
+Se puede seleccionar y usar una carta a ciegas. Al terminar se revela el frente,
+conservando el nuevo orden. Nuevas cartas recibidas tambien permanecen ocultas.
+Renovar Confusion no mezcla de nuevo ni permite acortar una potente con una normal.
+La pausa congela el efecto. Al expirar, desactivar o finalizar la ronda se eliminan
+los fantasmas; ambas camaras pueden sufrir Confusion simultaneamente sin compartirlos.
+Los falsos aparecen con fade in de 0.35 s y desaparecen con fade out de 0.35 s,
+tambien al terminar Confusion. Durante el efecto se renuevan cada 4-7 segundos:
+se reubican solo al quedar invisibles y reaparecen gradualmente. No se pueden
+absorber mientras aun son invisibles o ya estan desapareciendo. Los fades respetan
+la pausa. Desactivar el sistema o terminar la partida limpia todo inmediatamente.
+
+Para probar en ConfusionCard: B para puntos; F/N para dar la carta al lanzador;
+C/M para abrir, E/O para usar y observar la camara contraria. Shift+F/N prueba la
+version potente con su giro de recepcion, incluso antes de mitad de partida.

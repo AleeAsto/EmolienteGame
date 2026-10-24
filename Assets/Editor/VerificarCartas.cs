@@ -48,7 +48,7 @@ public static class VerificarCartas
     {
         if (EditorApplication.isPlayingOrWillChangePlaymode)
             throw new InvalidOperationException("Ejecuta esta verificacion fuera de Play.");
-        var escena = EditorSceneManager.OpenPreviewScene("Assets/Scenes/ActionCards.unity");
+        var escena = EditorSceneManager.OpenPreviewScene("Assets/Scenes/ConfusionCard.unity");
         try
         {
             AssetDatabase.ImportAsset("Assets/Cartas/CartaAceleracion.asset", ImportAssetOptions.ForceUpdate);
@@ -59,6 +59,13 @@ public static class VerificarCartas
             AssetDatabase.ImportAsset("Assets/Cartas/CartaPesadezPotente.asset", ImportAssetOptions.ForceUpdate);
             DefinicionCarta aceleracionPotente = AssetDatabase.LoadAssetAtPath<DefinicionCarta>("Assets/Cartas/CartaAceleracionPotente.asset");
             DefinicionCarta pesadezPotente = AssetDatabase.LoadAssetAtPath<DefinicionCarta>("Assets/Cartas/CartaPesadezPotente.asset");
+            AssetDatabase.ImportAsset("Assets/Cartas/CartaConfusion.asset", ImportAssetOptions.ForceUpdate);
+            AssetDatabase.ImportAsset("Assets/Cartas/CartaConfusionPotente.asset", ImportAssetOptions.ForceUpdate);
+            DefinicionCarta confusion = AssetDatabase.LoadAssetAtPath<DefinicionCarta>("Assets/Cartas/CartaConfusion.asset");
+            DefinicionCarta confusionPotente = AssetDatabase.LoadAssetAtPath<DefinicionCarta>("Assets/Cartas/CartaConfusionPotente.asset");
+            Exigir(confusion != null && confusion.Efecto == EfectoCarta.Confusion && confusion.DuracionEfecto == 10f &&
+                confusionPotente != null && confusionPotente.EsPotente && confusionPotente.DuracionEfecto == 16f,
+                "Confusion normal 10 s y potente 16 s");
             Exigir(aceleracionPotente != null && pesadezPotente != null &&
                 aceleracionPotente.EsPotente && pesadezPotente.EsPotente &&
                 aceleracionPotente.DuracionEfecto == 20f && pesadezPotente.DuracionEfecto == 20f &&
@@ -82,7 +89,7 @@ public static class VerificarCartas
                         "Sin scripts faltantes: " + hijo.name);
                 if (sistema == null) sistema = raiz.GetComponentInChildren<SistemaCartas>(true);
             }
-            Exigir(sistema != null, "Sistema presente en ActionCards");
+            Exigir(sistema != null, "Sistema presente en ConfusionCard");
             AssetDatabase.ImportAsset("Assets/Resources/CatalogoCartas.asset", ImportAssetOptions.ForceUpdate);
             // Reproducir la escena cargada con una lista antigua: debe migrar al catalogo comun.
             Campo(sistema, "catalogo", new[] { carta, pesadez });
@@ -94,10 +101,12 @@ public static class VerificarCartas
             foreach (string campo in new[] { "partida", "jugador1", "jugador2", "camara1", "camara2" })
                 Exigir(serializado.FindProperty(campo).objectReferenceValue != null, "Referencia " + campo);
             var catalogo = serializado.FindProperty("catalogo");
-            Exigir(catalogo.arraySize == 4 && catalogo.GetArrayElementAtIndex(0).objectReferenceValue == carta &&
+            Exigir(catalogo.arraySize == 6 && catalogo.GetArrayElementAtIndex(0).objectReferenceValue == carta &&
                 catalogo.GetArrayElementAtIndex(1).objectReferenceValue == pesadez &&
                 catalogo.GetArrayElementAtIndex(2).objectReferenceValue == aceleracionPotente &&
-                catalogo.GetArrayElementAtIndex(3).objectReferenceValue == pesadezPotente,
+                catalogo.GetArrayElementAtIndex(3).objectReferenceValue == pesadezPotente &&
+                catalogo.GetArrayElementAtIndex(4).objectReferenceValue == confusion &&
+                catalogo.GetArrayElementAtIndex(5).objectReferenceValue == confusionPotente,
                 "Catalogo conectado a normales y potentes");
 
             var partida = (CicloPartida)serializado.FindProperty("partida").objectReferenceValue;
@@ -176,6 +185,7 @@ public static class VerificarCartas
             efectos1.Limpiar();
             efectos2.Limpiar();
             Exigir(efectos1.MultiplicadorVelocidad == 1f && efectos2.MultiplicadorVelocidad == 1f, "Limpieza de efectos");
+            VerificarConfusion(sistema, p1, p2, carta, pesadez, confusion, confusionPotente);
 
             // Acelera unicamente el preview para comprobar entrega, espera y empate.
             Campo(sistema, "inicioFraccionPartida", 0f);
@@ -201,7 +211,7 @@ public static class VerificarCartas
 
             VerificarRepartos(sistema, partida, p1, p2, carta, pesadez, aceleracionPotente, pesadezPotente);
             VerificarSeguimiento(escena);
-            const string mensaje = "OK: repartos 60/90/120/150 a ambos, sin repeticiones ni deuda, nivel comun e independencia de ayuda; potentes, debug, cobro, efectos y camaras.";
+            const string mensaje = "OK: Confusion 10/16 s, mezcla unica, fantasmas privados, interaccion sin puntos, limpieza y catalogo de seis; repartos, velocidad y camaras.";
             Directory.CreateDirectory("Temp");
             File.WriteAllText(Resultado, mensaje);
             Debug.Log(mensaje);
@@ -220,6 +230,88 @@ public static class VerificarCartas
     private static void Exigir(bool condicion, string mensaje)
     {
         if (!condicion) throw new InvalidOperationException(mensaje);
+    }
+
+    private static void VerificarConfusion(SistemaCartas sistema, ManoCartasJugador p1, ManoCartasJugador p2,
+        DefinicionCarta normal1, DefinicionCarta normal2, DefinicionCarta confusion, DefinicionCarta potente)
+    {
+        var config = new SerializedObject(sistema);
+        var tags = AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/TagManager.asset")[0];
+        var serializadoTags = new SerializedObject(tags);
+        var capas = serializadoTags.FindProperty("layers");
+        for (int i = 8; i <= 9; i++)
+        {
+            string nombre = i == 8 ? "FantasmasP1" : "FantasmasP2";
+            string anteriorNombre = capas.GetArrayElementAtIndex(i).stringValue;
+            Exigir(string.IsNullOrEmpty(anteriorNombre) || anteriorNombre == nombre, "Capa privada libre: " + i);
+            capas.GetArrayElementAtIndex(i).stringValue = nombre;
+        }
+        serializadoTags.ApplyModifiedPropertiesWithoutUndo();
+        AssetDatabase.SaveAssetIfDirty(tags);
+        Camera cam1 = (Camera)config.FindProperty("camara1").objectReferenceValue;
+        Camera cam2 = (Camera)config.FindProperty("camara2").objectReferenceValue;
+        EfectosJugador e1 = p1.GetComponent<EfectosJugador>();
+        EfectosJugador e2 = p2.GetComponent<EfectosJugador>();
+        var preparar = typeof(SistemaCartas).GetMethod("PrepararIlusiones", BindingFlags.NonPublic | BindingFlags.Instance);
+        preparar.Invoke(sistema, new object[] { p1, e1, cam1, cam2, 8 });
+        preparar.Invoke(sistema, new object[] { p2, e2, cam2, cam1, 9 });
+        Exigir(LayerMask.NameToLayer("FantasmasP1") == 8 && LayerMask.NameToLayer("FantasmasP2") == 9,
+            "Capas privadas reservadas");
+        Exigir((cam1.cullingMask & (1 << 8)) != 0 && (cam1.cullingMask & (1 << 9)) == 0 &&
+            (cam2.cullingMask & (1 << 9)) != 0 && (cam2.cullingMask & (1 << 8)) == 0,
+            "Cada camara ve solo sus propios fantasmas");
+        p2.Recibir(normal1); p2.Recibir(normal2);
+        var anterior = new System.Collections.Generic.List<DefinicionCarta>(p2.Cartas);
+        float puntos = p2.Almas.Cantidad;
+        typeof(SistemaCartas).GetMethod("AplicarCarta", BindingFlags.NonPublic | BindingFlags.Instance)
+            .Invoke(sistema, new object[] { p1, confusion });
+        Exigir(e2.EstaConfundido && !e1.EstaConfundido && p2.EstaConfundido, "Confusion afecta rival y mano");
+        bool cambiada = false;
+        for (int i = 0; i < anterior.Count; i++) cambiada |= anterior[i] != p2.Cartas[i];
+        Exigir(cambiada && anterior.Count == p2.Cantidad, "Mezcla cambia orden sin perder cartas");
+        var orden = new System.Collections.Generic.List<DefinicionCarta>(p2.Cartas);
+        e2.AplicarConfusion(potente.DuracionEfecto);
+        float finPotente = (float)LeerCampo(e2, "finConfusion");
+        e2.AplicarConfusion(confusion.DuracionEfecto);
+        Exigir((float)LeerCampo(e2, "finConfusion") == finPotente, "Normal no acorta potente");
+        for (int i = 0; i < orden.Count; i++) Exigir(orden[i] == p2.Cartas[i], "Renovar no vuelve a mezclar");
+        var ilusiones2 = p2.GetComponent<IlusionesConfusionJugador>();
+        var generador = (GeneradorEstudiantes)LeerCampo(ilusiones2, "generador");
+        int estudiantesReales = generador.CantidadActiva;
+        var tick = typeof(IlusionesConfusionJugador).GetMethod("LateUpdate", BindingFlags.NonPublic | BindingFlags.Instance);
+        tick.Invoke(ilusiones2, null);
+        Exigir(ilusiones2.Cantidad == 24, "Pantalla llena de 24 estudiantes falsos");
+        Exigir(generador.CantidadActiva == estudiantesReales, "Fantasmas no ocupan cupos del spawn real");
+        var fantasmas = (System.Collections.IList)LeerCampo(ilusiones2, "fantasmas");
+        object fantasma = fantasmas[0];
+        GameObject objeto = (GameObject)fantasma.GetType().GetField("objeto").GetValue(fantasma);
+        SpriteRenderer visual = objeto.GetComponentInChildren<SpriteRenderer>();
+        Exigir(visual.color.a == 0f && !e2.IntentarDisiparFantasma(objeto.transform.position, 0.01f),
+            "Fantasma nace invisible y no se absorbe antes de aparecer");
+        var avanzar = typeof(IlusionesConfusionJugador).GetMethod("ActualizarFantasmas", BindingFlags.NonPublic | BindingFlags.Instance);
+        BoxCollider2D zona = (BoxCollider2D)LeerCampo(ilusiones2, "zona");
+        avanzar.Invoke(ilusiones2, new object[] { 0.175f, true, zona.bounds.min.x, zona.bounds.max.x });
+        Exigir(visual.color.a > 0f && visual.color.a < 1f, "Fade in gradual");
+        avanzar.Invoke(ilusiones2, new object[] { 0.175f, true, zona.bounds.min.x, zona.bounds.max.x });
+        Exigir(objeto.layer == 9 && objeto.GetComponent<AlmaEstudiante>() == null &&
+            objeto.GetComponent<Collider2D>() == null, "Fantasma solo visual, sin cupos ni collider");
+        Exigir(e2.IntentarDisiparFantasma(objeto.transform.position, 0.01f) &&
+            p2.Almas.Cantidad == puntos && !p2.GetComponent<EstadoCombateJugador>().EstaAturdido,
+            "Interactuar con falso no entrega puntos");
+        avanzar.Invoke(ilusiones2, new object[] { 0.1f, true, zona.bounds.min.x, zona.bounds.max.x });
+        Exigir(objeto != null && visual.color.a > 0f && visual.color.a < 1f, "Consumir usa fade out sin salto de alfa");
+        Exigir(!e1.IntentarDisiparFantasma(objeto.transform.position, 100f), "Otro jugador no interactua con fantasmas ajenos");
+        e1.AplicarConfusion(10f);
+        var ilusiones1 = p1.GetComponent<IlusionesConfusionJugador>();
+        tick.Invoke(ilusiones1, null);
+        Exigir(ilusiones1.Cantidad == 24, "Ambos jugadores pueden estar confundidos a la vez");
+        Campo(e2, "finConfusion", Time.time - 1f);
+        tick.Invoke(ilusiones2, null);
+        avanzar.Invoke(ilusiones2, new object[] { 0.4f, false, zona.bounds.min.x, zona.bounds.max.x });
+        Exigir(!p2.EstaConfundido && ilusiones2.Cantidad == 0 && ilusiones1.Cantidad == 24,
+            "Expirar limpia solo ilusiones propias y revela mano");
+        e1.Limpiar(); e2.Limpiar();
+        Exigir(ilusiones1.Cantidad == 0 && ilusiones2.Cantidad == 0, "Limpieza total");
     }
 
     private static void VerificarRepartos(SistemaCartas sistema, CicloPartida partida,

@@ -27,6 +27,7 @@ public class ManoCartasJugador : MonoBehaviour
     public int Cantidad => cartas.Count;
     public int EspaciosOcupados => Cantidad + entregasPendientes.Count;
     public bool TienePotente => cartas.Exists(c => c.EsPotente) || entregasPendientes.Exists(c => c.EsPotente);
+    public bool EstaConfundido => GetComponent<EfectosJugador>() != null && GetComponent<EfectosJugador>().EstaConfundido;
     public IReadOnlyList<DefinicionCarta> Cartas => cartas;
     public AlmasJugador Almas => almas;
     public float AvisoHasta { get; private set; }
@@ -75,6 +76,25 @@ public class ManoCartasJugador : MonoBehaviour
     }
 
     public void CancelarEntregas() => entregasPendientes.Clear();
+
+    public void MezclarPorConfusion()
+    {
+        var anterior = cartas.ToArray();
+        for (int i = cartas.Count - 1; i > 0; i--)
+        {
+            int j = UnityEngine.Random.Range(0, i + 1);
+            DefinicionCarta temporal = cartas[i]; cartas[i] = cartas[j]; cartas[j] = temporal;
+        }
+        bool cambio = false;
+        for (int i = 0; i < cartas.Count; i++) cambio |= cartas[i] != anterior[i];
+        if (!cambio && cartas.Count > 1)
+        {
+            DefinicionCarta primera = cartas[0]; cartas.RemoveAt(0); cartas.Add(primera);
+        }
+        IndiceRecibida = -1;
+        RecibidaHasta = 0f;
+        Cambiada?.Invoke();
+    }
 
     private void Update()
     {

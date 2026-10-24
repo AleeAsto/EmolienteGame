@@ -11,6 +11,14 @@ public class VistaCartas : MonoBehaviour
     private readonly Image[,] imagenes = new Image[2, 3];
     private readonly Text[,] textos = new Text[2, 3];
     private readonly Outline[,] bordes = new Outline[2, 3];
+    private readonly DefinicionCarta[,] cartasAnteriores = new DefinicionCarta[2, 3];
+    private readonly Vector2[,] inicioMezcla = new Vector2[2, 3];
+    private readonly bool[] confusionAnterior = new bool[2];
+    private readonly bool[] animandoMano = new bool[2];
+    private readonly float[] inicioGiroMano = new float[2];
+    private readonly int[] cantidadAnimada = new int[2];
+    private const float DuracionGiroMano = 0.4f;
+    private const float DuracionMezclaMano = 0.55f;
     private RectTransform raiz;
     private RectTransform presentacion;
     private RectTransform capaVuelo;
@@ -104,6 +112,16 @@ public class VistaCartas : MonoBehaviour
             float escalaDiseno = Mathf.Clamp(Mathf.Min(paneles[i].rect.height / 440f,
                 paneles[i].rect.width / 510f), 0.3f, 1f);
             ManoCartasJugador mano = manos[i];
+            bool confundido = mano.EstaConfundido;
+            if (confundido != confusionAnterior[i])
+                IniciarTransicionMano(i, mano, confundido);
+            if (cantidadAnimada[i] != mano.Cantidad) animandoMano[i] = false;
+            float tiempoMano = Time.time - inicioGiroMano[i];
+            if (tiempoMano >= DuracionGiroMano + (confundido ? DuracionMezclaMano : 0f))
+                animandoMano[i] = false;
+            float progresoGiro = Mathf.Clamp01(tiempoMano / DuracionGiroMano);
+            bool reverso = animandoMano[i] && progresoGiro < 0.5f ? !confundido : confundido;
+            float anchoGiro = animandoMano[i] ? Mathf.Max(0.02f, Mathf.Abs(Mathf.Cos(progresoGiro * Mathf.PI))) : 1f;
             bool recibida = Time.time < mano.RecibidaHasta && !mano.MenuAbierto &&
                 mano.IndiceRecibida >= 0 && mano.IndiceRecibida < mano.Cantidad;
             for (int j = 0; j < 3; j++)
@@ -117,21 +135,44 @@ public class VistaCartas : MonoBehaviour
                 float y = seleccionada ? 62f : esRecibida ? 124f : -82f;
                 float x = i == 0 ? 124f + j * 116f : -124f - (mano.Cantidad - 1 - j) * 116f;
                 Vector2 destino = new Vector2(x, y) * escalaDiseno;
-                huecos[i, j].anchoredPosition = Vector2.MoveTowards(huecos[i, j].anchoredPosition,
-                    destino, 1800f * Time.deltaTime);
+                if (animandoMano[i])
+                {
+                    float mezcla = confundido ? Mathf.SmoothStep(0f, 1f,
+                        (tiempoMano - DuracionGiroMano) / DuracionMezclaMano) : 0f;
+                    Vector2 salida = inicioMezcla[i, j];
+                    Vector2 llegada = new Vector2(destino.x, 128f * escalaDiseno);
+                    Vector2 posicion = Vector2.Lerp(salida, llegada, mezcla);
+                    float levantar = Mathf.SmoothStep(0f, 1f, progresoGiro);
+                    posicion.y = Mathf.Lerp(salida.y, llegada.y, levantar) +
+                        Mathf.Sin(mezcla * Mathf.PI) * (j % 2 == 0 ? 32f : 56f) * escalaDiseno;
+                    huecos[i, j].anchoredPosition = posicion;
+                    huecos[i, j].localRotation = Quaternion.Euler(0f, 0f,
+                        Mathf.Sin(mezcla * Mathf.PI) * (j % 2 == 0 ? -12f : 12f));
+                }
+                else
+                {
+                    huecos[i, j].anchoredPosition = Vector2.MoveTowards(huecos[i, j].anchoredPosition,
+                        destino, 1800f * Time.deltaTime);
+                    huecos[i, j].localRotation = Quaternion.identity;
+                }
                 float suavizado = 1f - Mathf.Exp(-18f * Time.deltaTime);
-                huecos[i, j].localScale = Vector3.Lerp(huecos[i, j].localScale,
-                    Vector3.one * escalaDiseno * (seleccionada ? 1.18f : 1f), suavizado);
+                float escalaCarta = Mathf.Lerp(huecos[i, j].localScale.y,
+                    escalaDiseno * (seleccionada ? 1.18f : 1f), suavizado);
+                huecos[i, j].localScale = new Vector3(escalaCarta * anchoGiro, escalaCarta, 1f);
                 DefinicionCarta carta = mano.Cartas[j];
-                imagenes[i, j].sprite = carta.Frente;
+                cartasAnteriores[i, j] = carta;
+                imagenes[i, j].sprite = reverso ? carta.Reverso : carta.Frente;
                 bool suficiente = mano.Almas.Cantidad >= carta.PuntosNecesarios;
-                float brillo = (suficiente ? 1f : 0.72f) *
+                float brillo = (reverso || suficiente ? 1f : 0.72f) *
                     (mano.MenuAbierto && !seleccionada ? 0.45f : 1f);
-                Color colorCarta = carta.ColorCarta * brillo;
+                Color colorCarta = (reverso ? Color.white : carta.ColorCarta) * brillo;
                 colorCarta.a = 1f;
                 imagenes[i, j].color = colorCarta;
-                textos[i, j].text = $"{(carta.EsPotente ? "POTENTE ★" : "NORMAL")} · {carta.DuracionEfecto:0.#} s\nCosto {carta.PuntosNecesarios:0.#}\n\n{carta.TituloVisible}\n\n{carta.Descripcion}";
-                textos[i, j].color = suficiente ? new Color(0.12f, 0.16f, 0.22f) : new Color(0.48f, 0.12f, 0.1f);
+                textos[i, j].text = reverso
+                    ? ""
+                    : $"{(carta.EsPotente ? "POTENTE ★" : "NORMAL")} · {carta.DuracionEfecto:0.#} s\nCosto {carta.PuntosNecesarios:0.#}\n\n{carta.TituloVisible}\n\n{carta.Descripcion}";
+                textos[i, j].color = reverso ? Color.white :
+                    suficiente ? new Color(0.12f, 0.16f, 0.22f) : new Color(0.48f, 0.12f, 0.1f);
                 if (mano.MenuAbierto && !seleccionada)
                 {
                     Color tinta = textos[i, j].color * 0.55f;
@@ -146,6 +187,29 @@ public class VistaCartas : MonoBehaviour
             else if (recibida)
                 huecos[i, mano.IndiceRecibida].SetAsLastSibling();
         }
+    }
+
+    private void IniciarTransicionMano(int jugador, ManoCartasJugador mano, bool confundido)
+    {
+        var posiciones = new Vector2[3];
+        var usados = new bool[3];
+        for (int i = 0; i < 3; i++) posiciones[i] = huecos[jugador, i].anchoredPosition;
+        for (int destino = 0; destino < mano.Cantidad; destino++)
+        {
+            int origen = destino;
+            // Seguir cada carta desde su hueco anterior hasta el nuevo, incluso con duplicadas.
+            for (int candidato = 0; candidato < mano.Cantidad; candidato++)
+            {
+                if (!usados[candidato] && cartasAnteriores[jugador, candidato] == mano.Cartas[destino])
+                { origen = candidato; break; }
+            }
+            usados[origen] = true;
+            inicioMezcla[jugador, destino] = posiciones[origen];
+        }
+        confusionAnterior[jugador] = confundido;
+        inicioGiroMano[jugador] = Time.time;
+        cantidadAnimada[jugador] = mano.Cantidad;
+        animandoMano[jugador] = mano.Cantidad > 0;
     }
 
     public static float DuracionAnimacion(float vistaFrente, float giro) =>

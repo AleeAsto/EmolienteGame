@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public enum DestinoCarta { Propio, Rival }
-public enum EfectoCarta { Ninguno, Velocidad }
+public enum EfectoCarta { Ninguno, Velocidad, Confusion }
 
 [CreateAssetMenu(menuName = "Emoliente/Carta", fileName = "Carta")]
 public class DefinicionCarta : ScriptableObject
@@ -33,5 +33,6 @@ public class DefinicionCarta : ScriptableObject
         ? new Color(0.52f, 1f, 0.62f) : new Color(1f, 0.48f, 0.48f);
     public string Descripcion => efecto == EfectoCarta.Velocidad
         ? $"Movimiento, absorcion\ny golpes\n{(MultiplicadorVelocidad - 1f) * 100f:+0;-0;0}% por {DuracionEfecto:0.#} s"
-        : "Sin efecto";
+        : efecto == EfectoCarta.Confusion
+            ? $"Estudiantes falsos\ny mano oculta\n{DuracionEfecto:0.#} segundos" : "Sin efecto";
 }

@@ -71,6 +71,8 @@ public class SistemaCartas : MonoBehaviour
         jugador2.Inicializar(this);
         efectos1 = PrepararEfectos(jugador1);
         efectos2 = PrepararEfectos(jugador2);
+        PrepararIlusiones(jugador1, efectos1, camara1, camara2, 8);
+        PrepararIlusiones(jugador2, efectos2, camara2, camara1, 9);
         repartosRealizados.Clear();
     }
 
@@ -92,6 +94,23 @@ public class SistemaCartas : MonoBehaviour
         if (efectos == null) efectos = jugador.gameObject.AddComponent<EfectosJugador>();
         efectos.Inicializar(partida);
         return efectos;
+    }
+
+    private void PrepararIlusiones(ManoCartasJugador jugador, EfectosJugador efectos,
+        Camera propia, Camera otra, int capa)
+    {
+        GeneradorEstudiantes generador = null;
+        foreach (GameObject raiz in gameObject.scene.GetRootGameObjects())
+        {
+            generador = raiz.GetComponentInChildren<GeneradorEstudiantes>();
+            if (generador != null) break;
+        }
+        var ilusiones = jugador.GetComponent<IlusionesConfusionJugador>();
+        if (ilusiones == null) ilusiones = jugador.gameObject.AddComponent<IlusionesConfusionJugador>();
+        ilusiones.Inicializar(efectos, propia, jugador.GetComponent<MovimientoJugador2D>().ZonaMovimiento,
+            generador, capa);
+        propia.cullingMask |= 1 << capa;
+        otra.cullingMask &= ~(1 << capa);
     }
 
     private void Start()
@@ -122,6 +141,8 @@ public class SistemaCartas : MonoBehaviour
             bool forzarPotente = Keyboard.current.leftShiftKey.isPressed || Keyboard.current.rightShiftKey.isPressed;
             if (Keyboard.current.gKey.wasPressedThisFrame) EntregarCarta(jugador1, true, forzarPotente ? true : (bool?)null);
             if (Keyboard.current.hKey.wasPressedThisFrame) EntregarCarta(jugador2, true, forzarPotente ? true : (bool?)null);
+            if (Keyboard.current.fKey.wasPressedThisFrame) EntregarCarta(jugador1, true, forzarPotente, EfectoCarta.Confusion);
+            if (Keyboard.current.nKey.wasPressedThisFrame) EntregarCarta(jugador2, true, forzarPotente, EfectoCarta.Confusion);
             if (Keyboard.current.bKey.wasPressedThisFrame)
             {
                 jugador1.Almas.Recibir(100f);
@@ -207,12 +228,13 @@ public class SistemaCartas : MonoBehaviour
         if (recibe2) EntregarCarta(jugador2, false, nivelPotente);
     }
 
-    public bool EntregarCarta(ManoCartasJugador jugador, bool debug = false, bool? potente = null)
+    public bool EntregarCarta(ManoCartasJugador jugador, bool debug = false, bool? potente = null, EfectoCarta? efecto = null)
     {
         CargarCatalogo();
         var candidatas = new List<DefinicionCarta>();
         foreach (DefinicionCarta carta in catalogo)
-            if (PuedeEntregar(jugador, carta, debug) && (!potente.HasValue || carta.EsPotente == potente.Value))
+            if (PuedeEntregar(jugador, carta, debug) && (!potente.HasValue || carta.EsPotente == potente.Value) &&
+                (!efecto.HasValue || carta.Efecto == efecto.Value))
                 candidatas.Add(carta);
         if (candidatas.Count == 0)
         {
@@ -284,12 +306,15 @@ public class SistemaCartas : MonoBehaviour
 
     private void AplicarCarta(ManoCartasJugador lanzador, DefinicionCarta carta)
     {
-        if (!EnCurso || carta.Efecto != EfectoCarta.Velocidad)
+        if (!EnCurso)
             return;
         bool objetivoEsP1 = carta.Destino == DestinoCarta.Propio
             ? lanzador == jugador1 : lanzador != jugador1;
         EfectosJugador objetivo = objetivoEsP1 ? efectos1 : efectos2;
-        objetivo?.AplicarVelocidad(carta.MultiplicadorVelocidad, carta.DuracionEfecto);
+        if (carta.Efecto == EfectoCarta.Velocidad)
+            objetivo?.AplicarVelocidad(carta.MultiplicadorVelocidad, carta.DuracionEfecto);
+        else if (carta.Efecto == EfectoCarta.Confusion)
+            objetivo?.AplicarConfusion(carta.DuracionEfecto);
     }
 
     private void CancelarPresentaciones()

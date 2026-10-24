@@ -28,6 +28,9 @@ public class GeneradorEstudiantes : MonoBehaviour
     private readonly List<Vector2> intervalosOcultos = new List<Vector2>();
     private readonly List<Vector3> candidatos = new List<Vector3>();
     private float proximaAparicion;
+    public Vector2 RangoVelocidad => rangoVelocidad;
+    public EstudiantePasillo ModeloVisual => prefabsEstudiantes != null && prefabsEstudiantes.Length > 0
+        ? prefabsEstudiantes[Random.Range(0, prefabsEstudiantes.Length)] : null;
 
     public int CantidadActiva
     {

@@ -75,6 +75,13 @@ public class SuccionJugador : MonoBehaviour
                 return;
 
             objetivo = BuscarEstudianteCercano();
+            float distanciaReal = objetivo != null
+                ? ((Vector2)(objetivo.transform.position - transform.position)).sqrMagnitude : alcance * alcance;
+            if (efectos != null && efectos.IntentarDisiparFantasma(transform.position, distanciaReal))
+            {
+                objetivo = null;
+                return;
+            }
             if (objetivo == null || !objetivo.IntentarOcupar(almas))
             {
                 objetivo = null;
