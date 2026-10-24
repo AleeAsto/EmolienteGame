@@ -6,10 +6,12 @@ public class AlmaEstudiante : MonoBehaviour
 {
     [SerializeField, Min(1)] private int valorAlmas = 10;
     private bool agotado;
+    private bool asustado;
     private AlmasJugador ocupante;
 
     public int ValorAlmas => valorAlmas;
-    public bool Disponible => isActiveAndEnabled && !agotado;
+    public bool Asustado => asustado;
+    public bool Disponible => isActiveAndEnabled && !agotado && !asustado;
     public bool EstaOcupado => ocupante != null;
     public AlmasJugador Ocupante => ocupante;
     public event Action EstadoCambiado;
@@ -33,6 +35,11 @@ public class AlmaEstudiante : MonoBehaviour
             return;
 
         ocupante = null;
+        if (!agotado && !asustado)
+        {
+            asustado = true;
+            GetComponent<EstudiantePasillo>()?.HuirDe(jugador.transform.position);
+        }
         EstadoCambiado?.Invoke();
     }
 

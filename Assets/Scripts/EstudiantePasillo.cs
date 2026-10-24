@@ -4,6 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(AlmaEstudiante))]
 public class EstudiantePasillo : MonoBehaviour
 {
+    [SerializeField, Min(1f)] private float multiplicadorHuida = 15f;
     private AlmaEstudiante alma;
     private float direccion;
     private float velocidad;
@@ -27,6 +28,14 @@ public class EstudiantePasillo : MonoBehaviour
         configurado = true;
     }
 
+    public void HuirDe(Vector3 posicionJugador)
+    {
+        float diferencia = transform.position.x - posicionJugador.x;
+        // Si comparten X, conservar el sentido del recorrido para no quedar inmovil.
+        if (Mathf.Abs(diferencia) > 0.001f)
+            direccion = diferencia > 0f ? 1f : -1f;
+    }
+
     private void Update()
     {
         if (Time.timeScale <= 0f)
@@ -36,7 +45,8 @@ public class EstudiantePasillo : MonoBehaviour
             return;
 
         Vector3 posicion = transform.position;
-        posicion.x += direccion * velocidad * Time.deltaTime;
+        float rapidez = velocidad * (alma.Asustado ? Mathf.Max(1f, multiplicadorHuida) : 1f);
+        posicion.x += direccion * rapidez * Time.deltaTime;
         transform.position = posicion;
 
         if ((direccion < 0f && posicion.x < salidaIzquierda) ||

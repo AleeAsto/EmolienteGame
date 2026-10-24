@@ -5,6 +5,7 @@ using UnityEngine;
 public class EstadoVisualEstudiante : MonoBehaviour
 {
     [SerializeField] private Color colorAgotado = new Color(0.55f, 0.55f, 0.55f, 1f);
+    [SerializeField] private Color colorAsustado = new Color(1f, 0.45f, 0.05f, 1f);
 
     private AlmaEstudiante alma;
     private SpriteRenderer[] sprites;
@@ -32,7 +33,8 @@ public class EstadoVisualEstudiante : MonoBehaviour
             if (sprites[i] == null)
                 continue;
 
-            Color color = alma.Disponible ? coloresOriginales[i] : colorAgotado;
+            Color color = alma.Asustado ? colorAsustado :
+                (alma.Disponible ? coloresOriginales[i] : colorAgotado);
             color.a = coloresOriginales[i].a;
             sprites[i].color = color;
         }
