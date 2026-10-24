@@ -57,17 +57,16 @@ public class MarcadorVersus : MonoBehaviour
             jugador2.CantidadCambiada -= ActualizarPuntuaciones;
     }
 
-    private void ActualizarPuntuaciones(int cantidad)
+    private void ActualizarPuntuaciones(float cantidad)
     {
-        int puntos1 = Mathf.Max(0, jugador1.Cantidad);
-        int puntos2 = Mathf.Max(0, jugador2.Cantidad);
-        // La suma en double evita desbordar al comparar dos contadores int.
+        float puntos1 = Mathf.Max(0f, jugador1.Cantidad);
+        float puntos2 = Mathf.Max(0f, jugador2.Cantidad);
         double total = (double)puntos1 + puntos2;
         proporcionObjetivo = total > 0d ? (float)(puntos1 / total) : 0.5f;
-        puntosJugador1.text = puntos1.ToString();
-        puntosJugador2.text = puntos2.ToString();
-        puntosJugador1.enabled = puntos1 > 0;
-        puntosJugador2.enabled = puntos2 > 0;
+        puntosJugador1.text = puntos1.ToString("0.#");
+        puntosJugador2.text = puntos2.ToString("0.#");
+        puntosJugador1.enabled = Mathf.Round(puntos1 * 10f) > 0f;
+        puntosJugador2.enabled = Mathf.Round(puntos2 * 10f) > 0f;
     }
 
     private void LateUpdate()

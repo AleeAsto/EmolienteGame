@@ -4,12 +4,12 @@ using UnityEngine;
 [DisallowMultipleComponent]
 public class AlmasJugador : MonoBehaviour
 {
-    [SerializeField, Min(0)] private int cantidad;
+    [SerializeField, Min(0f)] private float cantidad;
 
-    public int Cantidad => cantidad;
-    public event Action<int> CantidadCambiada;
+    public float Cantidad => cantidad;
+    public event Action<float> CantidadCambiada;
 
-    public void Recibir(int almas)
+    public void Recibir(float almas)
     {
         if (almas <= 0)
             return;

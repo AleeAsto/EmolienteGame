@@ -69,11 +69,11 @@ public class CicloPartida : MonoBehaviour
         Terminada = true;
         EnCurso = false;
         Time.timeScale = 0f;
-        int puntos1 = jugador1.Cantidad;
-        int puntos2 = jugador2.Cantidad;
-        int ganador = puntos1 == puntos2 ? 0 : (puntos1 > puntos2 ? 1 : 2);
+        float puntos1 = jugador1.Cantidad;
+        float puntos2 = jugador2.Cantidad;
+        int ganador = Mathf.Approximately(puntos1, puntos2) ? 0 : (puntos1 > puntos2 ? 1 : 2);
         string resultado = ganador == 0 ? "Empate" : $"El jugador {ganador} gano";
-        Debug.Log($"Fin de la partida. {resultado}. P1: {puntos1} | P2: {puntos2}", this);
+        Debug.Log($"Fin de la partida. {resultado}. P1: {puntos1:0.#} | P2: {puntos2:0.#}", this);
         PartidaTerminada?.Invoke(ganador);
     }
 

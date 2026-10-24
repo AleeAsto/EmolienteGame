@@ -1008,6 +1008,7 @@ MonoBehaviour:
   succionar: {fileID: 6029532384514666566, guid: 6029e35a85dacdd4a8b5c2b5afe0e9a0, type: 3}
   alcance: 1.6
   tiempoDrenaje: 3
+  puntosPorSegundo: 2
 --- !u!1 &1284851242
 GameObject:
   m_ObjectHideFlags: 0
@@ -1750,6 +1751,7 @@ MonoBehaviour:
   succionar: {fileID: 1762698085568218781, guid: 6029e35a85dacdd4a8b5c2b5afe0e9a0, type: 3}
   alcance: 1.6
   tiempoDrenaje: 3
+  puntosPorSegundo: 2
 --- !u!1 &1781125908
 GameObject:
   m_ObjectHideFlags: 0

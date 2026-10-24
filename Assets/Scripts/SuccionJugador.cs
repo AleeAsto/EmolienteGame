@@ -8,6 +8,8 @@ public class SuccionJugador : MonoBehaviour
     [SerializeField] private InputActionReference succionar;
     [SerializeField, Min(0.1f)] private float alcance = 1.6f;
     [SerializeField, Min(0.1f)] private float tiempoDrenaje = 3f;
+    [Tooltip("Puntos por segundo de absorcion, adicionales al premio por convertir.")]
+    [SerializeField, Min(0f)] private float puntosPorSegundo = 2f;
 
     private AlmasJugador almas;
     private InputAction accionSuccionar;
@@ -72,8 +74,12 @@ public class SuccionJugador : MonoBehaviour
             return;
         }
 
-        tiempoAcumulado += Time.deltaTime;
-        if (tiempoAcumulado < Mathf.Max(0.1f, tiempoDrenaje))
+        float duracion = Mathf.Max(0.1f, tiempoDrenaje);
+        // Limitar el ultimo frame para no premiar tiempo posterior a la conversion.
+        float tiempoAbsorbido = Mathf.Min(Time.deltaTime, duracion - tiempoAcumulado);
+        tiempoAcumulado = Mathf.Min(duracion, tiempoAcumulado + tiempoAbsorbido);
+        almas.Recibir(tiempoAbsorbido * Mathf.Max(0f, puntosPorSegundo));
+        if (tiempoAcumulado < duracion)
             return;
 
         AlmaEstudiante completado = objetivo;
