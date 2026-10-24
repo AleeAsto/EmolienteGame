@@ -2,18 +2,27 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(BoxCollider2D))]
+[DefaultExecutionOrder(-100)]
 public class MovimientoJugador2D : MonoBehaviour
 {
     [SerializeField] private InputActionReference movimiento;
     [SerializeField, Min(0f)] private float velocidad = 5f;
     [SerializeField] private BoxCollider2D zonaMovimiento;
+    [SerializeField] private float direccionInicial = 1f;
+    [SerializeField, Min(0.1f)] private float rapidezEmpujon = 3f;
 
     private BoxCollider2D cuerpo;
     private InputAction accionMovimiento;
+    private EstadoCombateJugador estadoCombate;
+    private Vector2 empujonPendiente;
+
+    public float DireccionHorizontal { get; private set; } = 1f;
 
     private void Awake()
     {
         cuerpo = GetComponent<BoxCollider2D>();
+        estadoCombate = GetComponent<EstadoCombateJugador>();
+        DireccionHorizontal = direccionInicial < 0f ? -1f : 1f;
         if (zonaMovimiento == null || movimiento == null || movimiento.action == null)
         {
             Debug.LogError("Asigna Zona Movimiento y Movimiento en el Inspector del jugador.", this);
@@ -41,17 +50,30 @@ public class MovimientoJugador2D : MonoBehaviour
         if (Time.timeScale <= 0f)
             return;
 
-        Vector2 entrada = Application.isFocused && accionMovimiento != null
+        Vector2 entrada = Application.isFocused && accionMovimiento != null &&
+            (estadoCombate == null || !estadoCombate.EstaAturdido)
             ? Vector2.ClampMagnitude(accionMovimiento.ReadValue<Vector2>(), 1f)
             : Vector2.zero;
-        Vector3 destino = transform.position + (Vector3)(entrada * velocidad * Time.deltaTime);
+        if (Mathf.Abs(entrada.x) > 0.01f)
+            DireccionHorizontal = Mathf.Sign(entrada.x);
+
+        Vector2 empujon = Vector2.ClampMagnitude(empujonPendiente,
+            Mathf.Max(0.1f, rapidezEmpujon) * Time.deltaTime);
+        empujonPendiente -= empujon;
+        Vector3 destino = transform.position + (Vector3)(entrada * velocidad * Time.deltaTime + empujon);
         transform.position = LimitarPosicion(destino);
+    }
+
+    public void Empujar(Vector2 desplazamiento)
+    {
+        empujonPendiente += desplazamiento;
     }
 
     private void OnDisable()
     {
         accionMovimiento?.Disable();
         accionMovimiento = null;
+        empujonPendiente = Vector2.zero;
     }
 
     private Vector3 LimitarPosicion(Vector3 destino)

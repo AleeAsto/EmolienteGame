@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 
 [DisallowMultipleComponent]
 [RequireComponent(typeof(AlmasJugador))]
+[DefaultExecutionOrder(200)]
 public class SuccionJugador : MonoBehaviour
 {
     [SerializeField] private InputActionReference succionar;
@@ -15,6 +16,8 @@ public class SuccionJugador : MonoBehaviour
     private InputAction accionSuccionar;
     private AlmaEstudiante objetivo;
     private float tiempoAcumulado;
+    private EstadoCombateJugador estadoCombate;
+    private AtaqueJugador ataque;
 
     public AlmaEstudiante Objetivo => objetivo;
     public float Progreso01 => objetivo != null
@@ -24,6 +27,8 @@ public class SuccionJugador : MonoBehaviour
     private void Awake()
     {
         almas = GetComponent<AlmasJugador>();
+        estadoCombate = GetComponent<EstadoCombateJugador>();
+        ataque = GetComponent<AtaqueJugador>();
         if (succionar == null || succionar.action == null)
         {
             Debug.LogError("Asigna la accion Succionar del jugador en el Inspector.", this);
@@ -33,6 +38,9 @@ public class SuccionJugador : MonoBehaviour
 
     private void OnEnable()
     {
+        estadoCombate = GetComponent<EstadoCombateJugador>();
+        if (estadoCombate != null)
+            estadoCombate.Interrumpido += CancelarSuccion;
         if (succionar == null || succionar.action == null)
             return;
 
@@ -40,13 +48,15 @@ public class SuccionJugador : MonoBehaviour
         accionSuccionar.Enable();
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         if (Time.timeScale <= 0f)
             return;
 
         if (!Application.isFocused || almas == null || !almas.isActiveAndEnabled ||
-            accionSuccionar == null || !accionSuccionar.IsPressed())
+            accionSuccionar == null || !accionSuccionar.IsPressed() ||
+            (estadoCombate != null && estadoCombate.EstaAturdido) ||
+            (ataque != null && ataque.EstaAtacando))
         {
             CancelarSuccion();
             return;
@@ -126,6 +136,8 @@ public class SuccionJugador : MonoBehaviour
 
     private void OnDisable()
     {
+        if (estadoCombate != null)
+            estadoCombate.Interrumpido -= CancelarSuccion;
         CancelarSuccion();
         accionSuccionar?.Disable();
         accionSuccionar = null;
