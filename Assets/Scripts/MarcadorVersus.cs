@@ -66,6 +66,8 @@ public class MarcadorVersus : MonoBehaviour
         proporcionObjetivo = total > 0d ? (float)(puntos1 / total) : 0.5f;
         puntosJugador1.text = puntos1.ToString();
         puntosJugador2.text = puntos2.ToString();
+        puntosJugador1.enabled = puntos1 > 0;
+        puntosJugador2.enabled = puntos2 > 0;
     }
 
     private void LateUpdate()
@@ -120,7 +122,7 @@ public class MarcadorVersus : MonoBehaviour
 
     private void ColocarNumero(Text texto, float centro, float anchoTramo, float anchoCarril, Color colorJugador)
     {
-        // Si un jugador tiene cero o muy pocos puntos, su numero sigue visible
+        // Si un jugador tiene muy pocos puntos, su numero sigue visible
         // por encima del carril, separado del aro que llega al extremo.
         float espacioTexto = Mathf.Max(40f, texto.preferredWidth);
         bool estrecho = anchoTramo < espacioTexto + indicador.sizeDelta.x + 24f;
