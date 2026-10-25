@@ -21,6 +21,11 @@ public class MovimientoJugador2D : MonoBehaviour
     public BoxCollider2D ZonaMovimiento => zonaMovimiento;
     private ManoCartasJugador cartas;
     private EfectosJugador efectos;
+    private Vector3 inicioDash;
+    private Vector3 destinoDash;
+    private float tiempoDash;
+    private float duracionDash;
+    public bool EstaEnDash { get; private set; }
 
     private void Awake()
     {
@@ -56,6 +61,21 @@ public class MovimientoJugador2D : MonoBehaviour
         if (Time.timeScale <= 0f)
             return;
 
+        if (EstaEnDash)
+        {
+            if (estadoCombate != null && estadoCombate.EstaAturdido)
+                CancelarDash();
+            else
+            {
+                tiempoDash = Mathf.Min(duracionDash, tiempoDash + Time.deltaTime);
+                float t = tiempoDash / duracionDash;
+                transform.position = LimitarPosicion(Vector3.Lerp(inicioDash, destinoDash, 1f - (1f - t) * (1f - t)));
+                if (tiempoDash >= duracionDash)
+                    CancelarDash();
+                return;
+            }
+        }
+
         Vector2 entrada = Application.isFocused && accionMovimiento != null &&
             (estadoCombate == null || !estadoCombate.EstaAturdido) &&
             (cartas == null || !cartas.MenuAbierto)
@@ -79,15 +99,38 @@ public class MovimientoJugador2D : MonoBehaviour
 
     public void Teletransportar(Vector3 destino)
     {
+        CancelarDash();
         empujonPendiente = Vector2.zero;
         transform.position = LimitarPosicion(destino);
     }
+
+    public Vector3 LimitarDestino(Vector3 destino) => LimitarPosicion(destino);
+
+    public bool IniciarDash(Vector3 destino, float duracion)
+    {
+        if (!isActiveAndEnabled || Time.timeScale <= 0f ||
+            (estadoCombate != null && estadoCombate.EstaAturdido))
+            return false;
+
+        inicioDash = transform.position;
+        destinoDash = LimitarPosicion(destino);
+        if ((destinoDash - inicioDash).sqrMagnitude < 0.0001f)
+            return false;
+        duracionDash = Mathf.Max(0.05f, duracion);
+        tiempoDash = 0f;
+        empujonPendiente = Vector2.zero;
+        EstaEnDash = true;
+        return true;
+    }
+
+    public void CancelarDash() => EstaEnDash = false;
 
     private void OnDisable()
     {
         accionMovimiento?.Disable();
         accionMovimiento = null;
         empujonPendiente = Vector2.zero;
+        CancelarDash();
     }
 
     private Vector3 LimitarPosicion(Vector3 destino)

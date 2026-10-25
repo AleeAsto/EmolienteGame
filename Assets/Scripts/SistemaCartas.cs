@@ -130,8 +130,8 @@ public class SistemaCartas : MonoBehaviour
         if (partida.Terminada)
         {
             CancelarPresentaciones();
-            efectos1?.Limpiar();
-            efectos2?.Limpiar();
+            if (efectos1 != null) efectos1.Limpiar();
+            if (efectos2 != null) efectos2.Limpiar();
             return;
         }
         if (!EnCurso)
@@ -367,8 +367,10 @@ public class SistemaCartas : MonoBehaviour
     private void OnDisable()
     {
         CancelarPresentaciones();
-        efectos1?.Limpiar();
-        efectos2?.Limpiar();
+        // Unity conserva el wrapper C# de los componentes destruidos; evitar
+        // ?. aqui porque no comprueba la nulidad propia de UnityEngine.Object.
+        if (efectos1 != null) efectos1.Limpiar();
+        if (efectos2 != null) efectos2.Limpiar();
         if (vista != null) vista.gameObject.SetActive(false);
     }
 
