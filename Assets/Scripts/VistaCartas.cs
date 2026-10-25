@@ -26,6 +26,13 @@ public class VistaCartas : MonoBehaviour
     private const float DuracionDespegue = 0.4f;
     private const float DuracionEntrada = 0.45f;
     private const float DuracionSalida = 0.5f;
+    private sealed class Vuelo
+    {
+        public RectTransform carta, ventana;
+        public float desplazamiento;
+    }
+    private readonly System.Collections.Generic.Dictionary<int, Vuelo> vuelos =
+        new System.Collections.Generic.Dictionary<int, Vuelo>();
     private Image imagenPresentacion;
     private Text textoPresentacion;
     private Outline bordePresentacion;
@@ -224,7 +231,7 @@ public class VistaCartas : MonoBehaviour
     }
 
     public void Animar(ManoCartasJugador jugador, DefinicionCarta carta, Vector2 origenPantalla,
-        float tiempo, float vistaFrente, float giro)
+        float tiempo, float vistaFrente, float giro, float desplazamiento = 0f)
     {
         int origen = jugador == manos[0] ? 0 : 1;
         int destino = carta.Destino == DestinoCarta.Propio ? origen : 1 - origen;
@@ -232,6 +239,7 @@ public class VistaCartas : MonoBehaviour
         Rect viewport = camaras[origen].rect;
         Vector2 inicio = Vector2.Scale(origenPantalla, tamano);
         Vector2 centro = new Vector2(viewport.center.x * tamano.x, tamano.y * 0.5f);
+        centro.x += desplazamiento;
         // Entrada global desde el borde correspondiente al lanzador.
         float lado = viewport.center.y < centro.y / tamano.y ? -1f : 1f;
         Vector2 entrada = new Vector2(centro.x, lado < 0f ? -190f : tamano.y + 190f);
@@ -269,12 +277,12 @@ public class VistaCartas : MonoBehaviour
                 posicion = Vector2.Lerp(entrada, centro, t);
             }
             else if (tiempo < inicioGiro)
-                posicion = centro; // Frente quieto para que se pueda leer antes del giro.
+                posicion = centro; // Vistazo breve al icono antes del giro.
             else if (tiempo < inicioSalida)
             {
                 posicion = centro;
                 float t = Mathf.SmoothStep(0f, 1f, (tiempo - inicioGiro) / Mathf.Max(0.1f, giro));
-                float coseno = Mathf.Cos(t * Mathf.PI * 4f);
+                float coseno = Mathf.Cos(t * Mathf.PI * 2f);
                 frente = coseno >= 0f;
                 presentacion.localScale = new Vector3(Mathf.Max(0.015f, Mathf.Abs(coseno)), 1f, 1f);
             }
@@ -294,18 +302,20 @@ public class VistaCartas : MonoBehaviour
         textoPresentacion.text = $"{carta.TituloVisible}\n\nCosto {carta.PuntosNecesarios:0.#}\n\n{carta.Descripcion}\nP{origen + 1}";
     }
 
-    public void AnimarEntregaPotente(ManoCartasJugador jugador, DefinicionCarta carta, float tiempo)
+    public void AnimarEntregaPotente(ManoCartasJugador jugador, DefinicionCarta carta, float tiempo,
+        float desplazamiento = 0f, int indiceEntrega = 0)
     {
         int indice = jugador == manos[0] ? 0 : 1;
         Rect viewport = camaras[indice].rect;
         Vector2 tamano = raiz.rect.size;
         Vector2 centro = Vector2.Scale(viewport.center, tamano);
+        centro.x += desplazamiento;
         if (presentacion.parent != capaVuelo) presentacion.SetParent(capaVuelo, false);
         float escalaDiseno = Mathf.Clamp(Mathf.Min(paneles[indice].rect.height / 440f,
             paneles[indice].rect.width / 510f), 0.3f, 1f);
         // La carta aun no esta en la mano. Reservar el cupo impide llenarlo durante el giro.
-        int hueco = jugador.Cantidad;
-        float x = indice == 0 ? 124f + hueco * 116f : -124f;
+        int hueco = Mathf.Min(2, jugador.Cantidad + indiceEntrega);
+        float x = indice == 0 ? 124f + hueco * 116f : -124f - indiceEntrega * 116f;
         float y = jugador.MenuAbierto ? -82f : 124f;
         Vector3 localDestino = new Vector3(x * escalaDiseno, y * escalaDiseno, 0f);
         // La mano usa esquinas distintas: TransformPoint espera coordenadas desde su pivote central.
@@ -334,6 +344,49 @@ public class VistaCartas : MonoBehaviour
     public void OcultarPresentacion()
     {
         if (presentacion != null) presentacion.gameObject.SetActive(false);
+    }
+
+    public void AnimarUso(int id, ManoCartasJugador jugador, DefinicionCarta carta, Vector2 origen,
+        float tiempo, float frente, float giro, int indice, int cantidad, bool esEntrega = false)
+    {
+        if (!vuelos.TryGetValue(id, out Vuelo vuelo))
+        {
+            vuelo = new Vuelo
+            {
+                carta = Instantiate(presentacion, capaVuelo),
+                ventana = Rect("RecorteUso" + id, capaVuelo)
+            };
+            vuelo.ventana.gameObject.AddComponent<RectMask2D>();
+            vuelos.Add(id, vuelo);
+        }
+        float espacio = Mathf.Min(260f, raiz.rect.width / Mathf.Max(1, cantidad));
+        float destino = (indice - (cantidad - 1) * 0.5f) * espacio;
+        vuelo.desplazamiento = Mathf.Lerp(vuelo.desplazamiento, destino, 1f - Mathf.Exp(-16f * Time.deltaTime));
+        RectTransform original = presentacion;
+        RectTransform ventanaOriginal = ventanaLanzamiento;
+        presentacion = vuelo.carta;
+        ventanaLanzamiento = vuelo.ventana;
+        imagenPresentacion = presentacion.GetComponent<Image>();
+        textoPresentacion = presentacion.GetComponentInChildren<Text>(true);
+        bordePresentacion = presentacion.GetComponent<Outline>();
+        if (esEntrega)
+            AnimarEntregaPotente(jugador, carta, tiempo, vuelo.desplazamiento, indice);
+        else
+            Animar(jugador, carta, origen, tiempo, frente, giro, vuelo.desplazamiento);
+        presentacion = original;
+        ventanaLanzamiento = ventanaOriginal;
+        imagenPresentacion = original.GetComponent<Image>();
+        textoPresentacion = original.GetComponentInChildren<Text>(true);
+        bordePresentacion = original.GetComponent<Outline>();
+    }
+
+    public void OcultarUso(int id)
+    {
+        if (!vuelos.TryGetValue(id, out Vuelo vuelo)) return;
+        vuelo.carta.gameObject.SetActive(false);
+        Destroy(vuelo.carta.gameObject);
+        Destroy(vuelo.ventana.gameObject);
+        vuelos.Remove(id);
     }
 
     private RectTransform Rect(string nombre, Transform padre)

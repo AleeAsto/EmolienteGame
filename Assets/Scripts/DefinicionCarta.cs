@@ -21,7 +21,7 @@ public class DefinicionCarta : ScriptableObject
     [SerializeField, Min(1f)] private float multiplicadorRetirada = 1.6f;
     [SerializeField, Min(1f)] private float multiplicadorAtraccion = 1.5f;
     [SerializeField, Min(0f)] private float almasExtraLatigo = 40f;
-    [SerializeField, Min(0f)] private float empujonLatigo = 2f;
+    [SerializeField, Min(0f)] private float empujonLatigo = 7f;
 
     public string Identificador => identificador;
     public string Titulo => titulo;
@@ -38,6 +38,7 @@ public class DefinicionCarta : ScriptableObject
     public string DuracionVisible => EsInstantanea ? "Instantanea" : $"{DuracionEfecto:0.#} s";
     public float AlmasExtraLatigo => Mathf.Max(0f, almasExtraLatigo);
     public float EmpujonLatigo => Mathf.Max(0f, empujonLatigo);
+    public bool EmpujaHastaExtremo => efecto == EfectoCarta.Latigo && potente;
     public float RadioOlor => Mathf.Max(0.5f, radioOlor);
     public float MultiplicadorRetirada => Mathf.Max(1f, multiplicadorRetirada);
     public float MultiplicadorAtraccion => Mathf.Max(1f, multiplicadorAtraccion);
@@ -49,6 +50,6 @@ public class DefinicionCarta : ScriptableObject
             ? $"Estudiantes falsos\ny mano oculta\n{DuracionEfecto:0.#} segundos"
             : efecto == EfectoCarta.Perfume ? $"Atrae estudiantes\nRadio {RadioOlor:0.#}\n{DuracionEfecto:0.#} segundos"
             : efecto == EfectoCarta.BombaApestosa ? $"Aleja estudiantes\nRadio {RadioOlor:0.#}\n{DuracionEfecto:0.#} segundos"
-            : efecto == EfectoCarta.Latigo ? $"Dash y latigazo\nMarca al rival {DuracionEfecto:0.#} s\nGolpe: -{AlmasExtraLatigo:0.#} extra"
+            : efecto == EfectoCarta.Latigo ? $"Golpe fuerte\nMarca al rival {DuracionEfecto:0.#} s\nGolpe: -{AlmasExtraLatigo:0.#} extra\n" + (EmpujaHastaExtremo ? "Empuja al extremo del pasillo" : $"Empujon {EmpujonLatigo:0.#}")
             : efecto == EfectoCarta.IntercambioPosicion ? "Intercambia posiciones\ncon el rival\nSin limite de distancia" : "Sin efecto";
 }

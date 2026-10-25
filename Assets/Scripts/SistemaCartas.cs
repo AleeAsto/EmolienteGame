@@ -30,17 +30,22 @@ public class SistemaCartas : MonoBehaviour
     [SerializeField, Range(0.5f, 1f)] private float inicioPotentes = 0.5f;
     [Header("Controles y presentacion")]
     [SerializeField, Min(0.1f)] private float tiempoMantener = 0.35f;
-    [SerializeField, Min(0.1f)] private float duracionGiro = 2f;
-    [SerializeField, Min(0.1f)] private float duracionVistaFrente = 1.2f;
+    [SerializeField, Min(0.1f)] private float duracionGiro = 0.4f;
+    [SerializeField, Min(0.1f)] private float duracionVistaFrente = 0.15f;
     [SerializeField] private bool atajosDesarrollo = true;
 
     private readonly float[] desventaja = new float[2];
     private readonly float[] espera = new float[2];
     private readonly List<Lanzamiento> cola = new List<Lanzamiento>();
     private VistaCartas vista;
-    private bool presentando;
-    private float tiempoPresentacion;
-    private Lanzamiento actual;
+    private sealed class UsoActivo
+    {
+        public Lanzamiento lanzamiento;
+        public float tiempo;
+        public int id;
+    }
+    private readonly List<UsoActivo> usosActivos = new List<UsoActivo>();
+    private int siguienteUso;
     private EfectosJugador efectos1;
     private EfectosJugador efectos2;
 
@@ -142,16 +147,9 @@ public class SistemaCartas : MonoBehaviour
         {
             // Atajos de prueba, sin alterar el reloj de entregas normales.
             bool forzarPotente = Keyboard.current.leftShiftKey.isPressed || Keyboard.current.rightShiftKey.isPressed;
-            if (Keyboard.current.gKey.wasPressedThisFrame) EntregarCarta(jugador1, true, forzarPotente ? true : (bool?)null);
-            if (Keyboard.current.hKey.wasPressedThisFrame) EntregarCarta(jugador2, true, forzarPotente ? true : (bool?)null);
-            if (Keyboard.current.fKey.wasPressedThisFrame) EntregarCarta(jugador1, true, forzarPotente, EfectoCarta.Perfume);
-            if (Keyboard.current.uKey.wasPressedThisFrame) EntregarCarta(jugador2, true, forzarPotente, EfectoCarta.Perfume);
-            if (Keyboard.current.rKey.wasPressedThisFrame) EntregarCarta(jugador1, true, forzarPotente, EfectoCarta.BombaApestosa);
-            if (Keyboard.current.pKey.wasPressedThisFrame) EntregarCarta(jugador2, true, forzarPotente, EfectoCarta.BombaApestosa);
-            if (Keyboard.current.digit1Key.wasPressedThisFrame) EntregarCarta(jugador1, true, false, EfectoCarta.Latigo);
-            if (Keyboard.current.digit2Key.wasPressedThisFrame) EntregarCarta(jugador2, true, false, EfectoCarta.Latigo);
-            if (Keyboard.current.digit3Key.wasPressedThisFrame) EntregarCarta(jugador1, true, false, EfectoCarta.IntercambioPosicion);
-            if (Keyboard.current.digit4Key.wasPressedThisFrame) EntregarCarta(jugador2, true, false, EfectoCarta.IntercambioPosicion);
+            if (Keyboard.current.gKey.wasPressedThisFrame) EntregarDebugAmbos(forzarPotente ? true : (bool?)null);
+            if (Keyboard.current.digit1Key.wasPressedThisFrame) EntregarDebugAmbos(forzarPotente, EfectoCarta.Latigo);
+            if (Keyboard.current.digit2Key.wasPressedThisFrame) EntregarDebugAmbos(false, EfectoCarta.IntercambioPosicion);
             if (Keyboard.current.bKey.wasPressedThisFrame)
             {
                 jugador1.Almas.Recibir(100f);
@@ -237,6 +235,13 @@ public class SistemaCartas : MonoBehaviour
         if (recibe2) EntregarCarta(jugador2, false, nivelPotente);
     }
 
+    public int EntregarDebugAmbos(bool? potente = null, EfectoCarta? efecto = null)
+    {
+        int entregadas = EntregarCarta(jugador1, true, potente, efecto) ? 1 : 0;
+        if (EntregarCarta(jugador2, true, potente, efecto)) entregadas++;
+        return entregadas;
+    }
+
     public bool EntregarCarta(ManoCartasJugador jugador, bool debug = false, bool? potente = null, EfectoCarta? efecto = null)
     {
         CargarCatalogo();
@@ -282,34 +287,36 @@ public class SistemaCartas : MonoBehaviour
     {
         if (vista == null)
             return;
-        if (!presentando && cola.Count > 0)
+        // Cada uso o entrega tiene su propio reloj y vista.
+        for (int i = 0; i < cola.Count;)
         {
-            actual = cola[0];
-            cola.RemoveAt(0);
-            tiempoPresentacion = 0f;
-            presentando = true;
+            usosActivos.Add(new UsoActivo { lanzamiento = cola[i], id = siguienteUso++ });
+            cola.RemoveAt(i);
         }
-        if (!presentando)
-            return;
-        tiempoPresentacion += Time.deltaTime;
-        if (actual.esEntrega)
+        for (int i = 0; i < usosActivos.Count;)
         {
-            vista.AnimarEntregaPotente(actual.jugador, actual.carta, tiempoPresentacion);
-            if (tiempoPresentacion >= VistaCartas.DuracionEntregaPotente)
+            UsoActivo uso = usosActivos[i];
+            uso.tiempo += Time.deltaTime;
+            Lanzamiento lanzamiento = uso.lanzamiento;
+            int indice = 0, cantidad = 0;
+            for (int j = 0; j < usosActivos.Count; j++)
             {
-                vista.OcultarPresentacion();
-                presentando = false;
-                actual.jugador.CompletarEntrega(actual.carta);
+                Lanzamiento otro = usosActivos[j].lanzamiento;
+                if (otro.esEntrega != lanzamiento.esEntrega ||
+                    (lanzamiento.esEntrega && otro.jugador != lanzamiento.jugador)) continue;
+                if (j < i) indice++;
+                cantidad++;
             }
-            return;
-        }
-        vista.Animar(actual.jugador, actual.carta, actual.origenPantalla, tiempoPresentacion,
-            duracionVistaFrente, duracionGiro);
-        if (tiempoPresentacion >= VistaCartas.DuracionAnimacion(duracionVistaFrente, duracionGiro))
-        {
-            vista.OcultarPresentacion();
-            presentando = false;
-            AplicarCarta(actual.jugador, actual.carta);
+            vista.AnimarUso(uso.id, lanzamiento.jugador, lanzamiento.carta, lanzamiento.origenPantalla,
+                uso.tiempo, duracionVistaFrente, duracionGiro, indice, cantidad, lanzamiento.esEntrega);
+            float duracion = lanzamiento.esEntrega ? VistaCartas.DuracionEntregaPotente :
+                VistaCartas.DuracionAnimacion(duracionVistaFrente, duracionGiro);
+            if (uso.tiempo < duracion)
+            { i++; continue; }
+            vista.OcultarUso(uso.id);
+            usosActivos.RemoveAt(i);
+            if (lanzamiento.esEntrega) lanzamiento.jugador.CompletarEntrega(lanzamiento.carta);
+            else AplicarCarta(lanzamiento.jugador, lanzamiento.carta);
         }
     }
 
@@ -329,7 +336,7 @@ public class SistemaCartas : MonoBehaviour
                 carta.RadioOlor, carta.MultiplicadorRetirada, carta.MultiplicadorAtraccion);
         else if (carta.Efecto == EfectoCarta.Latigo)
             objetivo?.GetComponent<MarcaLatigoJugador>()?.Aplicar(lanzador.GetComponent<AtaqueJugador>(),
-                carta.DuracionEfecto, carta.AlmasExtraLatigo, carta.EmpujonLatigo);
+                carta.DuracionEfecto, carta.AlmasExtraLatigo, carta.EmpujonLatigo, carta.EmpujaHastaExtremo);
         else if (carta.Efecto == EfectoCarta.IntercambioPosicion)
             IntercambiarPosiciones();
     }
@@ -355,8 +362,10 @@ public class SistemaCartas : MonoBehaviour
 
     private void CancelarPresentaciones()
     {
+        foreach (UsoActivo uso in usosActivos)
+            if (vista != null) vista.OcultarUso(uso.id);
+        usosActivos.Clear();
         cola.Clear();
-        presentando = false;
         jugador1?.Cerrar();
         jugador2?.Cerrar();
         jugador1?.CancelarEntregas();

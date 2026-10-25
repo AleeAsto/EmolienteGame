@@ -101,10 +101,15 @@ public class CombatePvP : MonoBehaviour
         bool marcado = marca != null && marca.PerteneceA(atacante);
         float empujon = marcado ? marca.Empujon : atacante.Empujon;
         float extra = marcado ? marca.AlmasExtra : 0f;
+        bool hastaExtremo = marcado && marca.EmpujaHastaExtremo;
         if (!victima.Estado.RecibirGolpe(stun, DireccionEmpujon(atacante, victima) * empujon))
             return;
 
         float perdida = almasPerdidasPorGolpe;
+        if (hastaExtremo)
+            victima.GetComponent<MovimientoJugador2D>()?.EmpujarHastaExtremo(DireccionEmpujon(atacante, victima).x);
+        else if (marcado)
+            victima.GetComponent<MovimientoJugador2D>()?.AcelerarEmpujon(0.65f);
         if (marcado && marca.Consumir(atacante))
             perdida += extra;
         if (victima.TryGetComponent<AlmasJugador>(out var almas))

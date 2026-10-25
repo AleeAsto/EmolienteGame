@@ -114,18 +114,20 @@ public static class VerificarCartas
                 Exigir(serializado.FindProperty(campo).objectReferenceValue != null, "Referencia " + campo);
             var catalogo = serializado.FindProperty("catalogo");
             var latigo = AssetDatabase.LoadAssetAtPath<DefinicionCarta>("Assets/Cartas/CartaLatigo.asset");
+            var golpePotente = AssetDatabase.LoadAssetAtPath<DefinicionCarta>("Assets/Cartas/CartaGolpeFuertePotente.asset");
+            Exigir(golpePotente != null && golpePotente.EsPotente && golpePotente.EmpujaHastaExtremo && golpePotente.PuntosNecesarios == 40f && golpePotente.DuracionEfecto == 10f && golpePotente.AlmasExtraLatigo == 60f, "Golpe fuerte potente: costo 40, marca 10 s, extra 60 y empuje al extremo");
             var swap = AssetDatabase.LoadAssetAtPath<DefinicionCarta>("Assets/Cartas/CartaSwapPosicion.asset");
             Exigir(latigo != null && latigo.Efecto == EfectoCarta.Latigo && !latigo.EsPotente &&
                 latigo.PuntosNecesarios == 20f && latigo.DuracionEfecto == 8f &&
-                latigo.AlmasExtraLatigo == 40f && latigo.EmpujonLatigo == 2f,
-                "Latigo normal: costo 20, marca 8 s, extra 40 y empujon 2");
+                latigo.AlmasExtraLatigo == 40f && latigo.EmpujonLatigo == 7f,
+                "Latigo normal: costo 20, marca 8 s, extra 40 y empujon 7");
             Exigir(swap != null && swap.Efecto == EfectoCarta.IntercambioPosicion && !swap.EsPotente &&
                 swap.PuntosNecesarios == 20f && swap.EsInstantanea && swap.DuracionEfecto == 0f,
                 "Swap normal: costo 20 y efecto instantaneo");
             Exigir(System.Array.IndexOf(((CatalogoCartas)serializado.FindProperty("catalogoCompartido").objectReferenceValue).Cartas, latigo) >= 0 &&
                 System.Array.IndexOf(((CatalogoCartas)serializado.FindProperty("catalogoCompartido").objectReferenceValue).Cartas, swap) >= 0,
                 "Latigo y swap disponibles en catalogo compartido");
-            Exigir(catalogo.arraySize == 12 && catalogo.GetArrayElementAtIndex(0).objectReferenceValue == carta &&
+            Exigir(catalogo.arraySize == 13 && catalogo.GetArrayElementAtIndex(0).objectReferenceValue == carta &&
                 catalogo.GetArrayElementAtIndex(1).objectReferenceValue == pesadez &&
                 catalogo.GetArrayElementAtIndex(2).objectReferenceValue == aceleracionPotente &&
                 catalogo.GetArrayElementAtIndex(3).objectReferenceValue == pesadezPotente &&
@@ -237,7 +239,7 @@ public static class VerificarCartas
 
             VerificarRepartos(sistema, partida, p1, p2, carta, pesadez, aceleracionPotente, pesadezPotente);
             VerificarSeguimiento(escena);
-            const string mensaje = "OK: swap, cancelacion y puertas; latigo, dano extra unico e invulnerabilidad; radio 10, atraccion 1.5x, retirada 1.6x; catalogo de doce, Confusion, repartos y camaras.";
+            const string mensaje = "OK: swap, cancelacion y puertas; latigo, dano extra unico e invulnerabilidad; radio 10, atraccion 1.5x, retirada 1.6x; catalogo de trece, Confusion, repartos y camaras.";
             Directory.CreateDirectory("Temp");
             File.WriteAllText(Resultado, mensaje);
             Debug.Log(mensaje);
@@ -289,6 +291,9 @@ public static class VerificarCartas
             golpear.Invoke(combate, new object[] { ataque1, ataque2, false });
             Exigir(Mathf.Approximately(p2.Almas.Cantidad, 100f - perdidaNormal - latigo.AlmasExtraLatigo) &&
                 !marca.EstaMarcado, "Golpe aceptado aplica extra y consume marca una sola vez");
+            Exigir(Mathf.Approximately(((Vector2)LeerCampo(movimiento2, "empujonPendiente")).magnitude, 7f) &&
+                (float)LeerCampo(movimiento2, "rapidezLanzamiento") >= 7f / 0.65f,
+                "Golpe normal empuja 7 unidades con impulso de 0.65 s");
             aplicar.Invoke(sistema, new object[] { p1, latigo });
             float antes = p2.Almas.Cantidad;
             golpear.Invoke(combate, new object[] { ataque1, ataque2, false });
@@ -302,6 +307,20 @@ public static class VerificarCartas
 
             Vector3 centro = movimiento1.ZonaMovimiento.bounds.center;
             movimiento1.Teletransportar(centro + Vector3.left * 3f);
+            movimiento2.Teletransportar(centro + Vector3.right * 3f);
+            var potente = AssetDatabase.LoadAssetAtPath<DefinicionCarta>("Assets/Cartas/CartaGolpeFuertePotente.asset");
+            Campo(estado2, "invulnerabilidadRestante", 0f);
+            aplicar.Invoke(sistema, new object[] { p1, potente });
+            float antesPotente = p2.Almas.Cantidad;
+            golpear.Invoke(combate, new object[] { ataque1, ataque2, false });
+            Exigir(Mathf.Approximately(p2.Almas.Cantidad, Mathf.Max(0f, antesPotente - perdidaNormal - potente.AlmasExtraLatigo)),
+                "Golpe potente descuenta dano base mas 60 puntos extra");
+            Vector3 borde = p2.transform.position;
+            borde.x = movimiento2.ZonaMovimiento.bounds.max.x;
+            Vector2 recorrido = (Vector2)(movimiento2.LimitarDestino(borde) - p2.transform.position);
+            Exigir(Vector2.Distance((Vector2)LeerCampo(movimiento2, "empujonPendiente"), recorrido) < 0.001f &&
+                Mathf.Approximately((float)LeerCampo(movimiento2, "rapidezLanzamiento"), recorrido.magnitude / 0.65f) &&
+                !marca.EstaMarcado, "Golpe potente consume marca y lanza hasta el extremo respetando el cuerpo");
             movimiento2.Teletransportar(centro + Vector3.right * 3f);
             Vector3 origen1 = p1.transform.position;
             Vector3 origen2 = p2.transform.position;

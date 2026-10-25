@@ -5713,8 +5713,8 @@ MonoBehaviour:
   esperaEntreEntregas: 25
   cierreEntregas: 10
   tiempoMantener: 0.35
-  duracionGiro: 2
-  duracionVistaFrente: 1.2
+  duracionGiro: 0.4
+  duracionVistaFrente: 0.15
   atajosDesarrollo: 1
 --- !u!114 &2200000004
 MonoBehaviour:

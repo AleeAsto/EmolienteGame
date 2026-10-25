@@ -13,25 +13,24 @@ tienen `ManoCartasJugador` usan pulsacion corta/mantener para golpear o abrir ca
 - P2: mantener M para abrir; J/L o flechas para elegir; boton de absorcion para usar.
 - Soltar C/M conserva el menu abierto. Volver a pulsarlo cierra sin golpear.
 - Una pulsacion corta de C/M golpea al soltar, respetando el cooldown existente.
-- G entrega una carta aleatoria del catalogo a P1; H a P2. Solo durante la ronda, en el editor o builds
+- G entrega una carta aleatoria del catalogo a cada jugador. Solo durante la ronda, en el editor o builds
   de desarrollo, con `Atajos Desarrollo` activo. No cambia puntos ni genera una deuda
   de recompensas. Pulsar varias veces permite comprobar el limite de tres.
   Estos atajos ignoran el requisito de mitad de partida para potentes, pero conservan
   su giro de recepcion y los limites de inventario (tres cartas, una potente como maximo).
-- Shift+G / Shift+H fuerzan una potente para P1/P2, incluso antes de mitad de partida.
+- Shift+G fuerza una potente para ambos, incluso antes de mitad de partida.
   Necesitan un cupo libre y no tener ya otra potente (incluidas entregas en animacion).
   La consola indica la carta sorteada, costo, duracion, candidatas normales/potentes
-  y los motivos de un intento bloqueado. G/H sin Shift conservan el sorteo aleatorio.
+  y los motivos de un intento bloqueado. G sin Shift conserva el sorteo aleatorio.
   El encabezado dentro de la carta muestra NORMAL/POTENTE y la duracion, para
   distinguir 8 s de 20 s sin necesitar ver la parte inferior de la descripcion.
 - B suma 100 puntos a cada jugador por pulsacion, con las mismas condiciones
   de los atajos de desarrollo.
-- 1/2 entregan Latigo a P1/P2; 3/4 entregan Swap de posicion a P1/P2.
+- 1 entrega Latigo a ambos; 2 entrega Swap de posicion a ambos.
   Son solo normales. Se usan desde la mano como las demas cartas: mantener C/M,
   elegir con A/D o J/L y confirmar con X/N (controles actuales de absorcion).
-- F/U entregan Perfume a P1/P2; R/P entregan Bomba apestosa a P1/P2.
-  Mantener Shift con esos atajos entrega la version potente. Ya no hay un atajo
-  especifico de Confusion; sigue disponible en el catalogo aleatorio de G/H.
+- No hay atajos especificos de Perfume, Bomba o Confusion: salen en el reparto
+  aleatorio de G. H, F, U, R, P, 3 y 4 ya no entregan cartas.
 - La carta cuesta 20 puntos reales. Absorber estudiantes para alcanzarlos o modificar
   `Cantidad` de `AlmasJugador` en Play, o pulsar B. El numero del marcador puede estar redondeado.
 - Con menos puntos, confirmar muestra el costo sin consumir la carta ni cerrar el menu.
@@ -175,7 +174,7 @@ Antes de entrar en la mano, la potente aparece grande en la camara del receptor,
 gira mostrando frente/reverso con borde dorado, mantiene brevemente el frente y
 viaja a su hueco (2.2 s en total). Mientras gira reserva un cupo: no puede usarse
 todavia ni permitir que otra entrega exceda el limite. El jugador puede seguir jugando.
-G/H usan exactamente la misma animacion y solo omiten la restriccion temporal.
+G usa exactamente la misma animacion y solo omiten la restriccion temporal.
 Las normales conservan su recepcion corta habitual. Las entregas potentes y los
 usos comparten una cola de presentacion para no taparse unos a otros. El final
 de ronda cancela las animaciones y libera las reservas pendientes.
@@ -230,7 +229,7 @@ se reubican solo al quedar invisibles y reaparecen gradualmente. No se pueden
 absorber mientras aun son invisibles o ya estan desapareciendo. Los fades respetan
 la pausa. Desactivar el sistema o terminar la partida limpia todo inmediatamente.
 
-Para probar Confusion, recibirla con G/H (Shift fuerza nivel potente), abrir la
+Para probar Confusion, recibirla con G (Shift fuerza nivel potente), abrir la
 mano con C/M y confirmar con el boton de absorcion configurado. No tiene atajo propio.
 
 ## Perfume y Bomba apestosa
@@ -256,7 +255,7 @@ para no delatar a los estudiantes reales. Los movimientos respetan ZoneMov.
 Las auras no alteran puntos, controles ni velocidad de los jugadores. Se limpian
 al finalizar la ronda o desactivar el sistema y sus duraciones respetan la pausa.
 
-F/U entregan Perfume a P1/P2; R/P entregan Bomba a P1/P2. Shift elige potente.
+Perfume y Bomba se reciben con el reparto aleatorio de G; Shift+G fuerza nivel potente.
 N queda libre para la absorcion de P2, sin generar cartas al pulsarlo.
 
 ## Latigo y swap de posicion
@@ -306,3 +305,9 @@ Las camaras siguen inmediatamente las nuevas posiciones. No altera el cooldown
 de las puertas ni lo consume; exige soltar arriba antes de entrar en una puerta
 tras el intercambio. El rotulo de la carta muestra Instantanea en vez de una
 duracion de buff. Si ambos lanzan swap, se resuelven por la cola habitual.
+
+Golpe fuerte reemplaza el nombre de Latigo. Normal: costo 20, marca 8 s, 40 almas extra (45 de dano total) y empujon de 7 unidades en 0.65 s. Potente: costo 40, marca 10 s, 60 almas extra (65 de dano total) y lanzamiento hasta el extremo horizontal del pasillo en 0.65 s. Solo consume la marca al acertar. 1 entrega la normal a ambos; Shift+1 entrega la potente. Las entregas normales reservan potentes para la segunda mitad.
+
+Uso de cartas: animacion de 1.9 s (despegue 0.4, entrada 0.45, frente 0.15, un giro de 0.4 y salida 0.5). Los usos se animan en paralelo y se distribuyen horizontalmente centrados, con transicion suave al entrar o salir otra carta. Cada efecto se aplica al terminar su propia animacion.
+
+Las entregas potentes tambien se animan en paralelo: cada jugador recibe su carta a la vez y conserva el giro especial. Cada entrega completa su propia reserva de mano al terminar y se cancela al cerrar la partida.

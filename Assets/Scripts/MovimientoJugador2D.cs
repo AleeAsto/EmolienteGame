@@ -15,6 +15,7 @@ public class MovimientoJugador2D : MonoBehaviour
     private InputAction accionMovimiento;
     private EstadoCombateJugador estadoCombate;
     private Vector2 empujonPendiente;
+    private float rapidezLanzamiento;
 
     public float DireccionHorizontal { get; private set; } = 1f;
     public InputAction AccionMovimiento => accionMovimiento;
@@ -85,8 +86,10 @@ public class MovimientoJugador2D : MonoBehaviour
             DireccionHorizontal = Mathf.Sign(entrada.x);
 
         Vector2 empujon = Vector2.ClampMagnitude(empujonPendiente,
-            Mathf.Max(0.1f, rapidezEmpujon) * Time.deltaTime);
+            Mathf.Max(0.1f, rapidezEmpujon, rapidezLanzamiento) * Time.deltaTime);
         empujonPendiente -= empujon;
+        if (empujonPendiente.sqrMagnitude < 0.0001f)
+            rapidezLanzamiento = 0f;
         float multiplicador = efectos != null ? efectos.MultiplicadorVelocidad : 1f;
         Vector3 destino = transform.position + (Vector3)(entrada * velocidad * multiplicador * Time.deltaTime + empujon);
         transform.position = LimitarPosicion(destino);
@@ -97,10 +100,28 @@ public class MovimientoJugador2D : MonoBehaviour
         empujonPendiente += desplazamiento;
     }
 
+    public void AcelerarEmpujon(float duracion)
+    {
+        rapidezLanzamiento = Mathf.Max(rapidezLanzamiento,
+            empujonPendiente.magnitude / Mathf.Max(0.05f, duracion));
+    }
+
+    public void EmpujarHastaExtremo(float direccion)
+    {
+        if (zonaMovimiento == null || cuerpo == null || Mathf.Approximately(direccion, 0f))
+            return;
+        CancelarDash();
+        Vector3 destino = transform.position;
+        destino.x = direccion > 0f ? zonaMovimiento.bounds.max.x : zonaMovimiento.bounds.min.x;
+        empujonPendiente = (Vector2)(LimitarPosicion(destino) - transform.position);
+        rapidezLanzamiento = empujonPendiente.magnitude / 0.65f;
+    }
+
     public void Teletransportar(Vector3 destino)
     {
         CancelarDash();
         empujonPendiente = Vector2.zero;
+        rapidezLanzamiento = 0f;
         transform.position = LimitarPosicion(destino);
     }
 
@@ -119,6 +140,7 @@ public class MovimientoJugador2D : MonoBehaviour
         duracionDash = Mathf.Max(0.05f, duracion);
         tiempoDash = 0f;
         empujonPendiente = Vector2.zero;
+        rapidezLanzamiento = 0f;
         EstaEnDash = true;
         return true;
     }
@@ -130,6 +152,7 @@ public class MovimientoJugador2D : MonoBehaviour
         accionMovimiento?.Disable();
         accionMovimiento = null;
         empujonPendiente = Vector2.zero;
+        rapidezLanzamiento = 0f;
         CancelarDash();
     }
 
