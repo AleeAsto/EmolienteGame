@@ -129,11 +129,13 @@ public class VistaCartas : MonoBehaviour
             Rect viewport = camaras[i].rect;
             paneles[i].anchorMin = viewport.min;
             paneles[i].anchorMax = viewport.max;
-            // Separa la mano superior de la barra versus y recorta solo en su camara.
-            paneles[i].offsetMin = new Vector2(16f, viewport.yMin > 0f ? 52f : 12f);
+            // El recorte inferior coincide con el borde real de cada camara.
+            paneles[i].offsetMin = new Vector2(16f, 0f);
             paneles[i].offsetMax = new Vector2(-16f, -12f);
             float escalaDiseno = Mathf.Clamp(Mathf.Min(paneles[i].rect.height / 440f,
                 paneles[i].rect.width / 510f), 0.3f, 1f);
+            // Elevar la mano sobre el marcador central sin mover su mascara de recorte.
+            float elevacionMano = viewport.yMin > 0f ? 28f : 0f;
             ManoCartasJugador mano = manos[i];
             bool confundido = mano.EstaConfundido;
             if (confundido != confusionAnterior[i])
@@ -158,12 +160,13 @@ public class VistaCartas : MonoBehaviour
                 float y = seleccionada ? 62f : esRecibida ? 124f : -82f;
                 float x = i == 0 ? 124f + j * 116f : -124f - (mano.Cantidad - 1 - j) * 116f;
                 Vector2 destino = new Vector2(x, y) * escalaDiseno;
+                destino.y += elevacionMano;
                 if (animandoMano[i])
                 {
                     float mezcla = confundido ? Mathf.SmoothStep(0f, 1f,
                         (tiempoMano - DuracionGiroMano) / DuracionMezclaMano) : 0f;
                     Vector2 salida = inicioMezcla[i, j];
-                    Vector2 llegada = new Vector2(destino.x, 128f * escalaDiseno);
+                    Vector2 llegada = new Vector2(destino.x, 128f * escalaDiseno + elevacionMano);
                     Vector2 posicion = Vector2.Lerp(salida, llegada, mezcla);
                     float levantar = Mathf.SmoothStep(0f, 1f, progresoGiro);
                     posicion.y = Mathf.Lerp(salida.y, llegada.y, levantar) +
