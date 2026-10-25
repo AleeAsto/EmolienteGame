@@ -14,6 +14,19 @@ public static class IntegrarArteFinal
     private static readonly Color Papel = new Color32(242, 210, 173, 255);
     private static readonly Color Rojo = new Color32(232, 24, 36, 255);
 
+    [MenuItem("Emoliente/Integrar cartas y selector del menu")]
+    public static void IntegrarCartasYSeleccion()
+    {
+        if (EditorApplication.isPlaying || EditorSceneManager.GetActiveScene().isDirty)
+            throw new InvalidOperationException("Deten Play y guarda la escena antes de integrar el arte.");
+        AssetDatabase.Refresh();
+        ImportarCartasYLogo();
+        var escena = EditorSceneManager.OpenScene(Escenas + "MenuAudioMenus.unity");
+        AplicarMenu(escena.GetRootGameObjects().SelectMany(r => r.GetComponentsInChildren<MenuPrincipal>(true)).Single());
+        EditorSceneManager.SaveScene(escena);
+        AssetDatabase.SaveAssets();
+    }
+
     [MenuItem("Emoliente/Integrar arte final y nuevos efectos")]
     public static void Integrar()
     {
@@ -59,6 +72,44 @@ public static class IntegrarArteFinal
         fondo.spriteImportMode = SpriteImportMode.Single;
         fondo.maxTextureSize = 8192;
         fondo.SaveAndReimport();
+        ImportarCartasYLogo();
+    }
+
+    private static void ImportarCartasYLogo()
+    {
+        if (!File.Exists(Raiz + "UI/LogoAmpliado.png")) return;
+        foreach (string nombre in new[] { "LogoAmpliado", "LogoPequeno", "Seleccion" })
+        {
+            string ruta = Raiz + "UI/" + nombre + ".png";
+            Recortar(ruta, new[] { new SpriteRect { name = nombre, rect = LimitesVisibles(ruta) } });
+        }
+        foreach (string grupo in new[] { "Ampliadas", "Pequenas" })
+            foreach (string nombre in new[] { "BombPerfume", "Confusion", "GolpeFuerte", "Reverso", "Velocidad", "Swap" })
+            {
+                string ruta = Raiz + "Cartas/" + grupo + "/" + nombre + ".png";
+                Recortar(ruta, new[] { new SpriteRect { name = nombre, rect = LimitesVisibles(ruta) } });
+            }
+        var catalogo = AssetDatabase.LoadAssetAtPath<CatalogoCartas>("Assets/Resources/CatalogoCartas.asset");
+        foreach (DefinicionCarta carta in catalogo.Cartas)
+        {
+            string nombre;
+            switch (carta.Efecto)
+            {
+                case EfectoCarta.Velocidad: nombre = "Velocidad"; break;
+                case EfectoCarta.Confusion: nombre = "Confusion"; break;
+                case EfectoCarta.Perfume:
+                case EfectoCarta.BombaApestosa: nombre = "BombPerfume"; break;
+                case EfectoCarta.Latigo: nombre = "GolpeFuerte"; break;
+                case EfectoCarta.IntercambioPosicion: nombre = "Swap"; break;
+                default: continue;
+            }
+            var datos = new SerializedObject(carta);
+            datos.FindProperty("frente").objectReferenceValue = Sprite("Cartas/Ampliadas/" + nombre + ".png");
+            datos.FindProperty("reverso").objectReferenceValue = Sprite("Cartas/Ampliadas/Reverso.png");
+            datos.FindProperty("frenteMano").objectReferenceValue = Sprite("Cartas/Pequenas/" + nombre + ".png");
+            datos.FindProperty("reversoMano").objectReferenceValue = Sprite("Cartas/Pequenas/Reverso.png");
+            datos.ApplyModifiedPropertiesWithoutUndo();
+        }
     }
 
     private static SpriteRect Corte(string nombre, int x, int y, int ancho, int alto, int alturaTextura) =>
@@ -148,7 +199,7 @@ public static class IntegrarArteFinal
         foreach (Camera camara in menu.gameObject.scene.GetRootGameObjects().SelectMany(r => r.GetComponentsInChildren<Camera>(true)))
             camara.backgroundColor = Color.black;
         var logo = Imagen("LogoSocialOutcasts", inicio);
-        logo.sprite = Sprite("UI/Menu.png", "Logo");
+        logo.sprite = File.Exists(Raiz + "UI/LogoAmpliado.png") ? Sprite("UI/LogoAmpliado.png") : Sprite("UI/Menu.png", "Logo");
         Ubicar(logo.rectTransform, new Vector2(0, 170), new Vector2(440, 293));
         logo.gameObject.SetActive(true);
         Boton(inicio, "JUGAR", Sprite("UI/Menu.png", "Play"), -17, new Vector2(270, 87));
@@ -216,8 +267,19 @@ public static class IntegrarArteFinal
         colores.pressedColor = new Color(1f, 0.65f, 0.6f);
         boton.colors = colores;
         var marca = Imagen("SeleccionArte", boton.transform);
-        marca.color = Rojo;
-        Ubicar(marca.rectTransform, new Vector2(-tamano.x * 0.5f - 16f, 0f), new Vector2(5f, 25f));
+        if (File.Exists(Raiz + "UI/Seleccion.png"))
+        {
+            marca.sprite = Sprite("UI/Seleccion.png");
+            marca.color = Color.white;
+            marca.preserveAspect = false;
+            Ubicar(marca.rectTransform, Vector2.zero, tamano + new Vector2(22f, 2f));
+        }
+        else
+        {
+            marca.color = Rojo;
+            Ubicar(marca.rectTransform, new Vector2(-tamano.x * 0.5f - 16f, 0f), new Vector2(5f, 25f));
+        }
+        marca.transform.SetAsLastSibling();
         marca.gameObject.SetActive(false);
         var efecto = boton.GetComponent<BotonArteUI>();
         if (efecto == null) efecto = boton.gameObject.AddComponent<BotonArteUI>();

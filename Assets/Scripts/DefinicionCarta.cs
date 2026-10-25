@@ -10,6 +10,8 @@ public class DefinicionCarta : ScriptableObject
     [SerializeField] private string titulo = "Carta de prueba";
     [SerializeField] private Sprite frente;
     [SerializeField] private Sprite reverso;
+    [SerializeField] private Sprite frenteMano;
+    [SerializeField] private Sprite reversoMano;
     [Tooltip("Costo en puntos: se descuenta al confirmar el uso.")]
     [SerializeField, Min(0f)] private float puntosNecesarios = 20f;
     [SerializeField] private DestinoCarta destino;
@@ -29,6 +31,8 @@ public class DefinicionCarta : ScriptableObject
     public string TituloVisible => potente ? titulo + " ★" : titulo;
     public Sprite Frente => frente;
     public Sprite Reverso => reverso;
+    public Sprite FrenteMano => frenteMano != null ? frenteMano : frente;
+    public Sprite ReversoMano => reversoMano != null ? reversoMano : reverso;
     public float PuntosNecesarios => Mathf.Max(0f, puntosNecesarios);
     public DestinoCarta Destino => destino;
     public EfectoCarta Efecto => efecto;

@@ -14,13 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DefinicionCarta
   identificador: confusion
   titulo: Confusion
-  frente: {fileID: 21300000, guid: 76047c34f31d4626abdcdf6e3d3899a3, type: 3}
-  reverso: {fileID: 21300000, guid: 089789c5fad04730b793fd725f22e380, type: 3}
+  frente: {fileID: -1741318399, guid: 14cd7a91297480d42b5142df332daa8c, type: 3}
+  reverso: {fileID: -660288226, guid: eb1323b5a21f15c47beeb12925214f71, type: 3}
+  frenteMano: {fileID: 1722056359, guid: beffd9a6c49aed146830660fa1a161ce, type: 3}
+  reversoMano: {fileID: -443000808, guid: 84b150331300c234eb2b39b3cc464bab, type: 3}
   puntosNecesarios: 20
   destino: 1
   efecto: 2
   multiplicadorVelocidad: 1
   duracionEfecto: 10
   potente: 0
-
-
+  radioOlor: 10
+  multiplicadorRetirada: 1.6
+  multiplicadorAtraccion: 1.5
+  almasExtraLatigo: 40
+  empujonLatigo: 7

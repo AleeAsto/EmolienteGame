@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DefinicionCarta
   identificador: latigo
   titulo: Golpe fuerte
-  frente: {fileID: 21300000, guid: 76047c34f31d4626abdcdf6e3d3899a3, type: 3}
-  reverso: {fileID: 21300000, guid: 089789c5fad04730b793fd725f22e380, type: 3}
+  frente: {fileID: 899279006, guid: c1ec0725955bc4442b2306e69477f8ec, type: 3}
+  reverso: {fileID: -660288226, guid: eb1323b5a21f15c47beeb12925214f71, type: 3}
+  frenteMano: {fileID: 1189868588, guid: f288078697a958c46b0de535905beb8b, type: 3}
+  reversoMano: {fileID: -443000808, guid: 84b150331300c234eb2b39b3cc464bab, type: 3}
   puntosNecesarios: 20
   destino: 1
   efecto: 5
@@ -24,5 +26,6 @@ MonoBehaviour:
   potente: 0
   radioOlor: 8
   multiplicadorRetirada: 1.25
+  multiplicadorAtraccion: 1.5
   almasExtraLatigo: 40
   empujonLatigo: 7
