@@ -168,7 +168,7 @@ public class IlusionesConfusionJugador : MonoBehaviour
                 (Random.value < 0.5f ? -1f : 1f) });
     }
 
-    public bool IntentarDisipar(Vector2 posicion, float distanciaMaximaCuadrada)
+    public bool IntentarDisipar(Vector2 posicion, float distanciaMaximaCuadrada, float escalaHorizontal = 1f)
     {
         if (efectos == null || !efectos.EstaConfundido) return false;
         Fantasma cercano = null;
@@ -176,7 +176,9 @@ public class IlusionesConfusionJugador : MonoBehaviour
         foreach (Fantasma fantasma in fantasmas)
         {
             if (fantasma.objeto == null || fantasma.consumido || fantasma.retirando || fantasma.opacidad < 0.15f) continue;
-            float distancia = ((Vector2)fantasma.objeto.transform.position - posicion).sqrMagnitude;
+            Vector2 diferencia = (Vector2)fantasma.objeto.transform.position - posicion;
+            diferencia.x /= Mathf.Max(0.1f, escalaHorizontal);
+            float distancia = diferencia.sqrMagnitude;
             if (distancia < mejor) { mejor = distancia; cercano = fantasma; }
         }
         if (cercano == null) return false;

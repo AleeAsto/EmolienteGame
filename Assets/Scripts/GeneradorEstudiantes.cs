@@ -251,6 +251,23 @@ public class GeneradorEstudiantes : MonoBehaviour
         }
     }
 
+    public EstudiantePasillo CrearDesdeCasillero(Vector3 posicion)
+    {
+        EstudiantePasillo prefab = ModeloVisual;
+        if (prefab == null || zonaPasillo == null) return null;
+        Bounds zona = zonaPasillo.bounds;
+        posicion.x = Mathf.Clamp(posicion.x, zona.min.x, zona.max.x);
+        posicion.y = Mathf.Clamp(posicion.y, zona.min.y, zona.max.y);
+        posicion.z = zona.center.z;
+        EstudiantePasillo nuevo = Instantiate(prefab, posicion, Quaternion.identity, transform);
+        float minima = Mathf.Max(0.1f, Mathf.Min(rangoVelocidad.x, rangoVelocidad.y));
+        float maxima = Mathf.Max(minima, Mathf.Max(rangoVelocidad.x, rangoVelocidad.y));
+        nuevo.ConfigurarRecorrido(Random.value < 0.5f ? -1f : 1f, Random.Range(minima, maxima),
+            zona.min.x - margenSalida, zona.max.x + margenSalida, zonaPasillo);
+        estudiantes.Add(nuevo);
+        return nuevo;
+    }
+
     private bool IntentarCrear(Vector2 intervalo, Bounds zona, bool raro = false)
     {
         estudiantes.RemoveAll(estudiante => estudiante == null);

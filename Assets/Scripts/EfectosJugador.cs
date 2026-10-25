@@ -40,9 +40,9 @@ public class EfectosJugador : MonoBehaviour
         if (nueva) GetComponent<ManoCartasJugador>()?.MezclarPorConfusion();
     }
 
-    public bool IntentarDisiparFantasma(Vector2 posicion, float distanciaMaximaCuadrada) =>
+    public bool IntentarDisiparFantasma(Vector2 posicion, float distanciaMaximaCuadrada, float escalaHorizontal = 1f) =>
         EstaConfundido && GetComponent<IlusionesConfusionJugador>() != null &&
-        GetComponent<IlusionesConfusionJugador>().IntentarDisipar(posicion, distanciaMaximaCuadrada);
+        GetComponent<IlusionesConfusionJugador>().IntentarDisipar(posicion, distanciaMaximaCuadrada, escalaHorizontal);
 
     public void Limpiar()
     {

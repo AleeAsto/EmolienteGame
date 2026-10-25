@@ -8,6 +8,8 @@ public class SuccionJugador : MonoBehaviour
 {
     [SerializeField] private InputActionReference succionar;
     [SerializeField, Min(0.1f)] private float alcance = 2.2f;
+    [Tooltip("Multiplica solo el ancho del alcance. 1 = circulo; 2 = doble de ancho.")]
+    [SerializeField, Min(0.1f)] private float escalaHorizontal = 1f;
     [Tooltip("Desplazamiento vertical desde los pies en unidades del mundo. Positivo sube; negativo baja.")]
     [SerializeField] private float offsetVertical;
     [Tooltip("Separacion del estudiante frente al jugador durante la absorcion.")]
@@ -46,7 +48,7 @@ public class SuccionJugador : MonoBehaviour
         (movimiento != null ? movimiento.PosicionPies : transform.position) +
         Vector3.up * offsetVerticalAlineacion + Vector3.right *
         (movimiento != null ? movimiento.DireccionHorizontal : 1f) *
-        Mathf.Clamp(distanciaAlineacion, 0f, alcance * 0.9f);
+        Mathf.Clamp(distanciaAlineacion, 0f, alcance * Mathf.Max(0.1f, escalaHorizontal) * 0.9f);
     public float DuracionDrenajeActual => Mathf.Max(0.1f, tiempoDrenaje) *
         (objetivo != null ? objetivo.MultiplicadorTiempoDrenaje : 1f);
     public float Progreso01 => objetivo != null
@@ -58,8 +60,18 @@ public class SuccionJugador : MonoBehaviour
         // El punto que detecta la succion debe permanecer dentro del radio,
         // incluso si los pies o la escala de cada jugador son distintos.
         Vector2 desplazamiento = (Vector2)(posicion - CentroSuccion);
+        float escalaX = Mathf.Max(0.1f, escalaHorizontal);
+        desplazamiento.x /= escalaX;
         Vector2 limitado = Vector2.ClampMagnitude(desplazamiento, alcance * 0.9f);
+        limitado.x *= escalaX;
         return new Vector3(CentroSuccion.x + limitado.x, CentroSuccion.y + limitado.y, posicion.z);
+    }
+
+    private float DistanciaAlcanceCuadrada(Vector3 posicion)
+    {
+        Vector2 diferencia = posicion - CentroSuccion;
+        diferencia.x /= Mathf.Max(0.1f, escalaHorizontal);
+        return diferencia.sqrMagnitude;
     }
 
     private void Awake()
@@ -115,8 +127,8 @@ public class SuccionJugador : MonoBehaviour
 
             objetivo = BuscarEstudianteCercano();
             float distanciaReal = objetivo != null
-                ? ((Vector2)(objetivo.transform.position - CentroSuccion)).sqrMagnitude : alcance * alcance;
-            if (efectos != null && efectos.IntentarDisiparFantasma(CentroSuccion, distanciaReal))
+                ? DistanciaAlcanceCuadrada(objetivo.transform.position) : alcance * alcance;
+            if (efectos != null && efectos.IntentarDisiparFantasma(CentroSuccion, distanciaReal, escalaHorizontal))
             {
                 intentoConsumido = true;
                 objetivo = null;
@@ -132,7 +144,7 @@ public class SuccionJugador : MonoBehaviour
         }
 
         if (!objetivo.Disponible || objetivo.Ocupante != almas ||
-            ((Vector2)(objetivo.transform.position - CentroSuccion)).sqrMagnitude > alcance * alcance)
+            DistanciaAlcanceCuadrada(objetivo.transform.position) > alcance * alcance)
         {
             CancelarSuccion();
             return;
@@ -158,13 +170,13 @@ public class SuccionJugador : MonoBehaviour
     {
         AlmaEstudiante cercano = null;
         float mejorDistancia = alcance * alcance;
-        // Se consulta solo al pulsar; no depende de sincronizar colliders movidos con Transform.
+        // No depende de sincronizar colliders movidos con Transform.
         foreach (AlmaEstudiante estudiante in FindObjectsByType<AlmaEstudiante>(FindObjectsSortMode.None))
         {
             if (!estudiante.Disponible || estudiante.EstaOcupado)
                 continue;
 
-            float distancia = ((Vector2)(estudiante.transform.position - CentroSuccion)).sqrMagnitude;
+            float distancia = DistanciaAlcanceCuadrada(estudiante.transform.position);
             if (distancia <= mejorDistancia)
             {
                 cercano = estudiante;
@@ -202,6 +214,15 @@ public class SuccionJugador : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.cyan;
-        Gizmos.DrawWireSphere(CentroSuccion, alcance);
+        Vector3 centro = CentroSuccion;
+        float radioX = alcance * Mathf.Max(0.1f, escalaHorizontal);
+        Vector3 anterior = centro + Vector3.right * radioX;
+        for (int i = 1; i <= 64; i++)
+        {
+            float angulo = i * Mathf.PI * 2f / 64f;
+            Vector3 punto = centro + new Vector3(Mathf.Cos(angulo) * radioX, Mathf.Sin(angulo) * alcance, 0f);
+            Gizmos.DrawLine(anterior, punto);
+            anterior = punto;
+        }
     }
 }

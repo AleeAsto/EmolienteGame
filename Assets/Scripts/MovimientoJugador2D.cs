@@ -190,7 +190,7 @@ public class MovimientoJugador2D : MonoBehaviour
         float maxY = zona.max.y - margen.y - offset.y;
         destino.x = minX <= maxX ? Mathf.Clamp(destino.x, minX, maxX) : zona.center.x - offset.x;
         destino.y = minY <= maxY ? Mathf.Clamp(destino.y, minY, maxY) : zona.center.y - offset.y;
-        return destino;
+        return Casillero.LimitarMovimiento(cuerpo, transform.position, destino);
     }
 }
 

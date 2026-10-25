@@ -203,6 +203,25 @@ public class AtaqueJugador : MonoBehaviour
         impactoConsumido = true;
     }
 
+    public bool EnAlcance(Collider2D obstaculo)
+    {
+        if (obstaculo == null || !obstaculo.enabled) return false;
+        return EnAlcance(obstaculo.bounds);
+    }
+
+    public bool EnAlcance(Bounds obstaculo)
+    {
+        if (usandoLatigo)
+        {
+            Vector2 cercano = obstaculo.ClosestPoint(puntoLatigo);
+            Vector2 diferencia = cercano - (Vector2)puntoLatigo;
+            return diferencia.sqrMagnitude <= radioImpactoLatigo * radioImpactoLatigo;
+        }
+        Vector3 centro = OrigenPiso + Vector3.right * direccion * alcance * 0.5f;
+        Bounds area = new Bounds(centro, new Vector3(alcance, toleranciaY * 2f, 100f));
+        return area.Intersects(obstaculo);
+    }
+
     public void CancelarAtaque()
     {
         if (movimiento != null)
