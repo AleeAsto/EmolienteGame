@@ -21,13 +21,11 @@ public class PresentacionVersus : MonoBehaviour
     private int ganadorResultado;
     private float progresoResultado;
     private bool cargandoResultado;
-    private readonly Text[] contadoresVictorias = new Text[2];
 
     public IEnumerator MostrarVictoria(int ganador, Sprite victoria1, Sprite victoria2, Sprite empate1, Sprite empate2, string nombre,
         System.Action revancha, System.Action volverMenu)
     {
         mostrandoResultado = true;
-        ActualizarVictorias();
         ganadorResultado = ganador;
         raiz.GetComponent<Canvas>().sortingOrder = 600;
         if (raiz.GetComponent<GraphicRaycaster>() == null) raiz.gameObject.AddComponent<GraphicRaycaster>();
@@ -44,8 +42,6 @@ public class PresentacionVersus : MonoBehaviour
             if (empate1 != null) retratos[0].GetComponent<Image>().sprite = empate1;
             if (empate2 != null) retratos[1].GetComponent<Image>().sprite = empate2;
         }
-        foreach (Text contador in contadoresVictorias)
-            if (contador != null) contador.transform.parent.SetAsLastSibling();
         float tiempo = 0f;
         const float duracionExpansion = 0.75f;
         while (tiempo < duracionExpansion)
@@ -68,6 +64,22 @@ public class PresentacionVersus : MonoBehaviour
         banda.anchorMax = new Vector2(1f, 0.39f);
         banda.offsetMin = banda.offsetMax = Vector2.zero;
         Imagen(banda, new Color(0.015f, 0.01f, 0.025f, 0.65f));
+        if (CicloPartida.MostrarVictorias)
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                RectTransform fondo = Rect("VictoriasJugador" + (i + 1), contenido);
+                Ubicar(fondo, new Vector2(i == 0 ? 0.25f : 0.52f, 0.40f),
+                    new Vector2(i == 0 ? 0.48f : 0.75f, 0.46f));
+                Imagen(fondo, new Color(0.02f, 0.015f, 0.025f, 0.8f));
+                int victorias = i == 0 ? CicloPartida.VictoriasJugador1 : CicloPartida.VictoriasJugador2;
+                Text contador = Texto("Contador", fondo, $"Jugador {i + 1} · Victorias: {victorias}", 28);
+                contador.resizeTextForBestFit = true;
+                contador.resizeTextMinSize = 12;
+                contador.resizeTextMaxSize = 28;
+                Estirar(contador.rectTransform, 6f);
+            }
+        }
         Text nombreGanador = Texto("NombreGanador", contenido, ganador == 0 ? "MISMA PUNTUACION" : nombre, 54);
         Ubicar(nombreGanador.rectTransform, new Vector2(0.2f, 0.29f), new Vector2(0.8f, 0.38f));
         Text titulo = Texto("Winner", contenido, ganador == 0 ? "EMPATE" : "¡VICTORIA!", 118);
@@ -213,22 +225,6 @@ public class PresentacionVersus : MonoBehaviour
         vs.color = new Color(1f, 0.9f, 0.62f);
         Estirar(vs.rectTransform, 0f);
         creada = true;
-        if (CicloPartida.MostrarVictorias)
-        {
-            for (int i = 0; i < 2; i++)
-            {
-                RectTransform fondo = Rect("VictoriasJugador" + (i + 1), raiz);
-                Ubicar(fondo, new Vector2(i == 0 ? 0.005f : 0.855f, 0.945f),
-                    new Vector2(i == 0 ? 0.145f : 0.995f, 0.995f));
-                Imagen(fondo, new Color(0.02f, 0.015f, 0.025f, 0.8f));
-                contadoresVictorias[i] = Texto("Contador", fondo, "", 28);
-                contadoresVictorias[i].resizeTextForBestFit = true;
-                contadoresVictorias[i].resizeTextMinSize = 12;
-                contadoresVictorias[i].resizeTextMaxSize = 28;
-                Estirar(contadoresVictorias[i].rectTransform, 6f);
-            }
-            ActualizarVictorias();
-        }
         Canvas.ForceUpdateCanvases();
         ActualizarDiseno();
     }
@@ -262,13 +258,6 @@ public class PresentacionVersus : MonoBehaviour
     private void LateUpdate()
     {
         if (creada) ActualizarDiseno();
-    }
-
-    private void ActualizarVictorias()
-    {
-        for (int i = 0; i < 2; i++)
-            if (contadoresVictorias[i] != null)
-                contadoresVictorias[i].text = $"Victorias: {(i == 0 ? CicloPartida.VictoriasJugador1 : CicloPartida.VictoriasJugador2)}";
     }
 
     private void ActualizarDiseno()
