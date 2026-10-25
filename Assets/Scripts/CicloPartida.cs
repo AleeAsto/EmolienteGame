@@ -21,6 +21,13 @@ public class CicloPartida : MonoBehaviour
     [SerializeField, Min(0.1f)] private float duracionVS = 1.3f;
     [SerializeField, Min(0.1f)] private float duracionAperturaVS = 0.85f;
     private PresentacionVersus presentacionVS;
+    [Header("Victoria")]
+    [SerializeField] private Sprite victoriaJugador1;
+    [SerializeField] private Sprite victoriaJugador2;
+    [Header("Empate")]
+    [SerializeField] private Sprite empateJugador1;
+    [SerializeField] private Sprite empateJugador2;
+    public bool TieneVictoriaPersonalizada => presentacionVS != null && victoriaJugador1 != null && victoriaJugador2 != null;
 
     public float TiempoRestante { get; private set; }
     public bool Terminada { get; private set; }
@@ -62,6 +69,8 @@ public class CicloPartida : MonoBehaviour
         if (!controlaTiempo)
             yield break;
 
+        while (TransicionEscena.EnCurso) yield return null;
+
         if (presentacionVS != null)
             yield return presentacionVS.Mostrar(duracionVS, duracionAperturaVS);
 
@@ -98,6 +107,18 @@ public class CicloPartida : MonoBehaviour
         string resultado = ganador == 0 ? "Empate" : $"El jugador {ganador} gano";
         Debug.Log($"Fin de la partida. {resultado}. P1: {puntos1:0.#} | P2: {puntos2:0.#}", this);
         PartidaTerminada?.Invoke(ganador);
+        if (TieneVictoriaPersonalizada)
+            StartCoroutine(presentacionVS.MostrarVictoria(ganador, victoriaJugador1, victoriaJugador2, empateJugador1, empateJugador2,
+                ganador == 1 ? nombreJugador1 : nombreJugador2, Revancha, VolverMenu));
+    }
+
+    private void Revancha() => TransicionEscena.Cargar(gameObject.scene.name, true);
+
+    private void VolverMenu()
+    {
+        foreach (MenuPartida menu in FindObjectsByType<MenuPartida>(FindObjectsSortMode.None))
+            if (menu.gameObject.scene == gameObject.scene) { menu.VolverMenu(); return; }
+        TransicionEscena.Cargar("MenuPrincipal");
     }
 
     private void OnDisable()

@@ -102,6 +102,7 @@ public class MenuPartida : MonoBehaviour
         pausa.SetActive(false);
         opciones.SetActive(false);
         AudioJuego.Instancia?.PausarEfectos(true);
+        if (partida.TieneVictoriaPersonalizada) return;
         tituloResultado.text = ganador == 0 ? "EMPATE" : $"GANA JUGADOR {ganador}";
         tituloResultado.color = ganador == 0 ? new Color32(244, 187, 83, 255) :
             ganador == 1 ? new Color32(120, 197, 255, 255) : new Color32(255, 117, 117, 255);
@@ -111,10 +112,10 @@ public class MenuPartida : MonoBehaviour
         Seleccionar(revancha);
     }
 
-    public void Revancha() => CargarEscena(gameObject.scene.name);
+    public void Revancha() => CargarEscena(gameObject.scene.name, true);
     public void VolverMenu() => CargarEscena(escenaMenu);
 
-    private void CargarEscena(string nombre)
+    private void CargarEscena(string nombre, bool reiniciarMusica = false)
     {
         if (cargando) return;
         if (!Application.CanStreamedLevelBeLoaded(nombre))
@@ -126,7 +127,7 @@ public class MenuPartida : MonoBehaviour
         foreach (var boton in GetComponentsInChildren<Button>(true)) boton.interactable = false;
         PlayerPrefs.Save();
         Time.timeScale = 1f;
-        SceneManager.LoadSceneAsync(nombre);
+        TransicionEscena.Cargar(nombre, reiniciarMusica);
     }
 
     private static void Seleccionar(Selectable control)

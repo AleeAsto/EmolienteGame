@@ -95,11 +95,35 @@ public class AudioJuego : MonoBehaviour
         transicion = StartCoroutine(Transicionar(clip));
     }
 
+    public Coroutine DesvanecerMusica()
+    {
+        if (transicion != null) StopCoroutine(transicion);
+        transicion = StartCoroutine(DesvanecerHastaSilencio());
+        return transicion;
+    }
+
+    private IEnumerator DesvanecerHastaSilencio()
+    {
+        float duracion = Mathf.Max(0f, Configuracion.transicionMusica);
+        float inicial = musica.volume;
+        float tiempo = 0f;
+        while (musica.isPlaying && tiempo < duracion)
+        {
+            musica.volume = Mathf.Lerp(inicial, 0f, Mathf.SmoothStep(0f, 1f, tiempo / duracion));
+            yield return null;
+            tiempo += Mathf.Min(Time.unscaledDeltaTime, 0.05f);
+        }
+        musica.volume = 0f;
+        musica.Stop();
+        // Al cargar la revancha, isPlaying sera falso aunque el clip sea el mismo.
+        transicion = null;
+    }
+
     private IEnumerator Transicionar(AudioClip clip)
     {
         float duracion = Mathf.Max(0f, Configuracion.transicionMusica);
         float inicial = musica.volume;
-        for (float t = 0f; musica.isPlaying && t < duracion; t += Time.unscaledDeltaTime)
+        for (float t = 0f; musica.isPlaying && t < duracion; t += Mathf.Min(Time.unscaledDeltaTime, 0.05f))
         {
             musica.volume = Mathf.Lerp(inicial, 0f, t / duracion);
             yield return null;
@@ -107,10 +131,14 @@ public class AudioJuego : MonoBehaviour
         musica.Stop();
         musica.clip = clip;
         musica.volume = 0f;
-        if (clip != null) musica.Play();
-        for (float t = 0f; t < duracion; t += Time.unscaledDeltaTime)
+        if (clip != null)
         {
-            musica.volume = Mathf.Lerp(0f, VolumenMusicalFinal, t / duracion);
+            musica.time = 0f;
+            musica.Play();
+        }
+        for (float t = 0f; t < duracion; t += Mathf.Min(Time.unscaledDeltaTime, 0.05f))
+        {
+            musica.volume = Mathf.Lerp(0f, VolumenMusicalFinal, Mathf.SmoothStep(0f, 1f, t / duracion));
             yield return null;
         }
         musica.volume = VolumenMusicalFinal;

@@ -82,6 +82,6 @@ public class MenuPrincipal : MonoBehaviour
             boton.interactable = false;
         PlayerPrefs.Save();
         Time.timeScale = 1f;
-        SceneManager.LoadSceneAsync(escenaPartida);
+        TransicionEscena.Cargar(escenaPartida);
     }
 }

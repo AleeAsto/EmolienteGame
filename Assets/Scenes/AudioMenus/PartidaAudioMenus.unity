@@ -11872,6 +11872,12 @@ MonoBehaviour:
   jugador2: {fileID: 1775270134}
   textoTiempo: {fileID: 2100000002}
   cuentaRegresiva: {fileID: 2100000015}
+  victoriaJugador1: {fileID: 8924544481279383204, guid: a68701cbc2b4f2c4c9fefbd048072910, type: 3}
+  victoriaJugador2: {fileID: 1272646939280288008, guid: 662d57114841e8340b40d8fa6039c89c, type: 3}
+  empateJugador1: {fileID: 6679887087250975802, guid: 6f2cac71eac792245b0c8f3d4c35159e, type: 3}
+  empateJugador2: {fileID: 8709169254226775814, guid: 2b3afa4b56912154f81f7339c7122754, type: 3}
+  retratoMorado: {fileID: 3081191475119929923, guid: 7b42d3529f1ffe3498e2d434c3cf9b02, type: 3}
+  retratoRojo: {fileID: -3670015656080422953, guid: 5fae8ec966f2cec47a127af814690ebd, type: 3}
 --- !u!1 &2100000000
 GameObject:
   m_ObjectHideFlags: 0

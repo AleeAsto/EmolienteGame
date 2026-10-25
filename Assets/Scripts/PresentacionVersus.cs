@@ -1,6 +1,8 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem.UI;
 
 // La misma pareja de paneles presenta el VS y despues cubre las franjas laterales.
 public class PresentacionVersus : MonoBehaviour
@@ -15,6 +17,136 @@ public class PresentacionVersus : MonoBehaviour
     private Camera[] camaras;
     private float apertura;
     private bool creada;
+    private bool mostrandoResultado;
+    private int ganadorResultado;
+    private float progresoResultado;
+    private bool cargandoResultado;
+
+    public IEnumerator MostrarVictoria(int ganador, Sprite victoria1, Sprite victoria2, Sprite empate1, Sprite empate2, string nombre,
+        System.Action revancha, System.Action volverMenu)
+    {
+        mostrandoResultado = true;
+        ganadorResultado = ganador;
+        raiz.GetComponent<Canvas>().sortingOrder = 600;
+        if (raiz.GetComponent<GraphicRaycaster>() == null) raiz.gameObject.AddComponent<GraphicRaycaster>();
+        centro.gameObject.SetActive(false);
+        for (int i = 0; i < 2; i++) nombres[i].alpha = 0f;
+        if (ganador > 0)
+        {
+            int indice = ganador - 1;
+            paneles[indice].SetAsLastSibling();
+            retratos[indice].GetComponent<Image>().sprite = indice == 0 ? victoria1 : victoria2;
+        }
+        else
+        {
+            if (empate1 != null) retratos[0].GetComponent<Image>().sprite = empate1;
+            if (empate2 != null) retratos[1].GetComponent<Image>().sprite = empate2;
+        }
+        float tiempo = 0f;
+        const float duracionExpansion = 0.75f;
+        while (tiempo < duracionExpansion)
+        {
+            tiempo = Mathf.Min(duracionExpansion, tiempo + Time.unscaledDeltaTime);
+            progresoResultado = Mathf.SmoothStep(0f, 1f, tiempo / duracionExpansion);
+            ActualizarDiseno();
+            yield return null;
+        }
+        progresoResultado = 1f;
+        ActualizarDiseno();
+
+        RectTransform contenido = Rect("ResultadoVictoria", raiz);
+        Estirar(contenido, 0f);
+        CanvasGroup grupo = contenido.gameObject.AddComponent<CanvasGroup>();
+        grupo.alpha = 0f;
+        grupo.interactable = false;
+        RectTransform banda = Rect("FondoTextoVictoria", contenido);
+        banda.anchorMin = Vector2.zero;
+        banda.anchorMax = new Vector2(1f, 0.39f);
+        banda.offsetMin = banda.offsetMax = Vector2.zero;
+        Imagen(banda, new Color(0.015f, 0.01f, 0.025f, 0.65f));
+        Text nombreGanador = Texto("NombreGanador", contenido, ganador == 0 ? "MISMA PUNTUACION" : nombre, 54);
+        Ubicar(nombreGanador.rectTransform, new Vector2(0.2f, 0.29f), new Vector2(0.8f, 0.38f));
+        Text titulo = Texto("Winner", contenido, ganador == 0 ? "EMPATE" : "¡VICTORIA!", 118);
+        titulo.fontStyle = FontStyle.BoldAndItalic;
+        titulo.color = new Color(1f, 0.9f, 0.62f);
+        Ubicar(titulo.rectTransform, new Vector2(0.25f, 0.14f), new Vector2(0.75f, 0.3f));
+        tiempo = 0f;
+        while (tiempo < 0.35f)
+        {
+            tiempo += Time.unscaledDeltaTime;
+            grupo.alpha = Mathf.Clamp01(tiempo / 0.35f);
+            yield return null;
+        }
+        grupo.alpha = 1f;
+        Button botonRevancha = Boton("Revancha", contenido, "REVANCHA", new Vector2(0.035f, 0.045f),
+            new Vector2(0.29f, 0.135f), revancha, grupo);
+        Button botonMenu = Boton("MenuPrincipal", contenido, "MENU PRINCIPAL", new Vector2(0.71f, 0.045f),
+            new Vector2(0.965f, 0.135f), volverMenu, grupo);
+        if (EventSystem.current == null)
+        {
+            GameObject eventos = new GameObject("EventosVictoria", typeof(EventSystem), typeof(InputSystemUIInputModule));
+            UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(eventos, gameObject.scene);
+            eventos.GetComponent<InputSystemUIInputModule>().AssignDefaultActions();
+        }
+        Navigation izquierda = new Navigation { mode = Navigation.Mode.Explicit,
+            selectOnRight = botonMenu, selectOnLeft = botonMenu };
+        Navigation derecha = new Navigation { mode = Navigation.Mode.Explicit,
+            selectOnLeft = botonRevancha, selectOnRight = botonRevancha };
+        botonRevancha.navigation = izquierda;
+        botonMenu.navigation = derecha;
+        RectTransform[] botones = { botonRevancha.GetComponent<RectTransform>(), botonMenu.GetComponent<RectTransform>() };
+        tiempo = 0f;
+        while (tiempo < 0.3f)
+        {
+            tiempo += Time.unscaledDeltaTime;
+            float t = Mathf.SmoothStep(0f, 1f, tiempo / 0.3f);
+            botones[0].anchoredPosition = new Vector2(Mathf.Lerp(-600f, 0f, t), 0f);
+            botones[1].anchoredPosition = new Vector2(Mathf.Lerp(600f, 0f, t), 0f);
+            yield return null;
+        }
+        foreach (RectTransform boton in botones) boton.anchoredPosition = Vector2.zero;
+        grupo.interactable = true;
+        EventSystem.current.SetSelectedGameObject(botonRevancha.gameObject);
+    }
+
+    private Button Boton(string nombre, Transform padre, string etiqueta, Vector2 min, Vector2 max,
+        System.Action accion, CanvasGroup grupo)
+    {
+        RectTransform rect = Rect(nombre, padre);
+        Ubicar(rect, min, max);
+        Image fondo = Imagen(rect, new Color(0.11f, 0.08f, 0.16f, 0.98f));
+        fondo.raycastTarget = true;
+        Outline borde = rect.gameObject.AddComponent<Outline>();
+        borde.effectColor = new Color(0.95f, 0.82f, 0.5f);
+        borde.effectDistance = new Vector2(2f, -2f);
+        Button boton = rect.gameObject.AddComponent<Button>();
+        boton.targetGraphic = fondo;
+        ColorBlock colores = boton.colors;
+        colores.highlightedColor = new Color(0.65f, 0.5f, 0.8f);
+        colores.selectedColor = colores.highlightedColor;
+        boton.colors = colores;
+        Text texto = Texto("Texto", rect, etiqueta, 36);
+        texto.resizeTextForBestFit = true;
+        texto.resizeTextMinSize = 16;
+        texto.resizeTextMaxSize = 36;
+        Estirar(texto.rectTransform, 12f);
+        boton.onClick.AddListener(() =>
+        {
+            if (cargandoResultado || TransicionEscena.EnCurso) return;
+            cargandoResultado = true;
+            grupo.interactable = false;
+            AudioJuego.Instancia?.BotonMenu();
+            accion?.Invoke();
+        });
+        return boton;
+    }
+
+    private static void Ubicar(RectTransform rect, Vector2 min, Vector2 max)
+    {
+        rect.anchorMin = min;
+        rect.anchorMax = max;
+        rect.offsetMin = rect.offsetMax = Vector2.zero;
+    }
 
     public void Inicializar(Sprite morado, Sprite rojo, string nombre1, string nombre2, Camera[] vistas)
     {
@@ -130,11 +262,19 @@ public class PresentacionVersus : MonoBehaviour
         {
             float final = i == 0 ? izquierda : 1f - derecha;
             float ancho = Mathf.Lerp(0.5f, final, apertura) * raiz.rect.width;
+            if (mostrandoResultado)
+            {
+                float destino = ganadorResultado == 0 ? raiz.rect.width * 0.5f : raiz.rect.width;
+                if (ganadorResultado == 0 || i == ganadorResultado - 1)
+                    ancho = Mathf.Lerp(ancho, destino, progresoResultado);
+            }
             paneles[i].sizeDelta = new Vector2(ancho, 0f);
             paneles[i].anchoredPosition = Vector2.zero;
             // Mantener proporcion de la ilustracion; la mascara recorta el retrato, no lo deforma.
-            float lado = Mathf.Max(raiz.rect.height, ancho);
-            retratos[i].sizeDelta = new Vector2(lado, lado);
+            Sprite imagen = retratos[i].GetComponent<Image>().sprite;
+            float aspecto = imagen != null ? imagen.rect.width / imagen.rect.height : 1f;
+            float alto = Mathf.Max(raiz.rect.height, ancho / aspecto);
+            retratos[i].sizeDelta = new Vector2(alto * aspecto, alto);
             retratos[i].anchoredPosition = Vector2.zero;
             bordes[i].gameObject.SetActive(ancho > 1f);
         }
