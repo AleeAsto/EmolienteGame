@@ -23,7 +23,13 @@ MonoBehaviour:
   cerrarPuerta: {fileID: 8300000, guid: c9efd5a070986984a8e551c549417606, type: 3}
   versus: {fileID: 8300000, guid: a33969e4325dc1449a9f4d21f2489727, type: 3}
   victoria: {fileID: 8300000, guid: b411dfe64dccdbe4886dbb147e0fe103, type: 3}
-  golpe: {fileID: 8300000, guid: 396f52298b5586e4f9985f8defe30cb0, type: 3}
+  golpe: {fileID: 8300000, guid: 4fb98018487ba5f4f9a5f9ccd7a32397, type: 3}
+  variantesGolpe:
+  - {fileID: 8300000, guid: 4fb98018487ba5f4f9a5f9ccd7a32397, type: 3}
+  - {fileID: 8300000, guid: e34c46938bc37324ba8877eae7be23fc, type: 3}
+  - {fileID: 8300000, guid: 9eeedeb9f92e17a448ae55dc9d042670, type: 3}
+  - {fileID: 8300000, guid: 101349a1cc1154e4a9aa37e5029d3113, type: 3}
+  - {fileID: 8300000, guid: 5bc5bfa043c20574b817d959cac0d3b6, type: 3}
   estudianteAgotado: {fileID: 8300000, guid: 1e2ba83f965eaa640aab6fb5de80fe24, type: 3}
   abrirCasillero: {fileID: 8300000, guid: 66894454d0d606241bc44d7ca97ba39b, type: 3}
   cerrarCasillero: {fileID: 8300000, guid: bfb49a7259b217f4baebce177660a406, type: 3}

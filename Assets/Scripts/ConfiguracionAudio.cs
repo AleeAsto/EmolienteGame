@@ -18,6 +18,8 @@ public class ConfiguracionAudio : ScriptableObject
     public AudioClip versus;
     public AudioClip victoria;
     public AudioClip golpe;
+    [Tooltip("Un solo impacto por archivo. Se elige una variante por ataque.")]
+    public AudioClip[] variantesGolpe;
     public AudioClip estudianteAgotado;
     public AudioClip abrirCasillero;
     public AudioClip cerrarCasillero;

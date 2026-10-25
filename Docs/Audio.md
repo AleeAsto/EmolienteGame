@@ -28,7 +28,11 @@ El control de efectos incluye pasos y modifica tambien los sonidos ya activos.
 - `V.S.`: presentacion versus, despues del fundido de carga.
 - `WIN`: inicio de la presentacion de victoria; usa el canal de interfaz para
   sonar con el reloj detenido. No se dispara en empates.
-- `Golpe`: ataque aceptado; un intento en cooldown no repite el sonido.
+- `Golpes/Golpe01` a `Golpe05`: cada WAV contiene un solo impacto recortado del
+  OGG original, con fundidos cortos para evitar cortes bruscos. Un ataque aceptado
+  elige una variante aleatoria y evita repetir la anterior. Un intento en cooldown
+  no produce sonido. El OGG original se conserva como fuente, sin reproducir su
+  secuencia completa; el campo individual de respaldo usa tambien un solo golpe.
 - `muerte-de-NPC`: extraccion completada, una sola vez por conversion.
 - `casillero-abierto` y `casillero-cerrado`: cambio real de estado del casillero.
 - `absorber-hablando`: bucle propio de cada jugador mientras drena un objetivo.

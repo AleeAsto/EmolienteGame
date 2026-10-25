@@ -382,7 +382,8 @@ public static class IntegrarArteFinal
     {
         var config = AssetDatabase.LoadAssetAtPath<ConfiguracionAudio>("Assets/Resources/AudioJuego.asset");
         config.versus = Audio("V.S"); config.victoria = Audio("WIN");
-        config.golpe = Audio("Golpe"); config.estudianteAgotado = Audio("muerte-de-NPC");
+        PrepararSonidosGolpe.Configurar();
+        config.estudianteAgotado = Audio("muerte-de-NPC");
         config.abrirCasillero = Audio("casillero-abierto"); config.cerrarCasillero = Audio("casillero-cerrado");
         config.succion = Audio("absorber-hablando"); config.aturdimiento = Audio("stune-pajaros");
         foreach (var clip in new[] { config.versus, config.victoria, config.golpe, config.estudianteAgotado,

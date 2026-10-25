@@ -14,6 +14,7 @@ public class AudioJuego : MonoBehaviour
     private AudioListener escucha;
     private Coroutine transicion;
     private int versionEscena;
+    private int ultimoGolpe = -1;
     public float VolumenMusica { get; private set; } = 1f;
     public float VolumenEfectos { get; private set; } = 1f;
     private float VolumenMusicalFinal => Configuracion.volumenMusica * VolumenMusica;
@@ -154,7 +155,24 @@ public class AudioJuego : MonoBehaviour
     public void UsarCarta() => Reproducir(efectosPartida, Configuracion.usarCarta);
     public void Versus() => Reproducir(efectosMenu, Configuracion.versus);
     public void Victoria() => Reproducir(efectosMenu, Configuracion.victoria);
-    public void Golpe() => Reproducir(efectosPartida, Configuracion.golpe);
+    public void Golpe()
+    {
+        var variantes = Configuracion.variantesGolpe;
+        if (variantes == null || variantes.Length == 0)
+        {
+            Reproducir(efectosPartida, Configuracion.golpe);
+            return;
+        }
+        int indice;
+        if (variantes.Length > 1 && ultimoGolpe >= 0 && ultimoGolpe < variantes.Length)
+        {
+            indice = Random.Range(0, variantes.Length - 1);
+            if (indice >= ultimoGolpe) indice++;
+        }
+        else indice = Random.Range(0, variantes.Length);
+        ultimoGolpe = indice;
+        Reproducir(efectosPartida, variantes[indice]);
+    }
     public void EstudianteAgotado() => Reproducir(efectosPartida, Configuracion.estudianteAgotado);
     public void Casillero(bool abierto) => Reproducir(efectosPartida,
         abierto ? Configuracion.abrirCasillero : Configuracion.cerrarCasillero);
