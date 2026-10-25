@@ -9,9 +9,10 @@ public class AuraOlorJugador : MonoBehaviour
     private CicloPartida partida;
     private float finPerfume;
     private float finBomba;
-    private float radioPerfume = 8f;
-    private float radioBomba = 8f;
-    private float retirada = 1.25f;
+    private float radioPerfume = 10f;
+    private float radioBomba = 10f;
+    private float retirada = 1.6f;
+    private float atraccion = 1.5f;
     private readonly List<Halo> halos = new List<Halo>();
     private class Halo
     {
@@ -32,7 +33,7 @@ public class AuraOlorJugador : MonoBehaviour
         Limpiar();
     }
 
-    public void Aplicar(bool repeler, float duracion, float radio, float multiplicadorRetirada)
+    public void Aplicar(bool repeler, float duracion, float radio, float multiplicadorRetirada, float multiplicadorAtraccion = 1.5f)
     {
         if (!EnCurso || duracion <= 0f || radio <= 0f) return;
         if (repeler)
@@ -45,6 +46,7 @@ public class AuraOlorJugador : MonoBehaviour
         {
             finPerfume = Mathf.Max(finPerfume, Time.time + duracion);
             radioPerfume = radio;
+            atraccion = Mathf.Max(1f, multiplicadorAtraccion);
         }
     }
 
@@ -75,7 +77,7 @@ public class AuraOlorJugador : MonoBehaviour
                 mejor = distancia; desempate = id;
                 centro = aura.transform.position;
                 repeler = bomba;
-                multiplicador = bomba ? aura.retirada : 1f;
+                multiplicador = bomba ? aura.retirada : aura.atraccion;
             }
         }
         return encontrado;

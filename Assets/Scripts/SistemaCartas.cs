@@ -322,7 +322,7 @@ public class SistemaCartas : MonoBehaviour
             objetivo?.AplicarConfusion(carta.DuracionEfecto);
         else if (carta.Efecto == EfectoCarta.Perfume || carta.Efecto == EfectoCarta.BombaApestosa)
             objetivo?.AplicarOlor(carta.Efecto == EfectoCarta.BombaApestosa, carta.DuracionEfecto,
-                carta.RadioOlor, carta.MultiplicadorRetirada);
+                carta.RadioOlor, carta.MultiplicadorRetirada, carta.MultiplicadorAtraccion);
     }
 
     private void CancelarPresentaciones()

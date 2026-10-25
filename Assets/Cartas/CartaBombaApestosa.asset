@@ -22,5 +22,6 @@ MonoBehaviour:
   multiplicadorVelocidad: 1
   duracionEfecto: 8
   potente: 0
-  radioOlor: 8
-  multiplicadorRetirada: 1.25
+  radioOlor: 10
+  multiplicadorRetirada: 1.6
+  multiplicadorAtraccion: 1.5

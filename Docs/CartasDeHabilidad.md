@@ -233,9 +233,9 @@ mano con C/M y confirmar con el boton de absorcion configurado. No tiene atajo p
 ## Perfume y Bomba apestosa
 
 La carta Perfume es verde (buff) y su efecto visual rosa. Se aplica al lanzador y atrae estudiantes disponibles dentro de
-8 unidades. Esperan en distintos puntos alrededor del jugador, dentro del alcance
+10 unidades, caminando a 1.5x de su rapidez habitual. Esperan en distintos puntos alrededor del jugador, dentro del alcance
 de absorcion. La carta Bomba apestosa es roja (debuff), con efecto visual verde, y se aplica al rival: los estudiantes se
-alejan caminando un 25 % mas rapido (1.25x), sin entrar en huida permanente.
+alejan caminando un 60 % mas rapido (1.6x), sin entrar en huida permanente.
 Con la bomba giran horizontalmente para alejarse y conservan ese nuevo sentido al
 salir del alcance o terminar el efecto, retomando su rapidez normal. No se empujan
 contra los bordes verticales ni se quedan detenidos en el limite de ZoneMov.

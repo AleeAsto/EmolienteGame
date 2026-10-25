@@ -17,8 +17,9 @@ public class DefinicionCarta : ScriptableObject
     [SerializeField, Min(0.1f)] private float multiplicadorVelocidad = 1f;
     [SerializeField, Min(0.1f)] private float duracionEfecto = 8f;
     [SerializeField] private bool potente;
-    [SerializeField, Min(0.5f)] private float radioOlor = 8f;
-    [SerializeField, Min(1f)] private float multiplicadorRetirada = 1.25f;
+    [SerializeField, Min(0.5f)] private float radioOlor = 10f;
+    [SerializeField, Min(1f)] private float multiplicadorRetirada = 1.6f;
+    [SerializeField, Min(1f)] private float multiplicadorAtraccion = 1.5f;
 
     public string Identificador => identificador;
     public string Titulo => titulo;
@@ -33,6 +34,7 @@ public class DefinicionCarta : ScriptableObject
     public float DuracionEfecto => Mathf.Max(0.1f, duracionEfecto);
     public float RadioOlor => Mathf.Max(0.5f, radioOlor);
     public float MultiplicadorRetirada => Mathf.Max(1f, multiplicadorRetirada);
+    public float MultiplicadorAtraccion => Mathf.Max(1f, multiplicadorAtraccion);
     public Color ColorCarta => destino == DestinoCarta.Propio
         ? new Color(0.52f, 1f, 0.62f) : new Color(1f, 0.48f, 0.48f);
     public string Descripcion => efecto == EfectoCarta.Velocidad

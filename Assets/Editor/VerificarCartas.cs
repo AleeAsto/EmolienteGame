@@ -71,8 +71,9 @@ public static class VerificarCartas
                 AssetDatabase.ImportAsset(ruta, ImportAssetOptions.ForceUpdate);
                 cartasOlor[i] = AssetDatabase.LoadAssetAtPath<DefinicionCarta>(ruta);
                 Exigir(cartasOlor[i] != null && cartasOlor[i].DuracionEfecto == (i % 2 == 0 ? 8f : 20f) &&
-                    cartasOlor[i].PuntosNecesarios == (i % 2 == 0 ? 20f : 40f) && cartasOlor[i].RadioOlor == 8f,
-                    "Assets de olor: 8/20 s, costo 20/40, radio 8");
+                    cartasOlor[i].PuntosNecesarios == (i % 2 == 0 ? 20f : 40f) && cartasOlor[i].RadioOlor == 10f &&
+                    cartasOlor[i].MultiplicadorAtraccion == 1.5f && cartasOlor[i].MultiplicadorRetirada == 1.6f,
+                    "Assets de olor: radio 10, atraccion 1.5x y retirada 1.6x");
             }
             Exigir(confusion != null && confusion.Efecto == EfectoCarta.Confusion && confusion.DuracionEfecto == 10f &&
                 confusionPotente != null && confusionPotente.EsPotente && confusionPotente.DuracionEfecto == 16f,
@@ -223,7 +224,7 @@ public static class VerificarCartas
 
             VerificarRepartos(sistema, partida, p1, p2, carta, pesadez, aceleracionPotente, pesadezPotente);
             VerificarSeguimiento(escena);
-            const string mensaje = "OK: Perfume rosa, bomba verde, atraccion, retirada +25%, prioridad de olores, renovacion y absorcion en curso; catalogo de diez, Confusion, repartos y camaras.";
+            const string mensaje = "OK: radio 10, atraccion 1.5x y retirada 1.6x, giro de estudiantes, halo, renovacion y absorcion en curso; catalogo, Confusion, repartos y camaras.";
             Directory.CreateDirectory("Temp");
             File.WriteAllText(Resultado, mensaje);
             Debug.Log(mensaje);
@@ -277,14 +278,17 @@ public static class VerificarCartas
                     copia.sortingOrder < fuente.sortingOrder, "Halo difuminado detras del sprite");
             }
             Vector3 inicio = centro + Vector3.right * 3f;
+            // Tolerancia absoluta: las coordenadas grandes del mapa pierden precision submilimetrica.
             Exigir(AuraOlorJugador.CalcularPaso(inicio, 2f, 0.1f, zona.bounds, p1.gameObject.scene, 1, out Vector3 atraido) &&
-                Vector2.Distance(atraido, centro) < Vector2.Distance(inicio, centro), "Perfume acerca al estudiante");
+                Vector2.Distance(atraido, centro) < Vector2.Distance(inicio, centro) &&
+                Mathf.Abs(Vector3.Distance(atraido, inicio) - 0.3f) < 0.0001f,
+                $"Perfume acerca al estudiante a 1.5x (paso {Vector3.Distance(atraido, inicio)})");
             aplicar.Invoke(sistema, new object[] { p1, cartas[2] });
             Exigir(a2.TieneMalOlor && !a1.TieneMalOlor, "Bomba aplicada al rival");
             Vector3 cercaBomba = p2.transform.position + Vector3.right * 2f;
             Exigir(AuraOlorJugador.CalcularPaso(cercaBomba, 2f, 0.1f, zona.bounds, p1.gameObject.scene, 2, out Vector3 alejado) &&
-                alejado.x > cercaBomba.x && Mathf.Approximately(Vector3.Distance(alejado, cercaBomba), 0.25f),
-                "Retirada moderada a 1.25x, sin huida permanente");
+                alejado.x > cercaBomba.x && Mathf.Abs(Vector3.Distance(alejado, cercaBomba) - 0.32f) < 0.0001f,
+                "Retirada a 1.6x, sin huida permanente");
             AuraOlorJugador.Resolver(centro + Vector3.right * 2f, p1.gameObject.scene, out _, out bool repeler, out _);
             Exigir(repeler, "En empate gana bomba");
             AuraOlorJugador.Resolver(centro + Vector3.right * 0.1f, p1.gameObject.scene, out _, out repeler, out _);

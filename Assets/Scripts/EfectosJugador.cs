@@ -48,7 +48,7 @@ public class EfectosJugador : MonoBehaviour
         GetComponent<IlusionesConfusionJugador>()?.Limpiar();
         GetComponent<AuraOlorJugador>()?.Limpiar();
     }
-    public void AplicarOlor(bool repeler, float duracion, float radio, float retirada) =>
-        GetComponent<AuraOlorJugador>()?.Aplicar(repeler, duracion, radio, retirada);
+    public void AplicarOlor(bool repeler, float duracion, float radio, float retirada, float atraccion = 1.5f) =>
+        GetComponent<AuraOlorJugador>()?.Aplicar(repeler, duracion, radio, retirada, atraccion);
     private void OnDisable() => Limpiar();
 }
