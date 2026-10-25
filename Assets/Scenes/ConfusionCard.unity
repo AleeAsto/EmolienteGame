@@ -517,9 +517,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'PUERTA 3
-
-    ARRIBA'
+  m_Text: ''
 --- !u!114 &365020295
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3496,9 +3494,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'PUERTA 1
-
-    ARRIBA'
+  m_Text: ''
 --- !u!114 &1652862815
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4116,9 +4112,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'PUERTA 2
-
-    ARRIBA'
+  m_Text: ''
 --- !u!114 &1725024270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4213,9 +4207,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'PUERTA 4
-
-    ARRIBA'
+  m_Text: ''
 --- !u!114 &1726123935
 MonoBehaviour:
   m_ObjectHideFlags: 0

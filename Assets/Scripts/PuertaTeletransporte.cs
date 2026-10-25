@@ -62,7 +62,7 @@ public class PuertaTeletransporte : MonoBehaviour
 
         ultimoSegundo = segundos;
         if (textoEstado != null)
-            textoEstado.text = "PUERTA " + numero + "\n" + (segundos > 0 ? segundos + " s" : "ARRIBA");
+            textoEstado.text = string.Empty;
         if (panel != null)
             panel.color = segundos > 0 ? colorCooldown : colorDisponible;
     }
