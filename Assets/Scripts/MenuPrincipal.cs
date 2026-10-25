@@ -6,6 +6,13 @@ using UnityEngine.InputSystem;
 
 public class MenuPrincipal : MonoBehaviour
 {
+    public static bool DebugHabilitado { get; private set; }
+    private const string CodigoDebug = "150506";
+    private int digitosDebug;
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    private static void BloquearDebug() => DebugHabilitado = false;
+
     [SerializeField] private GameObject[] pantallas;
     [SerializeField] private Button[] primerosBotones;
     [SerializeField] private Slider volumen;
@@ -28,6 +35,7 @@ public class MenuPrincipal : MonoBehaviour
 
     private void Update()
     {
+        LeerCodigoDebug();
         if (!cargando && pantallaActual != 0 && Application.isFocused &&
             Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
         {
@@ -35,6 +43,41 @@ public class MenuPrincipal : MonoBehaviour
             if (controles != null && controles.ProcesarEscape()) return;
             ReproducirBoton();
             GuardarOpciones();
+        }
+    }
+
+    private void LeerCodigoDebug()
+    {
+        if (DebugHabilitado) return;
+        if (cargando || pantallaActual != 0 || !Application.isFocused || Keyboard.current == null)
+        {
+            digitosDebug = 0;
+            return;
+        }
+
+        foreach (var tecla in Keyboard.current.allKeys)
+        {
+            if (!tecla.wasPressedThisFrame) continue;
+            char digito;
+            switch (tecla.keyCode)
+            {
+                case Key.Numpad0: digito = '0'; break;
+                case Key.Numpad1: digito = '1'; break;
+                case Key.Numpad2: digito = '2'; break;
+                case Key.Numpad3: digito = '3'; break;
+                case Key.Numpad4: digito = '4'; break;
+                case Key.Numpad5: digito = '5'; break;
+                case Key.Numpad6: digito = '6'; break;
+                case Key.Numpad7: digito = '7'; break;
+                case Key.Numpad8: digito = '8'; break;
+                case Key.Numpad9: digito = '9'; break;
+                default: digitosDebug = 0; continue;
+            }
+            digitosDebug = digito == CodigoDebug[digitosDebug] ? digitosDebug + 1 : (digito == '1' ? 1 : 0);
+            if (digitosDebug != CodigoDebug.Length) continue;
+            DebugHabilitado = true;
+            AudioJuego.Instancia?.BotonMenu();
+            break;
         }
     }
 

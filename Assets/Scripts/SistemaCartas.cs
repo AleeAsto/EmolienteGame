@@ -143,7 +143,7 @@ public class SistemaCartas : MonoBehaviour
             return;
         CargarCatalogo();
 
-        if (atajosDesarrollo && (Application.isEditor || Debug.isDebugBuild) && Application.isFocused && Keyboard.current != null)
+        if (MenuPrincipal.DebugHabilitado && atajosDesarrollo && Application.isFocused && Keyboard.current != null)
         {
             // Atajos de prueba, sin alterar el reloj de entregas normales.
             bool forzarPotente = Keyboard.current.leftShiftKey.isPressed || Keyboard.current.rightShiftKey.isPressed;

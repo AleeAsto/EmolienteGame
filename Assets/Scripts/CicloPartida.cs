@@ -115,7 +115,7 @@ public class CicloPartida : MonoBehaviour
 
         TiempoRestante = Mathf.Max(0f, TiempoRestante - Time.deltaTime);
         // Atajo de prueba: adelantar el final sin aumentar el tiempo restante.
-        if (Application.isFocused && Keyboard.current != null && Keyboard.current.tKey.wasPressedThisFrame &&
+        if (MenuPrincipal.DebugHabilitado && Application.isFocused && Keyboard.current != null && Keyboard.current.tKey.wasPressedThisFrame &&
             !ConfiguracionControles.TeclaEnUso(Key.T))
             TiempoRestante = Mathf.Min(TiempoRestante, 3f);
 
