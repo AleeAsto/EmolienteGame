@@ -23,8 +23,10 @@ public class SuccionJugador : MonoBehaviour
     public InputAction AccionSuccionar => accionSuccionar;
 
     public AlmaEstudiante Objetivo => objetivo;
+    public float DuracionDrenajeActual => Mathf.Max(0.1f, tiempoDrenaje) *
+        (objetivo != null ? objetivo.MultiplicadorTiempoDrenaje : 1f);
     public float Progreso01 => objetivo != null
-        ? Mathf.Clamp01(tiempoAcumulado / Mathf.Max(0.1f, tiempoDrenaje))
+        ? Mathf.Clamp01(tiempoAcumulado / DuracionDrenajeActual)
         : 0f;
 
     private void Awake()
@@ -97,7 +99,7 @@ public class SuccionJugador : MonoBehaviour
             return;
         }
 
-        float duracion = Mathf.Max(0.1f, tiempoDrenaje);
+        float duracion = DuracionDrenajeActual;
         // Limitar el ultimo frame para no premiar tiempo posterior a la conversion.
         float multiplicador = efectos != null ? efectos.MultiplicadorVelocidad : 1f;
         float tiempoAbsorbido = Mathf.Min(Time.deltaTime * multiplicador, duracion - tiempoAcumulado);

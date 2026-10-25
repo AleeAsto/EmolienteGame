@@ -24,8 +24,9 @@ El prefab `Assets/Prefabs/Estudiante.prefab` usa un sprite provisional.
 
 `Assets/Prefabs/EstudianteRaro.prefab` es una variante con tinte dorado y cinco
 brillos animados. Entrega 30 almas al completar la extraccion, ademas de los
-puntos por segundo habituales; con el drenaje base de 3 s, una extraccion
-completa sin interrupciones suma 36 (30 + 6). La recompensa completa se entrega
+puntos por segundo habituales. El raro requiere 1.5 veces el tiempo normal:
+4.5 s con la base actual de 3 s. Una extraccion completa sin interrupciones
+suma 39 (30 + 9). La recompensa completa se entrega
 una sola vez. Despues se agota, se vuelve gris y desaparece en 2 s, como el normal.
 
 Al completar el drenaje tambien entrega una carta aleatoria al jugador que lo
@@ -45,6 +46,10 @@ En `GeneradorEstudiantes`, `Raros Por Partida` vale 3 y `Multiplicador Velocidad
 Raro` vale 1.25: se aplica al mismo rango base de velocidad. El prefab raro esta
 separado de la poblacion normal, de modo que no aparece al comenzar ni se elige
 para los estudiantes falsos de Confusion.
+
+En `EstudianteRaro/AlmaEstudiante`, `Multiplicador Tiempo Drenaje` (1.5) permite
+ajustar la duracion. Los normales conservan 1. La barra usa la misma duracion
+que la extraccion; Aceleracion y Pesadez siguen modificando su progreso.
 
 Se programan tres momentos aleatorios separados usando la duracion de la ronda.
 En una ronda de 180 s, sus ventanas aproximadas son 26-52, 68-94 y 110-136 s

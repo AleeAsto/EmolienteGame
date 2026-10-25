@@ -6,6 +6,7 @@ public class AlmaEstudiante : MonoBehaviour
 {
     [SerializeField, Min(1)] private int valorAlmas = 10;
     [SerializeField] private bool esRaro;
+    [SerializeField, Min(0.1f)] private float multiplicadorTiempoDrenaje = 1f;
     private bool agotado;
     private float tiempoAgotado;
     private bool asustado;
@@ -13,6 +14,7 @@ public class AlmaEstudiante : MonoBehaviour
 
     public int ValorAlmas => valorAlmas;
     public bool EsRaro => esRaro;
+    public float MultiplicadorTiempoDrenaje => Mathf.Max(0.1f, multiplicadorTiempoDrenaje);
     public bool Asustado => asustado;
     public bool Agotado => agotado;
     public float SegundosAgotado => agotado ? Mathf.Max(0f, Time.time - tiempoAgotado) : 0f;

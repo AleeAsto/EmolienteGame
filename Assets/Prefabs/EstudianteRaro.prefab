@@ -204,6 +204,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AlmaEstudiante
   valorAlmas: 30
   esRaro: 1
+  multiplicadorTiempoDrenaje: 1.5
 --- !u!114 &1707020731826580904
 MonoBehaviour:
   m_ObjectHideFlags: 0
