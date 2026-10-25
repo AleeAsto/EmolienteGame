@@ -97,8 +97,20 @@ public class BrilloPuerta : MonoBehaviour
         objeto.transform.SetParent(transform, false);
         halo = objeto.GetComponent<SpriteRenderer>();
         halo.sprite = spriteHalo;
-        materialHalo = new Material(Shader.Find("Universal Render Pipeline/2D/Sprite-Unlit-Default"));
-        halo.sharedMaterial = materialHalo;
+        // La referencia del material en Resources incluye el shader en la build.
+        Material plantilla = Resources.Load<Material>("MaterialHaloPuerta");
+        if (plantilla != null)
+        {
+            materialHalo = new Material(plantilla);
+            halo.sharedMaterial = materialHalo;
+        }
+        else
+        {
+            halo.enabled = false;
+            Debug.LogWarning("Falta Resources/MaterialHaloPuerta; se omite el halo de la puerta.", this);
+            Destroy(halo.gameObject);
+            halo = null;
+        }
         halo.color = new Color(1f, 1f, 1f, 0.28f);
     }
 

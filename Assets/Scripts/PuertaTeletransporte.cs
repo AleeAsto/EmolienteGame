@@ -40,9 +40,10 @@ public class PuertaTeletransporte : MonoBehaviour
         escalaPanel = panel.transform.localScale;
         limitesPanel = panel.sprite.bounds;
         visualInicializado = true;
+        // El acceso debe quedar listo aunque falle un efecto visual en la build.
+        if (ajustarAccesosAlSprite) AjustarAccesos();
         brillo = gameObject.AddComponent<BrilloPuerta>();
         brillo.Inicializar(panel);
-        if (ajustarAccesosAlSprite) AjustarAccesos();
     }
 
     public float CooldownRestante => Mathf.Max(0f, disponibleDesde - Time.time);
