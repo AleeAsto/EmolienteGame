@@ -48,6 +48,8 @@ public class MenuPartida : MonoBehaviour
         if (!cargando && Application.isFocused && Keyboard.current != null &&
             Keyboard.current.escapeKey.wasPressedThisFrame)
         {
+            var controles = opciones.GetComponent<ConfiguracionControlesUI>();
+            if (controles != null && controles.ProcesarEscape()) return;
             if (opciones.activeSelf) VolverPausa();
             else if (pausado) Continuar();
             else Pausar();

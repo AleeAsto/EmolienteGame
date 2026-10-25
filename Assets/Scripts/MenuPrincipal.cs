@@ -31,6 +31,8 @@ public class MenuPrincipal : MonoBehaviour
         if (!cargando && pantallaActual != 0 && Application.isFocused &&
             Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
         {
+            var controles = pantallas[pantallaActual].GetComponent<ConfiguracionControlesUI>();
+            if (controles != null && controles.ProcesarEscape()) return;
             ReproducirBoton();
             GuardarOpciones();
         }

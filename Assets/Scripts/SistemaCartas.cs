@@ -147,10 +147,10 @@ public class SistemaCartas : MonoBehaviour
         {
             // Atajos de prueba, sin alterar el reloj de entregas normales.
             bool forzarPotente = Keyboard.current.leftShiftKey.isPressed || Keyboard.current.rightShiftKey.isPressed;
-            if (Keyboard.current.gKey.wasPressedThisFrame) EntregarDebugAmbos(forzarPotente ? true : (bool?)null);
-            if (Keyboard.current.digit1Key.wasPressedThisFrame) EntregarDebugAmbos(forzarPotente, EfectoCarta.Latigo);
-            if (Keyboard.current.digit2Key.wasPressedThisFrame) EntregarDebugAmbos(false, EfectoCarta.IntercambioPosicion);
-            if (Keyboard.current.bKey.wasPressedThisFrame)
+            if (Keyboard.current.gKey.wasPressedThisFrame && !ConfiguracionControles.TeclaEnUso(Key.G)) EntregarDebugAmbos(forzarPotente ? true : (bool?)null);
+            if (Keyboard.current.digit1Key.wasPressedThisFrame && !ConfiguracionControles.TeclaEnUso(Key.Digit1)) EntregarDebugAmbos(forzarPotente, EfectoCarta.Latigo);
+            if (Keyboard.current.digit2Key.wasPressedThisFrame && !ConfiguracionControles.TeclaEnUso(Key.Digit2)) EntregarDebugAmbos(false, EfectoCarta.IntercambioPosicion);
+            if (Keyboard.current.bKey.wasPressedThisFrame && !ConfiguracionControles.TeclaEnUso(Key.B))
             {
                 jugador1.Almas.Recibir(100f);
                 jugador2.Almas.Recibir(100f);
