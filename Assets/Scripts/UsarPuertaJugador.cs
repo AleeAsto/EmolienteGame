@@ -74,4 +74,6 @@ public class UsarPuertaJugador : MonoBehaviour
         if (!foco)
             requiereSoltar = true;
     }
+
+    public void BloquearHastaSoltarArriba() => requiereSoltar = true;
 }

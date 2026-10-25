@@ -19,6 +19,9 @@ public class EfectosJugador : MonoBehaviour
         var olor = GetComponent<AuraOlorJugador>();
         if (olor == null) olor = gameObject.AddComponent<AuraOlorJugador>();
         olor.Inicializar(ciclo);
+        var marca = GetComponent<MarcaLatigoJugador>();
+        if (marca == null) marca = gameObject.AddComponent<MarcaLatigoJugador>();
+        marca.Inicializar(ciclo);
         Limpiar();
     }
 
@@ -47,6 +50,7 @@ public class EfectosJugador : MonoBehaviour
         finConfusion = 0f;
         GetComponent<IlusionesConfusionJugador>()?.Limpiar();
         GetComponent<AuraOlorJugador>()?.Limpiar();
+        GetComponent<MarcaLatigoJugador>()?.Limpiar();
     }
     public void AplicarOlor(bool repeler, float duracion, float radio, float retirada) =>
         GetComponent<AuraOlorJugador>()?.Aplicar(repeler, duracion, radio, retirada);

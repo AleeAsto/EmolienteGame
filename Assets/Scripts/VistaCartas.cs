@@ -170,7 +170,7 @@ public class VistaCartas : MonoBehaviour
                 imagenes[i, j].color = colorCarta;
                 textos[i, j].text = reverso
                     ? ""
-                    : $"{(carta.EsPotente ? "POTENTE ★" : "NORMAL")} · {carta.DuracionEfecto:0.#} s\nCosto {carta.PuntosNecesarios:0.#}\n\n{carta.TituloVisible}\n\n{carta.Descripcion}";
+                    : $"{(carta.EsPotente ? "POTENTE ★" : "NORMAL")} · {carta.DuracionVisible}\nCosto {carta.PuntosNecesarios:0.#}\n\n{carta.TituloVisible}\n\n{carta.Descripcion}";
                 textos[i, j].color = reverso ? Color.white :
                     suficiente ? new Color(0.12f, 0.16f, 0.22f) : new Color(0.48f, 0.12f, 0.1f);
                 if (mano.MenuAbierto && !seleccionada)

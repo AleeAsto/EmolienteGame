@@ -112,7 +112,19 @@ public static class VerificarCartas
             foreach (string campo in new[] { "partida", "jugador1", "jugador2", "camara1", "camara2" })
                 Exigir(serializado.FindProperty(campo).objectReferenceValue != null, "Referencia " + campo);
             var catalogo = serializado.FindProperty("catalogo");
-            Exigir(catalogo.arraySize == 10 && catalogo.GetArrayElementAtIndex(0).objectReferenceValue == carta &&
+            var latigo = AssetDatabase.LoadAssetAtPath<DefinicionCarta>("Assets/Cartas/CartaLatigo.asset");
+            var swap = AssetDatabase.LoadAssetAtPath<DefinicionCarta>("Assets/Cartas/CartaSwapPosicion.asset");
+            Exigir(latigo != null && latigo.Efecto == EfectoCarta.Latigo && !latigo.EsPotente &&
+                latigo.PuntosNecesarios == 20f && latigo.DuracionEfecto == 8f &&
+                latigo.AlmasExtraLatigo == 40f && latigo.EmpujonLatigo == 2f,
+                "Latigo normal: costo 20, marca 8 s, extra 40 y empujon 2");
+            Exigir(swap != null && swap.Efecto == EfectoCarta.IntercambioPosicion && !swap.EsPotente &&
+                swap.PuntosNecesarios == 20f && swap.EsInstantanea && swap.DuracionEfecto == 0f,
+                "Swap normal: costo 20 y efecto instantaneo");
+            Exigir(System.Array.IndexOf(((CatalogoCartas)serializado.FindProperty("catalogoCompartido").objectReferenceValue).Cartas, latigo) >= 0 &&
+                System.Array.IndexOf(((CatalogoCartas)serializado.FindProperty("catalogoCompartido").objectReferenceValue).Cartas, swap) >= 0,
+                "Latigo y swap disponibles en catalogo compartido");
+            Exigir(catalogo.arraySize == 12 && catalogo.GetArrayElementAtIndex(0).objectReferenceValue == carta &&
                 catalogo.GetArrayElementAtIndex(1).objectReferenceValue == pesadez &&
                 catalogo.GetArrayElementAtIndex(2).objectReferenceValue == aceleracionPotente &&
                 catalogo.GetArrayElementAtIndex(3).objectReferenceValue == pesadezPotente &&
@@ -223,7 +235,7 @@ public static class VerificarCartas
 
             VerificarRepartos(sistema, partida, p1, p2, carta, pesadez, aceleracionPotente, pesadezPotente);
             VerificarSeguimiento(escena);
-            const string mensaje = "OK: Perfume rosa, bomba verde, atraccion, retirada +25%, prioridad de olores, renovacion y absorcion en curso; catalogo de diez, Confusion, repartos y camaras.";
+            const string mensaje = "OK: Perfume rosa, bomba verde, atraccion, retirada +25%, prioridad de olores, renovacion y absorcion en curso; catalogo de doce, Confusion, repartos y camaras.";
             Directory.CreateDirectory("Temp");
             File.WriteAllText(Resultado, mensaje);
             Debug.Log(mensaje);
