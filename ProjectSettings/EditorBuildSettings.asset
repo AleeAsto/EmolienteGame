@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/AudioMenus/MenuAudioMenus.unity
+    guid: ffccf5fac94eed9419e727c44d16b593
+  - enabled: 1
+    path: Assets/Scenes/AudioMenus/PartidaAudioMenus.unity
+    guid: 1761a2916dfea4a42a49a84b8924e6fd
+  - enabled: 1
     path: Assets/Scenes/MenuPrincipal.unity
     guid: 63761fd4fe9ed93d2d75796ca2e81c8f
   - enabled: 1

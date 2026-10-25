@@ -9,6 +9,7 @@ public class MenuPrincipal : MonoBehaviour
     [SerializeField] private Button[] primerosBotones;
     [SerializeField] private Slider volumen;
     [SerializeField] private Text estado;
+    [SerializeField] private string escenaPartida = "PartidaIntegrada";
     private bool cargando;
 
     private void Start()
@@ -16,8 +17,12 @@ public class MenuPrincipal : MonoBehaviour
         Time.timeScale = 1f;
         AudioListener.volume = PlayerPrefs.GetFloat("VolumenGeneral", 1f);
         volumen.SetValueWithoutNotify(AudioListener.volume);
+        foreach (var boton in GetComponentsInChildren<Button>(true))
+            boton.onClick.AddListener(ReproducirBoton);
         Mostrar(0);
     }
+
+    private void ReproducirBoton() => AudioJuego.Instancia?.BotonMenu();
 
     public void Mostrar(int indice)
     {
@@ -43,9 +48,9 @@ public class MenuPrincipal : MonoBehaviour
     public void Jugar()
     {
         if (cargando) return;
-        if (!Application.CanStreamedLevelBeLoaded("PartidaIntegrada"))
+        if (!Application.CanStreamedLevelBeLoaded(escenaPartida))
         {
-            estado.text = "Falta incluir PartidaIntegrada en la lista de escenas del build.";
+            estado.text = $"Falta incluir {escenaPartida} en la lista de escenas del build.";
             return;
         }
         cargando = true;
@@ -54,6 +59,6 @@ public class MenuPrincipal : MonoBehaviour
             boton.interactable = false;
         PlayerPrefs.Save();
         Time.timeScale = 1f;
-        SceneManager.LoadSceneAsync("PartidaIntegrada");
+        SceneManager.LoadSceneAsync(escenaPartida);
     }
 }

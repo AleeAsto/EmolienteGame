@@ -139,6 +139,7 @@ public class ManoCartasJugador : MonoBehaviour
                     direccionAnterior = 0;
                     siguienteSeleccion = 0f;
                     succion.CancelarSuccion();
+                    AudioJuego.Instancia?.CambiarCarta();
                     Cambiada?.Invoke();
                 }
                 else if (Cantidad == 0)
@@ -157,7 +158,9 @@ public class ManoCartasJugador : MonoBehaviour
         int direccion = Mathf.Abs(x) >= 0.5f ? (x > 0f ? 1 : -1) : 0;
         if (direccion != 0 && (direccion != direccionAnterior || Time.time >= siguienteSeleccion))
         {
+            int anterior = Seleccion;
             Seleccion = (Seleccion + direccion + Cantidad) % Cantidad;
+            if (Seleccion != anterior) AudioJuego.Instancia?.CambiarCarta();
             siguienteSeleccion = Time.time + (direccion != direccionAnterior ? 0.35f : 0.18f);
             Cambiada?.Invoke();
         }
