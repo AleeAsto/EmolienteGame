@@ -31,6 +31,13 @@ public class AtaqueJugador : MonoBehaviour
     [SerializeField] private Vector2 controlArco = new Vector2(2f, 2.3f);
     [SerializeField] private Vector2 finalArco = new Vector2(1.1f, 0.5f);
 
+    [Header("Latigo: apuntado y dash")]
+    [SerializeField, Min(0.1f)] private float alcanceLatigo = 4f;
+    [SerializeField, Min(0.05f)] private float duracionDashLatigo = 0.14f;
+    [SerializeField, Min(0.1f)] private float distanciaFrenoLatigo = 1.1f;
+    [SerializeField, Min(0.1f)] private float radioImpactoLatigo = 0.9f;
+    [SerializeField, Min(0.1f)] private float altoImpactoLatigo = 0.65f;
+
     private InputAction accionGolpear;
     private MovimientoJugador2D movimiento;
     private SuccionJugador succion;
@@ -41,12 +48,26 @@ public class AtaqueJugador : MonoBehaviour
     private bool impactoConsumido;
     private ManoCartasJugador cartas;
     private EfectosJugador efectos;
+    private MarcaLatigoJugador objetivoLatigo;
+    private bool usandoLatigo;
+    private Vector3 puntoLatigo;
     public InputAction AccionGolpear => accionGolpear;
 
     public bool EstaAtacando { get; private set; }
-    public bool PuedeImpactar => EstaAtacando && !impactoConsumido &&
+    public bool PuedeImpactar => EstaAtacando && !impactoConsumido && !EnDash &&
         tiempoAtaque >= Mathf.Min(preparacionGolpe, duracionGolpe * 0.8f);
-    public bool PuedeChocar => EstaAtacando && !impactoConsumido;
+    public bool PuedeChocar => EstaAtacando && !impactoConsumido && !EnDash;
+    private bool EnDash => movimiento != null && movimiento.EstaEnDash;
+    public bool TieneLatigo => objetivoLatigo != null && objetivoLatigo.PerteneceA(this);
+    public bool EsAtaqueLatigo => EstaAtacando && usandoLatigo;
+    public bool MostrarApuntadoLatigo => TieneLatigo && !EstaAtacando && !estado.EstaAturdido &&
+        (cartas == null || !cartas.MenuAbierto);
+    public float ProgresoGolpe => Mathf.Clamp01(tiempoAtaque / Mathf.Max(0.05f, duracionGolpe));
+    public Vector2 RadioApuntadoLatigo => new Vector2(radioImpactoLatigo, altoImpactoLatigo);
+    public Vector3 PuntoLatigo => EsAtaqueLatigo ? puntoLatigo : CalcularApuntadoLatigo();
+    public Vector3 ManoLatigo => transform.position + new Vector3((EstaAtacando ? direccion : movimiento.DireccionHorizontal) * 0.15f, 1.5f, 0f);
+    public bool ObjetivoEnApuntadoLatigo => TieneLatigo && EnAreaLatigo(objetivoLatigo.transform.position, PuntoLatigo) &&
+        recargaRestante <= 0f && !objetivoLatigo.GetComponent<EstadoCombateJugador>().EsInvulnerable;
     public float RecargaRestante => recargaRestante;
     public float Direccion => direccion;
     public float RadioGolpe => radioGolpe;
@@ -68,6 +89,8 @@ public class AtaqueJugador : MonoBehaviour
         estado = GetComponent<EstadoCombateJugador>();
         cartas = GetComponent<ManoCartasJugador>();
         efectos = GetComponent<EfectosJugador>();
+        if (Application.isPlaying)
+            gameObject.AddComponent<VisualLatigoJugador>().Inicializar(this);
         if (golpear == null || golpear.action == null || visualGolpe == null)
         {
             Debug.LogError("Asigna Golpear y Visual Golpe en el Inspector del jugador.", this);
@@ -104,7 +127,8 @@ public class AtaqueJugador : MonoBehaviour
         if (EstaAtacando)
         {
             PosicionAnteriorGolpe = PosicionGolpe;
-            tiempoAtaque += tiempoCombate;
+            if (!EnDash)
+                tiempoAtaque += tiempoCombate;
             if (tiempoAtaque >= duracionGolpe)
                 CancelarAtaque();
             else
@@ -123,6 +147,15 @@ public class AtaqueJugador : MonoBehaviour
 
         succion?.CancelarSuccion();
         direccion = movimiento != null ? movimiento.DireccionHorizontal : 1f;
+        usandoLatigo = TieneLatigo;
+        if (usandoLatigo)
+        {
+            puntoLatigo = CalcularApuntadoLatigo();
+            Vector3 recorrido = puntoLatigo - transform.position;
+            float distancia = recorrido.magnitude;
+            if (distancia > distanciaFrenoLatigo)
+                movimiento.IniciarDash(puntoLatigo - recorrido / distancia * distanciaFrenoLatigo, duracionDashLatigo);
+        }
         tiempoAtaque = 0f;
         recargaRestante = Mathf.Max(0f, cooldown);
         impactoConsumido = false;
@@ -135,6 +168,8 @@ public class AtaqueJugador : MonoBehaviour
     public bool EnAlcance(AtaqueJugador otro)
     {
         Vector2 distancia = otro.transform.position - transform.position;
+        if (usandoLatigo)
+            return distancia.x * direccion >= -0.05f && EnAreaLatigo(otro.transform.position, puntoLatigo);
         return distancia.x * direccion >= -0.05f && Mathf.Abs(distancia.x) <= alcance &&
             Mathf.Abs(distancia.y) <= toleranciaY;
     }
@@ -146,13 +181,24 @@ public class AtaqueJugador : MonoBehaviour
 
     public void CancelarAtaque()
     {
+        if (movimiento != null)
+            movimiento.CancelarDash();
         EstaAtacando = false;
+        usandoLatigo = false;
         impactoConsumido = true;
         OcultarGolpe();
     }
 
     private void ActualizarVisual()
     {
+        if (usandoLatigo)
+        {
+            float extension = Mathf.Sin(ProgresoGolpe * Mathf.PI);
+            Vector3 recogido = ManoLatigo + new Vector3(-direccion * 0.4f, 0.5f, 0f);
+            PosicionGolpe = Vector3.Lerp(recogido, puntoLatigo + Vector3.up * 0.8f, extension);
+            OcultarGolpe();
+            return;
+        }
         float t = Mathf.Clamp01(tiempoAtaque / Mathf.Max(0.05f, duracionGolpe));
         Vector2 punto = (1f - t) * (1f - t) * inicioArco +
             2f * (1f - t) * t * controlArco + t * t * finalArco;
@@ -178,6 +224,35 @@ public class AtaqueJugador : MonoBehaviour
     {
         if (visualGolpe != null)
             visualGolpe.gameObject.SetActive(false);
+    }
+
+    public void PrepararLatigo(MarcaLatigoJugador objetivo) => objetivoLatigo = objetivo;
+
+    public void QuitarLatigo(MarcaLatigoJugador objetivo)
+    {
+        if (objetivoLatigo == objetivo)
+            objetivoLatigo = null;
+    }
+
+    private Vector3 CalcularApuntadoLatigo()
+    {
+        float frente = movimiento != null ? movimiento.DireccionHorizontal : direccion;
+        Vector3 punto = transform.position + Vector3.right * frente * alcanceLatigo;
+        if (TieneLatigo)
+        {
+            Vector3 diferencia = objetivoLatigo.transform.position - transform.position;
+            if (diferencia.x * frente >= -0.05f && Mathf.Abs(diferencia.y) <= toleranciaY)
+                punto = transform.position + Vector3.ClampMagnitude(diferencia, alcanceLatigo);
+        }
+        return movimiento != null ? movimiento.LimitarDestino(punto) : punto;
+    }
+
+    private bool EnAreaLatigo(Vector3 posicion, Vector3 centro)
+    {
+        Vector3 distancia = posicion - centro;
+        float x = distancia.x / Mathf.Max(0.1f, radioImpactoLatigo);
+        float y = distancia.y / Mathf.Max(0.1f, altoImpactoLatigo);
+        return x * x + y * y <= 1f;
     }
 
     private void OnApplicationFocus(bool enfocado)

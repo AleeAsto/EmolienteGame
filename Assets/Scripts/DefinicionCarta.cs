@@ -49,6 +49,6 @@ public class DefinicionCarta : ScriptableObject
             ? $"Estudiantes falsos\ny mano oculta\n{DuracionEfecto:0.#} segundos"
             : efecto == EfectoCarta.Perfume ? $"Atrae estudiantes\nRadio {RadioOlor:0.#}\n{DuracionEfecto:0.#} segundos"
             : efecto == EfectoCarta.BombaApestosa ? $"Aleja estudiantes\nRadio {RadioOlor:0.#}\n{DuracionEfecto:0.#} segundos"
-            : efecto == EfectoCarta.Latigo ? $"Marca al rival {DuracionEfecto:0.#} s\nProximo golpe: -{AlmasExtraLatigo:0.#} almas extra\nEmpujon {EmpujonLatigo:0.#}"
+            : efecto == EfectoCarta.Latigo ? $"Dash y latigazo\nMarca al rival {DuracionEfecto:0.#} s\nGolpe: -{AlmasExtraLatigo:0.#} extra"
             : efecto == EfectoCarta.IntercambioPosicion ? "Intercambia posiciones\ncon el rival\nSin limite de distancia" : "Sin efecto";
 }

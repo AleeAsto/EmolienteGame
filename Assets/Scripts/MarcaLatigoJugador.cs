@@ -29,7 +29,10 @@ public class MarcaLatigoJugador : MonoBehaviour
             Time.timeScale <= 0f || atacante == null || duracion <= 0f)
             return;
 
+        if (autor != null && autor != atacante)
+            autor.QuitarLatigo(this);
         autor = atacante;
+        autor.PrepararLatigo(this);
         finMarca = Mathf.Max(finMarca, Time.time + duracion);
         AlmasExtra = Mathf.Max(0f, almasExtra);
         Empujon = Mathf.Max(0f, empujon);
@@ -105,6 +108,8 @@ public class MarcaLatigoJugador : MonoBehaviour
 
     public void Limpiar()
     {
+        if (autor != null)
+            autor.QuitarLatigo(this);
         autor = null;
         finMarca = 0f;
         ultimoSegundo = -1;

@@ -278,6 +278,26 @@ reaplicarla renueva el plazo sin apilar el bonus. Su tiempo se congela en pausa.
 Se limpia al terminar la partida o desactivar el jugador/sistema.
 En CartaLatigo se ajustan duracion, Almas Extra Latigo y Empujon Latigo.
 
+Mientras la marca esta activa, aparece un circulo en el piso indicando hacia
+donde apunta el latigo. Sigue el ultimo lado horizontal al que miro el lanzador;
+asiste al rival si esta delante, a no mas de 4 unidades y 0.8 en Y. Si no esta
+alineado, apunta hacia delante y el circulo se vuelve gris. El color del jugador
+indica un objetivo en el area y sin invulnerabilidad ni recarga pendiente.
+
+Una pulsacion corta de golpe inicia el dash y el latigazo, sin cargar. El punto
+apuntado queda fijado al atacar para que el rival pueda esquivar. El dash dura
+0.14 s y frena a 1.1 unidades del punto; su recorrido maximo habitual es 2.9.
+Durante el dash no hay impactos ni choques del propio ataque, pero el rival y
+la profesora pueden golpearte e interrumpirlo. Despues sale una cuerda curva
+visible y se comprueba el area del circulo (radios X 0.9 e Y 0.65). El impacto
+aceptado conserva la perdida de 45 almas y el empujon de 2 unidades.
+
+Moverse fuera del area esquiva el golpe y conserva la marca hasta su caducidad.
+Un stun, una puerta o un swap cancelan el dash. El pasillo limita tanto el
+apuntado como el movimiento. La pausa congela el dash; Aceleracion/Pesadez
+siguen modificando el golpe y su recarga, sin cambiar los 0.14 s del dash.
+Alcance, tiempo, freno y area se ajustan en `AtaqueJugador`, apartado Latigo.
+
 Swap de posicion intercambia las posiciones actuales de ambos jugadores,
 incluso si estan lejos o el rival esta aturdido/invulnerable. Cancela los golpes
 y las succiones de ambos, libera sus estudiantes y limpia los empujones pendientes.
