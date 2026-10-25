@@ -13,6 +13,14 @@ public class CicloPartida : MonoBehaviour
     [SerializeField] private AlmasJugador jugador2;
     [SerializeField] private Text textoTiempo;
     [SerializeField] private CuentaRegresivaInicial cuentaRegresiva;
+    [Header("Presentacion VS y marcos")]
+    [SerializeField] private Sprite retratoMorado;
+    [SerializeField] private Sprite retratoRojo;
+    [SerializeField] private string nombreJugador1 = "JUGADOR 1";
+    [SerializeField] private string nombreJugador2 = "JUGADOR 2";
+    [SerializeField, Min(0.1f)] private float duracionVS = 1.3f;
+    [SerializeField, Min(0.1f)] private float duracionAperturaVS = 0.85f;
+    private PresentacionVersus presentacionVS;
 
     public float TiempoRestante { get; private set; }
     public bool Terminada { get; private set; }
@@ -36,12 +44,26 @@ public class CicloPartida : MonoBehaviour
         controlaTiempo = true;
         Time.timeScale = 0f;
         cuentaRegresiva.Ocultar();
+        if (retratoMorado != null && retratoRojo != null)
+        {
+            var vistas = new System.Collections.Generic.List<Camera>();
+            foreach (CamaraPasillo seguimiento in FindObjectsByType<CamaraPasillo>(FindObjectsSortMode.None))
+                if (seguimiento.gameObject.scene == gameObject.scene)
+                    vistas.Add(seguimiento.GetComponent<Camera>());
+            var objeto = new GameObject("PresentacionVersus");
+            UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(objeto, gameObject.scene);
+            presentacionVS = objeto.AddComponent<PresentacionVersus>();
+            presentacionVS.Inicializar(retratoMorado, retratoRojo, nombreJugador1, nombreJugador2, vistas.ToArray());
+        }
     }
 
     private IEnumerator Start()
     {
         if (!controlaTiempo)
             yield break;
+
+        if (presentacionVS != null)
+            yield return presentacionVS.Mostrar(duracionVS, duracionAperturaVS);
 
         for (int numero = 3; numero >= 1; numero--)
         {
