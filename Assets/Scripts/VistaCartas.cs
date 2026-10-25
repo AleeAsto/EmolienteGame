@@ -36,6 +36,8 @@ public class VistaCartas : MonoBehaviour
     private Image imagenPresentacion;
     private Text textoPresentacion;
     private Outline bordePresentacion;
+    private readonly Image[] flashSwap = new Image[2];
+    private float opacidadFlashSwap;
     public const float DuracionEntregaPotente = 2.2f;
     private Font fuente;
     private readonly Color[] colores = { new Color(0.48f, 0.83f, 1f), new Color(0.95f, 0.2f, 0.25f) };
@@ -55,6 +57,20 @@ public class VistaCartas : MonoBehaviour
         scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
         scaler.referenceResolution = new Vector2(1920, 1080);
         scaler.matchWidthOrHeight = 0.5f;
+        RectTransform capaFlash = Rect("FlashSwap", raiz);
+        capaFlash.anchorMin = Vector2.zero;
+        capaFlash.anchorMax = Vector2.one;
+        capaFlash.offsetMin = capaFlash.offsetMax = Vector2.zero;
+        Canvas canvasFlash = capaFlash.gameObject.AddComponent<Canvas>();
+        canvasFlash.overrideSorting = true;
+        canvasFlash.sortingOrder = 250; // Blanco sobre las camaras y HUD, debajo de las cartas.
+        for (int i = 0; i < flashSwap.Length; i++)
+        {
+            RectTransform pantalla = Rect("FlashP" + (i + 1), capaFlash);
+            flashSwap[i] = pantalla.gameObject.AddComponent<Image>();
+            flashSwap[i].raycastTarget = false;
+            flashSwap[i].color = new Color(1f, 1f, 1f, 0f);
+        }
         for (int i = 0; i < 2; i++)
         {
             paneles[i] = Rect("ManoP" + (i + 1), raiz);
@@ -344,6 +360,33 @@ public class VistaCartas : MonoBehaviour
     public void OcultarPresentacion()
     {
         if (presentacion != null) presentacion.gameObject.SetActive(false);
+    }
+
+    public void ActualizarFlashSwap(float intensidad, bool animando)
+    {
+        opacidadFlashSwap = animando ? Mathf.Max(opacidadFlashSwap, Mathf.Clamp01(intensidad)) :
+            Mathf.MoveTowards(opacidadFlashSwap, 0f, Time.deltaTime / 0.1f);
+        MostrarFlashSwap();
+    }
+
+    public void LimpiarFlashSwap()
+    {
+        opacidadFlashSwap = 0f;
+        MostrarFlashSwap();
+    }
+
+    private void MostrarFlashSwap()
+    {
+        for (int i = 0; i < flashSwap.Length; i++)
+        {
+            if (flashSwap[i] == null) continue;
+            RectTransform rect = flashSwap[i].rectTransform;
+            rect.anchorMin = camaras[i].rect.min;
+            rect.anchorMax = camaras[i].rect.max;
+            rect.offsetMin = rect.offsetMax = Vector2.zero;
+            flashSwap[i].color = new Color(1f, 1f, 1f, opacidadFlashSwap);
+            flashSwap[i].gameObject.SetActive(opacidadFlashSwap > 0f);
+        }
     }
 
     public void AnimarUso(int id, ManoCartasJugador jugador, DefinicionCarta carta, Vector2 origen,

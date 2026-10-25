@@ -311,3 +311,5 @@ Golpe fuerte reemplaza el nombre de Latigo. Normal: costo 20, marca 8 s, 40 alma
 Uso de cartas: animacion de 1.9 s (despegue 0.4, entrada 0.45, frente 0.15, un giro de 0.4 y salida 0.5). Los usos se animan en paralelo y se distribuyen horizontalmente centrados, con transicion suave al entrar o salir otra carta. Cada efecto se aplica al terminar su propia animacion.
 
 Las entregas potentes tambien se animan en paralelo: cada jugador recibe su carta a la vez y conserva el giro especial. Cada entrega completa su propia reserva de mano al terminar y se cancela al cerrar la partida.
+
+Swap: su animacion de uso corre al doble de velocidad (0.95 s). Ambas camaras se cubren de blanco en 0.1 s tras una espera inicial de 0.1 s. La carta permanece visible por encima del flash. Al salir la carta se intercambian posiciones bajo blanco completo; luego el flash desaparece en 0.1 s. Swaps simultaneos comparten la cobertura y el fin de partida limpia el flash.

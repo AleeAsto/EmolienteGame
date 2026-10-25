@@ -293,11 +293,21 @@ public class SistemaCartas : MonoBehaviour
             usosActivos.Add(new UsoActivo { lanzamiento = cola[i], id = siguienteUso++ });
             cola.RemoveAt(i);
         }
+        float intensidadSwap = 0f;
+        bool animandoSwap = false;
         for (int i = 0; i < usosActivos.Count;)
         {
             UsoActivo uso = usosActivos[i];
-            uso.tiempo += Time.deltaTime;
             Lanzamiento lanzamiento = uso.lanzamiento;
+            bool esSwap = !lanzamiento.esEntrega && lanzamiento.carta.Efecto == EfectoCarta.IntercambioPosicion;
+            uso.tiempo += Time.deltaTime * (esSwap ? 2f : 1f);
+            if (esSwap)
+            {
+                animandoSwap = true;
+                intensidadSwap = Mathf.Max(intensidadSwap, Mathf.SmoothStep(0f, 1f, (uso.tiempo - 0.2f) / 0.2f));
+                // Cubrir antes del cambio de posiciones, incluso con un frame largo.
+                vista.ActualizarFlashSwap(intensidadSwap, true);
+            }
             int indice = 0, cantidad = 0;
             for (int j = 0; j < usosActivos.Count; j++)
             {
@@ -318,6 +328,7 @@ public class SistemaCartas : MonoBehaviour
             if (lanzamiento.esEntrega) lanzamiento.jugador.CompletarEntrega(lanzamiento.carta);
             else AplicarCarta(lanzamiento.jugador, lanzamiento.carta);
         }
+        vista.ActualizarFlashSwap(intensidadSwap, animandoSwap);
     }
 
     private void AplicarCarta(ManoCartasJugador lanzador, DefinicionCarta carta)
@@ -370,7 +381,11 @@ public class SistemaCartas : MonoBehaviour
         jugador2?.Cerrar();
         jugador1?.CancelarEntregas();
         jugador2?.CancelarEntregas();
-        if (vista != null) vista.OcultarPresentacion();
+        if (vista != null)
+        {
+            vista.OcultarPresentacion();
+            vista.LimpiarFlashSwap();
+        }
     }
 
     private void OnDisable()
