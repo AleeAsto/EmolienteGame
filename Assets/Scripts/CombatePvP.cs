@@ -47,12 +47,13 @@ public class CombatePvP : MonoBehaviour
 
         bool golpe1 = jugador1.PuedeImpactar && jugador1.EnAlcance(jugador2);
         bool golpe2 = jugador2.PuedeImpactar && jugador2.EnAlcance(jugador1);
-        bool succionaba1 = jugador1.EstaSuccionando;
-        bool succionaba2 = jugador2.EstaSuccionando;
+        // Capturar antes de que un impacto cancele y libere el objetivo de succion.
+        float stun1 = CalcularStun(jugador1, jugador2);
+        float stun2 = CalcularStun(jugador2, jugador1);
         if (golpe1)
-            AplicarGolpe(jugador1, jugador2, succionaba2);
+            AplicarGolpe(jugador1, jugador2, stun1);
         if (golpe2)
-            AplicarGolpe(jugador2, jugador1, succionaba1);
+            AplicarGolpe(jugador2, jugador1, stun2);
     }
 
     private bool ChocanLosGolpes()
@@ -93,10 +94,16 @@ public class CombatePvP : MonoBehaviour
         }
     }
 
-    private void AplicarGolpe(AtaqueJugador atacante, AtaqueJugador victima, bool succionaba)
+    private static float CalcularStun(AtaqueJugador atacante, AtaqueJugador victima)
+    {
+        if (victima.EstaSuccionandoRaro)
+            return atacante.StunSuccionandoRaro;
+        return victima.EstaSuccionando ? atacante.StunSuccionando : atacante.StunNormal;
+    }
+
+    private void AplicarGolpe(AtaqueJugador atacante, AtaqueJugador victima, float stun)
     {
         atacante.ConsumirImpacto();
-        float stun = succionaba ? atacante.StunSuccionando : atacante.StunNormal;
         var marca = victima.GetComponent<MarcaLatigoJugador>();
         bool marcado = marca != null && marca.PerteneceA(atacante);
         float empujon = marcado ? marca.Empujon : atacante.Empujon;

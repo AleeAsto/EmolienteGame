@@ -24,9 +24,9 @@ El prefab `Assets/Prefabs/Estudiante.prefab` usa un sprite provisional.
 
 `Assets/Prefabs/EstudianteRaro.prefab` es una variante con tinte dorado y cinco
 brillos animados. Entrega 30 almas al completar la extraccion, ademas de los
-puntos por segundo habituales. El raro requiere 1.5 veces el tiempo normal:
-4.5 s con la base actual de 3 s. Una extraccion completa sin interrupciones
-suma 39 (30 + 9). La recompensa completa se entrega
+puntos por segundo habituales. El raro requiere 6.5 s con la base actual de
+3 s (multiplicador 13/6). Una extraccion completa sin interrupciones
+suma 43 (30 + 13). La recompensa completa se entrega
 una sola vez. Despues se agota, se vuelve gris y desaparece en 2 s, como el normal.
 
 Al completar el drenaje tambien entrega una carta aleatoria al jugador que lo
@@ -47,7 +47,7 @@ Raro` vale 1.25: se aplica al mismo rango base de velocidad. El prefab raro esta
 separado de la poblacion normal, de modo que no aparece al comenzar ni se elige
 para los estudiantes falsos de Confusion.
 
-En `EstudianteRaro/AlmaEstudiante`, `Multiplicador Tiempo Drenaje` (1.5) permite
+En `EstudianteRaro/AlmaEstudiante`, `Multiplicador Tiempo Drenaje` (2.1666667) permite
 ajustar la duracion. Los normales conservan 1. La barra usa la misma duracion
 que la extraccion; Aceleracion y Pesadez siguen modificando su progreso.
 
@@ -139,10 +139,11 @@ directamente a `AlmasJugador` de P1/P2 mediante `CantidadCambiada`.
 - El circulo provisional recorre un arco de arriba hacia abajo delante del
   ultimo lado horizontal al que miro el jugador. P1 empieza mirando a la
   derecha y P2 a la izquierda; moverse verticalmente no cambia ese lado.
-- Un impacto normal agrega 2 segundos de stun. Si la victima estaba succionando,
-  aplica 5 segundos, cancela su progreso y libera inmediatamente al estudiante.
-  El estudiante interrumpido se asusta y huye, siguiendo el comportamiento de
-  cancelacion del estudiante; ya no admite otra absorcion.
+- Un impacto normal agrega 2 segundos de stun. Si la victima estaba succionando
+  un estudiante normal, aplica 5 segundos; si drenaba un raro, aplica 7 segundos.
+  Cancela su progreso y libera inmediatamente al estudiante. El normal se asusta
+  y huye; el raro sigue disponible para que el rival lo reclame y empiece de cero.
+  `Stun Succionando Raro` se ajusta en `AtaqueJugador` de cada jugador.
 - Durante todo el stun y durante 0.5 segundos adicionales tras recuperarse,
   el jugador es invulnerable: los golpes no agregan ni reinician stun y tampoco
   aplican empujon ni cancelan succion. Durante la proteccion posterior puede actuar.

@@ -2476,6 +2476,7 @@ MonoBehaviour:
   radioGolpe: 0.3
   stunNormal: 2
   stunSuccionando: 5
+  stunSuccionandoRaro: 7
   stunBloqueo: 0.5
   empujon: 0.3
   empujonBloqueo: 0.15
@@ -4485,6 +4486,7 @@ MonoBehaviour:
   radioGolpe: 0.3
   stunNormal: 2
   stunSuccionando: 5
+  stunSuccionandoRaro: 7
   stunBloqueo: 0.5
   empujon: 0.3
   empujonBloqueo: 0.15

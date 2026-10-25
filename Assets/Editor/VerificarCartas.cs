@@ -288,7 +288,7 @@ public static class VerificarCartas
             Exigir(combate != null, "Coordinador de combate presente");
             float perdidaNormal = (float)LeerCampo(combate, "almasPerdidasPorGolpe");
             var golpear = typeof(CombatePvP).GetMethod("AplicarGolpe", BindingFlags.NonPublic | BindingFlags.Instance);
-            golpear.Invoke(combate, new object[] { ataque1, ataque2, false });
+            golpear.Invoke(combate, new object[] { ataque1, ataque2, ataque1.StunNormal });
             Exigir(Mathf.Approximately(p2.Almas.Cantidad, 100f - perdidaNormal - latigo.AlmasExtraLatigo) &&
                 !marca.EstaMarcado, "Golpe aceptado aplica extra y consume marca una sola vez");
             Exigir(Mathf.Approximately(((Vector2)LeerCampo(movimiento2, "empujonPendiente")).magnitude, 7f) &&
@@ -296,13 +296,13 @@ public static class VerificarCartas
                 "Golpe normal empuja 7 unidades con impulso de 0.65 s");
             aplicar.Invoke(sistema, new object[] { p1, latigo });
             float antes = p2.Almas.Cantidad;
-            golpear.Invoke(combate, new object[] { ataque1, ataque2, false });
+            golpear.Invoke(combate, new object[] { ataque1, ataque2, ataque1.StunNormal });
             Exigir(p2.Almas.Cantidad == antes && marca.EstaMarcado,
                 "Invulnerabilidad impide dano extra sin consumir la marca");
             Campo(estado2, "invulnerabilidadRestante", 0f);
             Campo(estado2, "aturdimientoRestante", 0f);
             Campo(marca, "finMarca", Time.time - 1f);
-            golpear.Invoke(combate, new object[] { ataque1, ataque2, false });
+            golpear.Invoke(combate, new object[] { ataque1, ataque2, ataque1.StunNormal });
             Exigir(Mathf.Approximately(p2.Almas.Cantidad, antes - perdidaNormal), "Marca expirada no agrega dano");
 
             Vector3 centro = movimiento1.ZonaMovimiento.bounds.center;
@@ -312,7 +312,7 @@ public static class VerificarCartas
             Campo(estado2, "invulnerabilidadRestante", 0f);
             aplicar.Invoke(sistema, new object[] { p1, potente });
             float antesPotente = p2.Almas.Cantidad;
-            golpear.Invoke(combate, new object[] { ataque1, ataque2, false });
+            golpear.Invoke(combate, new object[] { ataque1, ataque2, ataque1.StunNormal });
             Exigir(Mathf.Approximately(p2.Almas.Cantidad, Mathf.Max(0f, antesPotente - perdidaNormal - potente.AlmasExtraLatigo)),
                 "Golpe potente descuenta dano base mas 60 puntos extra");
             Vector3 borde = p2.transform.position;

@@ -22,6 +22,7 @@ public class AtaqueJugador : MonoBehaviour
     [Header("Impacto")]
     [SerializeField, Min(0f)] private float stunNormal = 2f;
     [SerializeField, Min(0f)] private float stunSuccionando = 5f;
+    [SerializeField, Min(0f)] private float stunSuccionandoRaro = 7f;
     [SerializeField, Min(0f)] private float stunBloqueo = 0.5f;
     [SerializeField, Min(0f)] private float empujon = 0.3f;
     [SerializeField, Min(0f)] private float empujonBloqueo = 0.15f;
@@ -74,11 +75,13 @@ public class AtaqueJugador : MonoBehaviour
     public float ToleranciaY => toleranciaY;
     public float StunNormal => stunNormal;
     public float StunSuccionando => stunSuccionando;
+    public float StunSuccionandoRaro => stunSuccionandoRaro;
     public float StunBloqueo => stunBloqueo;
     public float Empujon => empujon;
     public float EmpujonBloqueo => empujonBloqueo;
     public EstadoCombateJugador Estado => estado;
     public bool EstaSuccionando => succion != null && succion.Objetivo != null;
+    public bool EstaSuccionandoRaro => EstaSuccionando && succion.Objetivo.EsRaro;
     public Vector2 PosicionAnteriorGolpe { get; private set; }
     public Vector2 PosicionGolpe { get; private set; }
 
