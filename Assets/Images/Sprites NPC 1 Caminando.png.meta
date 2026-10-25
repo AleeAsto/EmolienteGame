@@ -1,0 +1,764 @@
+fileFormatVersion: 2
+guid: 0089cba380d091b4eb56fd7158a11ac5
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8326128041966390649
+    second: Sprites NPC 1 Caminando_0
+  - first:
+      213: 1969188584617735244
+    second: Sprites NPC 1 Caminando_1
+  - first:
+      213: -6206833244221820242
+    second: Sprites NPC 1 Caminando_2
+  - first:
+      213: -4577771349876944998
+    second: Sprites NPC 1 Caminando_3
+  - first:
+      213: 7007870271498587570
+    second: Sprites NPC 1 Caminando_4
+  - first:
+      213: 8679833846613402090
+    second: Sprites NPC 1 Caminando_5
+  - first:
+      213: 727247381290264410
+    second: Sprites NPC 1 Caminando_6
+  - first:
+      213: 5322000718180377406
+    second: Sprites NPC 1 Caminando_7
+  - first:
+      213: -3968322274696819502
+    second: Sprites NPC 1 Caminando_8
+  - first:
+      213: -4905643922824827338
+    second: Sprites NPC 1 Caminando_9
+  - first:
+      213: 3435121524779323307
+    second: Sprites NPC 1 Caminando_10
+  - first:
+      213: 8409981940449452552
+    second: Sprites NPC 1 Caminando_11
+  - first:
+      213: -2972315927287502472
+    second: Sprites NPC 1 Caminando_12
+  - first:
+      213: 4775026394540383654
+    second: Sprites NPC 1 Caminando_13
+  - first:
+      213: -7185811800400972561
+    second: Sprites NPC 1 Caminando_14
+  - first:
+      213: -2283773967409403316
+    second: Sprites NPC 1 Caminando_15
+  - first:
+      213: 1729008188469866580
+    second: Sprites NPC 1 Caminando_16
+  - first:
+      213: 6704385317025238150
+    second: Sprites NPC 1 Caminando_17
+  - first:
+      213: -5113636751285436243
+    second: Sprites NPC 1 Caminando_18
+  - first:
+      213: -2761889282452522019
+    second: Sprites NPC 1 Caminando_19
+  - first:
+      213: 6097260500544502827
+    second: Sprites NPC 1 Caminando_20
+  - first:
+      213: -4238853267211184131
+    second: Sprites NPC 1 Caminando_21
+  - first:
+      213: 3006759717000225547
+    second: Sprites NPC 1 Caminando_22
+  - first:
+      213: -2377574388636335528
+    second: Sprites NPC 1 Caminando_23
+  - first:
+      213: -3724805991366592204
+    second: Sprites NPC 1 Caminando_24
+  - first:
+      213: 1868307714798057222
+    second: Sprites NPC 1 Caminando_25
+  - first:
+      213: -3339778048871873894
+    second: Sprites NPC 1 Caminando_26
+  - first:
+      213: 66703873831020277
+    second: Sprites NPC 1 Caminando_27
+  - first:
+      213: -6145107267214333875
+    second: Sprites NPC 1 Caminando_28
+  - first:
+      213: 3428367236092522306
+    second: Sprites NPC 1 Caminando_29
+  - first:
+      213: 3753461474840098767
+    second: Sprites NPC 1 Caminando_30
+  - first:
+      213: 8957128854981842583
+    second: Sprites NPC 1 Caminando_31
+  - first:
+      213: 5410277152807164479
+    second: Sprites NPC 1 Caminando_32
+  - first:
+      213: 3186356837427346287
+    second: Sprites NPC 1 Caminando_33
+  - first:
+      213: -8439275217144817119
+    second: Sprites NPC 1 Caminando_34
+  - first:
+      213: -6617035420412096846
+    second: Sprites NPC 1 Caminando_35
+  - first:
+      213: -3495505382533366043
+    second: Sprites NPC 1 Caminando_36
+  - first:
+      213: 5473522060065022617
+    second: Sprites NPC 1 Caminando_37
+  - first:
+      213: 7408807162593088893
+    second: Sprites NPC 1 Caminando_38
+  - first:
+      213: 5880590161435009622
+    second: Sprites NPC 1 Caminando_39
+  - first:
+      213: 5526081183015838087
+    second: Sprites NPC 1 Caminando_40
+  - first:
+      213: 1252570133889700208
+    second: Sprites NPC 1 Caminando_41
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Sprites NPC 1 Caminando_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1660
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97d43d727595c8370800000000000000
+      internalID: 8326128041966390649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprites NPC 1 Caminando_1
+      rect:
+        serializedVersion: 2
+        x: 388
+        y: 1660
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c44f4e1a596f35b10800000000000000
+      internalID: 1969188584617735244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprites NPC 1 Caminando_2
+      rect:
+        serializedVersion: 2
+        x: 776
+        y: 1660
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea2b212bc06ecd9a0800000000000000
+      internalID: -6206833244221820242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprites NPC 1 Caminando_3
+      rect:
+        serializedVersion: 2
+        x: 1164
+        y: 1660
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9fcf9b163d7870c0800000000000000
+      internalID: -4577771349876944998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprites NPC 1 Caminando_4
+      rect:
+        serializedVersion: 2
+        x: 1552
+        y: 1660
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2bd81b4f1e4f04160800000000000000
+      internalID: 7007870271498587570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprites NPC 1 Caminando_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1272
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae1edc055e6f47870800000000000000
+      internalID: 8679833846613402090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprites NPC 1 Caminando_6
+      rect:
+        serializedVersion: 2
+        x: 388
+        y: 1272
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a57a3a1e3a3b71a00800000000000000
+      internalID: 727247381290264410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprites NPC 1 Caminando_7
+      rect:
+        serializedVersion: 2
+        x: 776
+        y: 1272
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e33e38db47b8bd940800000000000000
+      internalID: 5322000718180377406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprites NPC 1 Caminando_8
+      rect:
+        serializedVersion: 2
+        x: 1164
+        y: 1272
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2dc0d6e8aefade8c0800000000000000
+      internalID: -3968322274696819502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprites NPC 1 Caminando_9
+      rect:
+        serializedVersion: 2
+        x: 1552
+        y: 1272
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63ee879e7d6abebb0800000000000000
+      internalID: -4905643922824827338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprites NPC 1 Caminando_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 884
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: baf05c4a3d00caf20800000000000000
+      internalID: 3435121524779323307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprites NPC 1 Caminando_11
+      rect:
+        serializedVersion: 2
+        x: 388
+        y: 884
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 802a0ff440246b470800000000000000
+      internalID: 8409981940449452552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprites NPC 1 Caminando_12
+      rect:
+        serializedVersion: 2
+        x: 776
+        y: 884
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 879eac1896630c6d0800000000000000
+      internalID: -2972315927287502472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprites NPC 1 Caminando_13
+      rect:
+        serializedVersion: 2
+        x: 1164
+        y: 884
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ad91b7e43d444240800000000000000
+      internalID: 4775026394540383654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprites NPC 1 Caminando_14
+      rect:
+        serializedVersion: 2
+        x: 1552
+        y: 884
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe43a465d3ed64c90800000000000000
+      internalID: -7185811800400972561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprites NPC 1 Caminando_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 496
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4a27453da76e40e0800000000000000
+      internalID: -2283773967409403316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprites NPC 1 Caminando_16
+      rect:
+        serializedVersion: 2
+        x: 388
+        y: 496
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 450fc7769cbaef710800000000000000
+      internalID: 1729008188469866580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprites NPC 1 Caminando_17
+      rect:
+        serializedVersion: 2
+        x: 776
+        y: 496
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68c42aaace2ca0d50800000000000000
+      internalID: 6704385317025238150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprites NPC 1 Caminando_18
+      rect:
+        serializedVersion: 2
+        x: 1164
+        y: 496
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da0cf39c776b809b0800000000000000
+      internalID: -5113636751285436243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprites NPC 1 Caminando_19
+      rect:
+        serializedVersion: 2
+        x: 1552
+        y: 496
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ddb757aa45ccba9d0800000000000000
+      internalID: -2761889282452522019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprites NPC 1 Caminando_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 108
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2cb9fdde12dd9450800000000000000
+      internalID: 6097260500544502827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprites NPC 1 Caminando_21
+      rect:
+        serializedVersion: 2
+        x: 388
+        y: 108
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df79fd079619c25c0800000000000000
+      internalID: -4238853267211184131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 7c2b5c735a3506043ad21b20372c1c43
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":388.0,"y":388.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      Sprites NPC 1 Caminando_0: 8326128041966390649
+      Sprites NPC 1 Caminando_1: 1969188584617735244
+      Sprites NPC 1 Caminando_10: 3435121524779323307
+      Sprites NPC 1 Caminando_11: 8409981940449452552
+      Sprites NPC 1 Caminando_12: -2972315927287502472
+      Sprites NPC 1 Caminando_13: 4775026394540383654
+      Sprites NPC 1 Caminando_14: -7185811800400972561
+      Sprites NPC 1 Caminando_15: -2283773967409403316
+      Sprites NPC 1 Caminando_16: 1729008188469866580
+      Sprites NPC 1 Caminando_17: 6704385317025238150
+      Sprites NPC 1 Caminando_18: -5113636751285436243
+      Sprites NPC 1 Caminando_19: -2761889282452522019
+      Sprites NPC 1 Caminando_2: -6206833244221820242
+      Sprites NPC 1 Caminando_20: 6097260500544502827
+      Sprites NPC 1 Caminando_21: -4238853267211184131
+      Sprites NPC 1 Caminando_3: -4577771349876944998
+      Sprites NPC 1 Caminando_4: 7007870271498587570
+      Sprites NPC 1 Caminando_5: 8679833846613402090
+      Sprites NPC 1 Caminando_6: 727247381290264410
+      Sprites NPC 1 Caminando_7: 5322000718180377406
+      Sprites NPC 1 Caminando_8: -3968322274696819502
+      Sprites NPC 1 Caminando_9: -4905643922824827338
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -2452,7 +2452,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SuccionJugador
   succionar: {fileID: 6029532384514666566, guid: 6029e35a85dacdd4a8b5c2b5afe0e9a0, type: 3}
-  alcance: 1.6
+  alcance: 2.2
+  offsetVertical: 0
+  distanciaAlineacion: 1.9
+  offsetVerticalAlineacion: 0.3
   tiempoDrenaje: 3
   puntosPorSegundo: 2
 --- !u!114 &1202282256
@@ -4463,7 +4466,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SuccionJugador
   succionar: {fileID: 1762698085568218781, guid: 6029e35a85dacdd4a8b5c2b5afe0e9a0, type: 3}
-  alcance: 1.6
+  alcance: 2.2
+  offsetVertical: 0
+  distanciaAlineacion: 1.9
+  offsetVerticalAlineacion: 0.3
   tiempoDrenaje: 3
   puntosPorSegundo: 2
 --- !u!114 &1775270136

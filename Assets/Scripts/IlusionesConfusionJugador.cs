@@ -23,6 +23,7 @@ public class IlusionesConfusionJugador : MonoBehaviour
         public GameObject objeto;
         public SpriteRenderer[] sprites;
         public Color[] colores;
+        public bool spriteMiraDerecha;
         public float velocidad;
         public float opacidad;
         public float vida;
@@ -74,6 +75,10 @@ public class IlusionesConfusionJugador : MonoBehaviour
                 fantasma.objeto.transform.position = pasoOlor;
             }
             else fantasma.objeto.transform.position += Vector3.right * fantasma.velocidad * delta;
+            float desplazamientoX = fantasma.objeto.transform.position.x - posicion.x;
+            if (Mathf.Abs(desplazamientoX) > 0.0001f)
+                foreach (SpriteRenderer sprite in fantasma.sprites)
+                    sprite.flipX = (desplazamientoX > 0f) != fantasma.spriteMiraDerecha;
             fantasma.vida += delta;
             bool fuera = fantasma.objeto.transform.position.x < izquierda - 2f ||
                 fantasma.objeto.transform.position.x > derecha + 2f;
@@ -142,11 +147,22 @@ public class IlusionesConfusionJugador : MonoBehaviour
             copia.sortingOrder = fuente.sortingOrder;
             copia.spriteSortPoint = fuente.spriteSortPoint;
             copia.drawMode = fuente.drawMode; copia.size = fuente.size;
+            // El clip del NPC anima el SpriteRenderer del mismo objeto.
+            Animator animadorFuente = fuente.GetComponent<Animator>();
+            if (animadorFuente != null && animadorFuente.runtimeAnimatorController != null)
+            {
+                Animator animador = visual.AddComponent<Animator>();
+                animador.runtimeAnimatorController = animadorFuente.runtimeAnimatorController;
+                animador.applyRootMotion = false;
+                animador.speed = animadorFuente.speed;
+                animador.cullingMode = AnimatorCullingMode.AlwaysAnimate;
+            }
             copias.Add(copia); colores.Add(copia.color);
             Color invisible = copia.color; invisible.a = 0f; copia.color = invisible;
         }
         Vector2 rango = generador.RangoVelocidad;
         fantasmas.Add(new Fantasma { objeto = objeto, sprites = copias.ToArray(), colores = colores.ToArray(),
+            spriteMiraDerecha = modelo.SpriteMiraDerecha,
             duracionVida = Random.Range(4f, 7f),
             velocidad = Random.Range(Mathf.Min(rango.x, rango.y), Mathf.Max(rango.x, rango.y)) *
                 (Random.value < 0.5f ? -1f : 1f) });

@@ -232,7 +232,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EstadoVisualEstudiante
   colorAgotado: {r: 0.55, g: 0.55, b: 0.55, a: 1}
-  colorAsustado: {r: 1, g: 0.45, b: 0.05, a: 1}
+  colorAsustado: {r: 0.65, g: 0.85, b: 1, a: 1}
+  multiplicadorAnimacionAsustado: 2.5
 --- !u!114 &2100000030
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -7,7 +7,13 @@ using UnityEngine.InputSystem;
 public class SuccionJugador : MonoBehaviour
 {
     [SerializeField] private InputActionReference succionar;
-    [SerializeField, Min(0.1f)] private float alcance = 1.6f;
+    [SerializeField, Min(0.1f)] private float alcance = 2.2f;
+    [Tooltip("Desplazamiento vertical del centro en unidades del mundo. Positivo sube; negativo baja.")]
+    [SerializeField] private float offsetVertical;
+    [Tooltip("Separacion del estudiante frente al jugador durante la absorcion.")]
+    [SerializeField, Min(0f)] private float distanciaAlineacion = 1.9f;
+    [Tooltip("Ajuste de altura del estudiante respecto a los pies del jugador. Positivo sube.")]
+    [SerializeField] private float offsetVerticalAlineacion = 0.3f;
     [SerializeField, Min(0.1f)] private float tiempoDrenaje = 3f;
     [Tooltip("Puntos por segundo de absorcion, adicionales al premio por convertir.")]
     [SerializeField, Min(0f)] private float puntosPorSegundo = 2f;
@@ -20,9 +26,16 @@ public class SuccionJugador : MonoBehaviour
     private AtaqueJugador ataque;
     private ManoCartasJugador cartas;
     private EfectosJugador efectos;
+    private MovimientoJugador2D movimiento;
     public InputAction AccionSuccionar => accionSuccionar;
 
     public AlmaEstudiante Objetivo => objetivo;
+    private Vector3 CentroSuccion => transform.position + Vector3.up * offsetVertical;
+    public Vector3 PosicionAlineacion =>
+        (movimiento != null ? movimiento.PosicionPies : transform.position) +
+        Vector3.up * offsetVerticalAlineacion + Vector3.right *
+        (movimiento != null ? movimiento.DireccionHorizontal : 1f) *
+        Mathf.Clamp(distanciaAlineacion, 0f, alcance * 0.9f);
     public float DuracionDrenajeActual => Mathf.Max(0.1f, tiempoDrenaje) *
         (objetivo != null ? objetivo.MultiplicadorTiempoDrenaje : 1f);
     public float Progreso01 => objetivo != null
@@ -36,6 +49,7 @@ public class SuccionJugador : MonoBehaviour
         ataque = GetComponent<AtaqueJugador>();
         cartas = GetComponent<ManoCartasJugador>();
         efectos = GetComponent<EfectosJugador>();
+        movimiento = GetComponent<MovimientoJugador2D>();
         if (succionar == null || succionar.action == null)
         {
             Debug.LogError("Asigna la accion Succionar del jugador en el Inspector.", this);
@@ -78,8 +92,8 @@ public class SuccionJugador : MonoBehaviour
 
             objetivo = BuscarEstudianteCercano();
             float distanciaReal = objetivo != null
-                ? ((Vector2)(objetivo.transform.position - transform.position)).sqrMagnitude : alcance * alcance;
-            if (efectos != null && efectos.IntentarDisiparFantasma(transform.position, distanciaReal))
+                ? ((Vector2)(objetivo.transform.position - CentroSuccion)).sqrMagnitude : alcance * alcance;
+            if (efectos != null && efectos.IntentarDisiparFantasma(CentroSuccion, distanciaReal))
             {
                 objetivo = null;
                 return;
@@ -93,7 +107,7 @@ public class SuccionJugador : MonoBehaviour
         }
 
         if (!objetivo.Disponible || objetivo.Ocupante != almas ||
-            ((Vector2)(objetivo.transform.position - transform.position)).sqrMagnitude > alcance * alcance)
+            ((Vector2)(objetivo.transform.position - CentroSuccion)).sqrMagnitude > alcance * alcance)
         {
             CancelarSuccion();
             return;
@@ -125,7 +139,7 @@ public class SuccionJugador : MonoBehaviour
             if (!estudiante.Disponible || estudiante.EstaOcupado)
                 continue;
 
-            float distancia = ((Vector2)(estudiante.transform.position - transform.position)).sqrMagnitude;
+            float distancia = ((Vector2)(estudiante.transform.position - CentroSuccion)).sqrMagnitude;
             if (distancia <= mejorDistancia)
             {
                 cercano = estudiante;
@@ -162,6 +176,6 @@ public class SuccionJugador : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.cyan;
-        Gizmos.DrawWireSphere(transform.position, alcance);
+        Gizmos.DrawWireSphere(CentroSuccion, alcance);
     }
 }
