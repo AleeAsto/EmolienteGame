@@ -150,7 +150,7 @@ public class CicloPartida : MonoBehaviour
     {
         foreach (MenuPartida menu in FindObjectsByType<MenuPartida>(FindObjectsSortMode.None))
             if (menu.gameObject.scene == gameObject.scene) { menu.VolverMenu(); return; }
-        TransicionEscena.Cargar("MenuPrincipal");
+        TransicionEscena.Cargar("MenuAudioMenus");
     }
 
     private void OnDisable()
