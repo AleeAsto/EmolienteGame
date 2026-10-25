@@ -71,14 +71,15 @@ public static class ConstruirMenusAudio
         Texto(inicio, "Comparte el teclado.\nCompite por las almas.", new Vector2(285, -192), new Vector2(380, 65), 23, Suave);
         var estado = Texto(inicio, "ENTER confirmar  /  ESC volver", new Vector2(0, -320), new Vector2(1050, 27), 15, Suave);
 
-        Encabezado(pantallas[1].transform, "OPCIONES", "Ajusta la mezcla. Los cambios se guardan al volver.");
+        Encabezado(pantallas[1].transform, "OPCIONES", "Audio y teclado para ambos jugadores.");
         Slider general = AudioOpciones(pantallas[1].transform);
         primeros[1] = Boton(pantallas[1].transform, "GUARDAR Y VOLVER", new Vector2(0, -250), new Vector2(420, 52), menu.GuardarOpciones, true);
+        ConfigurarTeclado(pantallas[1].transform);
 
         Encabezado(pantallas[2].transform, "COMO JUGAR", "Consigue mas almas que tu rival antes de que termine el tiempo.");
         TarjetaControles(pantallas[2].transform, -260, Azul, "JUGADOR 1", "W A S D", "X", "C");
         TarjetaControles(pantallas[2].transform, 260, Rojo, "JUGADOR 2", "I J K L o flechas", "N", "M");
-        Texto(pantallas[2].transform, "CARTAS   Manten C / M, elige con izquierda o derecha y confirma con X / N.\nPUERTAS   Colocate frente a una y pulsa arriba para salir por otra al azar.\nCUIDADO   La profesora aturde. Los estudiantes raros dan mas almas y una carta.",
+        Texto(pantallas[2].transform, "CARTAS   Manten golpear, elige con izquierda/derecha y confirma con absorber.\nPUERTAS   Colocate frente a una y pulsa tu direccion arriba para viajar.\nCUIDADO   La profesora aturde. Los estudiantes raros dan mas almas y una carta.",
             new Vector2(0, -133), new Vector2(1010, 105), 19, Suave, TextAnchor.MiddleLeft);
         primeros[2] = Boton(pantallas[2].transform, "VOLVER", new Vector2(0, -270), new Vector2(360, 50));
         UnityEventTools.AddIntPersistentListener(primeros[2].onClick, menu.Mostrar, 0);
@@ -137,7 +138,7 @@ public static class ConstruirMenusAudio
         var pausa = Panel("Pausa", canvas, new Color(0.055f, 0.04f, 0.08f, 0.94f));
         Encabezado(pausa, "PAUSA", "El pasillo puede esperar.");
         var continuar = Boton(pausa, "CONTINUAR", new Vector2(0, 65), new Vector2(440, 58), menu.Continuar, true);
-        var opcionesBoton = Boton(pausa, "OPCIONES DE AUDIO", new Vector2(0, -15), new Vector2(440, 54), menu.MostrarOpciones);
+        var opcionesBoton = Boton(pausa, "OPCIONES", new Vector2(0, -15), new Vector2(440, 54), menu.MostrarOpciones);
         Boton(pausa, "VOLVER AL MENU", new Vector2(0, -91), new Vector2(440, 54), menu.VolverMenu);
         Texto(pausa, "ESC para continuar", new Vector2(0, -220), new Vector2(900, 35), 18, Suave);
 
@@ -145,6 +146,7 @@ public static class ConstruirMenusAudio
         Encabezado(opciones, "OPCIONES", "La partida sigue en pausa.");
         AudioOpciones(opciones);
         Boton(opciones, "VOLVER A PAUSA", new Vector2(0, -250), new Vector2(420, 52), menu.VolverPausa, true);
+        ConfigurarTeclado(opciones);
 
         var resultado = Panel("Resultado", canvas, new Color(0.055f, 0.04f, 0.08f, 0.96f));
         var titulo = Texto(resultado, "FIN DE PARTIDA", new Vector2(0, 235), new Vector2(1020, 75), 48, Oro, TextAnchor.MiddleCenter, true);
@@ -178,6 +180,47 @@ public static class ConstruirMenusAudio
         return general;
     }
 
+    private static void ConfigurarTeclado(Transform padre)
+    {
+        var anteriores = new System.Collections.Generic.List<Transform>();
+        foreach (Transform child in padre) anteriores.Add(child);
+        var audio = Panel("ContenidoAudio", padre, Color.clear);
+        foreach (var child in anteriores) child.SetParent(audio, false);
+        var abrir = Boton(audio, "CONFIGURAR CONTROLES", new Vector2(0, -187), new Vector2(420, 42));
+        var panel = Panel("ControlesTeclado", padre, Fondo);
+        Encabezado(panel, "CONTROLES", "Selecciona una accion y pulsa una tecla. Escape cancela.");
+        Texto(panel, "ACCION", new Vector2(-410, 164), new Vector2(260, 30), 17, Suave, TextAnchor.MiddleLeft);
+        Texto(panel, "JUGADOR 1", new Vector2(-135, 164), new Vector2(200, 30), 19, Azul, TextAnchor.MiddleCenter, true);
+        Texto(panel, "JUGADOR 2", new Vector2(260, 164), new Vector2(440, 30), 19, Rojo, TextAnchor.MiddleCenter, true);
+        Texto(panel, "Principal", new Vector2(135, 131), new Vector2(195, 24), 14, Suave);
+        Texto(panel, "Alternativa", new Vector2(385, 131), new Vector2(195, 24), 14, Suave);
+        for (int i = 0; i < ConfiguracionControles.Etiquetas.Length; i++)
+        {
+            Texto(panel, ConfiguracionControles.Etiquetas[i], new Vector2(-410, 95 - i * 52), new Vector2(260, 44), 18, Papel, TextAnchor.MiddleLeft);
+            if (i >= 4) Texto(panel, "-", new Vector2(385, 95 - i * 52), new Vector2(195, 44), 18, Suave);
+        }
+        var botones = new Button[ConfiguracionControles.Controles.Length];
+        for (int i = 0; i < botones.Length; i++)
+        {
+            var control = ConfiguracionControles.Controles[i];
+            float x = control.Jugador == 1 ? -135 : control.Alternativo ? 385 : 135;
+            botones[i] = Boton(panel, "TECLA", new Vector2(x, 95 - control.Fila * 52), new Vector2(195, 44));
+            botones[i].name = "Tecla_" + i;
+            var label = botones[i].GetComponentInChildren<Text>();
+            label.resizeTextForBestFit = true; label.resizeTextMinSize = 12; label.resizeTextMaxSize = 20;
+        }
+        var estado = Texto(panel, "", new Vector2(0, -218), new Vector2(1060, 38), 17, Oro);
+        var restaurar = Boton(panel, "RESTABLECER", new Vector2(-240, -280), new Vector2(420, 46));
+        var volver = Boton(panel, "VOLVER A OPCIONES", new Vector2(240, -280), new Vector2(420, 46), null, true);
+        var ui = padre.gameObject.AddComponent<ConfiguracionControlesUI>();
+        Asignar(ui, "contenidoAudio", audio.gameObject, "panel", panel.gameObject, "abrir", abrir,
+            "volver", volver, "restaurar", restaurar, "estado", estado);
+        var data = new SerializedObject(ui); var keys = data.FindProperty("teclas"); keys.arraySize = botones.Length;
+        for (int i = 0; i < botones.Length; i++) keys.GetArrayElementAtIndex(i).objectReferenceValue = botones[i];
+        data.ApplyModifiedPropertiesWithoutUndo();
+        panel.gameObject.SetActive(false);
+    }
+
     private static Slider FilaVolumen(Transform padre, string etiqueta, float y, out Text valor)
     {
         Texto(padre, etiqueta, new Vector2(-295, y + 22), new Vector2(300, 32), 20, Papel, TextAnchor.MiddleLeft, true);
@@ -200,8 +243,12 @@ public static class ConstruirMenusAudio
         var rect = Caja(jugador, padre, pos, new Vector2(380, 135));
         rect.gameObject.AddComponent<Image>().color = Superficie;
         Texto(rect, jugador, new Vector2(0, 42), new Vector2(335, 28), 17, color, TextAnchor.MiddleLeft, true);
-        Texto(rect, mover, new Vector2(0, 5), new Vector2(335, 35), 26, Papel, TextAnchor.MiddleLeft, true);
-        Texto(rect, acciones, new Vector2(0, -37), new Vector2(335, 26), 17, Suave, TextAnchor.MiddleLeft);
+        var movimiento = Texto(rect, mover, new Vector2(0, 5), new Vector2(335, 35), 26, Papel, TextAnchor.MiddleLeft, true);
+        var accionesTexto = Texto(rect, acciones, new Vector2(0, -37), new Vector2(335, 26), 17, Suave, TextAnchor.MiddleLeft);
+        movimiento.resizeTextForBestFit = accionesTexto.resizeTextForBestFit = true;
+        movimiento.resizeTextMinSize = 14; movimiento.resizeTextMaxSize = 26;
+        accionesTexto.resizeTextMinSize = 11; accionesTexto.resizeTextMaxSize = 17;
+        ResumenControles(rect, jugador == "JUGADOR 1" ? 1 : 2, false, movimiento, accionesTexto);
     }
 
     private static void TarjetaControles(Transform padre, float x, Color color, string jugador, string mover, string absorber, string golpear)
@@ -209,8 +256,19 @@ public static class ConstruirMenusAudio
         var rect = Caja(jugador, padre, new Vector2(x, 64), new Vector2(490, 208));
         rect.gameObject.AddComponent<Image>().color = Superficie;
         Texto(rect, jugador, new Vector2(0, 69), new Vector2(430, 35), 23, color, TextAnchor.MiddleLeft, true);
-        Texto(rect, $"MOVERSE       {mover}\nABSORBER      Manten {absorber}\nGOLPEAR       Pulsa {golpear}\nCARTAS        Manten {golpear}",
+        var texto = Texto(rect, $"MOVERSE       {mover}\nABSORBER      Manten {absorber}\nGOLPEAR       Pulsa {golpear}\nCARTAS        Manten {golpear}",
             new Vector2(0, -17), new Vector2(430, 125), 20, Papel, TextAnchor.MiddleLeft);
+        texto.resizeTextForBestFit = true; texto.resizeTextMinSize = 14; texto.resizeTextMaxSize = 20;
+        ResumenControles(rect, jugador == "JUGADOR 1" ? 1 : 2, true, null, texto);
+    }
+
+    private static void ResumenControles(Transform padre, int jugador, bool detallado, Text movimiento, Text acciones)
+    {
+        var component = padre.gameObject.AddComponent<TextoControlesJugador>();
+        var data = new SerializedObject(component);
+        data.FindProperty("jugador").intValue = jugador; data.FindProperty("detallado").boolValue = detallado;
+        data.FindProperty("movimiento").objectReferenceValue = movimiento; data.FindProperty("acciones").objectReferenceValue = acciones;
+        data.ApplyModifiedPropertiesWithoutUndo();
     }
 
     private static Text Puntuacion(Transform padre, float x, Color color, string jugador)
