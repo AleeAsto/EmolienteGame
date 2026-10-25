@@ -13,6 +13,7 @@ public class CamaraPasillo : MonoBehaviour
     [SerializeField] private bool seguirEnEditor = true;
 
     private Camera camara;
+    public Transform Jugador => jugador;
 
     private void Awake()
     {

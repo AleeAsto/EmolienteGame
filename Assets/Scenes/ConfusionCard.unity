@@ -442,6 +442,8 @@ MonoBehaviour:
   numero: 3
   salida: {fileID: 665832727}
   panel: {fileID: 762372289}
+  spriteAbierta: {fileID: -5727103358793704069, guid: dc255b6ced787b54aa5b76b3952d02ea, type: 3}
+  spriteCerrada: {fileID: -170779946217407353, guid: abdc62c2f11ac2f41813dd05283fd6d9, type: 3}
   textoEstado: {fileID: 365020294}
   colorDisponible: {r: 0.25, g: 0.85, b: 0.65, a: 1}
   colorCooldown: {r: 0.4, g: 0.42, b: 0.5, a: 1}
@@ -1785,6 +1787,8 @@ MonoBehaviour:
   numero: 4
   salida: {fileID: 753167907}
   panel: {fileID: 1965939482}
+  spriteAbierta: {fileID: -5727103358793704069, guid: dc255b6ced787b54aa5b76b3952d02ea, type: 3}
+  spriteCerrada: {fileID: -170779946217407353, guid: abdc62c2f11ac2f41813dd05283fd6d9, type: 3}
   textoEstado: {fileID: 1726123934}
   colorDisponible: {r: 0.25, g: 0.85, b: 0.65, a: 1}
   colorCooldown: {r: 0.4, g: 0.42, b: 0.5, a: 1}
@@ -3945,6 +3949,8 @@ MonoBehaviour:
   numero: 1
   salida: {fileID: 1463790650}
   panel: {fileID: 618841860}
+  spriteAbierta: {fileID: -5727103358793704069, guid: dc255b6ced787b54aa5b76b3952d02ea, type: 3}
+  spriteCerrada: {fileID: -170779946217407353, guid: abdc62c2f11ac2f41813dd05283fd6d9, type: 3}
   textoEstado: {fileID: 1652862814}
   colorDisponible: {r: 0.25, g: 0.85, b: 0.65, a: 1}
   colorCooldown: {r: 0.4, g: 0.42, b: 0.5, a: 1}
@@ -4904,6 +4910,8 @@ MonoBehaviour:
   numero: 2
   salida: {fileID: 1015635122}
   panel: {fileID: 1065229378}
+  spriteAbierta: {fileID: -5727103358793704069, guid: dc255b6ced787b54aa5b76b3952d02ea, type: 3}
+  spriteCerrada: {fileID: -170779946217407353, guid: abdc62c2f11ac2f41813dd05283fd6d9, type: 3}
   textoEstado: {fileID: 1725024269}
   colorDisponible: {r: 0.25, g: 0.85, b: 0.65, a: 1}
   colorCooldown: {r: 0.4, g: 0.42, b: 0.5, a: 1}

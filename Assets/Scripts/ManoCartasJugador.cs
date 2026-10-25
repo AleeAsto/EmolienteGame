@@ -102,7 +102,8 @@ public class ManoCartasJugador : MonoBehaviour
     {
         if (sistema == null)
             return;
-        if (!sistema.EnCurso || !Application.isFocused || estado.EstaAturdido)
+        if (!sistema.EnCurso || !Application.isFocused || estado.EstaAturdido ||
+            (GetComponent<UsarPuertaJugador>() != null && GetComponent<UsarPuertaJugador>().EstaViajando))
         {
             Cerrar();
             return;

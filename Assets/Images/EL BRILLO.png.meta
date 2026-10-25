@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: b07e5e9f51868cd4e997cdf23dbaf1a2
+guid: ec098059fce6f7e44894ee5cb1cb478e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7998254468537737729
-    second: puerta abierta_0
+      213: -1858572377406692611
+    second: EL BRILLO_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: puerta abierta_0
+      name: EL BRILLO_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 388
-        height: 378
+        x: 38
+        y: 12
+        width: 302
+        height: 376
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ffd90abffed700190800000000000000
-      internalID: -7998254468537737729
+      spriteID: df2225715460536e0800000000000000
+      internalID: -1858572377406692611
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      puerta abierta_0: -7998254468537737729
+      EL BRILLO_0: -1858572377406692611
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

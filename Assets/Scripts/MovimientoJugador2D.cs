@@ -26,6 +26,8 @@ public class MovimientoJugador2D : MonoBehaviour
     public Vector3 PosicionPies => cuerpo != null ? cuerpo.transform.TransformPoint(cuerpo.offset) : transform.position;
     private ManoCartasJugador cartas;
     private EfectosJugador efectos;
+    private UsarPuertaJugador puertas;
+    public bool EnPuerta => puertas != null && puertas.EstaViajando;
     private Vector3 inicioDash;
     private Vector3 destinoDash;
     private float tiempoDash;
@@ -38,6 +40,7 @@ public class MovimientoJugador2D : MonoBehaviour
         estadoCombate = GetComponent<EstadoCombateJugador>();
         cartas = GetComponent<ManoCartasJugador>();
         efectos = GetComponent<EfectosJugador>();
+        puertas = GetComponent<UsarPuertaJugador>();
         DireccionHorizontal = direccionInicial < 0f ? -1f : 1f;
         if (spritePersonaje == null)
         {
@@ -69,7 +72,7 @@ public class MovimientoJugador2D : MonoBehaviour
 
     private void Update()
     {
-        if (Time.timeScale <= 0f)
+        if (Time.timeScale <= 0f || EnPuerta)
             return;
 
         if (EstaEnDash)
@@ -141,7 +144,8 @@ public class MovimientoJugador2D : MonoBehaviour
         CancelarDash();
         empujonPendiente = Vector2.zero;
         rapidezLanzamiento = 0f;
-        transform.position = LimitarPosicion(destino);
+        // El teletransporte no recorre el pasillo ni choca con muebles intermedios.
+        transform.position = LimitarPosicion(destino, false);
     }
 
     public Vector3 LimitarDestino(Vector3 destino) => LimitarPosicion(destino);
@@ -175,7 +179,7 @@ public class MovimientoJugador2D : MonoBehaviour
         CancelarDash();
     }
 
-    private Vector3 LimitarPosicion(Vector3 destino)
+    private Vector3 LimitarPosicion(Vector3 destino, bool comprobarObstaculos = true)
     {
         Bounds zona = zonaMovimiento.bounds;
         Vector3 offset = transform.TransformPoint(cuerpo.offset) - transform.position;
@@ -190,7 +194,7 @@ public class MovimientoJugador2D : MonoBehaviour
         float maxY = zona.max.y - margen.y - offset.y;
         destino.x = minX <= maxX ? Mathf.Clamp(destino.x, minX, maxX) : zona.center.x - offset.x;
         destino.y = minY <= maxY ? Mathf.Clamp(destino.y, minY, maxY) : zona.center.y - offset.y;
-        return Casillero.LimitarMovimiento(cuerpo, transform.position, destino);
+        return comprobarObstaculos ? Casillero.LimitarMovimiento(cuerpo, transform.position, destino) : destino;
     }
 }
 

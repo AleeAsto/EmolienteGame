@@ -109,7 +109,7 @@ public class SuccionJugador : MonoBehaviour
         if (accionSuccionar == null || !accionSuccionar.IsPressed() || !Application.isFocused)
             intentoConsumido = false;
 
-        if (!Application.isFocused || almas == null || !almas.isActiveAndEnabled ||
+        if ((movimiento != null && movimiento.EnPuerta) || !Application.isFocused || almas == null || !almas.isActiveAndEnabled ||
             accionSuccionar == null || !accionSuccionar.IsPressed() ||
             (estadoCombate != null && estadoCombate.EstaAturdido) ||
             (ataque != null && ataque.EstaAtacando) ||

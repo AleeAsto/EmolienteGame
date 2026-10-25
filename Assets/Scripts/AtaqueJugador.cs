@@ -163,7 +163,7 @@ public class AtaqueJugador : MonoBehaviour
 
     public bool IntentarAtacar()
     {
-        if (Time.timeScale <= 0f || !isActiveAndEnabled || estado == null || estado.EstaAturdido ||
+        if (Time.timeScale <= 0f || (movimiento != null && movimiento.EnPuerta) || !isActiveAndEnabled || estado == null || estado.EstaAturdido ||
             EstaAtacando || recargaRestante > 0f || (cartas != null && cartas.MenuAbierto))
             return false;
 

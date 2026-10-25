@@ -54,7 +54,7 @@ public class RedPuertas : MonoBehaviour
         // Bloquear el destino antes de mover evita que dos viajes simultaneos
         // elijan la misma salida. La puerta de entrada queda disponible.
         salida.ActivarCooldown(duracionBloqueoSalida);
-        jugador.TransportarA(salida.PosicionSalida);
+        jugador.TransportarA(salida.PosicionSalida, entrada.PosicionSalida);
         return true;
     }
 }
