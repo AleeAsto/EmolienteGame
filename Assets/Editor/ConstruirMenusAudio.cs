@@ -85,7 +85,7 @@ public static class ConstruirMenusAudio
 
         Encabezado(pantallas[3].transform, "CREDITOS", "Creado en equipo para Game Jam 2026.");
         Texto(pantallas[3].transform, "EMOLIENTE", new Vector2(0, 95), new Vector2(900, 85), 52, Papel, TextAnchor.MiddleCenter, true);
-        Texto(pantallas[3].transform, "EQUIPO\n\nPicatzo\nMalica\nNico F", new Vector2(0, -40), new Vector2(900, 190), 25, Suave);
+        Texto(pantallas[3].transform, "EQUIPO\n\nPicatzo\nMalica\nNico F\nCris R\nAleeAsto\nZayd-A", new Vector2(0, -65), new Vector2(900, 240), 23, Suave);
         primeros[3] = Boton(pantallas[3].transform, "VOLVER", new Vector2(0, -250), new Vector2(360, 50));
         UnityEventTools.AddIntPersistentListener(primeros[3].onClick, menu.Mostrar, 0);
         var datos = new SerializedObject(menu);

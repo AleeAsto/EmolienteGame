@@ -16,7 +16,7 @@ en Build Settings. Las entradas originales siguen disponibles despues de ellas.
   aplicados inmediatamente y guardados al salir del panel.
 - Como jugar: WASD/X/C para P1; IJKL o flechas/N/M para P2. Explica cartas,
   puertas y estudiantes raros.
-- Creditos: Picatzo, Malica y Nico F. Faltan tres integrantes por confirmar.
+- Creditos: Picatzo, Malica, Nico F, Cris R, AleeAsto y Zayd-A.
 - Pausa: Escape o el boton superior; Continuar, Opciones de audio y Volver al
   menu. Escape desde opciones vuelve a pausa; desde pausa reanuda.
 - Resultado: ganador P1, P2 o empate y almas reales. Revancha reinicia puntos,
