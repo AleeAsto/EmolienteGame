@@ -59,6 +59,7 @@ public class AlmaEstudiante : MonoBehaviour
         tiempoAgotado = Time.time;
         ocupante = null;
         jugador.Recibir(Mathf.Max(1, valorAlmas));
+        AudioJuego.Instancia?.EstudianteAgotado();
         if (esRaro)
             jugador.GetComponent<ManoCartasJugador>()?.RecibirRecompensaRaro();
         EstadoCambiado?.Invoke();

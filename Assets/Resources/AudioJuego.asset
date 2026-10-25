@@ -21,6 +21,16 @@ MonoBehaviour:
   usarCarta: {fileID: 8300000, guid: 1a1f9501f0cba3a48a2478d0931f8476, type: 3}
   abrirPuerta: {fileID: 8300000, guid: fc8a65a2751a8794885ff8734722278e, type: 3}
   cerrarPuerta: {fileID: 8300000, guid: c9efd5a070986984a8e551c549417606, type: 3}
+  versus: {fileID: 8300000, guid: a33969e4325dc1449a9f4d21f2489727, type: 3}
+  victoria: {fileID: 8300000, guid: b411dfe64dccdbe4886dbb147e0fe103, type: 3}
+  golpe: {fileID: 8300000, guid: 396f52298b5586e4f9985f8defe30cb0, type: 3}
+  estudianteAgotado: {fileID: 8300000, guid: 1e2ba83f965eaa640aab6fb5de80fe24, type: 3}
+  abrirCasillero: {fileID: 8300000, guid: 66894454d0d606241bc44d7ca97ba39b, type: 3}
+  cerrarCasillero: {fileID: 8300000, guid: bfb49a7259b217f4baebce177660a406, type: 3}
   volumenEfectos: 0.75
+  succion: {fileID: 8300000, guid: d8e870aff5feb6849b3cf53f1fe72488, type: 3}
+  aturdimiento: {fileID: 8300000, guid: 3ee593b9d83d20341b89d7d675be4056, type: 3}
+  volumenSuccion: 0.45
+  volumenAturdimiento: 0.4
   pasos: {fileID: 8300000, guid: 8a081ae80f76a25458ea292937f8e408, type: 3}
   volumenPasos: 1

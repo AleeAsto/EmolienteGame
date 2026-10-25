@@ -102,6 +102,7 @@ public static class ConstruirMenusAudio
         datos.FindProperty("estado").objectReferenceValue = estado;
         datos.FindProperty("escenaPartida").stringValue = "PartidaAudioMenus";
         datos.ApplyModifiedPropertiesWithoutUndo();
+        IntegrarArteFinal.AplicarMenu(menu);
         EditorSceneManager.SaveScene(escena);
     }
 
@@ -165,6 +166,7 @@ public static class ConstruirMenusAudio
         pausa.gameObject.SetActive(false);
         opciones.gameObject.SetActive(false);
         resultado.gameObject.SetActive(false);
+        if (System.IO.File.Exists("Assets/Images/ArteFinal/UI/Menu.png")) IntegrarArteFinal.AplicarTema(canvas);
         EditorSceneManager.SaveScene(escena);
     }
 

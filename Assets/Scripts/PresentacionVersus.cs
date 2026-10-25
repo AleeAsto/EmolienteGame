@@ -27,6 +27,7 @@ public class PresentacionVersus : MonoBehaviour
         System.Action revancha, System.Action volverMenu)
     {
         mostrandoResultado = true;
+        if (ganador > 0) AudioJuego.Instancia?.Victoria();
         ActualizarVictorias();
         ganadorResultado = ganador;
         raiz.GetComponent<Canvas>().sortingOrder = 600;
@@ -235,6 +236,7 @@ public class PresentacionVersus : MonoBehaviour
 
     public IEnumerator Mostrar(float duracionVS, float duracionApertura)
     {
+        AudioJuego.Instancia?.Versus();
         float tiempo = 0f;
         while (tiempo < duracionVS)
         {

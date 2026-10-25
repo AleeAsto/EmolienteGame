@@ -282,7 +282,7 @@ MonoBehaviour:
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 10
-    m_MaxSize: 40
+    m_MaxSize: 68
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -654,6 +654,14 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 19
       objectReference: {fileID: 0}
+    - target: {fileID: 5471503995926735994, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
+      propertyPath: spriteAbierto
+      value:
+      objectReference: {fileID: 792602605, guid: ec9a5df3b0e2ef148b730f8823240c7c, type: 3}
+    - target: {fileID: 5471503995926735994, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
+      propertyPath: spriteCerrado
+      value:
+      objectReference: {fileID: 1549616354, guid: 6028f947f92af8644bc2868efa8bab04, type: 3}
     - target: {fileID: 6879500261274508643, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_Name
       value: Casillero cerrado_0 (12)
@@ -705,6 +713,14 @@ PrefabInstance:
     - target: {fileID: 8178681330487816673, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8219211289584552058, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
+      propertyPath: m_Sprite
+      value:
+      objectReference: {fileID: 1549616354, guid: 6028f947f92af8644bc2868efa8bab04, type: 3}
+    - target: {fileID: 8219211289584552058, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
+      propertyPath: m_DrawMode
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -761,7 +777,7 @@ MonoBehaviour:
   m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
-  m_Color: {r: 0.972549, g: 0.9411765, b: 0.8666667, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -774,7 +790,7 @@ MonoBehaviour:
     m_FontStyle: 1
     m_BestFit: 1
     m_MinSize: 12
-    m_MaxSize: 20
+    m_MaxSize: 21
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -936,7 +952,7 @@ MonoBehaviour:
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 10
-    m_MaxSize: 40
+    m_MaxSize: 46
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -1074,8 +1090,8 @@ MonoBehaviour:
   numero: 3
   salida: {fileID: 665832727}
   panel: {fileID: 762372289}
-  spriteAbierta: {fileID: -5727103358793704069, guid: dc255b6ced787b54aa5b76b3952d02ea, type: 3}
-  spriteCerrada: {fileID: -170779946217407353, guid: abdc62c2f11ac2f41813dd05283fd6d9, type: 3}
+  spriteAbierta: {fileID: -20587553, guid: 97cd5578b67eafe4fb5545e7b6131d33, type: 3}
+  spriteCerrada: {fileID: -1686231663, guid: 3a24174d520ac1549b0088c347cc9795, type: 3}
   ajustarAccesosAlSprite: 1
   offsetAcceso: {x: 0, y: -0.25}
   textoEstado: {fileID: 365020294}
@@ -1149,7 +1165,7 @@ MonoBehaviour:
   m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
-  m_Color: {r: 0.972549, g: 0.9411765, b: 0.8666667, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1162,7 +1178,7 @@ MonoBehaviour:
     m_FontStyle: 1
     m_BestFit: 1
     m_MinSize: 12
-    m_MaxSize: 20
+    m_MaxSize: 21
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -1352,11 +1368,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.14901961, g: 0.12941177, b: 0.1882353, a: 1}
-    m_HighlightedColor: {r: 0.3019608, g: 0.24313726, b: 0.36862746, a: 1}
-    m_PressedColor: {r: 0.40392157, g: 0.30588236, b: 0.4627451, a: 1}
-    m_SelectedColor: {r: 0.3019608, g: 0.24313726, b: 0.36862746, a: 1}
-    m_DisabledColor: {r: 0.25490198, g: 0.22745098, b: 0.2784314, a: 0.627451}
+    m_NormalColor: {r: 0.9490196, g: 0.8235294, b: 0.6784314, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.65882355, b: 0.52156866, a: 1}
+    m_PressedColor: {r: 0.827451, g: 0.43137255, b: 0.34509805, a: 1}
+    m_SelectedColor: {r: 1, g: 0.65882355, b: 0.52156866, a: 1}
+    m_DisabledColor: {r: 0.43137255, g: 0.40392157, b: 0.36862746, a: 0.7058824}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -1574,7 +1590,7 @@ MonoBehaviour:
   m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
-  m_Color: {r: 0.972549, g: 0.9411765, b: 0.8666667, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1587,7 +1603,7 @@ MonoBehaviour:
     m_FontStyle: 1
     m_BestFit: 1
     m_MinSize: 12
-    m_MaxSize: 20
+    m_MaxSize: 21
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -2593,11 +2609,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.95686275, g: 0.73333335, b: 0.3254902, a: 1}
-    m_HighlightedColor: {r: 1, g: 0.8392157, b: 0.53333336, a: 1}
-    m_PressedColor: {r: 0.8039216, g: 0.54509807, b: 0.1882353, a: 1}
-    m_SelectedColor: {r: 1, g: 0.8392157, b: 0.53333336, a: 1}
-    m_DisabledColor: {r: 0.25490198, g: 0.22745098, b: 0.2784314, a: 0.627451}
+    m_NormalColor: {r: 0.9490196, g: 0.8235294, b: 0.6784314, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.65882355, b: 0.52156866, a: 1}
+    m_PressedColor: {r: 0.827451, g: 0.43137255, b: 0.34509805, a: 1}
+    m_SelectedColor: {r: 1, g: 0.65882355, b: 0.52156866, a: 1}
+    m_DisabledColor: {r: 0.43137255, g: 0.40392157, b: 0.36862746, a: 0.7058824}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -2868,6 +2884,14 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 14
       objectReference: {fileID: 0}
+    - target: {fileID: 5471503995926735994, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
+      propertyPath: spriteAbierto
+      value:
+      objectReference: {fileID: 792602605, guid: ec9a5df3b0e2ef148b730f8823240c7c, type: 3}
+    - target: {fileID: 5471503995926735994, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
+      propertyPath: spriteCerrado
+      value:
+      objectReference: {fileID: 1549616354, guid: 6028f947f92af8644bc2868efa8bab04, type: 3}
     - target: {fileID: 6879500261274508643, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_Name
       value: Casillero cerrado_0 (9)
@@ -2919,6 +2943,14 @@ PrefabInstance:
     - target: {fileID: 8178681330487816673, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8219211289584552058, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
+      propertyPath: m_Sprite
+      value:
+      objectReference: {fileID: 1549616354, guid: 6028f947f92af8644bc2868efa8bab04, type: 3}
+    - target: {fileID: 8219211289584552058, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
+      propertyPath: m_DrawMode
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3077,11 +3109,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.95686275, g: 0.73333335, b: 0.3254902, a: 1}
-    m_HighlightedColor: {r: 1, g: 0.8392157, b: 0.53333336, a: 1}
-    m_PressedColor: {r: 0.8039216, g: 0.54509807, b: 0.1882353, a: 1}
-    m_SelectedColor: {r: 1, g: 0.8392157, b: 0.53333336, a: 1}
-    m_DisabledColor: {r: 0.25490198, g: 0.22745098, b: 0.2784314, a: 0.627451}
+    m_NormalColor: {r: 0.9490196, g: 0.8235294, b: 0.6784314, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.65882355, b: 0.52156866, a: 1}
+    m_PressedColor: {r: 0.827451, g: 0.43137255, b: 0.34509805, a: 1}
+    m_SelectedColor: {r: 1, g: 0.65882355, b: 0.52156866, a: 1}
+    m_DisabledColor: {r: 0.43137255, g: 0.40392157, b: 0.36862746, a: 0.7058824}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -3248,11 +3280,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.14901961, g: 0.12941177, b: 0.1882353, a: 1}
-    m_HighlightedColor: {r: 0.3019608, g: 0.24313726, b: 0.36862746, a: 1}
-    m_PressedColor: {r: 0.40392157, g: 0.30588236, b: 0.4627451, a: 1}
-    m_SelectedColor: {r: 0.3019608, g: 0.24313726, b: 0.36862746, a: 1}
-    m_DisabledColor: {r: 0.25490198, g: 0.22745098, b: 0.2784314, a: 0.627451}
+    m_NormalColor: {r: 0.9490196, g: 0.8235294, b: 0.6784314, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.65882355, b: 0.52156866, a: 1}
+    m_PressedColor: {r: 0.827451, g: 0.43137255, b: 0.34509805, a: 1}
+    m_SelectedColor: {r: 1, g: 0.65882355, b: 0.52156866, a: 1}
+    m_DisabledColor: {r: 0.43137255, g: 0.40392157, b: 0.36862746, a: 0.7058824}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -3855,7 +3887,7 @@ MonoBehaviour:
   m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
-  m_Color: {r: 0.972549, g: 0.9411765, b: 0.8666667, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3868,7 +3900,7 @@ MonoBehaviour:
     m_FontStyle: 1
     m_BestFit: 1
     m_MinSize: 12
-    m_MaxSize: 20
+    m_MaxSize: 21
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -3972,7 +4004,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.0913, y: 2.3649, z: 0}
-  m_LocalScale: {x: 1.8636578, y: 2.087598, z: 1}
+  m_LocalScale: {x: 1.8713589, y: 2.0658522, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1700244237}
@@ -4003,7 +4035,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 5f7db7a74e3769b4bb214303be2b0d09, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4026,7 +4058,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 5
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -5727103358793704069, guid: dc255b6ced787b54aa5b76b3952d02ea, type: 3}
+  m_Sprite: {fileID: -20587553, guid: 97cd5578b67eafe4fb5545e7b6131d33, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4419,11 +4451,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.14901961, g: 0.12941177, b: 0.1882353, a: 1}
-    m_HighlightedColor: {r: 0.3019608, g: 0.24313726, b: 0.36862746, a: 1}
-    m_PressedColor: {r: 0.40392157, g: 0.30588236, b: 0.4627451, a: 1}
-    m_SelectedColor: {r: 0.3019608, g: 0.24313726, b: 0.36862746, a: 1}
-    m_DisabledColor: {r: 0.25490198, g: 0.22745098, b: 0.2784314, a: 0.627451}
+    m_NormalColor: {r: 0.9490196, g: 0.8235294, b: 0.6784314, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.65882355, b: 0.52156866, a: 1}
+    m_PressedColor: {r: 0.827451, g: 0.43137255, b: 0.34509805, a: 1}
+    m_SelectedColor: {r: 1, g: 0.65882355, b: 0.52156866, a: 1}
+    m_DisabledColor: {r: 0.43137255, g: 0.40392157, b: 0.36862746, a: 0.7058824}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -4467,7 +4499,7 @@ Transform:
   m_GameObject: {fileID: 665832726}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.27069855, y: -0.8412167, z: 0}
+  m_LocalPosition: {x: 0.27069855, y: -0.84121716, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4585,11 +4617,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.14901961, g: 0.12941177, b: 0.1882353, a: 1}
-    m_HighlightedColor: {r: 0.3019608, g: 0.24313726, b: 0.36862746, a: 1}
-    m_PressedColor: {r: 0.40392157, g: 0.30588236, b: 0.4627451, a: 1}
-    m_SelectedColor: {r: 0.3019608, g: 0.24313726, b: 0.36862746, a: 1}
-    m_DisabledColor: {r: 0.25490198, g: 0.22745098, b: 0.2784314, a: 0.627451}
+    m_NormalColor: {r: 0.9490196, g: 0.8235294, b: 0.6784314, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.65882355, b: 0.52156866, a: 1}
+    m_PressedColor: {r: 0.827451, g: 0.43137255, b: 0.34509805, a: 1}
+    m_SelectedColor: {r: 1, g: 0.65882355, b: 0.52156866, a: 1}
+    m_DisabledColor: {r: 0.43137255, g: 0.40392157, b: 0.36862746, a: 0.7058824}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -4658,7 +4690,7 @@ MonoBehaviour:
   m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
-  m_Color: {r: 0.972549, g: 0.9411765, b: 0.8666667, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4671,7 +4703,7 @@ MonoBehaviour:
     m_FontStyle: 1
     m_BestFit: 1
     m_MinSize: 12
-    m_MaxSize: 20
+    m_MaxSize: 21
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -4816,7 +4848,7 @@ MonoBehaviour:
   m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
-  m_Color: {r: 0.09019608, g: 0.078431375, b: 0.12156863, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4932,6 +4964,14 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 23
       objectReference: {fileID: 0}
+    - target: {fileID: 5471503995926735994, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
+      propertyPath: spriteAbierto
+      value:
+      objectReference: {fileID: 792602605, guid: ec9a5df3b0e2ef148b730f8823240c7c, type: 3}
+    - target: {fileID: 5471503995926735994, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
+      propertyPath: spriteCerrado
+      value:
+      objectReference: {fileID: 1549616354, guid: 6028f947f92af8644bc2868efa8bab04, type: 3}
     - target: {fileID: 6879500261274508643, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_Name
       value: Casillero cerrado_0 (11)
@@ -4983,6 +5023,14 @@ PrefabInstance:
     - target: {fileID: 8178681330487816673, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8219211289584552058, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
+      propertyPath: m_Sprite
+      value:
+      objectReference: {fileID: 1549616354, guid: 6028f947f92af8644bc2868efa8bab04, type: 3}
+    - target: {fileID: 8219211289584552058, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
+      propertyPath: m_DrawMode
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5039,7 +5087,7 @@ MonoBehaviour:
   m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
-  m_Color: {r: 0.972549, g: 0.9411765, b: 0.8666667, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5140,7 +5188,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.2707, y: 2.3252, z: 0}
-  m_LocalScale: {x: 1.7897916, y: 2.0466084, z: 1}
+  m_LocalScale: {x: 1.7971874, y: 2.0252895, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 233878598}
@@ -5171,7 +5219,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 5f7db7a74e3769b4bb214303be2b0d09, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5194,7 +5242,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 5
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -5727103358793704069, guid: dc255b6ced787b54aa5b76b3952d02ea, type: 3}
+  m_Sprite: {fileID: -20587553, guid: 97cd5578b67eafe4fb5545e7b6131d33, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5217,6 +5265,14 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 13
       objectReference: {fileID: 0}
+    - target: {fileID: 5471503995926735994, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
+      propertyPath: spriteAbierto
+      value:
+      objectReference: {fileID: 792602605, guid: ec9a5df3b0e2ef148b730f8823240c7c, type: 3}
+    - target: {fileID: 5471503995926735994, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
+      propertyPath: spriteCerrado
+      value:
+      objectReference: {fileID: 1549616354, guid: 6028f947f92af8644bc2868efa8bab04, type: 3}
     - target: {fileID: 6879500261274508643, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_Name
       value: Casillero cerrado_0 (8)
@@ -5268,6 +5324,14 @@ PrefabInstance:
     - target: {fileID: 8178681330487816673, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8219211289584552058, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
+      propertyPath: m_Sprite
+      value:
+      objectReference: {fileID: 1549616354, guid: 6028f947f92af8644bc2868efa8bab04, type: 3}
+    - target: {fileID: 8219211289584552058, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
+      propertyPath: m_DrawMode
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5324,7 +5388,7 @@ MonoBehaviour:
   m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
-  m_Color: {r: 0.972549, g: 0.9411765, b: 0.8666667, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5337,7 +5401,7 @@ MonoBehaviour:
     m_FontStyle: 1
     m_BestFit: 1
     m_MinSize: 12
-    m_MaxSize: 20
+    m_MaxSize: 21
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -5750,7 +5814,7 @@ MonoBehaviour:
   m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
-  m_Color: {r: 0.972549, g: 0.9411765, b: 0.8666667, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5763,7 +5827,7 @@ MonoBehaviour:
     m_FontStyle: 1
     m_BestFit: 1
     m_MinSize: 12
-    m_MaxSize: 20
+    m_MaxSize: 21
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -6260,11 +6324,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.14901961, g: 0.12941177, b: 0.1882353, a: 1}
-    m_HighlightedColor: {r: 0.3019608, g: 0.24313726, b: 0.36862746, a: 1}
-    m_PressedColor: {r: 0.40392157, g: 0.30588236, b: 0.4627451, a: 1}
-    m_SelectedColor: {r: 0.3019608, g: 0.24313726, b: 0.36862746, a: 1}
-    m_DisabledColor: {r: 0.25490198, g: 0.22745098, b: 0.2784314, a: 0.627451}
+    m_NormalColor: {r: 0.9490196, g: 0.8235294, b: 0.6784314, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.65882355, b: 0.52156866, a: 1}
+    m_PressedColor: {r: 0.827451, g: 0.43137255, b: 0.34509805, a: 1}
+    m_SelectedColor: {r: 1, g: 0.65882355, b: 0.52156866, a: 1}
+    m_DisabledColor: {r: 0.43137255, g: 0.40392157, b: 0.36862746, a: 0.7058824}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -6508,6 +6572,14 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 17
       objectReference: {fileID: 0}
+    - target: {fileID: 5471503995926735994, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
+      propertyPath: spriteAbierto
+      value:
+      objectReference: {fileID: 792602605, guid: ec9a5df3b0e2ef148b730f8823240c7c, type: 3}
+    - target: {fileID: 5471503995926735994, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
+      propertyPath: spriteCerrado
+      value:
+      objectReference: {fileID: 1549616354, guid: 6028f947f92af8644bc2868efa8bab04, type: 3}
     - target: {fileID: 6879500261274508643, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_Name
       value: Casillero cerrado_0 (5)
@@ -6560,6 +6632,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8219211289584552058, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
+      propertyPath: m_Sprite
+      value:
+      objectReference: {fileID: 1549616354, guid: 6028f947f92af8644bc2868efa8bab04, type: 3}
+    - target: {fileID: 8219211289584552058, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
+      propertyPath: m_DrawMode
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6598,8 +6678,8 @@ MonoBehaviour:
   numero: 4
   salida: {fileID: 753167907}
   panel: {fileID: 1965939482}
-  spriteAbierta: {fileID: -5727103358793704069, guid: dc255b6ced787b54aa5b76b3952d02ea, type: 3}
-  spriteCerrada: {fileID: -170779946217407353, guid: abdc62c2f11ac2f41813dd05283fd6d9, type: 3}
+  spriteAbierta: {fileID: -20587553, guid: 97cd5578b67eafe4fb5545e7b6131d33, type: 3}
+  spriteCerrada: {fileID: -1686231663, guid: 3a24174d520ac1549b0088c347cc9795, type: 3}
   ajustarAccesosAlSprite: 1
   offsetAcceso: {x: 0, y: -0.25}
   textoEstado: {fileID: 1726123934}
@@ -6635,6 +6715,14 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 5471503995926735994, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
+      propertyPath: spriteAbierto
+      value:
+      objectReference: {fileID: 792602605, guid: ec9a5df3b0e2ef148b730f8823240c7c, type: 3}
+    - target: {fileID: 5471503995926735994, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
+      propertyPath: spriteCerrado
+      value:
+      objectReference: {fileID: 1549616354, guid: 6028f947f92af8644bc2868efa8bab04, type: 3}
     - target: {fileID: 6879500261274508643, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_Name
       value: Casillero cerrado_0 (1)
@@ -6686,6 +6774,14 @@ PrefabInstance:
     - target: {fileID: 8178681330487816673, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8219211289584552058, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
+      propertyPath: m_Sprite
+      value:
+      objectReference: {fileID: 1549616354, guid: 6028f947f92af8644bc2868efa8bab04, type: 3}
+    - target: {fileID: 8219211289584552058, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
+      propertyPath: m_DrawMode
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6790,11 +6886,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.14901961, g: 0.12941177, b: 0.1882353, a: 1}
-    m_HighlightedColor: {r: 0.3019608, g: 0.24313726, b: 0.36862746, a: 1}
-    m_PressedColor: {r: 0.40392157, g: 0.30588236, b: 0.4627451, a: 1}
-    m_SelectedColor: {r: 0.3019608, g: 0.24313726, b: 0.36862746, a: 1}
-    m_DisabledColor: {r: 0.25490198, g: 0.22745098, b: 0.2784314, a: 0.627451}
+    m_NormalColor: {r: 0.9490196, g: 0.8235294, b: 0.6784314, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.65882355, b: 0.52156866, a: 1}
+    m_PressedColor: {r: 0.827451, g: 0.43137255, b: 0.34509805, a: 1}
+    m_SelectedColor: {r: 1, g: 0.65882355, b: 0.52156866, a: 1}
+    m_DisabledColor: {r: 0.43137255, g: 0.40392157, b: 0.36862746, a: 0.7058824}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -6867,11 +6963,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.14901961, g: 0.12941177, b: 0.1882353, a: 1}
-    m_HighlightedColor: {r: 0.3019608, g: 0.24313726, b: 0.36862746, a: 1}
-    m_PressedColor: {r: 0.40392157, g: 0.30588236, b: 0.4627451, a: 1}
-    m_SelectedColor: {r: 0.3019608, g: 0.24313726, b: 0.36862746, a: 1}
-    m_DisabledColor: {r: 0.25490198, g: 0.22745098, b: 0.2784314, a: 0.627451}
+    m_NormalColor: {r: 0.9490196, g: 0.8235294, b: 0.6784314, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.65882355, b: 0.52156866, a: 1}
+    m_PressedColor: {r: 0.827451, g: 0.43137255, b: 0.34509805, a: 1}
+    m_SelectedColor: {r: 1, g: 0.65882355, b: 0.52156866, a: 1}
+    m_DisabledColor: {r: 0.43137255, g: 0.40392157, b: 0.36862746, a: 0.7058824}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -7010,7 +7106,7 @@ MonoBehaviour:
   m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
-  m_Color: {r: 0.09019608, g: 0.078431375, b: 0.12156863, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -7137,11 +7233,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.14901961, g: 0.12941177, b: 0.1882353, a: 1}
-    m_HighlightedColor: {r: 0.3019608, g: 0.24313726, b: 0.36862746, a: 1}
-    m_PressedColor: {r: 0.40392157, g: 0.30588236, b: 0.4627451, a: 1}
-    m_SelectedColor: {r: 0.3019608, g: 0.24313726, b: 0.36862746, a: 1}
-    m_DisabledColor: {r: 0.25490198, g: 0.22745098, b: 0.2784314, a: 0.627451}
+    m_NormalColor: {r: 0.9490196, g: 0.8235294, b: 0.6784314, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.65882355, b: 0.52156866, a: 1}
+    m_PressedColor: {r: 0.827451, g: 0.43137255, b: 0.34509805, a: 1}
+    m_SelectedColor: {r: 1, g: 0.65882355, b: 0.52156866, a: 1}
+    m_DisabledColor: {r: 0.43137255, g: 0.40392157, b: 0.36862746, a: 0.7058824}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -7409,7 +7505,7 @@ MonoBehaviour:
   m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
-  m_Color: {r: 0.972549, g: 0.9411765, b: 0.8666667, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -7735,7 +7831,7 @@ MonoBehaviour:
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 10
-    m_MaxSize: 40
+    m_MaxSize: 46
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -7822,7 +7918,7 @@ MonoBehaviour:
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 10
-    m_MaxSize: 40
+    m_MaxSize: 48
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -7928,11 +8024,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.14901961, g: 0.12941177, b: 0.1882353, a: 1}
-    m_HighlightedColor: {r: 0.3019608, g: 0.24313726, b: 0.36862746, a: 1}
-    m_PressedColor: {r: 0.40392157, g: 0.30588236, b: 0.4627451, a: 1}
-    m_SelectedColor: {r: 0.3019608, g: 0.24313726, b: 0.36862746, a: 1}
-    m_DisabledColor: {r: 0.25490198, g: 0.22745098, b: 0.2784314, a: 0.627451}
+    m_NormalColor: {r: 0.9490196, g: 0.8235294, b: 0.6784314, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.65882355, b: 0.52156866, a: 1}
+    m_PressedColor: {r: 0.827451, g: 0.43137255, b: 0.34509805, a: 1}
+    m_SelectedColor: {r: 1, g: 0.65882355, b: 0.52156866, a: 1}
+    m_DisabledColor: {r: 0.43137255, g: 0.40392157, b: 0.36862746, a: 0.7058824}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -7983,7 +8079,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.1342, y: 2.3689, z: 0}
-  m_LocalScale: {x: 1.7981169, y: 2.0749793, z: 1}
+  m_LocalScale: {x: 1.8055471, y: 2.0533648, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1935330174}
@@ -8014,7 +8110,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 5f7db7a74e3769b4bb214303be2b0d09, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8037,7 +8133,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 5
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -5727103358793704069, guid: dc255b6ced787b54aa5b76b3952d02ea, type: 3}
+  m_Sprite: {fileID: -20587553, guid: 97cd5578b67eafe4fb5545e7b6131d33, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -8132,7 +8228,7 @@ MonoBehaviour:
   m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.09019608, g: 0.078431375, b: 0.12156863, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -8316,7 +8412,7 @@ MonoBehaviour:
   m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
-  m_Color: {r: 0.09019608, g: 0.078431375, b: 0.12156863, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -8464,11 +8560,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.14901961, g: 0.12941177, b: 0.1882353, a: 1}
-    m_HighlightedColor: {r: 0.3019608, g: 0.24313726, b: 0.36862746, a: 1}
-    m_PressedColor: {r: 0.40392157, g: 0.30588236, b: 0.4627451, a: 1}
-    m_SelectedColor: {r: 0.3019608, g: 0.24313726, b: 0.36862746, a: 1}
-    m_DisabledColor: {r: 0.25490198, g: 0.22745098, b: 0.2784314, a: 0.627451}
+    m_NormalColor: {r: 0.9490196, g: 0.8235294, b: 0.6784314, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.65882355, b: 0.52156866, a: 1}
+    m_PressedColor: {r: 0.827451, g: 0.43137255, b: 0.34509805, a: 1}
+    m_SelectedColor: {r: 1, g: 0.65882355, b: 0.52156866, a: 1}
+    m_DisabledColor: {r: 0.43137255, g: 0.40392157, b: 0.36862746, a: 0.7058824}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -8680,7 +8776,7 @@ MonoBehaviour:
   m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
-  m_Color: {r: 0.972549, g: 0.9411765, b: 0.8666667, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -8693,7 +8789,7 @@ MonoBehaviour:
     m_FontStyle: 1
     m_BestFit: 1
     m_MinSize: 12
-    m_MaxSize: 20
+    m_MaxSize: 21
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -8721,6 +8817,14 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 5471503995926735994, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
+      propertyPath: spriteAbierto
+      value:
+      objectReference: {fileID: 792602605, guid: ec9a5df3b0e2ef148b730f8823240c7c, type: 3}
+    - target: {fileID: 5471503995926735994, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
+      propertyPath: spriteCerrado
+      value:
+      objectReference: {fileID: 1549616354, guid: 6028f947f92af8644bc2868efa8bab04, type: 3}
     - target: {fileID: 6879500261274508643, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_Name
       value: Casillero cerrado_0 (10)
@@ -8772,6 +8876,14 @@ PrefabInstance:
     - target: {fileID: 8178681330487816673, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8219211289584552058, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
+      propertyPath: m_Sprite
+      value:
+      objectReference: {fileID: 1549616354, guid: 6028f947f92af8644bc2868efa8bab04, type: 3}
+    - target: {fileID: 8219211289584552058, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
+      propertyPath: m_DrawMode
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9210,7 +9322,7 @@ MonoBehaviour:
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 10
-    m_MaxSize: 40
+    m_MaxSize: 68
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -9507,6 +9619,14 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 16
       objectReference: {fileID: 0}
+    - target: {fileID: 5471503995926735994, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
+      propertyPath: spriteAbierto
+      value:
+      objectReference: {fileID: 792602605, guid: ec9a5df3b0e2ef148b730f8823240c7c, type: 3}
+    - target: {fileID: 5471503995926735994, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
+      propertyPath: spriteCerrado
+      value:
+      objectReference: {fileID: 1549616354, guid: 6028f947f92af8644bc2868efa8bab04, type: 3}
     - target: {fileID: 6879500261274508643, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_Name
       value: Casillero cerrado_0 (3)
@@ -9558,6 +9678,14 @@ PrefabInstance:
     - target: {fileID: 8178681330487816673, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8219211289584552058, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
+      propertyPath: m_Sprite
+      value:
+      objectReference: {fileID: 1549616354, guid: 6028f947f92af8644bc2868efa8bab04, type: 3}
+    - target: {fileID: 8219211289584552058, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
+      propertyPath: m_DrawMode
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9662,11 +9790,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.14901961, g: 0.12941177, b: 0.1882353, a: 1}
-    m_HighlightedColor: {r: 0.3019608, g: 0.24313726, b: 0.36862746, a: 1}
-    m_PressedColor: {r: 0.40392157, g: 0.30588236, b: 0.4627451, a: 1}
-    m_SelectedColor: {r: 0.3019608, g: 0.24313726, b: 0.36862746, a: 1}
-    m_DisabledColor: {r: 0.25490198, g: 0.22745098, b: 0.2784314, a: 0.627451}
+    m_NormalColor: {r: 0.9490196, g: 0.8235294, b: 0.6784314, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.65882355, b: 0.52156866, a: 1}
+    m_PressedColor: {r: 0.827451, g: 0.43137255, b: 0.34509805, a: 1}
+    m_SelectedColor: {r: 1, g: 0.65882355, b: 0.52156866, a: 1}
+    m_DisabledColor: {r: 0.43137255, g: 0.40392157, b: 0.36862746, a: 0.7058824}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -9771,7 +9899,7 @@ MonoBehaviour:
   m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
-  m_Color: {r: 0.972549, g: 0.9411765, b: 0.8666667, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -9784,7 +9912,7 @@ MonoBehaviour:
     m_FontStyle: 1
     m_BestFit: 1
     m_MinSize: 12
-    m_MaxSize: 20
+    m_MaxSize: 21
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -10215,7 +10343,7 @@ MonoBehaviour:
   m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
-  m_Color: {r: 0.972549, g: 0.9411765, b: 0.8666667, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -10228,7 +10356,7 @@ MonoBehaviour:
     m_FontStyle: 1
     m_BestFit: 1
     m_MinSize: 12
-    m_MaxSize: 20
+    m_MaxSize: 21
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -10256,6 +10384,14 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 18
       objectReference: {fileID: 0}
+    - target: {fileID: 5471503995926735994, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
+      propertyPath: spriteAbierto
+      value:
+      objectReference: {fileID: 792602605, guid: ec9a5df3b0e2ef148b730f8823240c7c, type: 3}
+    - target: {fileID: 5471503995926735994, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
+      propertyPath: spriteCerrado
+      value:
+      objectReference: {fileID: 1549616354, guid: 6028f947f92af8644bc2868efa8bab04, type: 3}
     - target: {fileID: 6879500261274508643, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_Name
       value: Casillero cerrado_0 (2)
@@ -10307,6 +10443,14 @@ PrefabInstance:
     - target: {fileID: 8178681330487816673, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8219211289584552058, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
+      propertyPath: m_Sprite
+      value:
+      objectReference: {fileID: 1549616354, guid: 6028f947f92af8644bc2868efa8bab04, type: 3}
+    - target: {fileID: 8219211289584552058, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
+      propertyPath: m_DrawMode
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10786,7 +10930,7 @@ MonoBehaviour:
   m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.055, g: 0.04, b: 0.08, a: 0.97}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.97}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -10882,7 +11026,7 @@ MonoBehaviour:
   m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
-  m_Color: {r: 0.972549, g: 0.9411765, b: 0.8666667, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -10961,7 +11105,7 @@ MonoBehaviour:
   m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
-  m_Color: {r: 0.972549, g: 0.9411765, b: 0.8666667, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -10974,7 +11118,7 @@ MonoBehaviour:
     m_FontStyle: 1
     m_BestFit: 1
     m_MinSize: 12
-    m_MaxSize: 20
+    m_MaxSize: 21
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -11129,11 +11273,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.14901961, g: 0.12941177, b: 0.1882353, a: 1}
-    m_HighlightedColor: {r: 0.3019608, g: 0.24313726, b: 0.36862746, a: 1}
-    m_PressedColor: {r: 0.40392157, g: 0.30588236, b: 0.4627451, a: 1}
-    m_SelectedColor: {r: 0.3019608, g: 0.24313726, b: 0.36862746, a: 1}
-    m_DisabledColor: {r: 0.25490198, g: 0.22745098, b: 0.2784314, a: 0.627451}
+    m_NormalColor: {r: 0.9490196, g: 0.8235294, b: 0.6784314, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.65882355, b: 0.52156866, a: 1}
+    m_PressedColor: {r: 0.827451, g: 0.43137255, b: 0.34509805, a: 1}
+    m_SelectedColor: {r: 1, g: 0.65882355, b: 0.52156866, a: 1}
+    m_DisabledColor: {r: 0.43137255, g: 0.40392157, b: 0.36862746, a: 0.7058824}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -11564,7 +11708,7 @@ MonoBehaviour:
   m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.055, g: 0.04, b: 0.08, a: 0.96}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.96}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -11687,11 +11831,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.95686275, g: 0.73333335, b: 0.3254902, a: 1}
-    m_HighlightedColor: {r: 1, g: 0.8392157, b: 0.53333336, a: 1}
-    m_PressedColor: {r: 0.8039216, g: 0.54509807, b: 0.1882353, a: 1}
-    m_SelectedColor: {r: 1, g: 0.8392157, b: 0.53333336, a: 1}
-    m_DisabledColor: {r: 0.25490198, g: 0.22745098, b: 0.2784314, a: 0.627451}
+    m_NormalColor: {r: 0.9490196, g: 0.8235294, b: 0.6784314, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.65882355, b: 0.52156866, a: 1}
+    m_PressedColor: {r: 0.827451, g: 0.43137255, b: 0.34509805, a: 1}
+    m_SelectedColor: {r: 1, g: 0.65882355, b: 0.52156866, a: 1}
+    m_DisabledColor: {r: 0.43137255, g: 0.40392157, b: 0.36862746, a: 0.7058824}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -11820,11 +11964,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.14901961, g: 0.12941177, b: 0.1882353, a: 1}
-    m_HighlightedColor: {r: 0.3019608, g: 0.24313726, b: 0.36862746, a: 1}
-    m_PressedColor: {r: 0.40392157, g: 0.30588236, b: 0.4627451, a: 1}
-    m_SelectedColor: {r: 0.3019608, g: 0.24313726, b: 0.36862746, a: 1}
-    m_DisabledColor: {r: 0.25490198, g: 0.22745098, b: 0.2784314, a: 0.627451}
+    m_NormalColor: {r: 0.9490196, g: 0.8235294, b: 0.6784314, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.65882355, b: 0.52156866, a: 1}
+    m_PressedColor: {r: 0.827451, g: 0.43137255, b: 0.34509805, a: 1}
+    m_SelectedColor: {r: 1, g: 0.65882355, b: 0.52156866, a: 1}
+    m_DisabledColor: {r: 0.43137255, g: 0.40392157, b: 0.36862746, a: 0.7058824}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -11981,7 +12125,7 @@ MonoBehaviour:
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 10
-    m_MaxSize: 40
+    m_MaxSize: 46
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -12179,11 +12323,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.14901961, g: 0.12941177, b: 0.1882353, a: 1}
-    m_HighlightedColor: {r: 0.3019608, g: 0.24313726, b: 0.36862746, a: 1}
-    m_PressedColor: {r: 0.40392157, g: 0.30588236, b: 0.4627451, a: 1}
-    m_SelectedColor: {r: 0.3019608, g: 0.24313726, b: 0.36862746, a: 1}
-    m_DisabledColor: {r: 0.25490198, g: 0.22745098, b: 0.2784314, a: 0.627451}
+    m_NormalColor: {r: 0.9490196, g: 0.8235294, b: 0.6784314, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.65882355, b: 0.52156866, a: 1}
+    m_PressedColor: {r: 0.827451, g: 0.43137255, b: 0.34509805, a: 1}
+    m_SelectedColor: {r: 1, g: 0.65882355, b: 0.52156866, a: 1}
+    m_DisabledColor: {r: 0.43137255, g: 0.40392157, b: 0.36862746, a: 0.7058824}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -12300,11 +12444,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.14901961, g: 0.12941177, b: 0.1882353, a: 1}
-    m_HighlightedColor: {r: 0.3019608, g: 0.24313726, b: 0.36862746, a: 1}
-    m_PressedColor: {r: 0.40392157, g: 0.30588236, b: 0.4627451, a: 1}
-    m_SelectedColor: {r: 0.3019608, g: 0.24313726, b: 0.36862746, a: 1}
-    m_DisabledColor: {r: 0.25490198, g: 0.22745098, b: 0.2784314, a: 0.627451}
+    m_NormalColor: {r: 0.9490196, g: 0.8235294, b: 0.6784314, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.65882355, b: 0.52156866, a: 1}
+    m_PressedColor: {r: 0.827451, g: 0.43137255, b: 0.34509805, a: 1}
+    m_SelectedColor: {r: 1, g: 0.65882355, b: 0.52156866, a: 1}
+    m_DisabledColor: {r: 0.43137255, g: 0.40392157, b: 0.36862746, a: 0.7058824}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -12732,11 +12876,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.95686275, g: 0.73333335, b: 0.3254902, a: 1}
-    m_HighlightedColor: {r: 1, g: 0.8392157, b: 0.53333336, a: 1}
-    m_PressedColor: {r: 0.8039216, g: 0.54509807, b: 0.1882353, a: 1}
-    m_SelectedColor: {r: 1, g: 0.8392157, b: 0.53333336, a: 1}
-    m_DisabledColor: {r: 0.25490198, g: 0.22745098, b: 0.2784314, a: 0.627451}
+    m_NormalColor: {r: 0.9490196, g: 0.8235294, b: 0.6784314, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.65882355, b: 0.52156866, a: 1}
+    m_PressedColor: {r: 0.827451, g: 0.43137255, b: 0.34509805, a: 1}
+    m_SelectedColor: {r: 1, g: 0.65882355, b: 0.52156866, a: 1}
+    m_DisabledColor: {r: 0.43137255, g: 0.40392157, b: 0.36862746, a: 0.7058824}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -12960,11 +13104,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.14901961, g: 0.12941177, b: 0.1882353, a: 1}
-    m_HighlightedColor: {r: 0.3019608, g: 0.24313726, b: 0.36862746, a: 1}
-    m_PressedColor: {r: 0.40392157, g: 0.30588236, b: 0.4627451, a: 1}
-    m_SelectedColor: {r: 0.3019608, g: 0.24313726, b: 0.36862746, a: 1}
-    m_DisabledColor: {r: 0.25490198, g: 0.22745098, b: 0.2784314, a: 0.627451}
+    m_NormalColor: {r: 0.9490196, g: 0.8235294, b: 0.6784314, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.65882355, b: 0.52156866, a: 1}
+    m_PressedColor: {r: 0.827451, g: 0.43137255, b: 0.34509805, a: 1}
+    m_SelectedColor: {r: 1, g: 0.65882355, b: 0.52156866, a: 1}
+    m_DisabledColor: {r: 0.43137255, g: 0.40392157, b: 0.36862746, a: 0.7058824}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -13038,7 +13182,7 @@ MonoBehaviour:
   m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
-  m_Color: {r: 0.972549, g: 0.9411765, b: 0.8666667, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -13192,7 +13336,7 @@ MonoBehaviour:
   m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
-  m_Color: {r: 0.972549, g: 0.9411765, b: 0.8666667, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -13205,7 +13349,7 @@ MonoBehaviour:
     m_FontStyle: 1
     m_BestFit: 1
     m_MinSize: 12
-    m_MaxSize: 20
+    m_MaxSize: 21
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -13233,6 +13377,14 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 22
       objectReference: {fileID: 0}
+    - target: {fileID: 5471503995926735994, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
+      propertyPath: spriteAbierto
+      value:
+      objectReference: {fileID: 792602605, guid: ec9a5df3b0e2ef148b730f8823240c7c, type: 3}
+    - target: {fileID: 5471503995926735994, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
+      propertyPath: spriteCerrado
+      value:
+      objectReference: {fileID: 1549616354, guid: 6028f947f92af8644bc2868efa8bab04, type: 3}
     - target: {fileID: 6879500261274508643, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_Name
       value: Casillero cerrado_0 (13)
@@ -13284,6 +13436,14 @@ PrefabInstance:
     - target: {fileID: 8178681330487816673, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8219211289584552058, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
+      propertyPath: m_Sprite
+      value:
+      objectReference: {fileID: 1549616354, guid: 6028f947f92af8644bc2868efa8bab04, type: 3}
+    - target: {fileID: 8219211289584552058, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
+      propertyPath: m_DrawMode
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13702,8 +13862,8 @@ MonoBehaviour:
   numero: 1
   salida: {fileID: 1463790650}
   panel: {fileID: 618841860}
-  spriteAbierta: {fileID: -5727103358793704069, guid: dc255b6ced787b54aa5b76b3952d02ea, type: 3}
-  spriteCerrada: {fileID: -170779946217407353, guid: abdc62c2f11ac2f41813dd05283fd6d9, type: 3}
+  spriteAbierta: {fileID: -20587553, guid: 97cd5578b67eafe4fb5545e7b6131d33, type: 3}
+  spriteCerrada: {fileID: -1686231663, guid: 3a24174d520ac1549b0088c347cc9795, type: 3}
   ajustarAccesosAlSprite: 1
   offsetAcceso: {x: 0, y: -0.25}
   textoEstado: {fileID: 1652862814}
@@ -13777,7 +13937,7 @@ MonoBehaviour:
   m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
-  m_Color: {r: 0.972549, g: 0.9411765, b: 0.8666667, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -14094,11 +14254,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.14901961, g: 0.12941177, b: 0.1882353, a: 1}
-    m_HighlightedColor: {r: 0.3019608, g: 0.24313726, b: 0.36862746, a: 1}
-    m_PressedColor: {r: 0.40392157, g: 0.30588236, b: 0.4627451, a: 1}
-    m_SelectedColor: {r: 0.3019608, g: 0.24313726, b: 0.36862746, a: 1}
-    m_DisabledColor: {r: 0.25490198, g: 0.22745098, b: 0.2784314, a: 0.627451}
+    m_NormalColor: {r: 0.9490196, g: 0.8235294, b: 0.6784314, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.65882355, b: 0.52156866, a: 1}
+    m_PressedColor: {r: 0.827451, g: 0.43137255, b: 0.34509805, a: 1}
+    m_SelectedColor: {r: 1, g: 0.65882355, b: 0.52156866, a: 1}
+    m_DisabledColor: {r: 0.43137255, g: 0.40392157, b: 0.36862746, a: 0.7058824}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -14167,7 +14327,7 @@ MonoBehaviour:
   m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
-  m_Color: {r: 0.972549, g: 0.9411765, b: 0.8666667, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -14180,7 +14340,7 @@ MonoBehaviour:
     m_FontStyle: 1
     m_BestFit: 1
     m_MinSize: 12
-    m_MaxSize: 20
+    m_MaxSize: 21
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -14208,6 +14368,14 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 21
       objectReference: {fileID: 0}
+    - target: {fileID: 5471503995926735994, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
+      propertyPath: spriteAbierto
+      value:
+      objectReference: {fileID: 792602605, guid: ec9a5df3b0e2ef148b730f8823240c7c, type: 3}
+    - target: {fileID: 5471503995926735994, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
+      propertyPath: spriteCerrado
+      value:
+      objectReference: {fileID: 1549616354, guid: 6028f947f92af8644bc2868efa8bab04, type: 3}
     - target: {fileID: 6879500261274508643, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_Name
       value: Casillero cerrado_0 (7)
@@ -14259,6 +14427,14 @@ PrefabInstance:
     - target: {fileID: 8178681330487816673, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8219211289584552058, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
+      propertyPath: m_Sprite
+      value:
+      objectReference: {fileID: 1549616354, guid: 6028f947f92af8644bc2868efa8bab04, type: 3}
+    - target: {fileID: 8219211289584552058, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
+      propertyPath: m_DrawMode
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14442,11 +14618,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.14901961, g: 0.12941177, b: 0.1882353, a: 1}
-    m_HighlightedColor: {r: 0.3019608, g: 0.24313726, b: 0.36862746, a: 1}
-    m_PressedColor: {r: 0.40392157, g: 0.30588236, b: 0.4627451, a: 1}
-    m_SelectedColor: {r: 0.3019608, g: 0.24313726, b: 0.36862746, a: 1}
-    m_DisabledColor: {r: 0.25490198, g: 0.22745098, b: 0.2784314, a: 0.627451}
+    m_NormalColor: {r: 0.9490196, g: 0.8235294, b: 0.6784314, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.65882355, b: 0.52156866, a: 1}
+    m_PressedColor: {r: 0.827451, g: 0.43137255, b: 0.34509805, a: 1}
+    m_SelectedColor: {r: 1, g: 0.65882355, b: 0.52156866, a: 1}
+    m_DisabledColor: {r: 0.43137255, g: 0.40392157, b: 0.36862746, a: 0.7058824}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -14963,6 +15139,14 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 5471503995926735994, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
+      propertyPath: spriteAbierto
+      value:
+      objectReference: {fileID: 792602605, guid: ec9a5df3b0e2ef148b730f8823240c7c, type: 3}
+    - target: {fileID: 5471503995926735994, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
+      propertyPath: spriteCerrado
+      value:
+      objectReference: {fileID: 1549616354, guid: 6028f947f92af8644bc2868efa8bab04, type: 3}
     - target: {fileID: 6879500261274508643, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_Name
       value: Casillero cerrado_0 (6)
@@ -15014,6 +15198,14 @@ PrefabInstance:
     - target: {fileID: 8178681330487816673, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8219211289584552058, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
+      propertyPath: m_Sprite
+      value:
+      objectReference: {fileID: 1549616354, guid: 6028f947f92af8644bc2868efa8bab04, type: 3}
+    - target: {fileID: 8219211289584552058, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
+      propertyPath: m_DrawMode
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15106,7 +15298,7 @@ MonoBehaviour:
   m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
-  m_Color: {r: 0.09019608, g: 0.078431375, b: 0.12156863, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -15334,11 +15526,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.14901961, g: 0.12941177, b: 0.1882353, a: 1}
-    m_HighlightedColor: {r: 0.3019608, g: 0.24313726, b: 0.36862746, a: 1}
-    m_PressedColor: {r: 0.40392157, g: 0.30588236, b: 0.4627451, a: 1}
-    m_SelectedColor: {r: 0.3019608, g: 0.24313726, b: 0.36862746, a: 1}
-    m_DisabledColor: {r: 0.25490198, g: 0.22745098, b: 0.2784314, a: 0.627451}
+    m_NormalColor: {r: 0.9490196, g: 0.8235294, b: 0.6784314, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.65882355, b: 0.52156866, a: 1}
+    m_PressedColor: {r: 0.827451, g: 0.43137255, b: 0.34509805, a: 1}
+    m_SelectedColor: {r: 1, g: 0.65882355, b: 0.52156866, a: 1}
+    m_DisabledColor: {r: 0.43137255, g: 0.40392157, b: 0.36862746, a: 0.7058824}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -15503,8 +15695,8 @@ MonoBehaviour:
   numero: 2
   salida: {fileID: 1015635122}
   panel: {fileID: 1065229378}
-  spriteAbierta: {fileID: -5727103358793704069, guid: dc255b6ced787b54aa5b76b3952d02ea, type: 3}
-  spriteCerrada: {fileID: -170779946217407353, guid: abdc62c2f11ac2f41813dd05283fd6d9, type: 3}
+  spriteAbierta: {fileID: -20587553, guid: 97cd5578b67eafe4fb5545e7b6131d33, type: 3}
+  spriteCerrada: {fileID: -1686231663, guid: 3a24174d520ac1549b0088c347cc9795, type: 3}
   ajustarAccesosAlSprite: 1
   offsetAcceso: {x: 0, y: -0.25}
   textoEstado: {fileID: 1725024269}
@@ -15540,6 +15732,14 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 5471503995926735994, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
+      propertyPath: spriteAbierto
+      value:
+      objectReference: {fileID: 792602605, guid: ec9a5df3b0e2ef148b730f8823240c7c, type: 3}
+    - target: {fileID: 5471503995926735994, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
+      propertyPath: spriteCerrado
+      value:
+      objectReference: {fileID: 1549616354, guid: 6028f947f92af8644bc2868efa8bab04, type: 3}
     - target: {fileID: 6879500261274508643, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_Name
       value: Casillero cerrado_0 (4)
@@ -15591,6 +15791,14 @@ PrefabInstance:
     - target: {fileID: 8178681330487816673, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8219211289584552058, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
+      propertyPath: m_Sprite
+      value:
+      objectReference: {fileID: 1549616354, guid: 6028f947f92af8644bc2868efa8bab04, type: 3}
+    - target: {fileID: 8219211289584552058, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
+      propertyPath: m_DrawMode
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15779,7 +15987,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.0217, y: 2.1685, z: 0}
-  m_LocalScale: {x: 1.8125626, y: 2.1159527, z: 1}
+  m_LocalScale: {x: 1.8200525, y: 2.0939114, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 931829183}
@@ -15810,7 +16018,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 5f7db7a74e3769b4bb214303be2b0d09, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -15833,7 +16041,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 5
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -5727103358793704069, guid: dc255b6ced787b54aa5b76b3952d02ea, type: 3}
+  m_Sprite: {fileID: -20587553, guid: 97cd5578b67eafe4fb5545e7b6131d33, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -16033,7 +16241,7 @@ MonoBehaviour:
   m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.055, g: 0.04, b: 0.08, a: 0.94}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.94}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -16187,7 +16395,7 @@ MonoBehaviour:
   m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
-  m_Color: {r: 0.972549, g: 0.9411765, b: 0.8666667, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -16200,7 +16408,7 @@ MonoBehaviour:
     m_FontStyle: 1
     m_BestFit: 1
     m_MinSize: 12
-    m_MaxSize: 20
+    m_MaxSize: 21
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -16314,11 +16522,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.14901961, g: 0.12941177, b: 0.1882353, a: 1}
-    m_HighlightedColor: {r: 0.3019608, g: 0.24313726, b: 0.36862746, a: 1}
-    m_PressedColor: {r: 0.40392157, g: 0.30588236, b: 0.4627451, a: 1}
-    m_SelectedColor: {r: 0.3019608, g: 0.24313726, b: 0.36862746, a: 1}
-    m_DisabledColor: {r: 0.25490198, g: 0.22745098, b: 0.2784314, a: 0.627451}
+    m_NormalColor: {r: 0.9490196, g: 0.8235294, b: 0.6784314, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.65882355, b: 0.52156866, a: 1}
+    m_PressedColor: {r: 0.827451, g: 0.43137255, b: 0.34509805, a: 1}
+    m_SelectedColor: {r: 1, g: 0.65882355, b: 0.52156866, a: 1}
+    m_DisabledColor: {r: 0.43137255, g: 0.40392157, b: 0.36862746, a: 0.7058824}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -16387,7 +16595,7 @@ MonoBehaviour:
   m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
-  m_Color: {r: 0.972549, g: 0.9411765, b: 0.8666667, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -16400,7 +16608,7 @@ MonoBehaviour:
     m_FontStyle: 1
     m_BestFit: 1
     m_MinSize: 12
-    m_MaxSize: 20
+    m_MaxSize: 21
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -16466,7 +16674,7 @@ MonoBehaviour:
   m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
-  m_Color: {r: 0.972549, g: 0.9411765, b: 0.8666667, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -16579,16 +16787,16 @@ MonoBehaviour:
   jugador2: {fileID: 1775270134}
   textoTiempo: {fileID: 2100000002}
   cuentaRegresiva: {fileID: 2100000015}
-  victoriaJugador1: {fileID: 8924544481279383204, guid: a68701cbc2b4f2c4c9fefbd048072910, type: 3}
-  victoriaJugador2: {fileID: 1272646939280288008, guid: 662d57114841e8340b40d8fa6039c89c, type: 3}
-  empateJugador1: {fileID: 6679887087250975802, guid: 6f2cac71eac792245b0c8f3d4c35159e, type: 3}
-  empateJugador2: {fileID: 8709169254226775814, guid: 2b3afa4b56912154f81f7339c7122754, type: 3}
   retratoMorado: {fileID: 3081191475119929923, guid: 7b42d3529f1ffe3498e2d434c3cf9b02, type: 3}
   retratoRojo: {fileID: -3670015656080422953, guid: 5fae8ec966f2cec47a127af814690ebd, type: 3}
   nombreJugador1: JUGADOR 1
   nombreJugador2: JUGADOR 2
   duracionVS: 1.3
   duracionAperturaVS: 0.85
+  victoriaJugador1: {fileID: 8924544481279383204, guid: a68701cbc2b4f2c4c9fefbd048072910, type: 3}
+  victoriaJugador2: {fileID: 1272646939280288008, guid: 662d57114841e8340b40d8fa6039c89c, type: 3}
+  empateJugador1: {fileID: 6679887087250975802, guid: 6f2cac71eac792245b0c8f3d4c35159e, type: 3}
+  empateJugador2: {fileID: 8709169254226775814, guid: 2b3afa4b56912154f81f7339c7122754, type: 3}
 --- !u!1 &2075784774
 GameObject:
   m_ObjectHideFlags: 0
@@ -16766,11 +16974,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.14901961, g: 0.12941177, b: 0.1882353, a: 1}
-    m_HighlightedColor: {r: 0.3019608, g: 0.24313726, b: 0.36862746, a: 1}
-    m_PressedColor: {r: 0.40392157, g: 0.30588236, b: 0.4627451, a: 1}
-    m_SelectedColor: {r: 0.3019608, g: 0.24313726, b: 0.36862746, a: 1}
-    m_DisabledColor: {r: 0.25490198, g: 0.22745098, b: 0.2784314, a: 0.627451}
+    m_NormalColor: {r: 0.9490196, g: 0.8235294, b: 0.6784314, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.65882355, b: 0.52156866, a: 1}
+    m_PressedColor: {r: 0.827451, g: 0.43137255, b: 0.34509805, a: 1}
+    m_SelectedColor: {r: 1, g: 0.65882355, b: 0.52156866, a: 1}
+    m_DisabledColor: {r: 0.43137255, g: 0.40392157, b: 0.36862746, a: 0.7058824}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -16887,11 +17095,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.14901961, g: 0.12941177, b: 0.1882353, a: 1}
-    m_HighlightedColor: {r: 0.3019608, g: 0.24313726, b: 0.36862746, a: 1}
-    m_PressedColor: {r: 0.40392157, g: 0.30588236, b: 0.4627451, a: 1}
-    m_SelectedColor: {r: 0.3019608, g: 0.24313726, b: 0.36862746, a: 1}
-    m_DisabledColor: {r: 0.25490198, g: 0.22745098, b: 0.2784314, a: 0.627451}
+    m_NormalColor: {r: 0.9490196, g: 0.8235294, b: 0.6784314, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.65882355, b: 0.52156866, a: 1}
+    m_PressedColor: {r: 0.827451, g: 0.43137255, b: 0.34509805, a: 1}
+    m_SelectedColor: {r: 1, g: 0.65882355, b: 0.52156866, a: 1}
+    m_DisabledColor: {r: 0.43137255, g: 0.40392157, b: 0.36862746, a: 0.7058824}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -17339,7 +17547,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 8311301764618016185, guid: 7ed3f7884aa905f4f984b70a37c55e0b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3ee7086c12125f7439e909abc76a220d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -17360,7 +17568,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 39.27, y: -0.8051, z: 0}
-  m_LocalScale: {x: 1.8385078, y: 2.1061459, z: 1.8385078}
+  m_LocalScale: {x: 1.8392252, y: 2.1061459, z: 1.8385078}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -17415,7 +17623,7 @@ MonoBehaviour:
   m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
-  m_Color: {r: 0.972549, g: 0.9411765, b: 0.8666667, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -17428,7 +17636,7 @@ MonoBehaviour:
     m_FontStyle: 1
     m_BestFit: 1
     m_MinSize: 12
-    m_MaxSize: 20
+    m_MaxSize: 21
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -17758,6 +17966,14 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 5471503995926735994, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
+      propertyPath: spriteAbierto
+      value:
+      objectReference: {fileID: 792602605, guid: ec9a5df3b0e2ef148b730f8823240c7c, type: 3}
+    - target: {fileID: 5471503995926735994, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
+      propertyPath: spriteCerrado
+      value:
+      objectReference: {fileID: 1549616354, guid: 6028f947f92af8644bc2868efa8bab04, type: 3}
     - target: {fileID: 6879500261274508643, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_Name
       value: Casillero cerrado_0
@@ -17809,6 +18025,14 @@ PrefabInstance:
     - target: {fileID: 8178681330487816673, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8219211289584552058, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
+      propertyPath: m_Sprite
+      value:
+      objectReference: {fileID: 1549616354, guid: 6028f947f92af8644bc2868efa8bab04, type: 3}
+    - target: {fileID: 8219211289584552058, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
+      propertyPath: m_DrawMode
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

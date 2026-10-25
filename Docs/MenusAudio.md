@@ -11,6 +11,10 @@ flujo completo. Jugar carga `PartidaAudioMenus`; Revancha recarga esa misma copi
 y Volver al menu regresa a `MenuAudioMenus`. Estas dos escenas aparecen primero
 en Build Settings. Las entradas originales siguen disponibles despues de ellas.
 
+El menu utiliza ahora el logo y los botones de Social Outcasts del equipo de
+arte; opciones y pausa comparten la paleta de papel, negro y rojo. Los detalles
+de importacion y del pasillo a color estan en ArteFinal.md.
+
 ## Flujo
 
 - Inicio: Jugar, Opciones, Como jugar, Creditos y Salir.

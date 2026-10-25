@@ -15,7 +15,19 @@ public class ConfiguracionAudio : ScriptableObject
     public AudioClip usarCarta;
     public AudioClip abrirPuerta;
     public AudioClip cerrarPuerta;
+    public AudioClip versus;
+    public AudioClip victoria;
+    public AudioClip golpe;
+    public AudioClip estudianteAgotado;
+    public AudioClip abrirCasillero;
+    public AudioClip cerrarCasillero;
     [Range(0f, 1f)] public float volumenEfectos = 0.75f;
+
+    [Header("Estados de los jugadores")]
+    public AudioClip succion;
+    public AudioClip aturdimiento;
+    [Range(0f, 1f)] public float volumenSuccion = 0.45f;
+    [Range(0f, 1f)] public float volumenAturdimiento = 0.4f;
 
     [Header("Pasos")]
     public AudioClip pasos;

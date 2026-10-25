@@ -88,6 +88,7 @@ public class Casillero : MonoBehaviour
         cierreRestante = Mathf.Max(0.1f, segundosAbierto);
         if (Application.isPlaying) temblorRestante = Mathf.Max(0.05f, duracionTemblor);
         GetComponent<SpriteRenderer>().sprite = spriteAbierto;
+        if (Application.isPlaying) AudioJuego.Instancia?.Casillero(true);
         // Una sola tirada por casillero; golpearlo de nuevo no genera mas estudiantes.
         if (tiradaRealizada) return;
         tiradaRealizada = true;
@@ -110,6 +111,7 @@ public class Casillero : MonoBehaviour
         temblorRestante = 0f;
         transform.localRotation = rotacionOriginal;
         if (spriteCerrado != null) GetComponent<SpriteRenderer>().sprite = spriteCerrado;
+        if (Application.isPlaying) AudioJuego.Instancia?.Casillero(false);
     }
 
     private void OnDrawGizmosSelected()

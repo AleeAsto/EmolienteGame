@@ -82,8 +82,12 @@ public class AudioJuego : MonoBehaviour
         {
             if (raiz.GetComponentInChildren<CicloPartida>(true) != null) esPartida = true;
             foreach (var jugador in raiz.GetComponentsInChildren<MovimientoJugador2D>(true))
+            {
                 if (jugador.GetComponent<AudioPasosJugador>() == null)
                     jugador.gameObject.AddComponent<AudioPasosJugador>();
+                if (jugador.GetComponent<AudioEstadoJugador>() == null)
+                    jugador.gameObject.AddComponent<AudioEstadoJugador>();
+            }
         }
         CambiarMusica(esPartida ? Configuracion.musicaPartida : Configuracion.musicaMenu);
     }
@@ -148,6 +152,12 @@ public class AudioJuego : MonoBehaviour
     public void BotonMenu() => Reproducir(efectosMenu, Configuracion.botonMenu);
     public void CambiarCarta() => Reproducir(efectosPartida, Configuracion.cambiarCarta);
     public void UsarCarta() => Reproducir(efectosPartida, Configuracion.usarCarta);
+    public void Versus() => Reproducir(efectosMenu, Configuracion.versus);
+    public void Victoria() => Reproducir(efectosMenu, Configuracion.victoria);
+    public void Golpe() => Reproducir(efectosPartida, Configuracion.golpe);
+    public void EstudianteAgotado() => Reproducir(efectosPartida, Configuracion.estudianteAgotado);
+    public void Casillero(bool abierto) => Reproducir(efectosPartida,
+        abierto ? Configuracion.abrirCasillero : Configuracion.cerrarCasillero);
 
     public void CambiarVolumenMusica(float valor)
     {

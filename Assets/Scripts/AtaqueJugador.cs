@@ -183,6 +183,7 @@ public class AtaqueJugador : MonoBehaviour
         impactoConsumido = false;
         finalizarSiguienteFrame = false;
         EstaAtacando = true;
+        AudioJuego.Instancia?.Golpe();
         ActualizarVisual();
         PosicionAnteriorGolpe = PosicionGolpe;
         return true;
