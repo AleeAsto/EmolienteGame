@@ -13,8 +13,9 @@ assets de casillero o puerta, manteniendo el objeto raiz y `Salida`.
 
 ## Usar
 
-- Acercarse a una puerta y moverse hacia arriba: P1 W, P2 I o flecha arriba,
+- Acercarse a una puerta y moverse solo hacia arriba: P1 W, P2 I o flecha arriba,
   usando la misma Input Action de movimiento del jugador.
+  Arriba junto con izquierda o derecha no activa la puerta.
 - Se elige al azar otra puerta disponible, nunca la misma ni una bloqueada.
 - La puerta de salida se bloquea para ambos durante 10 s: no puede usarse como
   entrada ni seleccionarse como destino. Su texto muestra los segundos restantes
@@ -33,5 +34,13 @@ assets de casillero o puerta, manteniendo el objeto raiz y `Salida`.
 
 `Puertas/RedPuertas`: referencias de las cuatro puertas y bloqueo de salida (10 s).
 `P1` y `P2`, `UsarPuertaJugador`: cooldown personal (5 s).
-Cada `PuertaTeletransporte`: numero, salida, alcance X/Y y visual del estado.
-El punto `Salida` esta delante del marco y dentro de los limites del suelo.
+Cada `PuertaTeletransporte`: numero, salida y visual del estado.
+El `BoxCollider2D` del mismo objeto define la zona de entrada. Ajusta `Size` y
+`Offset` con `Edit Collider` y manten `Is Trigger` activado. Por defecto mide
+2.4 x 1.6 unidades (equivale al alcance anterior). El BoxCollider2D de los pies
+del jugador (el mismo usado por MovimientoJugador2D) debe solaparse con la caja
+de la puerta al pulsar arriba; no necesita Rigidbody2D. Se respetan el Size,
+Offset, escala y rotacion de ambos colliders.
+En `UsarPuertaJugador`, `Collider Pies` referencia explicitamente esa caja.
+El punto `Salida` esta delante del marco y dentro de los limites del suelo:
+al viajar se alinea con el centro de los pies, no con el pivot del personaje.

@@ -121,6 +121,9 @@ public class ManoCartasJugador : MonoBehaviour
             }
             pulsacionPendiente = true;
             tiempoPulsacion = 0f;
+            // Respuesta inmediata: no esperar a soltar para distinguir tap/hold.
+            // Si sigue manteniendo, despues podra abrir el menu de cartas.
+            ataque.IntentarAtacar();
         }
         if (pulsacionPendiente)
         {
@@ -144,7 +147,6 @@ public class ManoCartasJugador : MonoBehaviour
             else if (golpear.WasReleasedThisFrame())
             {
                 pulsacionPendiente = false;
-                ataque.IntentarAtacar();
             }
         }
         if (!MenuAbierto)

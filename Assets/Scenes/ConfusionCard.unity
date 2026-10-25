@@ -417,6 +417,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+  - component: {fileID: 810000000}
   - component: {fileID: 233878598}
   - component: {fileID: 233878597}
   m_Layer: 3
@@ -442,8 +443,6 @@ MonoBehaviour:
   salida: {fileID: 665832727}
   panel: {fileID: 762372289}
   textoEstado: {fileID: 365020294}
-  alcanceX: 1.2
-  alcanceY: 0.8
   colorDisponible: {r: 0.25, g: 0.85, b: 0.65, a: 1}
   colorCooldown: {r: 0.4, g: 0.42, b: 0.5, a: 1}
 --- !u!4 &233878598
@@ -571,6 +570,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+  - component: {fileID: 830000000}
   - component: {fileID: 471439248}
   - component: {fileID: 471439247}
   - component: {fileID: 471439246}
@@ -601,12 +601,11 @@ MonoBehaviour:
   - {fileID: 1781125910}
   - {fileID: 1040551876}
   visual: {fileID: 1234259221}
+  zonaContacto: {fileID: 820000002}
   velocidad: 2.5
   direccionInicial: 1
   margenFueraDeVista: 2
   intervaloEntrePasadas: 4
-  alcanceHorizontal: 0.8
-  toleranciaY: 0.65
   duracionStun: 3.5
   empujon: 0.5
 --- !u!210 &471439247
@@ -635,6 +634,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 820000001}
   - {fileID: 1234259222}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1762,6 +1762,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+  - component: {fileID: 810000001}
   - component: {fileID: 931829183}
   - component: {fileID: 931829182}
   m_Layer: 3
@@ -1787,8 +1788,6 @@ MonoBehaviour:
   salida: {fileID: 753167907}
   panel: {fileID: 1965939482}
   textoEstado: {fileID: 1726123934}
-  alcanceX: 1.2
-  alcanceY: 0.8
   colorDisponible: {r: 0.25, g: 0.85, b: 0.65, a: 1}
   colorCooldown: {r: 0.4, g: 0.42, b: 0.5, a: 1}
 --- !u!4 &931829183
@@ -2253,6 +2252,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+  - component: {fileID: 830000001}
   - component: {fileID: 1202282252}
   - component: {fileID: 1202282251}
   - component: {fileID: 1202282250}
@@ -2407,6 +2407,7 @@ Transform:
   m_LocalScale: {x: 1, y: 0.89737314, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 820000004}
   - {fileID: 520451489}
   - {fileID: 1443337203}
   - {fileID: 1606449272}
@@ -2468,10 +2469,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AtaqueJugador
   golpear: {fileID: 5871819156718683082, guid: 6029e35a85dacdd4a8b5c2b5afe0e9a0, type: 3}
   visualGolpe: {fileID: 1443337201}
-  cooldown: 2
-  duracionGolpe: 0.4
-  preparacionGolpe: 0.16
-  alcance: 1.8
+  cooldown: 0.3
+  duracionGolpe: 0.08
+  preparacionGolpe: 0.01
+  alcance: 3
   toleranciaY: 0.8
   radioGolpe: 0.3
   stunNormal: 2
@@ -2479,9 +2480,9 @@ MonoBehaviour:
   stunBloqueo: 0.5
   empujon: 0.3
   empujonBloqueo: 0.15
-  inicioArco: {x: 0.15, y: 3.2}
-  controlArco: {x: 2, y: 2.3}
-  finalArco: {x: 1.1, y: 0.5}
+  inicioArco: {x: 0.35, y: 0.2}
+  controlArco: {x: 4.4, y: 0.05}
+  finalArco: {x: 2.2, y: -0.15}
   alcanceLatigo: 4
   duracionDashLatigo: 0.14
   distanciaFrenoLatigo: 1.1
@@ -2500,6 +2501,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EstadoCombateJugador
   indicadorAturdimiento: {fileID: 1606449273}
+  zonaDano: {fileID: 820000006}
   invulnerabilidadTrasStun: 0.5
   colorAturdido: {r: 1, g: 0.85, b: 0.2, a: 1}
   colorProtegido: {r: 0.4, g: 0.9, b: 1, a: 1}
@@ -3919,6 +3921,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+  - component: {fileID: 810000002}
   - component: {fileID: 1700244237}
   - component: {fileID: 1700244236}
   m_Layer: 3
@@ -3944,8 +3947,6 @@ MonoBehaviour:
   salida: {fileID: 1463790650}
   panel: {fileID: 618841860}
   textoEstado: {fileID: 1652862814}
-  alcanceX: 1.2
-  alcanceY: 0.8
   colorDisponible: {r: 0.25, g: 0.85, b: 0.65, a: 1}
   colorCooldown: {r: 0.4, g: 0.42, b: 0.5, a: 1}
 --- !u!4 &1700244237
@@ -4262,6 +4263,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+  - component: {fileID: 830000002}
   - component: {fileID: 1775270132}
   - component: {fileID: 1775270131}
   - component: {fileID: 1775270129}
@@ -4416,6 +4418,7 @@ Transform:
   m_LocalScale: {x: 1, y: 0.89737314, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 820000008}
   - {fileID: 1313320950}
   - {fileID: 36221576}
   - {fileID: 655020090}
@@ -4477,10 +4480,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AtaqueJugador
   golpear: {fileID: 7240753409937301309, guid: 6029e35a85dacdd4a8b5c2b5afe0e9a0, type: 3}
   visualGolpe: {fileID: 36221574}
-  cooldown: 2
-  duracionGolpe: 0.4
-  preparacionGolpe: 0.16
-  alcance: 1.8
+  cooldown: 0.3
+  duracionGolpe: 0.08
+  preparacionGolpe: 0.01
+  alcance: 3
   toleranciaY: 0.8
   radioGolpe: 0.3
   stunNormal: 2
@@ -4488,9 +4491,9 @@ MonoBehaviour:
   stunBloqueo: 0.5
   empujon: 0.3
   empujonBloqueo: 0.15
-  inicioArco: {x: 0.15, y: 3.2}
-  controlArco: {x: 2, y: 2.3}
-  finalArco: {x: 1.1, y: 0.5}
+  inicioArco: {x: 0.35, y: 0.2}
+  controlArco: {x: 4.4, y: 0.05}
+  finalArco: {x: 2.2, y: -0.15}
   alcanceLatigo: 4
   duracionDashLatigo: 0.14
   distanciaFrenoLatigo: 1.1
@@ -4509,6 +4512,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EstadoCombateJugador
   indicadorAturdimiento: {fileID: 655020091}
+  zonaDano: {fileID: 820000010}
   invulnerabilidadTrasStun: 0.5
   colorAturdido: {r: 1, g: 0.85, b: 0.2, a: 1}
   colorProtegido: {r: 0.4, g: 0.9, b: 1, a: 1}
@@ -4877,6 +4881,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+  - component: {fileID: 810000003}
   - component: {fileID: 1935330174}
   - component: {fileID: 1935330173}
   m_Layer: 3
@@ -4902,8 +4907,6 @@ MonoBehaviour:
   salida: {fileID: 1015635122}
   panel: {fileID: 1065229378}
   textoEstado: {fileID: 1725024269}
-  alcanceX: 1.2
-  alcanceY: 0.8
   colorDisponible: {r: 0.25, g: 0.85, b: 0.65, a: 1}
   colorCooldown: {r: 0.4, g: 0.42, b: 0.5, a: 1}
 --- !u!4 &1935330174
@@ -5751,6 +5754,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UsarPuertaJugador
   red: {fileID: 1972034394}
+  colliderPies: {fileID: 1775270129}
   cooldownPersonal: 5
 --- !u!114 &2200000005
 MonoBehaviour:
@@ -5765,7 +5769,484 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UsarPuertaJugador
   red: {fileID: 1972034394}
+  colliderPies: {fileID: 1202282250}
   cooldownPersonal: 5
+--- !u!61 &810000000
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 233878596}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 2.4, y: 1.6}
+  m_EdgeRadius: 0
+--- !u!61 &810000001
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 931829181}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 2.4, y: 1.6}
+  m_EdgeRadius: 0
+--- !u!61 &810000002
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700244235}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 2.4, y: 1.6}
+  m_EdgeRadius: 0
+--- !u!61 &810000003
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1935330172}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 2.4, y: 1.6}
+  m_EdgeRadius: 0
+--- !u!1 &820000000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 820000001}
+  - component: {fileID: 820000002}
+  m_Layer: 3
+  m_Name: ZonaContacto
+  m_TagString: Untagged
+  m_IsActive: 1
+--- !u!4 &820000001
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 820000000}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 471439248}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &820000002
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 820000000}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 0.8, y: 0.4}
+  m_EdgeRadius: 0
+--- !u!1 &820000003
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 820000004}
+  - component: {fileID: 820000005}
+  - component: {fileID: 820000006}
+  m_Layer: 3
+  m_Name: ZonaDano
+  m_TagString: Untagged
+  m_IsActive: 1
+--- !u!4 &820000004
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 820000003}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1202282252}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &820000005
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 820000003}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 0.8, y: 0.75}
+  m_EdgeRadius: 0
+--- !u!114 &820000006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 820000003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9986875f69cbb646b44484b8ba56482, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::ZonaDanoJugador
+  caja: {fileID: 820000005}
+--- !u!1 &820000007
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 820000008}
+  - component: {fileID: 820000009}
+  - component: {fileID: 820000010}
+  m_Layer: 3
+  m_Name: ZonaDano
+  m_TagString: Untagged
+  m_IsActive: 1
+--- !u!4 &820000008
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 820000007}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1775270132}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &820000009
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 820000007}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 0.8, y: 0.75}
+  m_EdgeRadius: 0
+--- !u!114 &820000010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 820000007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9986875f69cbb646b44484b8ba56482, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::ZonaDanoJugador
+  caja: {fileID: 820000009}
+--- !u!114 &830000000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 471439245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b461d48155e69429d9905a2c7e9524e, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::OrdenProfundidadPersonaje
+  referenciaPies: {fileID: 820000002}
+--- !u!114 &830000001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1202282248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b461d48155e69429d9905a2c7e9524e, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::OrdenProfundidadPersonaje
+  referenciaPies: {fileID: 1202282250}
+--- !u!114 &830000002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1775270127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b461d48155e69429d9905a2c7e9524e, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::OrdenProfundidadPersonaje
+  referenciaPies: {fileID: 1775270129}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -12,7 +12,8 @@ tienen `ManoCartasJugador` usan pulsacion corta/mantener para golpear o abrir ca
 - P1: mantener C durante 0.35 s para abrir; A/D para elegir; boton de absorcion para usar.
 - P2: mantener M para abrir; J/L o flechas para elegir; boton de absorcion para usar.
 - Soltar C/M conserva el menu abierto. Volver a pulsarlo cierra sin golpear.
-- Una pulsacion corta de C/M golpea al soltar, respetando el cooldown existente.
+- C/M golpea al presionar, respetando el cooldown. No espera a soltar. Mantener
+  el boton abre las cartas despues del golpe inicial; soltar no genera otro golpe.
 - G entrega una carta aleatoria del catalogo a cada jugador. Solo durante la ronda, en el editor o builds
   de desarrollo, con `Atajos Desarrollo` activo. No cambia puntos ni genera una deuda
   de recompensas. Pulsar varias veces permite comprobar el limite de tres.

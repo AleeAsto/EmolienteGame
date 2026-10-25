@@ -61,7 +61,7 @@ public class CombatePvP : MonoBehaviour
         if (!jugador1.PuedeChocar || !jugador2.PuedeChocar)
             return false;
 
-        Vector2 distancia = jugador2.transform.position - jugador1.transform.position;
+        Vector2 distancia = jugador2.PosicionPiso - jugador1.PosicionPiso;
         if (Mathf.Abs(distancia.y) > Mathf.Min(jugador1.ToleranciaY, jugador2.ToleranciaY) ||
             distancia.x * jugador1.Direccion < -0.05f || -distancia.x * jugador2.Direccion < -0.05f)
             return false;

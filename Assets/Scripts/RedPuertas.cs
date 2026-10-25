@@ -23,14 +23,17 @@ public class RedPuertas : MonoBehaviour
         if (!isActiveAndEnabled || jugador == null || !jugador.PuedeUsar)
             return false;
 
+        // MovimientoJugador2D mueve el Transform en Update. Actualizar las cajas
+        // antes de consultar su solapamiento, sin esperar al siguiente paso fisico.
+        Physics2D.SyncTransforms();
         PuertaTeletransporte entrada = null;
         float menorDistancia = float.PositiveInfinity;
         foreach (PuertaTeletransporte puerta in puertas)
         {
-            if (!puerta.Disponible || !puerta.EstaEnAlcance(jugador.transform.position))
+            if (!puerta.Disponible || !puerta.EstaEnAlcance(jugador.ColliderPies))
                 continue;
 
-            float distancia = (puerta.transform.position - jugador.transform.position).sqrMagnitude;
+            float distancia = (puerta.transform.position - jugador.PosicionPies).sqrMagnitude;
             if (distancia < menorDistancia)
             {
                 entrada = puerta;

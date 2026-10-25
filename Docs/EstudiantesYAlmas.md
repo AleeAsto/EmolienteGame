@@ -166,10 +166,10 @@ senala la proteccion posterior. Un destello blanco indica choque.
 Son placeholders editables en los hijos `GolpePvP`, `AturdimientoPvP`
 y `CombatePvP/DestelloBloqueo`.
 
-En cada `AtaqueJugador` se ajustan cooldown, duracion (0.4 s), preparacion
-(0.16 s), alcance horizontal (1.8), tolerancia Y (0.8), arco, tiempos de stun
-y empujones. La tolerancia Y compara posiciones en el piso para evitar golpear
-a alguien que pasa por otra profundidad. `MovimientoJugador2D` controla la
+En cada `AtaqueJugador` se ajustan cooldown (0.3 s), duracion (0.08 s), preparacion
+(0.01 s), alcance horizontal (3), tolerancia Y (0.8), arco bajo a la altura de los pies, tiempos de stun
+y empujones. El rectangulo frontal de ataque se compara con `ZonaDano`, una
+caja independiente en la base del rival. `MovimientoJugador2D` controla la
 rapidez del empujon (3 unidades/s).
 
 `EstadoCombateJugador` permite ajustar `Invulnerabilidad Tras Stun` y los colores.
@@ -197,15 +197,14 @@ pasillo horizontalmente a 2.5 unidades/s, conservando su Y. Cada pasada comienza
 fuera de un extremo del pasillo y de ambas camaras, con margen adicional de
 2 unidades para que el cubito entero quede oculto. Cruza hasta salir por el otro extremo y desaparecer
 fuera de ambas vistas. Espera 4 s antes de otra pasada en sentido contrario;
-no gira ni reaparece dentro de la pantalla. Al cruzarse con un jugador a no mas
-de 0.65 unidades en Y y
-0.8 en X, aplica 3.5 s de stun y cancela succion y ataque mediante el estado
+no gira ni reaparece dentro de la pantalla. Al solaparse su `ZonaContacto`
+con la `ZonaDano` de un jugador, aplica 3.5 s de stun y cancela succion y ataque mediante el estado
 de combate compartido. Respeta la invulnerabilidad durante el stun y los 0.5 s
 posteriores. Empuja 0.5 unidades en su direccion de avance (el golpe PvP empuja
 0.3), sin quitar almas. El empujon es suave y respeta los limites del pasillo.
 
 En `ProfesoraPasillo` se ajustan velocidad, direccion inicial, margen fuera de
-vista, intervalo entre pasadas, alcance, stun y empujon.
+vista, intervalo entre pasadas, zona de contacto, stun y empujon.
 Para mover su carril, cambia la Y del objeto raiz.
 El recorrido se pausa durante la cuenta inicial y al terminar la partida.
 

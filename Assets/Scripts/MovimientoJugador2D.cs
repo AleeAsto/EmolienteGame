@@ -10,6 +10,9 @@ public class MovimientoJugador2D : MonoBehaviour
     [SerializeField] private BoxCollider2D zonaMovimiento;
     [SerializeField] private float direccionInicial = 1f;
     [SerializeField, Min(0.1f)] private float rapidezEmpujon = 3f;
+    [SerializeField] private SpriteRenderer spritePersonaje;
+    [SerializeField, Tooltip("Direccion a la que mira el dibujo original sin Flip X.")]
+    private bool spriteMiraDerecha = true;
 
     private BoxCollider2D cuerpo;
     private InputAction accionMovimiento;
@@ -20,6 +23,7 @@ public class MovimientoJugador2D : MonoBehaviour
     public float DireccionHorizontal { get; private set; } = 1f;
     public InputAction AccionMovimiento => accionMovimiento;
     public BoxCollider2D ZonaMovimiento => zonaMovimiento;
+    public Vector3 PosicionPies => cuerpo != null ? cuerpo.transform.TransformPoint(cuerpo.offset) : transform.position;
     private ManoCartasJugador cartas;
     private EfectosJugador efectos;
     private Vector3 inicioDash;
@@ -35,6 +39,12 @@ public class MovimientoJugador2D : MonoBehaviour
         cartas = GetComponent<ManoCartasJugador>();
         efectos = GetComponent<EfectosJugador>();
         DireccionHorizontal = direccionInicial < 0f ? -1f : 1f;
+        if (spritePersonaje == null)
+        {
+            Transform visual = transform.Find("Sprite");
+            spritePersonaje = visual != null ? visual.GetComponent<SpriteRenderer>() : GetComponent<SpriteRenderer>();
+        }
+        ActualizarOrientacion();
         if (zonaMovimiento == null || movimiento == null || movimiento.action == null)
         {
             Debug.LogError("Asigna Zona Movimiento y Movimiento en el Inspector del jugador.", this);
@@ -83,7 +93,10 @@ public class MovimientoJugador2D : MonoBehaviour
             ? Vector2.ClampMagnitude(accionMovimiento.ReadValue<Vector2>(), 1f)
             : Vector2.zero;
         if (Mathf.Abs(entrada.x) > 0.01f)
+        {
             DireccionHorizontal = Mathf.Sign(entrada.x);
+            ActualizarOrientacion();
+        }
 
         Vector2 empujon = Vector2.ClampMagnitude(empujonPendiente,
             Mathf.Max(0.1f, rapidezEmpujon, rapidezLanzamiento) * Time.deltaTime);
@@ -98,6 +111,12 @@ public class MovimientoJugador2D : MonoBehaviour
     public void Empujar(Vector2 desplazamiento)
     {
         empujonPendiente += desplazamiento;
+    }
+
+    private void ActualizarOrientacion()
+    {
+        if (spritePersonaje != null)
+            spritePersonaje.flipX = (DireccionHorizontal > 0f) != spriteMiraDerecha;
     }
 
     public void AcelerarEmpujon(float duracion)

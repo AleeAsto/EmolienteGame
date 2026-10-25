@@ -6,6 +6,8 @@ using UnityEngine;
 public class EstadoCombateJugador : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer indicadorAturdimiento;
+    [SerializeField] private ZonaDanoJugador zonaDano;
+    public ZonaDanoJugador ZonaDano => zonaDano;
     [SerializeField, Min(0f)] private float invulnerabilidadTrasStun = 0.5f;
     [SerializeField] private Color colorAturdido = new Color(1f, 0.85f, 0.2f, 1f);
     [SerializeField] private Color colorProtegido = new Color(0.4f, 0.9f, 1f, 1f);

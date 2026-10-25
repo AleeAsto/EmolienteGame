@@ -9,6 +9,7 @@ public class ProfesoraPasillo : MonoBehaviour
     [SerializeField] private EstadoCombateJugador[] jugadores;
     [SerializeField] private Camera[] camarasJugadores;
     [SerializeField] private SpriteRenderer visual;
+    [SerializeField] private BoxCollider2D zonaContacto;
 
     [Header("Recorrido horizontal")]
     [SerializeField, Min(0f)] private float velocidad = 2.5f;
@@ -17,8 +18,6 @@ public class ProfesoraPasillo : MonoBehaviour
     [SerializeField, Min(0f)] private float intervaloEntrePasadas = 4f;
 
     [Header("Contacto en el piso")]
-    [SerializeField, Min(0f)] private float alcanceHorizontal = 0.8f;
-    [SerializeField, Min(0f)] private float toleranciaY = 0.65f;
     [SerializeField, Min(0f)] private float duracionStun = 3.5f;
     [SerializeField, Min(0f)] private float empujon = 0.5f;
 
@@ -28,7 +27,7 @@ public class ProfesoraPasillo : MonoBehaviour
 
     private void Start()
     {
-        if (zonaPasillo == null || jugadores == null || jugadores.Length == 0 || visual == null ||
+        if (zonaContacto == null || zonaPasillo == null || jugadores == null || jugadores.Length == 0 || visual == null ||
             camarasJugadores == null || camarasJugadores.Length == 0)
         {
             Debug.LogError("Asigna pasillo, jugadores, camaras y visual a la profesora.", this);
@@ -77,16 +76,18 @@ public class ProfesoraPasillo : MonoBehaviour
         transform.position = siguiente;
 
         // Barrer el trayecto evita saltarse jugadores entre dos frames.
-        float desde = Mathf.Min(anterior.x, siguiente.x) - Mathf.Max(0f, alcanceHorizontal);
-        float hasta = Mathf.Max(anterior.x, siguiente.x) + Mathf.Max(0f, alcanceHorizontal);
+        Physics2D.SyncTransforms();
+        Bounds contacto = zonaContacto.bounds;
+        float avance = siguiente.x - anterior.x;
+        Vector2 centroBarrido = (Vector2)contacto.center - Vector2.right * avance * 0.5f;
+        Vector2 tamanoBarrido = new Vector2(contacto.size.x + Mathf.Abs(avance), contacto.size.y);
         foreach (EstadoCombateJugador jugador in jugadores)
         {
             if (jugador == null || !jugador.isActiveAndEnabled)
                 continue;
 
-            Vector3 pies = jugador.transform.position;
-            if (Mathf.Abs(pies.y - siguiente.y) <= Mathf.Max(0f, toleranciaY) &&
-                pies.x >= desde && pies.x <= hasta)
+            if (zonaContacto.isActiveAndEnabled && jugador.ZonaDano != null &&
+                jugador.ZonaDano.IntersectaRectangulo(centroBarrido, tamanoBarrido))
                 jugador.RecibirGolpe(duracionStun, Vector2.right * direccion * Mathf.Max(0f, empujon));
         }
 
@@ -120,19 +121,19 @@ public class ProfesoraPasillo : MonoBehaviour
 
         float mitadVisual = visual.sprite != null
             ? visual.sprite.bounds.extents.x * Mathf.Abs(visual.transform.lossyScale.x) : 0f;
-        float margen = Mathf.Max(0f, margenFueraDeVista) + Mathf.Max(mitadVisual, alcanceHorizontal);
+        float margen = Mathf.Max(0f, margenFueraDeVista) + Mathf.Max(mitadVisual,
+            zonaContacto != null ? zonaContacto.bounds.extents.x : 0f);
         izquierda -= margen;
         derecha += margen;
     }
 
     private void OnDrawGizmosSelected()
     {
-        if (zonaPasillo == null)
+        if (zonaContacto == null)
             return;
 
-        Bounds zona = zonaPasillo.bounds;
+        Bounds zona = zonaContacto.bounds;
         Gizmos.color = new Color(0.7f, 0.25f, 1f, 0.3f);
-        Gizmos.DrawWireCube(new Vector3(zona.center.x, transform.position.y, transform.position.z),
-            new Vector3(zona.size.x, Mathf.Max(0f, toleranciaY) * 2f, 0f));
+        Gizmos.DrawWireCube(zona.center, zona.size);
     }
 }
