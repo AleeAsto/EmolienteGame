@@ -7,6 +7,9 @@ La configuracion esta en `Assets/Resources/AudioJuego.asset`. Permite cambiar
 clips, volumen de musica (0.3), efectos (0.75), pasos (1) y transicion musical
 (0.4 s). El volumen general del menu sigue controlando todos los canales y se
 guarda con `VolumenGeneral`, incluso si se inicia directamente la partida.
+Los menus de AudioMenus tambien permiten regular musica y efectos por separado;
+`VolumenMusica` y `VolumenEfectos` guardan factores de 0 a 1 sobre esta mezcla.
+El control de efectos incluye pasos y modifica tambien los sonidos ya activos.
 
 ## Asignaciones
 

@@ -14,6 +14,9 @@ public class AudioJuego : MonoBehaviour
     private AudioListener escucha;
     private Coroutine transicion;
     private int versionEscena;
+    public float VolumenMusica { get; private set; } = 1f;
+    public float VolumenEfectos { get; private set; } = 1f;
+    private float VolumenMusicalFinal => Configuracion.volumenMusica * VolumenMusica;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
     private static void Reiniciar() => Instancia = null;
@@ -43,11 +46,14 @@ public class AudioJuego : MonoBehaviour
             return;
         }
         AudioListener.volume = Mathf.Clamp01(PlayerPrefs.GetFloat("VolumenGeneral", 1f));
+        VolumenMusica = Mathf.Clamp01(PlayerPrefs.GetFloat("VolumenMusica", 1f));
+        VolumenEfectos = Mathf.Clamp01(PlayerPrefs.GetFloat("VolumenEfectos", 1f));
         escucha = gameObject.AddComponent<AudioListener>();
         musica = CrearFuente("Musica", true);
         musica.priority = 0;
         efectosMenu = CrearFuente("EfectosMenu", false);
         efectosPartida = CrearFuente("EfectosPartida", false);
+        efectosMenu.volume = efectosPartida.volume = VolumenEfectos;
         SceneManager.sceneLoaded += AlCargarEscena;
     }
 
@@ -69,6 +75,7 @@ public class AudioJuego : MonoBehaviour
         foreach (var listener in FindObjectsByType<AudioListener>(FindObjectsInactive.Include))
             if (listener != escucha) listener.enabled = false;
         efectosPartida.Stop();
+        efectosPartida.UnPause();
 
         bool esPartida = false;
         foreach (GameObject raiz in escena.GetRootGameObjects())
@@ -103,16 +110,38 @@ public class AudioJuego : MonoBehaviour
         if (clip != null) musica.Play();
         for (float t = 0f; t < duracion; t += Time.unscaledDeltaTime)
         {
-            musica.volume = Mathf.Lerp(0f, Configuracion.volumenMusica, t / duracion);
+            musica.volume = Mathf.Lerp(0f, VolumenMusicalFinal, t / duracion);
             yield return null;
         }
-        musica.volume = Configuracion.volumenMusica;
+        musica.volume = VolumenMusicalFinal;
         transicion = null;
     }
 
     public void BotonMenu() => Reproducir(efectosMenu, Configuracion.botonMenu);
     public void CambiarCarta() => Reproducir(efectosPartida, Configuracion.cambiarCarta);
     public void UsarCarta() => Reproducir(efectosPartida, Configuracion.usarCarta);
+
+    public void CambiarVolumenMusica(float valor)
+    {
+        VolumenMusica = Mathf.Clamp01(valor);
+        PlayerPrefs.SetFloat("VolumenMusica", VolumenMusica);
+        if (transicion == null && musica != null) musica.volume = VolumenMusicalFinal;
+    }
+
+    public void CambiarVolumenEfectos(float valor)
+    {
+        VolumenEfectos = Mathf.Clamp01(valor);
+        PlayerPrefs.SetFloat("VolumenEfectos", VolumenEfectos);
+        if (efectosMenu != null) efectosMenu.volume = VolumenEfectos;
+        if (efectosPartida != null) efectosPartida.volume = VolumenEfectos;
+    }
+
+    public void PausarEfectos(bool pausa)
+    {
+        if (efectosPartida == null) return;
+        if (pausa) efectosPartida.Pause();
+        else efectosPartida.UnPause();
+    }
 
     public void UsarPuerta()
     {

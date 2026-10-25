@@ -34,7 +34,7 @@ public class AudioPasosJugador : MonoBehaviour
             return;
         }
         if (fuente.clip != config.pasos) fuente.clip = config.pasos;
-        fuente.volume = config.volumenPasos;
+        fuente.volume = config.volumenPasos * audio.VolumenEfectos;
         fuente.pitch = Mathf.Clamp(efectos != null ? efectos.MultiplicadorVelocidad : 1f, 0.7f, 1.6f);
         if (!fuente.isPlaying) fuente.Play();
     }
