@@ -2181,7 +2181,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.48984987}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2191,7 +2191,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.8, y: 0.4}
+  m_Size: {x: 1.5611606, y: 0.74460053}
   m_EdgeRadius: 0
 --- !u!1 &820000003
 GameObject:
@@ -3343,9 +3343,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SuccionJugador
   succionar: {fileID: 6029532384514666566, guid: 6029e35a85dacdd4a8b5c2b5afe0e9a0, type: 3}
-  alcance: 1.57
-  escalaHorizontal: 1.72
-  offsetVertical: 0.22
+  alcance: 1.72
+  escalaHorizontal: 1.57
+  offsetVertical: 0
   distanciaAlineacion: 3.4
   offsetVerticalAlineacion: 0.48
   tiempoDrenaje: 3
@@ -3503,8 +3503,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1234259222}
   - component: {fileID: 1234259221}
+  - component: {fileID: 2245000001}
   m_Layer: 3
-  m_Name: CubitoMorado
+  m_Name: SpriteProfesor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3559,8 +3560,8 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.65, g: 0.2, b: 0.95, a: 1}
+  m_Sprite: {fileID: 7700000000000000200, guid: 4336584f7b2a9b148934564ee06a7752, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -3579,8 +3580,8 @@ Transform:
   m_GameObject: {fileID: 1234259220}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.6, z: 0}
-  m_LocalScale: {x: 1.2, y: 1.2, z: 1}
+  m_LocalPosition: {x: 0, y: -1.00579476, z: 0}
+  m_LocalScale: {x: 1.61981707, y: 1.61981707, z: 1.61981707}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 471439248}
@@ -5859,6 +5860,7 @@ MonoBehaviour:
   - {fileID: 1781125910}
   - {fileID: 1040551876}
   prefabsEstudiantes:
+  - {fileID: 1707020731826580904, guid: b46b46c80909477c9b1589506e256c12, type: 3}
   - {fileID: 1707020731826580904, guid: 107e496a2a8a3bf4696b9cf88bd50f37, type: 3}
   partida: {fileID: 2063603545}
   prefabRaro: {fileID: 1707020731826580904, guid: 2c434cb1ec837a1478dc4946329bc9ba, type: 3}
@@ -7088,3 +7090,26 @@ SceneRoots:
   - {fileID: 2115924097}
   - {fileID: 1282641259}
   - {fileID: 242172785}
+
+--- !u!95 &2245000001
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1234259220}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e80fa47193804cfab069b9d6d9859449, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

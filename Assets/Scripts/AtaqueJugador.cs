@@ -104,9 +104,9 @@ public class AtaqueJugador : MonoBehaviour
         efectos = GetComponent<EfectosJugador>();
         if (Application.isPlaying)
             gameObject.AddComponent<VisualLatigoJugador>().Inicializar(this);
-        if (golpear == null || golpear.action == null || visualGolpe == null)
+        if (golpear == null || golpear.action == null)
         {
-            Debug.LogError("Asigna Golpear y Visual Golpe en el Inspector del jugador.", this);
+            Debug.LogError("Asigna Golpear en el Inspector del jugador.", this);
             enabled = false;
         }
     }
@@ -250,19 +250,7 @@ public class AtaqueJugador : MonoBehaviour
         punto.x *= direccion;
         Vector3 posicion = OrigenPiso + (Vector3)punto;
         PosicionGolpe = posicion;
-        if (visualGolpe == null)
-            return;
-
-        visualGolpe.gameObject.SetActive(true);
-        visualGolpe.transform.position = posicion;
-        if (visualGolpe.sprite != null)
-        {
-            Vector3 tamano = visualGolpe.sprite.bounds.size;
-            Vector3 escala = visualGolpe.transform.parent.lossyScale;
-            visualGolpe.transform.localScale = new Vector3(
-                radioGolpe * 2f / Mathf.Max(0.001f, tamano.x * Mathf.Abs(escala.x)),
-                radioGolpe * 2f / Mathf.Max(0.001f, tamano.y * Mathf.Abs(escala.y)), 1f);
-        }
+        OcultarGolpe();
     }
 
     private void OcultarGolpe()

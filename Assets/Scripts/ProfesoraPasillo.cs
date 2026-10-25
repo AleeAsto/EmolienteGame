@@ -54,6 +54,8 @@ public class ProfesoraPasillo : MonoBehaviour
         if (Time.timeScale <= 0f)
             return;
 
+        if (visual != null) visual.flipX = direccion < 0f;
+
         if (!enRecorrido)
         {
             esperaRestante = Mathf.Max(0f, esperaRestante - Time.deltaTime);

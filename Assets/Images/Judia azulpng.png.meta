@@ -1,0 +1,826 @@
+fileFormatVersion: 2
+guid: f14f8ce98bd0304489451d7ae9e1a4c7
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3647145670866327441
+    second: Judia azulpng_0
+  - first:
+      213: 2773105086484157367
+    second: Judia azulpng_1
+  - first:
+      213: -4277865362488679936
+    second: Judia azulpng_2
+  - first:
+      213: 6475563793299009542
+    second: Judia azulpng_3
+  - first:
+      213: -2787958428616120067
+    second: Judia azulpng_4
+  - first:
+      213: -4411281278151174168
+    second: Judia azulpng_5
+  - first:
+      213: 2852470626396210031
+    second: Judia azulpng_6
+  - first:
+      213: -7478455185670100985
+    second: Judia azulpng_7
+  - first:
+      213: 5538238213563057288
+    second: Judia azulpng_8
+  - first:
+      213: -3740407325809443997
+    second: Judia azulpng_9
+  - first:
+      213: 9124362818339235841
+    second: Judia azulpng_10
+  - first:
+      213: 1373617855088854967
+    second: Judia azulpng_11
+  - first:
+      213: 5834507395167984846
+    second: Judia azulpng_12
+  - first:
+      213: 8713440002642829971
+    second: Judia azulpng_13
+  - first:
+      213: 625075281666308589
+    second: Judia azulpng_14
+  - first:
+      213: -6299078441018332758
+    second: Judia azulpng_15
+  - first:
+      213: -3891611865149043948
+    second: Judia azulpng_16
+  - first:
+      213: 1846815699310064885
+    second: Judia azulpng_17
+  - first:
+      213: 605241320693424856
+    second: Judia azulpng_18
+  - first:
+      213: -730995242421850096
+    second: Judia azulpng_19
+  - first:
+      213: -4542555749777788949
+    second: Judia azulpng_20
+  - first:
+      213: 8874143977038005672
+    second: Judia azulpng_21
+  - first:
+      213: -6373021211247797027
+    second: Judia azulpng_22
+  - first:
+      213: 2441031405762835185
+    second: Judia azulpng_23
+  - first:
+      213: -8481535662084702055
+    second: Judia azulpng_24
+  - first:
+      213: 7671797974064053683
+    second: Judia azulpng_25
+  - first:
+      213: -3145228986864717374
+    second: Judia azulpng_26
+  - first:
+      213: -3748021776827786198
+    second: Judia azulpng_27
+  - first:
+      213: 5045197793073802057
+    second: Judia azulpng_28
+  - first:
+      213: 2437377370192492572
+    second: Judia azulpng_29
+  - first:
+      213: 2959828124059484118
+    second: Judia azulpng_30
+  - first:
+      213: -6261778027272560298
+    second: Judia azulpng_31
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 16384
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Judia azulpng_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1660
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f68a8e3f55cb26dc0800000000000000
+      internalID: -3647145670866327441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Judia azulpng_1
+      rect:
+        serializedVersion: 2
+        x: 388
+        y: 1660
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b397b4326c0c7620800000000000000
+      internalID: 2773105086484157367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Judia azulpng_2
+      rect:
+        serializedVersion: 2
+        x: 776
+        y: 1660
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0022aef2e18f1a4c0800000000000000
+      internalID: -4277865362488679936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Judia azulpng_3
+      rect:
+        serializedVersion: 2
+        x: 1164
+        y: 1660
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 600f7f306f2ddd950800000000000000
+      internalID: 6475563793299009542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Judia azulpng_4
+      rect:
+        serializedVersion: 2
+        x: 1552
+        y: 1660
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df8a7c5949e2f49d0800000000000000
+      internalID: -2787958428616120067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Judia azulpng_5
+      rect:
+        serializedVersion: 2
+        x: 1940
+        y: 1660
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e7d77bac0bf7c2c0800000000000000
+      internalID: -4411281278151174168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Judia azulpng_6
+      rect:
+        serializedVersion: 2
+        x: 2328
+        y: 1660
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f630592fbe2069720800000000000000
+      internalID: 2852470626396210031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Judia azulpng_7
+      rect:
+        serializedVersion: 2
+        x: 2716
+        y: 1660
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 708a47591a0373890800000000000000
+      internalID: -7478455185670100985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Judia azulpng_8
+      rect:
+        serializedVersion: 2
+        x: 3104
+        y: 1660
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8848be8ff46cbdc40800000000000000
+      internalID: 5538238213563057288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Judia azulpng_9
+      rect:
+        serializedVersion: 2
+        x: 3492
+        y: 1660
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36bfbddca57671cc0800000000000000
+      internalID: -3740407325809443997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Judia azulpng_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1272
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10864ece3af30ae70800000000000000
+      internalID: 9124362818339235841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Judia azulpng_11
+      rect:
+        serializedVersion: 2
+        x: 388
+        y: 1272
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b784b55922101310800000000000000
+      internalID: 1373617855088854967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Judia azulpng_12
+      rect:
+        serializedVersion: 2
+        x: 776
+        y: 1272
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ecc9068309558f050800000000000000
+      internalID: 5834507395167984846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Judia azulpng_13
+      rect:
+        serializedVersion: 2
+        x: 1164
+        y: 1272
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3926431448b5ce870800000000000000
+      internalID: 8713440002642829971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Judia azulpng_14
+      rect:
+        serializedVersion: 2
+        x: 1552
+        y: 1272
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de9f89928a6bca800800000000000000
+      internalID: 625075281666308589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Judia azulpng_15
+      rect:
+        serializedVersion: 2
+        x: 1940
+        y: 1272
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa9e7c6288d2598a0800000000000000
+      internalID: -6299078441018332758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Judia azulpng_16
+      rect:
+        serializedVersion: 2
+        x: 2328
+        y: 1272
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41b881690a73ef9c0800000000000000
+      internalID: -3891611865149043948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Judia azulpng_17
+      rect:
+        serializedVersion: 2
+        x: 2716
+        y: 1272
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f4bdfaf71531a910800000000000000
+      internalID: 1846815699310064885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Judia azulpng_18
+      rect:
+        serializedVersion: 2
+        x: 3104
+        y: 1272
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d2e15346cf366800800000000000000
+      internalID: 605241320693424856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Judia azulpng_19
+      rect:
+        serializedVersion: 2
+        x: 3492
+        y: 1272
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 010f1f233bbfad5f0800000000000000
+      internalID: -730995242421850096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Judia azulpng_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 884
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bef2612fc9995f0c0800000000000000
+      internalID: -4542555749777788949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Judia azulpng_21
+      rect:
+        serializedVersion: 2
+        x: 388
+        y: 884
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a5c50d0eea472b70800000000000000
+      internalID: 8874143977038005672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Judia azulpng_22
+      rect:
+        serializedVersion: 2
+        x: 776
+        y: 884
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ddc9b8d59fa7e87a0800000000000000
+      internalID: -6373021211247797027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Judia azulpng_23
+      rect:
+        serializedVersion: 2
+        x: 1164
+        y: 884
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f2f012612940e120800000000000000
+      internalID: 2441031405762835185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Judia azulpng_24
+      rect:
+        serializedVersion: 2
+        x: 1552
+        y: 884
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99042af90488b4a80800000000000000
+      internalID: -8481535662084702055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Judia azulpng_25
+      rect:
+        serializedVersion: 2
+        x: 1940
+        y: 884
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3bd36a84c93b77a60800000000000000
+      internalID: 7671797974064053683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 18dfa80b9c598cc4d86b8e443592acdb
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":388.0,"y":388.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      Judia azulpng_0: -3647145670866327441
+      Judia azulpng_1: 2773105086484157367
+      Judia azulpng_10: 9124362818339235841
+      Judia azulpng_11: 1373617855088854967
+      Judia azulpng_12: 5834507395167984846
+      Judia azulpng_13: 8713440002642829971
+      Judia azulpng_14: 625075281666308589
+      Judia azulpng_15: -6299078441018332758
+      Judia azulpng_16: -3891611865149043948
+      Judia azulpng_17: 1846815699310064885
+      Judia azulpng_18: 605241320693424856
+      Judia azulpng_19: -730995242421850096
+      Judia azulpng_2: -4277865362488679936
+      Judia azulpng_20: -4542555749777788949
+      Judia azulpng_21: 8874143977038005672
+      Judia azulpng_22: -6373021211247797027
+      Judia azulpng_23: 2441031405762835185
+      Judia azulpng_24: -8481535662084702055
+      Judia azulpng_25: 7671797974064053683
+      Judia azulpng_3: 6475563793299009542
+      Judia azulpng_4: -2787958428616120067
+      Judia azulpng_5: -4411281278151174168
+      Judia azulpng_6: 2852470626396210031
+      Judia azulpng_7: -7478455185670100985
+      Judia azulpng_8: 5538238213563057288
+      Judia azulpng_9: -3740407325809443997
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

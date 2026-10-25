@@ -266,7 +266,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0.972549, g: 0.9411765, b: 0.8666667, a: 1}
@@ -337,7 +337,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 0.45882353, b: 0.45882353, a: 1}
@@ -614,7 +614,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.2784314, g: 0.23921569, b: 0.3254902, a: 1}
@@ -656,11 +656,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5471503995926735994, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: spriteAbierto
-      value:
+      value: 
       objectReference: {fileID: 792602605, guid: ec9a5df3b0e2ef148b730f8823240c7c, type: 3}
     - target: {fileID: 5471503995926735994, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: spriteCerrado
-      value:
+      value: 
       objectReference: {fileID: 1549616354, guid: 6028f947f92af8644bc2868efa8bab04, type: 3}
     - target: {fileID: 6879500261274508643, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_Name
@@ -716,7 +716,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8219211289584552058, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_Sprite
-      value:
+      value: 
       objectReference: {fileID: 1549616354, guid: 6028f947f92af8644bc2868efa8bab04, type: 3}
     - target: {fileID: 8219211289584552058, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_DrawMode
@@ -774,7 +774,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -856,7 +856,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.14901961, g: 0.12941177, b: 0.1882353, a: 1}
@@ -936,7 +936,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0.972549, g: 0.9411765, b: 0.8666667, a: 1}
@@ -1025,7 +1025,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0.972549, g: 0.9411765, b: 0.8666667, a: 1}
@@ -1085,7 +1085,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f5a769db9aec1ad49b98c5fdc1256ca8, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PuertaTeletransporte
   numero: 3
   salida: {fileID: 665832727}
@@ -1162,7 +1162,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -1296,7 +1296,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0.7490196, g: 0.70980394, b: 0.7882353, a: 1}
@@ -1357,7 +1357,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
     m_Mode: 3
@@ -1397,10 +1397,10 @@ MonoBehaviour:
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName:
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument:
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &328586530
@@ -1413,7 +1413,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1508,7 +1508,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0.7490196, g: 0.70980394, b: 0.7882353, a: 1}
@@ -1587,7 +1587,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -1648,7 +1648,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1671,7 +1671,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text:
+  m_Text: 
 --- !u!114 &365020295
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1682,7 +1682,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
   m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
   m_EffectDistance: {x: 1, y: -1}
@@ -1749,8 +1749,8 @@ MonoBehaviour:
       m_Type: 0
       m_ExpectedControlType: Vector2
       m_Id: 351f2ccd-1f9f-44bf-9bec-d62ac5c5f408
-      m_Processors:
-      m_Interactions:
+      m_Processors: 
+      m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 1
       m_Priority: 0
@@ -1758,8 +1758,8 @@ MonoBehaviour:
       m_Type: 0
       m_ExpectedControlType: Vector2
       m_Id: 6b444451-8a00-4d00-a97e-f47457f736a8
-      m_Processors:
-      m_Interactions:
+      m_Processors: 
+      m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 1
       m_Priority: 0
@@ -1767,169 +1767,169 @@ MonoBehaviour:
       m_Type: 1
       m_ExpectedControlType: Button
       m_Id: 6c2ab1b8-8984-453a-af3d-a3c78ae1679a
-      m_Processors:
-      m_Interactions:
+      m_Processors: 
+      m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
       m_Priority: 0
     m_Bindings:
-    - m_Name:
+    - m_Name: 
       m_Id: 978bfe49-cc26-4a3d-ab7b-7d7a29327403
       m_Path: <Gamepad>/leftStick
-      m_Interactions:
-      m_Processors:
+      m_Interactions: 
+      m_Processors: 
       m_Groups: ;Gamepad
       m_Action: Move
       m_Flags: 0
     - m_Name: WASD
       m_Id: 00ca640b-d935-4593-8157-c05846ea39b3
       m_Path: Dpad
-      m_Interactions:
-      m_Processors:
-      m_Groups:
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
       m_Action: Move
       m_Flags: 4
     - m_Name: up
       m_Id: e2062cb9-1b15-46a2-838c-2f8d72a0bdd9
       m_Path: <Keyboard>/w
-      m_Interactions:
-      m_Processors:
+      m_Interactions: 
+      m_Processors: 
       m_Groups: ;Keyboard&Mouse
       m_Action: Move
       m_Flags: 8
     - m_Name: up
       m_Id: 8180e8bd-4097-4f4e-ab88-4523101a6ce9
       m_Path: <Keyboard>/upArrow
-      m_Interactions:
-      m_Processors:
+      m_Interactions: 
+      m_Processors: 
       m_Groups: ;Keyboard&Mouse
       m_Action: Move
       m_Flags: 8
     - m_Name: down
       m_Id: 320bffee-a40b-4347-ac70-c210eb8bc73a
       m_Path: <Keyboard>/s
-      m_Interactions:
-      m_Processors:
+      m_Interactions: 
+      m_Processors: 
       m_Groups: ;Keyboard&Mouse
       m_Action: Move
       m_Flags: 8
     - m_Name: down
       m_Id: 1c5327b5-f71c-4f60-99c7-4e737386f1d1
       m_Path: <Keyboard>/downArrow
-      m_Interactions:
-      m_Processors:
+      m_Interactions: 
+      m_Processors: 
       m_Groups: ;Keyboard&Mouse
       m_Action: Move
       m_Flags: 8
     - m_Name: left
       m_Id: d2581a9b-1d11-4566-b27d-b92aff5fabbc
       m_Path: <Keyboard>/a
-      m_Interactions:
-      m_Processors:
+      m_Interactions: 
+      m_Processors: 
       m_Groups: ;Keyboard&Mouse
       m_Action: Move
       m_Flags: 8
     - m_Name: left
       m_Id: 2e46982e-44cc-431b-9f0b-c11910bf467a
       m_Path: <Keyboard>/leftArrow
-      m_Interactions:
-      m_Processors:
+      m_Interactions: 
+      m_Processors: 
       m_Groups: ;Keyboard&Mouse
       m_Action: Move
       m_Flags: 8
     - m_Name: right
       m_Id: fcfe95b8-67b9-4526-84b5-5d0bc98d6400
       m_Path: <Keyboard>/d
-      m_Interactions:
-      m_Processors:
+      m_Interactions: 
+      m_Processors: 
       m_Groups: ;Keyboard&Mouse
       m_Action: Move
       m_Flags: 8
     - m_Name: right
       m_Id: 77bff152-3580-4b21-b6de-dcd0c7e41164
       m_Path: <Keyboard>/rightArrow
-      m_Interactions:
-      m_Processors:
+      m_Interactions: 
+      m_Processors: 
       m_Groups: ;Keyboard&Mouse
       m_Action: Move
       m_Flags: 8
-    - m_Name:
+    - m_Name: 
       m_Id: 1635d3fe-58b6-4ba9-a4e2-f4b964f6b5c8
       m_Path: <XRController>/{Primary2DAxis}
-      m_Interactions:
-      m_Processors:
+      m_Interactions: 
+      m_Processors: 
       m_Groups: XR
       m_Action: Move
       m_Flags: 0
-    - m_Name:
+    - m_Name: 
       m_Id: 3ea4d645-4504-4529-b061-ab81934c3752
       m_Path: <Joystick>/stick
-      m_Interactions:
-      m_Processors:
+      m_Interactions: 
+      m_Processors: 
       m_Groups: Joystick
       m_Action: Move
       m_Flags: 0
-    - m_Name:
+    - m_Name: 
       m_Id: c1f7a91b-d0fd-4a62-997e-7fb9b69bf235
       m_Path: <Gamepad>/rightStick
-      m_Interactions:
-      m_Processors:
+      m_Interactions: 
+      m_Processors: 
       m_Groups: ;Gamepad
       m_Action: Look
       m_Flags: 0
-    - m_Name:
+    - m_Name: 
       m_Id: 8c8e490b-c610-4785-884f-f04217b23ca4
       m_Path: <Pointer>/delta
-      m_Interactions:
-      m_Processors:
+      m_Interactions: 
+      m_Processors: 
       m_Groups: ;Keyboard&Mouse;Touch
       m_Action: Look
       m_Flags: 0
-    - m_Name:
+    - m_Name: 
       m_Id: 3e5f5442-8668-4b27-a940-df99bad7e831
       m_Path: <Joystick>/{Hatswitch}
-      m_Interactions:
-      m_Processors:
+      m_Interactions: 
+      m_Processors: 
       m_Groups: Joystick
       m_Action: Look
       m_Flags: 0
-    - m_Name:
+    - m_Name: 
       m_Id: 143bb1cd-cc10-4eca-a2f0-a3664166fe91
       m_Path: <Gamepad>/rightTrigger
-      m_Interactions:
-      m_Processors:
+      m_Interactions: 
+      m_Processors: 
       m_Groups: ;Gamepad
       m_Action: Fire
       m_Flags: 0
-    - m_Name:
+    - m_Name: 
       m_Id: 05f6913d-c316-48b2-a6bb-e225f14c7960
       m_Path: <Mouse>/leftButton
-      m_Interactions:
-      m_Processors:
+      m_Interactions: 
+      m_Processors: 
       m_Groups: ;Keyboard&Mouse
       m_Action: Fire
       m_Flags: 0
-    - m_Name:
+    - m_Name: 
       m_Id: 886e731e-7071-4ae4-95c0-e61739dad6fd
       m_Path: <Touchscreen>/primaryTouch/tap
-      m_Interactions:
-      m_Processors:
+      m_Interactions: 
+      m_Processors: 
       m_Groups: ;Touch
       m_Action: Fire
       m_Flags: 0
-    - m_Name:
+    - m_Name: 
       m_Id: ee3d0cd2-254e-47a7-a8cb-bc94d9658c54
       m_Path: <Joystick>/trigger
-      m_Interactions:
-      m_Processors:
+      m_Interactions: 
+      m_Processors: 
       m_Groups: Joystick
       m_Action: Fire
       m_Flags: 0
-    - m_Name:
+    - m_Name: 
       m_Id: 8255d333-5683-4943-a58a-ccb207ff1dce
       m_Path: <XRController>/{PrimaryAction}
-      m_Interactions:
-      m_Processors:
+      m_Interactions: 
+      m_Processors: 
       m_Groups: XR
       m_Action: Fire
       m_Flags: 0
@@ -1941,8 +1941,8 @@ MonoBehaviour:
       m_Type: 2
       m_ExpectedControlType: Vector2
       m_Id: c95b2375-e6d9-4b88-9c4c-c5e76515df4b
-      m_Processors:
-      m_Interactions:
+      m_Processors: 
+      m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
       m_Priority: 0
@@ -1950,8 +1950,8 @@ MonoBehaviour:
       m_Type: 1
       m_ExpectedControlType: Button
       m_Id: 7607c7b6-cd76-4816-beef-bd0341cfe950
-      m_Processors:
-      m_Interactions:
+      m_Processors: 
+      m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
       m_Priority: 0
@@ -1959,8 +1959,8 @@ MonoBehaviour:
       m_Type: 1
       m_ExpectedControlType: Button
       m_Id: 15cef263-9014-4fd5-94d9-4e4a6234a6ef
-      m_Processors:
-      m_Interactions:
+      m_Processors: 
+      m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
       m_Priority: 0
@@ -1968,8 +1968,8 @@ MonoBehaviour:
       m_Type: 2
       m_ExpectedControlType: Vector2
       m_Id: 32b35790-4ed0-4e9a-aa41-69ac6d629449
-      m_Processors:
-      m_Interactions:
+      m_Processors: 
+      m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 1
       m_Priority: 0
@@ -1977,8 +1977,8 @@ MonoBehaviour:
       m_Type: 2
       m_ExpectedControlType: Button
       m_Id: 3c7022bf-7922-4f7c-a998-c437916075ad
-      m_Processors:
-      m_Interactions:
+      m_Processors: 
+      m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 1
       m_Priority: 0
@@ -1986,8 +1986,8 @@ MonoBehaviour:
       m_Type: 2
       m_ExpectedControlType: Vector2
       m_Id: 0489e84a-4833-4c40-bfae-cea84b696689
-      m_Processors:
-      m_Interactions:
+      m_Processors: 
+      m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
       m_Priority: 0
@@ -1995,8 +1995,8 @@ MonoBehaviour:
       m_Type: 2
       m_ExpectedControlType: Button
       m_Id: dad70c86-b58c-4b17-88ad-f5e53adf419e
-      m_Processors:
-      m_Interactions:
+      m_Processors: 
+      m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
       m_Priority: 0
@@ -2004,8 +2004,8 @@ MonoBehaviour:
       m_Type: 2
       m_ExpectedControlType: Button
       m_Id: 44b200b1-1557-4083-816c-b22cbdf77ddf
-      m_Processors:
-      m_Interactions:
+      m_Processors: 
+      m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
       m_Priority: 0
@@ -2013,8 +2013,8 @@ MonoBehaviour:
       m_Type: 2
       m_ExpectedControlType: Vector3
       m_Id: 24908448-c609-4bc3-a128-ea258674378a
-      m_Processors:
-      m_Interactions:
+      m_Processors: 
+      m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
       m_Priority: 0
@@ -2022,8 +2022,8 @@ MonoBehaviour:
       m_Type: 2
       m_ExpectedControlType: Quaternion
       m_Id: 9caa3d8a-6b2f-4e8e-8bad-6ede561bd9be
-      m_Processors:
-      m_Interactions:
+      m_Processors: 
+      m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
       m_Priority: 0
@@ -2031,304 +2031,304 @@ MonoBehaviour:
     - m_Name: Gamepad
       m_Id: 809f371f-c5e2-4e7a-83a1-d867598f40dd
       m_Path: 2DVector
-      m_Interactions:
-      m_Processors:
-      m_Groups:
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
       m_Action: Navigate
       m_Flags: 4
     - m_Name: up
       m_Id: 14a5d6e8-4aaf-4119-a9ef-34b8c2c548bf
       m_Path: <Gamepad>/leftStick/up
-      m_Interactions:
-      m_Processors:
+      m_Interactions: 
+      m_Processors: 
       m_Groups: ;Gamepad
       m_Action: Navigate
       m_Flags: 8
     - m_Name: up
       m_Id: 9144cbe6-05e1-4687-a6d7-24f99d23dd81
       m_Path: <Gamepad>/rightStick/up
-      m_Interactions:
-      m_Processors:
+      m_Interactions: 
+      m_Processors: 
       m_Groups: ;Gamepad
       m_Action: Navigate
       m_Flags: 8
     - m_Name: down
       m_Id: 2db08d65-c5fb-421b-983f-c71163608d67
       m_Path: <Gamepad>/leftStick/down
-      m_Interactions:
-      m_Processors:
+      m_Interactions: 
+      m_Processors: 
       m_Groups: ;Gamepad
       m_Action: Navigate
       m_Flags: 8
     - m_Name: down
       m_Id: 58748904-2ea9-4a80-8579-b500e6a76df8
       m_Path: <Gamepad>/rightStick/down
-      m_Interactions:
-      m_Processors:
+      m_Interactions: 
+      m_Processors: 
       m_Groups: ;Gamepad
       m_Action: Navigate
       m_Flags: 8
     - m_Name: left
       m_Id: 8ba04515-75aa-45de-966d-393d9bbd1c14
       m_Path: <Gamepad>/leftStick/left
-      m_Interactions:
-      m_Processors:
+      m_Interactions: 
+      m_Processors: 
       m_Groups: ;Gamepad
       m_Action: Navigate
       m_Flags: 8
     - m_Name: left
       m_Id: 712e721c-bdfb-4b23-a86c-a0d9fcfea921
       m_Path: <Gamepad>/rightStick/left
-      m_Interactions:
-      m_Processors:
+      m_Interactions: 
+      m_Processors: 
       m_Groups: ;Gamepad
       m_Action: Navigate
       m_Flags: 8
     - m_Name: right
       m_Id: fcd248ae-a788-4676-a12e-f4d81205600b
       m_Path: <Gamepad>/leftStick/right
-      m_Interactions:
-      m_Processors:
+      m_Interactions: 
+      m_Processors: 
       m_Groups: ;Gamepad
       m_Action: Navigate
       m_Flags: 8
     - m_Name: right
       m_Id: 1f04d9bc-c50b-41a1-bfcc-afb75475ec20
       m_Path: <Gamepad>/rightStick/right
-      m_Interactions:
-      m_Processors:
+      m_Interactions: 
+      m_Processors: 
       m_Groups: ;Gamepad
       m_Action: Navigate
       m_Flags: 8
-    - m_Name:
+    - m_Name: 
       m_Id: fb8277d4-c5cd-4663-9dc7-ee3f0b506d90
       m_Path: <Gamepad>/dpad
-      m_Interactions:
-      m_Processors:
+      m_Interactions: 
+      m_Processors: 
       m_Groups: ;Gamepad
       m_Action: Navigate
       m_Flags: 0
     - m_Name: Joystick
       m_Id: e25d9774-381c-4a61-b47c-7b6b299ad9f9
       m_Path: 2DVector
-      m_Interactions:
-      m_Processors:
-      m_Groups:
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
       m_Action: Navigate
       m_Flags: 4
     - m_Name: up
       m_Id: 3db53b26-6601-41be-9887-63ac74e79d19
       m_Path: <Joystick>/stick/up
-      m_Interactions:
-      m_Processors:
+      m_Interactions: 
+      m_Processors: 
       m_Groups: Joystick
       m_Action: Navigate
       m_Flags: 8
     - m_Name: down
       m_Id: 0cb3e13e-3d90-4178-8ae6-d9c5501d653f
       m_Path: <Joystick>/stick/down
-      m_Interactions:
-      m_Processors:
+      m_Interactions: 
+      m_Processors: 
       m_Groups: Joystick
       m_Action: Navigate
       m_Flags: 8
     - m_Name: left
       m_Id: 0392d399-f6dd-4c82-8062-c1e9c0d34835
       m_Path: <Joystick>/stick/left
-      m_Interactions:
-      m_Processors:
+      m_Interactions: 
+      m_Processors: 
       m_Groups: Joystick
       m_Action: Navigate
       m_Flags: 8
     - m_Name: right
       m_Id: 942a66d9-d42f-43d6-8d70-ecb4ba5363bc
       m_Path: <Joystick>/stick/right
-      m_Interactions:
-      m_Processors:
+      m_Interactions: 
+      m_Processors: 
       m_Groups: Joystick
       m_Action: Navigate
       m_Flags: 8
     - m_Name: Keyboard
       m_Id: ff527021-f211-4c02-933e-5976594c46ed
       m_Path: 2DVector
-      m_Interactions:
-      m_Processors:
-      m_Groups:
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
       m_Action: Navigate
       m_Flags: 4
     - m_Name: up
       m_Id: 563fbfdd-0f09-408d-aa75-8642c4f08ef0
       m_Path: <Keyboard>/w
-      m_Interactions:
-      m_Processors:
+      m_Interactions: 
+      m_Processors: 
       m_Groups: Keyboard&Mouse
       m_Action: Navigate
       m_Flags: 8
     - m_Name: up
       m_Id: eb480147-c587-4a33-85ed-eb0ab9942c43
       m_Path: <Keyboard>/upArrow
-      m_Interactions:
-      m_Processors:
+      m_Interactions: 
+      m_Processors: 
       m_Groups: Keyboard&Mouse
       m_Action: Navigate
       m_Flags: 8
     - m_Name: down
       m_Id: 2bf42165-60bc-42ca-8072-8c13ab40239b
       m_Path: <Keyboard>/s
-      m_Interactions:
-      m_Processors:
+      m_Interactions: 
+      m_Processors: 
       m_Groups: Keyboard&Mouse
       m_Action: Navigate
       m_Flags: 8
     - m_Name: down
       m_Id: 85d264ad-e0a0-4565-b7ff-1a37edde51ac
       m_Path: <Keyboard>/downArrow
-      m_Interactions:
-      m_Processors:
+      m_Interactions: 
+      m_Processors: 
       m_Groups: Keyboard&Mouse
       m_Action: Navigate
       m_Flags: 8
     - m_Name: left
       m_Id: 74214943-c580-44e4-98eb-ad7eebe17902
       m_Path: <Keyboard>/a
-      m_Interactions:
-      m_Processors:
+      m_Interactions: 
+      m_Processors: 
       m_Groups: Keyboard&Mouse
       m_Action: Navigate
       m_Flags: 8
     - m_Name: left
       m_Id: cea9b045-a000-445b-95b8-0c171af70a3b
       m_Path: <Keyboard>/leftArrow
-      m_Interactions:
-      m_Processors:
+      m_Interactions: 
+      m_Processors: 
       m_Groups: Keyboard&Mouse
       m_Action: Navigate
       m_Flags: 8
     - m_Name: right
       m_Id: 8607c725-d935-4808-84b1-8354e29bab63
       m_Path: <Keyboard>/d
-      m_Interactions:
-      m_Processors:
+      m_Interactions: 
+      m_Processors: 
       m_Groups: Keyboard&Mouse
       m_Action: Navigate
       m_Flags: 8
     - m_Name: right
       m_Id: 4cda81dc-9edd-4e03-9d7c-a71a14345d0b
       m_Path: <Keyboard>/rightArrow
-      m_Interactions:
-      m_Processors:
+      m_Interactions: 
+      m_Processors: 
       m_Groups: Keyboard&Mouse
       m_Action: Navigate
       m_Flags: 8
-    - m_Name:
+    - m_Name: 
       m_Id: 9e92bb26-7e3b-4ec4-b06b-3c8f8e498ddc
       m_Path: '*/{Submit}'
-      m_Interactions:
-      m_Processors:
+      m_Interactions: 
+      m_Processors: 
       m_Groups: Keyboard&Mouse;Gamepad;Touch;Joystick;XR
       m_Action: Submit
       m_Flags: 0
-    - m_Name:
+    - m_Name: 
       m_Id: 82627dcc-3b13-4ba9-841d-e4b746d6553e
       m_Path: '*/{Cancel}'
-      m_Interactions:
-      m_Processors:
+      m_Interactions: 
+      m_Processors: 
       m_Groups: Keyboard&Mouse;Gamepad;Touch;Joystick;XR
       m_Action: Cancel
       m_Flags: 0
-    - m_Name:
+    - m_Name: 
       m_Id: c52c8e0b-8179-41d3-b8a1-d149033bbe86
       m_Path: <Mouse>/position
-      m_Interactions:
-      m_Processors:
+      m_Interactions: 
+      m_Processors: 
       m_Groups: Keyboard&Mouse
       m_Action: Point
       m_Flags: 0
-    - m_Name:
+    - m_Name: 
       m_Id: e1394cbc-336e-44ce-9ea8-6007ed6193f7
       m_Path: <Pen>/position
-      m_Interactions:
-      m_Processors:
+      m_Interactions: 
+      m_Processors: 
       m_Groups: Keyboard&Mouse
       m_Action: Point
       m_Flags: 0
-    - m_Name:
+    - m_Name: 
       m_Id: 5693e57a-238a-46ed-b5ae-e64e6e574302
       m_Path: <Touchscreen>/touch*/position
-      m_Interactions:
-      m_Processors:
+      m_Interactions: 
+      m_Processors: 
       m_Groups: Touch
       m_Action: Point
       m_Flags: 0
-    - m_Name:
+    - m_Name: 
       m_Id: 4faf7dc9-b979-4210-aa8c-e808e1ef89f5
       m_Path: <Mouse>/leftButton
-      m_Interactions:
-      m_Processors:
+      m_Interactions: 
+      m_Processors: 
       m_Groups: ;Keyboard&Mouse
       m_Action: Click
       m_Flags: 0
-    - m_Name:
+    - m_Name: 
       m_Id: 8d66d5ba-88d7-48e6-b1cd-198bbfef7ace
       m_Path: <Pen>/tip
-      m_Interactions:
-      m_Processors:
+      m_Interactions: 
+      m_Processors: 
       m_Groups: ;Keyboard&Mouse
       m_Action: Click
       m_Flags: 0
-    - m_Name:
+    - m_Name: 
       m_Id: 47c2a644-3ebc-4dae-a106-589b7ca75b59
       m_Path: <Touchscreen>/touch*/press
-      m_Interactions:
-      m_Processors:
+      m_Interactions: 
+      m_Processors: 
       m_Groups: Touch
       m_Action: Click
       m_Flags: 0
-    - m_Name:
+    - m_Name: 
       m_Id: bb9e6b34-44bf-4381-ac63-5aa15d19f677
       m_Path: <XRController>/trigger
-      m_Interactions:
-      m_Processors:
+      m_Interactions: 
+      m_Processors: 
       m_Groups: XR
       m_Action: Click
       m_Flags: 0
-    - m_Name:
+    - m_Name: 
       m_Id: 38c99815-14ea-4617-8627-164d27641299
       m_Path: <Mouse>/scroll
-      m_Interactions:
-      m_Processors:
+      m_Interactions: 
+      m_Processors: 
       m_Groups: ;Keyboard&Mouse
       m_Action: ScrollWheel
       m_Flags: 0
-    - m_Name:
+    - m_Name: 
       m_Id: 24066f69-da47-44f3-a07e-0015fb02eb2e
       m_Path: <Mouse>/middleButton
-      m_Interactions:
-      m_Processors:
+      m_Interactions: 
+      m_Processors: 
       m_Groups: ;Keyboard&Mouse
       m_Action: MiddleClick
       m_Flags: 0
-    - m_Name:
+    - m_Name: 
       m_Id: 4c191405-5738-4d4b-a523-c6a301dbf754
       m_Path: <Mouse>/rightButton
-      m_Interactions:
-      m_Processors:
+      m_Interactions: 
+      m_Processors: 
       m_Groups: ;Keyboard&Mouse
       m_Action: RightClick
       m_Flags: 0
-    - m_Name:
+    - m_Name: 
       m_Id: 7236c0d9-6ca3-47cf-a6ee-a97f5b59ea77
       m_Path: <XRController>/devicePosition
-      m_Interactions:
-      m_Processors:
+      m_Interactions: 
+      m_Processors: 
       m_Groups: XR
       m_Action: TrackedDevicePosition
       m_Flags: 0
-    - m_Name:
+    - m_Name: 
       m_Id: 23e01e3a-f935-4948-8d8b-9bcac77714fb
       m_Path: <XRController>/deviceRotation
-      m_Interactions:
-      m_Processors:
+      m_Interactions: 
+      m_Processors: 
       m_Groups: XR
       m_Action: TrackedDeviceOrientation
       m_Flags: 0
@@ -2408,7 +2408,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.2784314, g: 0.23921569, b: 0.3254902, a: 1}
@@ -2483,7 +2483,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.95686275, g: 0.73333335, b: 0.3254902, a: 1}
@@ -2560,7 +2560,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2598,7 +2598,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
     m_Mode: 3
@@ -2661,7 +2661,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a542a0982b41116498a96c68803e59c0, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProfesoraPasillo
   zonaPasillo: {fileID: 1885894447}
   jugadores:
@@ -2688,7 +2688,7 @@ SortingGroup:
   m_Enabled: 1
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 24
+  m_SortingOrder: 25
   m_SortAtRoot: 0
   m_Sort3DAs2D: 0
 --- !u!4 &471439248
@@ -2755,7 +2755,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.04, g: 0.05, b: 0.07, a: 0.94}
@@ -2831,7 +2831,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
   m_Navigation:
     m_Mode: 3
@@ -2882,15 +2882,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4873997368473778839, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_SortingOrder
-      value: 14
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 5471503995926735994, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: spriteAbierto
-      value:
+      value: 
       objectReference: {fileID: 792602605, guid: ec9a5df3b0e2ef148b730f8823240c7c, type: 3}
     - target: {fileID: 5471503995926735994, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: spriteCerrado
-      value:
+      value: 
       objectReference: {fileID: 1549616354, guid: 6028f947f92af8644bc2868efa8bab04, type: 3}
     - target: {fileID: 6879500261274508643, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_Name
@@ -2946,7 +2946,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8219211289584552058, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_Sprite
-      value:
+      value: 
       objectReference: {fileID: 1549616354, guid: 6028f947f92af8644bc2868efa8bab04, type: 3}
     - target: {fileID: 8219211289584552058, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_DrawMode
@@ -2983,8 +2983,8 @@ Transform:
   m_GameObject: {fileID: 520451488}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.28, z: 0}
-  m_LocalScale: {x: 0.78, y: 0.78, z: 0.78}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.8, y: 1.8, z: 1.8}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1202282252}
@@ -3038,7 +3038,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 10
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -4704552745917545066, guid: ab03afe38cef3324da8fda0a9ddbfd96, type: 3}
+  m_Sprite: {fileID: -3647145670866327441, guid: f14f8ce98bd0304489451d7ae9e1a4c7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3098,7 +3098,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
     m_Mode: 3
@@ -3138,10 +3138,10 @@ MonoBehaviour:
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName:
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument:
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &527206829
@@ -3154,7 +3154,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3231,7 +3231,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3269,7 +3269,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
     m_Mode: 3
@@ -3529,7 +3529,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0.972549, g: 0.9411765, b: 0.8666667, a: 1}
@@ -3711,7 +3711,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.15}
   m_EffectDistance: {x: 0.6, y: -0.6}
@@ -3726,7 +3726,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0.04, g: 0.05, b: 0.07, a: 1}
@@ -3805,7 +3805,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0.47058824, g: 0.77254903, b: 1, a: 1}
@@ -3884,7 +3884,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -4058,7 +4058,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 5
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -20587553, guid: 97cd5578b67eafe4fb5545e7b6131d33, type: 3}
+  m_Sprite: {fileID: -5727103358793704069, guid: ee781ad9130730f4ca8ce78a3c6bb1b0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4124,7 +4124,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 28cf23f9cf95e1241bc1dd360654f2d2, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OpcionesAudioUI
   general: {fileID: 494967643}
   musica: {fileID: 1006883641}
@@ -4179,7 +4179,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0.972549, g: 0.9411765, b: 0.8666667, a: 1}
@@ -4402,7 +4402,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -4440,7 +4440,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
     m_Mode: 3
@@ -4568,7 +4568,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -4606,7 +4606,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
     m_Mode: 3
@@ -4687,7 +4687,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -4766,7 +4766,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0.47058824, g: 0.77254903, b: 1, a: 1}
@@ -4845,7 +4845,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -4924,7 +4924,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.95686275, g: 0.73333335, b: 0.3254902, a: 1}
@@ -4966,11 +4966,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5471503995926735994, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: spriteAbierto
-      value:
+      value: 
       objectReference: {fileID: 792602605, guid: ec9a5df3b0e2ef148b730f8823240c7c, type: 3}
     - target: {fileID: 5471503995926735994, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: spriteCerrado
-      value:
+      value: 
       objectReference: {fileID: 1549616354, guid: 6028f947f92af8644bc2868efa8bab04, type: 3}
     - target: {fileID: 6879500261274508643, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_Name
@@ -5026,7 +5026,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8219211289584552058, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_Sprite
-      value:
+      value: 
       objectReference: {fileID: 1549616354, guid: 6028f947f92af8644bc2868efa8bab04, type: 3}
     - target: {fileID: 8219211289584552058, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_DrawMode
@@ -5084,7 +5084,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -5242,7 +5242,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 5
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -20587553, guid: 97cd5578b67eafe4fb5545e7b6131d33, type: 3}
+  m_Sprite: {fileID: -5727103358793704069, guid: ee781ad9130730f4ca8ce78a3c6bb1b0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5263,15 +5263,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4873997368473778839, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_SortingOrder
-      value: 13
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 5471503995926735994, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: spriteAbierto
-      value:
+      value: 
       objectReference: {fileID: 792602605, guid: ec9a5df3b0e2ef148b730f8823240c7c, type: 3}
     - target: {fileID: 5471503995926735994, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: spriteCerrado
-      value:
+      value: 
       objectReference: {fileID: 1549616354, guid: 6028f947f92af8644bc2868efa8bab04, type: 3}
     - target: {fileID: 6879500261274508643, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_Name
@@ -5327,7 +5327,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8219211289584552058, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_Sprite
-      value:
+      value: 
       objectReference: {fileID: 1549616354, guid: 6028f947f92af8644bc2868efa8bab04, type: 3}
     - target: {fileID: 8219211289584552058, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_DrawMode
@@ -5385,7 +5385,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -5464,7 +5464,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0.972549, g: 0.9411765, b: 0.8666667, a: 1}
@@ -5543,7 +5543,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0.95686275, g: 0.73333335, b: 0.3254902, a: 1}
@@ -5811,7 +5811,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -5909,7 +5909,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.48984987}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -5919,7 +5919,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.8, y: 0.4}
+  m_Size: {x: 1.5611606, y: 0.74460053}
   m_EdgeRadius: 0
 --- !u!1 &820000003
 GameObject:
@@ -5988,7 +5988,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.07999998, y: -1.7831135}
+  m_Offset: {x: 0.13569152, y: -2.847782}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -5998,7 +5998,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.984, y: 0.37008297}
+  m_Size: {x: 1.0171064, y: 0.43407404}
   m_EdgeRadius: 0
 --- !u!114 &820000006
 MonoBehaviour:
@@ -6010,7 +6010,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a9986875f69cbb646b44484b8ba56482, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZonaDanoJugador
   caja: {fileID: 820000005}
 --- !u!1 &820000007
@@ -6102,7 +6102,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a9986875f69cbb646b44484b8ba56482, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZonaDanoJugador
   caja: {fileID: 820000009}
 --- !u!114 &830000000
@@ -6115,7 +6115,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3b461d48155e69429d9905a2c7e9524e, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OrdenProfundidadPersonaje
   referenciaPies: {fileID: 820000002}
   offsetAlturaPies: 0
@@ -6129,7 +6129,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3b461d48155e69429d9905a2c7e9524e, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OrdenProfundidadPersonaje
   referenciaPies: {fileID: 1202282250}
   offsetAlturaPies: 0
@@ -6143,7 +6143,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3b461d48155e69429d9905a2c7e9524e, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OrdenProfundidadPersonaje
   referenciaPies: {fileID: 1775270129}
   offsetAlturaPies: 0
@@ -6194,7 +6194,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0.7490196, g: 0.70980394, b: 0.7882353, a: 1}
@@ -6275,7 +6275,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -6313,7 +6313,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
     m_Mode: 3
@@ -6377,7 +6377,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c01871c7754cc043a570f3ecfc60b8a, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MenuPartida
   partida: {fileID: 2063603545}
   jugador1: {fileID: 1202282254}
@@ -6404,7 +6404,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GraphicRaycaster
   m_IgnoreReversedGraphics: 1
   m_BlockingObjects: 0
@@ -6421,7 +6421,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
@@ -6532,7 +6532,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.14901961, g: 0.12941177, b: 0.1882353, a: 1}
@@ -6574,11 +6574,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5471503995926735994, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: spriteAbierto
-      value:
+      value: 
       objectReference: {fileID: 792602605, guid: ec9a5df3b0e2ef148b730f8823240c7c, type: 3}
     - target: {fileID: 5471503995926735994, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: spriteCerrado
-      value:
+      value: 
       objectReference: {fileID: 1549616354, guid: 6028f947f92af8644bc2868efa8bab04, type: 3}
     - target: {fileID: 6879500261274508643, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_Name
@@ -6634,7 +6634,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8219211289584552058, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_Sprite
-      value:
+      value: 
       objectReference: {fileID: 1549616354, guid: 6028f947f92af8644bc2868efa8bab04, type: 3}
     - target: {fileID: 8219211289584552058, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_DrawMode
@@ -6673,7 +6673,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f5a769db9aec1ad49b98c5fdc1256ca8, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PuertaTeletransporte
   numero: 4
   salida: {fileID: 753167907}
@@ -6717,11 +6717,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5471503995926735994, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: spriteAbierto
-      value:
+      value: 
       objectReference: {fileID: 792602605, guid: ec9a5df3b0e2ef148b730f8823240c7c, type: 3}
     - target: {fileID: 5471503995926735994, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: spriteCerrado
-      value:
+      value: 
       objectReference: {fileID: 1549616354, guid: 6028f947f92af8644bc2868efa8bab04, type: 3}
     - target: {fileID: 6879500261274508643, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_Name
@@ -6777,7 +6777,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8219211289584552058, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_Sprite
-      value:
+      value: 
       objectReference: {fileID: 1549616354, guid: 6028f947f92af8644bc2868efa8bab04, type: 3}
     - target: {fileID: 8219211289584552058, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_DrawMode
@@ -6837,7 +6837,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -6875,7 +6875,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
     m_Mode: 3
@@ -6952,7 +6952,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
     m_Mode: 3
@@ -6992,10 +6992,10 @@ MonoBehaviour:
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName:
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument:
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &976695313
@@ -7008,7 +7008,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -7103,7 +7103,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -7184,7 +7184,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -7222,7 +7222,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
     m_Mode: 3
@@ -7304,7 +7304,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
   m_Navigation:
     m_Mode: 3
@@ -7392,7 +7392,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0.972549, g: 0.9411765, b: 0.8666667, a: 1}
@@ -7502,7 +7502,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -7581,7 +7581,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0.7490196, g: 0.70980394, b: 0.7882353, a: 1}
@@ -7643,7 +7643,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalCameraData
   m_RenderShadows: 1
   m_RequiresDepthTextureOption: 2
@@ -7745,7 +7745,7 @@ Transform:
   m_GameObject: {fileID: 1040551873}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.98, y: -0.72, z: -10}
+  m_LocalPosition: {x: 94.2, y: -0.72, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7761,7 +7761,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d3737cec0f817f244a379427a9905a84, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CamaraPasillo
   jugador: {fileID: 1775270132}
   extremoIzquierdo: {fileID: 1688151180}
@@ -7815,7 +7815,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0.972549, g: 0.9411765, b: 0.8666667, a: 1}
@@ -7902,7 +7902,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0.95686275, g: 0.73333335, b: 0.3254902, a: 1}
@@ -7975,7 +7975,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -8013,7 +8013,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
     m_Mode: 3
@@ -8133,7 +8133,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 5
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -20587553, guid: 97cd5578b67eafe4fb5545e7b6131d33, type: 3}
+  m_Sprite: {fileID: -5727103358793704069, guid: ee781ad9130730f4ca8ce78a3c6bb1b0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -8225,7 +8225,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -8301,7 +8301,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.15}
   m_EffectDistance: {x: 0.6, y: -0.6}
@@ -8316,7 +8316,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0.04, g: 0.05, b: 0.07, a: 1}
@@ -8409,7 +8409,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -8488,7 +8488,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0.972549, g: 0.9411765, b: 0.8666667, a: 1}
@@ -8549,7 +8549,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
     m_Mode: 3
@@ -8593,7 +8593,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -8773,7 +8773,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -8819,11 +8819,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5471503995926735994, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: spriteAbierto
-      value:
+      value: 
       objectReference: {fileID: 792602605, guid: ec9a5df3b0e2ef148b730f8823240c7c, type: 3}
     - target: {fileID: 5471503995926735994, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: spriteCerrado
-      value:
+      value: 
       objectReference: {fileID: 1549616354, guid: 6028f947f92af8644bc2868efa8bab04, type: 3}
     - target: {fileID: 6879500261274508643, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_Name
@@ -8879,7 +8879,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8219211289584552058, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_Sprite
-      value:
+      value: 
       objectReference: {fileID: 1549616354, guid: 6028f947f92af8644bc2868efa8bab04, type: 3}
     - target: {fileID: 8219211289584552058, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_DrawMode
@@ -8910,6 +8910,8 @@ GameObject:
   - component: {fileID: 1202282256}
   - component: {fileID: 2200000001}
   - component: {fileID: 2200000005}
+  - component: {fileID: 2235000001}
+  - component: {fileID: 2235000002}
   m_Layer: 3
   m_Name: P1
   m_TagString: Untagged
@@ -8927,7 +8929,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 08f045c55bf00614b83c955a2ec05d94, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovimientoJugador2D
   movimiento: {fileID: 8752641054536633761, guid: 6029e35a85dacdd4a8b5c2b5afe0e9a0, type: 3}
   velocidad: 10
@@ -8970,7 +8972,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.07999998, y: -1.7831135}
+  m_Offset: {x: 0.13569152, y: -2.847782}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -8980,7 +8982,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.23, y: 0.49344397}
+  m_Size: {x: 1.271383, y: 0.5787654}
   m_EdgeRadius: 0
 --- !u!212 &1202282251
 SpriteRenderer:
@@ -9051,7 +9053,7 @@ Transform:
   m_GameObject: {fileID: 1202282248}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.72, y: -3.1541, z: 0}
+  m_LocalPosition: {x: -1.72, y: -0.94, z: 0}
   m_LocalScale: {x: 1, y: 0.89737314, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9071,7 +9073,7 @@ SortingGroup:
   m_Enabled: 1
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 26
+  m_SortingOrder: 24
   m_SortAtRoot: 0
   m_Sort3DAs2D: 0
 --- !u!114 &1202282254
@@ -9084,7 +9086,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 096d5695931f7544fa8e89a4919fc286, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AlmasJugador
   cantidad: 0
 --- !u!114 &1202282255
@@ -9097,12 +9099,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f0ac3f10dbada004e930477274f14f46, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SuccionJugador
   succionar: {fileID: 6029532384514666566, guid: 6029e35a85dacdd4a8b5c2b5afe0e9a0, type: 3}
-  alcance: 1.57
-  escalaHorizontal: 1.72
-  offsetVertical: 0.22
+  alcance: 1.72
+  escalaHorizontal: 1.57
+  offsetVertical: 0
   distanciaAlineacion: 3.4
   offsetVerticalAlineacion: 0.48
   tiempoDrenaje: 3
@@ -9117,7 +9119,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eb2813e0e95e8454abd84b8d313c9ba3, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AtaqueJugador
   golpear: {fileID: 5871819156718683082, guid: 6029e35a85dacdd4a8b5c2b5afe0e9a0, type: 3}
   visualGolpe: {fileID: 1443337201}
@@ -9151,7 +9153,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6f520fdd8daff2d4ebca5537ea4ecef7, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EstadoCombateJugador
   indicadorAturdimiento: {fileID: 1606449273}
   zonaDano: {fileID: 820000006}
@@ -9201,7 +9203,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.UI.InputSystemUIInputModule
   m_SendPointerHoverToParent: 1
   m_MoveRepeatDelay: 0.5
@@ -9232,7 +9234,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.EventSystem
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
@@ -9306,7 +9308,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0.972549, g: 0.9411765, b: 0.8666667, a: 1}
@@ -9377,7 +9379,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0.7490196, g: 0.70980394, b: 0.7882353, a: 1}
@@ -9511,8 +9513,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1234259222}
   - component: {fileID: 1234259221}
+  - component: {fileID: 2245000001}
   m_Layer: 3
-  m_Name: CubitoMorado
+  m_Name: SpriteProfesor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9567,8 +9570,8 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.65, g: 0.2, b: 0.95, a: 1}
+  m_Sprite: {fileID: 7700000000000000200, guid: 4336584f7b2a9b148934564ee06a7752, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -9587,8 +9590,8 @@ Transform:
   m_GameObject: {fileID: 1234259220}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.6, z: 0}
-  m_LocalScale: {x: 1.2, y: 1.2, z: 1}
+  m_LocalPosition: {x: 0, y: -1.00579476, z: 0}
+  m_LocalScale: {x: 1.61981707, y: 1.61981707, z: 1.61981707}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 471439248}
@@ -9621,11 +9624,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5471503995926735994, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: spriteAbierto
-      value:
+      value: 
       objectReference: {fileID: 792602605, guid: ec9a5df3b0e2ef148b730f8823240c7c, type: 3}
     - target: {fileID: 5471503995926735994, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: spriteCerrado
-      value:
+      value: 
       objectReference: {fileID: 1549616354, guid: 6028f947f92af8644bc2868efa8bab04, type: 3}
     - target: {fileID: 6879500261274508643, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_Name
@@ -9681,7 +9684,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8219211289584552058, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_Sprite
-      value:
+      value: 
       objectReference: {fileID: 1549616354, guid: 6028f947f92af8644bc2868efa8bab04, type: 3}
     - target: {fileID: 8219211289584552058, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_DrawMode
@@ -9741,7 +9744,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -9779,7 +9782,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
     m_Mode: 3
@@ -9896,7 +9899,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -9975,7 +9978,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0.972549, g: 0.9411765, b: 0.8666667, a: 1}
@@ -10094,7 +10097,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.95, g: 0.2, b: 0.25, a: 1}
@@ -10169,7 +10172,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0.972549, g: 0.9411765, b: 0.8666667, a: 1}
@@ -10282,7 +10285,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 10
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 927565581815631906, guid: a28ad053265126448a796a5c961b85a3, type: 3}
+  m_Sprite: {fileID: -7768734458274919229, guid: 5ec8d622705dc8e46aadc9c72f9ae2d9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -10340,7 +10343,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -10386,11 +10389,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5471503995926735994, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: spriteAbierto
-      value:
+      value: 
       objectReference: {fileID: 792602605, guid: ec9a5df3b0e2ef148b730f8823240c7c, type: 3}
     - target: {fileID: 5471503995926735994, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: spriteCerrado
-      value:
+      value: 
       objectReference: {fileID: 1549616354, guid: 6028f947f92af8644bc2868efa8bab04, type: 3}
     - target: {fileID: 6879500261274508643, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_Name
@@ -10446,7 +10449,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8219211289584552058, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_Sprite
-      value:
+      value: 
       objectReference: {fileID: 1549616354, guid: 6028f947f92af8644bc2868efa8bab04, type: 3}
     - target: {fileID: 8219211289584552058, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_DrawMode
@@ -10504,7 +10507,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0.7490196, g: 0.70980394, b: 0.7882353, a: 1}
@@ -10583,7 +10586,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0.95686275, g: 0.73333335, b: 0.3254902, a: 1}
@@ -10702,7 +10705,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 0.45882353, b: 0.45882353, a: 1}
@@ -10761,7 +10764,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a5336e00c8cf82a40aaa2bfe43249dd7, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CombatePvP
   jugador1: {fileID: 1202282256}
   jugador2: {fileID: 2200000006}
@@ -10831,7 +10834,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0.7490196, g: 0.70980394, b: 0.7882353, a: 1}
@@ -10892,7 +10895,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 74ebdf851be51b941b914aa4ddc3e004, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ConfiguracionControlesUI
   contenidoAudio: {fileID: 1354903244}
   panel: {fileID: 1117625066}
@@ -10927,7 +10930,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0.97}
@@ -11023,7 +11026,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -11102,7 +11105,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -11146,7 +11149,7 @@ GameObject:
   - component: {fileID: 1389443313}
   - component: {fileID: 1389443312}
   m_Layer: 0
-  m_Name:
+  m_Name: 
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11162,7 +11165,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0.95686275, g: 0.73333335, b: 0.3254902, a: 1}
@@ -11185,7 +11188,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text:
+  m_Text: 
 --- !u!222 &1389443313
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11262,7 +11265,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
     m_Mode: 3
@@ -11302,10 +11305,10 @@ MonoBehaviour:
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName:
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument:
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1389864198
@@ -11318,7 +11321,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -11705,7 +11708,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0.96}
@@ -11782,7 +11785,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -11820,7 +11823,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
     m_Mode: 3
@@ -11860,10 +11863,10 @@ MonoBehaviour:
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName:
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument:
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &1476496178
@@ -11915,7 +11918,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -11953,7 +11956,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
     m_Mode: 3
@@ -12034,7 +12037,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.2784314, g: 0.23921569, b: 0.3254902, a: 1}
@@ -12109,7 +12112,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0.972549, g: 0.9411765, b: 0.8666667, a: 1}
@@ -12188,7 +12191,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0.7490196, g: 0.70980394, b: 0.7882353, a: 1}
@@ -12274,7 +12277,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -12312,7 +12315,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
     m_Mode: 3
@@ -12395,7 +12398,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -12433,7 +12436,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
     m_Mode: 3
@@ -12479,7 +12482,7 @@ GameObject:
   - component: {fileID: 1573131996}
   - component: {fileID: 1573131995}
   m_Layer: 0
-  m_Name:
+  m_Name: 
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12495,7 +12498,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0.7490196, g: 0.70980394, b: 0.7882353, a: 1}
@@ -12518,7 +12521,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text:
+  m_Text: 
 --- !u!222 &1573131996
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12593,7 +12596,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0.7490196, g: 0.70980394, b: 0.7882353, a: 1}
@@ -12827,7 +12830,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -12865,7 +12868,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
     m_Mode: 3
@@ -12905,10 +12908,10 @@ MonoBehaviour:
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName:
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument:
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &1652862813
@@ -12940,7 +12943,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -12963,7 +12966,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text:
+  m_Text: 
 --- !u!114 &1652862815
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12974,7 +12977,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
   m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
   m_EffectDistance: {x: 1, y: -1}
@@ -13055,7 +13058,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -13093,7 +13096,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
     m_Mode: 3
@@ -13179,7 +13182,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -13258,7 +13261,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.48, g: 0.83, b: 1, a: 1}
@@ -13333,7 +13336,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -13379,11 +13382,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5471503995926735994, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: spriteAbierto
-      value:
+      value: 
       objectReference: {fileID: 792602605, guid: ec9a5df3b0e2ef148b730f8823240c7c, type: 3}
     - target: {fileID: 5471503995926735994, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: spriteCerrado
-      value:
+      value: 
       objectReference: {fileID: 1549616354, guid: 6028f947f92af8644bc2868efa8bab04, type: 3}
     - target: {fileID: 6879500261274508643, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_Name
@@ -13439,7 +13442,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8219211289584552058, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_Sprite
-      value:
+      value: 
       objectReference: {fileID: 1549616354, guid: 6028f947f92af8644bc2868efa8bab04, type: 3}
     - target: {fileID: 8219211289584552058, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_DrawMode
@@ -13498,7 +13501,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.04, g: 0.05, b: 0.07, a: 1}
@@ -13693,7 +13696,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
@@ -13797,7 +13800,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0.7490196, g: 0.70980394, b: 0.7882353, a: 1}
@@ -13857,7 +13860,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f5a769db9aec1ad49b98c5fdc1256ca8, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PuertaTeletransporte
   numero: 1
   salida: {fileID: 1463790650}
@@ -13934,7 +13937,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -13995,7 +13998,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -14018,7 +14021,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text:
+  m_Text: 
 --- !u!114 &1725024270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14029,7 +14032,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
   m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
   m_EffectDistance: {x: 1, y: -1}
@@ -14090,7 +14093,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -14113,7 +14116,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text:
+  m_Text: 
 --- !u!114 &1726123935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14124,7 +14127,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
   m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
   m_EffectDistance: {x: 1, y: -1}
@@ -14205,7 +14208,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -14243,7 +14246,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
     m_Mode: 3
@@ -14324,7 +14327,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -14370,11 +14373,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5471503995926735994, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: spriteAbierto
-      value:
+      value: 
       objectReference: {fileID: 792602605, guid: ec9a5df3b0e2ef148b730f8823240c7c, type: 3}
     - target: {fileID: 5471503995926735994, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: spriteCerrado
-      value:
+      value: 
       objectReference: {fileID: 1549616354, guid: 6028f947f92af8644bc2868efa8bab04, type: 3}
     - target: {fileID: 6879500261274508643, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_Name
@@ -14430,7 +14433,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8219211289584552058, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_Sprite
-      value:
+      value: 
       objectReference: {fileID: 1549616354, guid: 6028f947f92af8644bc2868efa8bab04, type: 3}
     - target: {fileID: 8219211289584552058, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_DrawMode
@@ -14488,7 +14491,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0.7490196, g: 0.70980394, b: 0.7882353, a: 1}
@@ -14569,7 +14572,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -14607,7 +14610,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
     m_Mode: 3
@@ -14688,7 +14691,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.95686275, g: 0.73333335, b: 0.3254902, a: 1}
@@ -14735,6 +14738,8 @@ GameObject:
   - component: {fileID: 2200000002}
   - component: {fileID: 2200000004}
   - component: {fileID: 2200000006}
+  - component: {fileID: 2200000007}
+  - component: {fileID: 2200000008}
   m_Layer: 3
   m_Name: P2
   m_TagString: Untagged
@@ -14752,7 +14757,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 08f045c55bf00614b83c955a2ec05d94, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovimientoJugador2D
   movimiento: {fileID: 3847807523287778211, guid: 6029e35a85dacdd4a8b5c2b5afe0e9a0, type: 3}
   velocidad: 10
@@ -14816,7 +14821,7 @@ Transform:
   m_GameObject: {fileID: 1775270127}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.98, y: -2.04, z: 0}
+  m_LocalPosition: {x: 94.2, y: -2.04, z: 0}
   m_LocalScale: {x: 1, y: 0.89737314, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -14836,7 +14841,7 @@ SortingGroup:
   m_Enabled: 1
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 25
+  m_SortingOrder: 26
   m_SortAtRoot: 0
   m_Sort3DAs2D: 0
 --- !u!114 &1775270134
@@ -14849,7 +14854,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 096d5695931f7544fa8e89a4919fc286, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AlmasJugador
   cantidad: 0
 --- !u!114 &1775270135
@@ -14862,7 +14867,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f0ac3f10dbada004e930477274f14f46, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SuccionJugador
   succionar: {fileID: 1762698085568218781, guid: 6029e35a85dacdd4a8b5c2b5afe0e9a0, type: 3}
   alcance: 1.72
@@ -14882,7 +14887,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6f520fdd8daff2d4ebca5537ea4ecef7, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EstadoCombateJugador
   indicadorAturdimiento: {fileID: 655020091}
   zonaDano: {fileID: 820000010}
@@ -15076,7 +15081,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalCameraData
   m_RenderShadows: 1
   m_RequiresDepthTextureOption: 2
@@ -15120,7 +15125,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d3737cec0f817f244a379427a9905a84, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CamaraPasillo
   jugador: {fileID: 1202282252}
   extremoIzquierdo: {fileID: 1688151180}
@@ -15141,11 +15146,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5471503995926735994, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: spriteAbierto
-      value:
+      value: 
       objectReference: {fileID: 792602605, guid: ec9a5df3b0e2ef148b730f8823240c7c, type: 3}
     - target: {fileID: 5471503995926735994, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: spriteCerrado
-      value:
+      value: 
       objectReference: {fileID: 1549616354, guid: 6028f947f92af8644bc2868efa8bab04, type: 3}
     - target: {fileID: 6879500261274508643, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_Name
@@ -15201,7 +15206,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8219211289584552058, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_Sprite
-      value:
+      value: 
       objectReference: {fileID: 1549616354, guid: 6028f947f92af8644bc2868efa8bab04, type: 3}
     - target: {fileID: 8219211289584552058, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_DrawMode
@@ -15295,7 +15300,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -15515,7 +15520,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
     m_Mode: 3
@@ -15555,10 +15560,10 @@ MonoBehaviour:
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName:
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument:
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1901239898
@@ -15571,7 +15576,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -15626,13 +15631,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6bcdf54cd9cc16e4a861c316eb3d7d90, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GeneradorEstudiantes
   zonaPasillo: {fileID: 1885894447}
   camarasJugadores:
   - {fileID: 1781125910}
   - {fileID: 1040551876}
   prefabsEstudiantes:
+  - {fileID: 1707020731826580904, guid: b46b46c80909477c9b1589506e256c12, type: 3}
   - {fileID: 1707020731826580904, guid: 107e496a2a8a3bf4696b9cf88bd50f37, type: 3}
   partida: {fileID: 2063603545}
   prefabRaro: {fileID: 1707020731826580904, guid: 2c434cb1ec837a1478dc4946329bc9ba, type: 3}
@@ -15690,7 +15696,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f5a769db9aec1ad49b98c5fdc1256ca8, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PuertaTeletransporte
   numero: 2
   salida: {fileID: 1015635122}
@@ -15734,11 +15740,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5471503995926735994, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: spriteAbierto
-      value:
+      value: 
       objectReference: {fileID: 792602605, guid: ec9a5df3b0e2ef148b730f8823240c7c, type: 3}
     - target: {fileID: 5471503995926735994, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: spriteCerrado
-      value:
+      value: 
       objectReference: {fileID: 1549616354, guid: 6028f947f92af8644bc2868efa8bab04, type: 3}
     - target: {fileID: 6879500261274508643, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_Name
@@ -15794,7 +15800,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8219211289584552058, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_Sprite
-      value:
+      value: 
       objectReference: {fileID: 1549616354, guid: 6028f947f92af8644bc2868efa8bab04, type: 3}
     - target: {fileID: 8219211289584552058, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_DrawMode
@@ -15853,7 +15859,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.78, g: 0.8, b: 0.84, a: 1}
@@ -15928,7 +15934,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0.95686275, g: 0.73333335, b: 0.3254902, a: 1}
@@ -16041,7 +16047,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 5
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -20587553, guid: 97cd5578b67eafe4fb5545e7b6131d33, type: 3}
+  m_Sprite: {fileID: -5727103358793704069, guid: ee781ad9130730f4ca8ce78a3c6bb1b0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -16079,7 +16085,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f4fba74428fbc146933b9510459a8b6, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RedPuertas
   puertas:
   - {fileID: 1700244236}
@@ -16153,7 +16159,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0.96, g: 0.96, b: 0.95, a: 1}
@@ -16238,7 +16244,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0.94}
@@ -16313,7 +16319,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0.972549, g: 0.9411765, b: 0.8666667, a: 1}
@@ -16392,7 +16398,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -16473,7 +16479,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -16511,7 +16517,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
     m_Mode: 3
@@ -16592,7 +16598,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -16671,7 +16677,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -16755,7 +16761,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 813d92e49ba8fed44b431a54a8977b4e, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MarcadorVersus
   jugador1: {fileID: 1202282254}
   jugador2: {fileID: 1775270134}
@@ -16780,7 +16786,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 496b595364e74a4f8bc3ab57136c181f, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CicloPartida
   duracionSegundos: 180
   jugador1: {fileID: 1202282254}
@@ -16844,7 +16850,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0.7490196, g: 0.70980394, b: 0.7882353, a: 1}
@@ -16925,7 +16931,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -16963,7 +16969,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
     m_Mode: 3
@@ -17046,7 +17052,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -17084,7 +17090,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
     m_Mode: 3
@@ -17166,7 +17172,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0.96, g: 0.96, b: 0.95, a: 1}
@@ -17208,7 +17214,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
   m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
   m_EffectDistance: {x: 2, y: -2}
@@ -17262,7 +17268,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0.96, g: 0.96, b: 0.95, a: 1}
@@ -17304,7 +17310,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
   m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
   m_EffectDistance: {x: 5, y: -5}
@@ -17319,7 +17325,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 67ea22ac493447918b415566b5a158ca, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CuentaRegresivaInicial
 --- !u!1 &2100000020
 GameObject:
@@ -17349,7 +17355,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
@@ -17453,7 +17459,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.04, g: 0.05, b: 0.07, a: 0.94}
@@ -17620,7 +17626,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -17700,7 +17706,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
   m_Navigation:
     m_Mode: 3
@@ -17788,7 +17794,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 0.7490196, g: 0.70980394, b: 0.7882353, a: 1}
@@ -17830,7 +17836,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b367857ea514c11b306cd14e8009fd8, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ManoCartasJugador
 --- !u!114 &2200000002
 MonoBehaviour:
@@ -17842,7 +17848,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b367857ea514c11b306cd14e8009fd8, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ManoCartasJugador
 --- !u!114 &2200000003
 MonoBehaviour:
@@ -17854,7 +17860,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 16ab95be215441ff8fe208a2752519ef, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SistemaCartas
   partida: {fileID: 2063603545}
   jugador1: {fileID: 2200000001}
@@ -17872,7 +17878,7 @@ MonoBehaviour:
   - 90
   - 120
   - 150
-  repartosRealizados:
+  repartosRealizados: 
   inicioFraccionPartida: 0.33333334
   diferenciaMinima: 25
   proporcionMaxima: 0.75
@@ -17894,7 +17900,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cc24ea76c5163bd4fb7b3c17a3cc5b64, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UsarPuertaJugador
   red: {fileID: 1972034394}
   colliderPies: {fileID: 1775270129}
@@ -17912,7 +17918,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cc24ea76c5163bd4fb7b3c17a3cc5b64, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UsarPuertaJugador
   red: {fileID: 1972034394}
   colliderPies: {fileID: 1202282250}
@@ -17930,7 +17936,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eb2813e0e95e8454abd84b8d313c9ba3, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AtaqueJugador
   golpear: {fileID: 7240753409937301309, guid: 6029e35a85dacdd4a8b5c2b5afe0e9a0, type: 3}
   visualGolpe: {fileID: 36221574}
@@ -17954,6 +17960,76 @@ MonoBehaviour:
   distanciaFrenoLatigo: 1.1
   radioImpactoLatigo: 0.9
   altoImpactoLatigo: 0.65
+--- !u!95 &2200000007
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1775270127}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 743d9840b8b02104d877c37c71624a7c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2200000008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1775270127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e0c688c36b24a12baf9c4c9f8e73401, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimacionJugador
+  esperaIdleAlternativo: 4
+--- !u!95 &2235000001
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1202282248}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a627c9e033784b349254ecf13954a425, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2235000002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1202282248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e0c688c36b24a12baf9c4c9f8e73401, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimacionJugador
+  esperaIdleAlternativo: 4
 --- !u!1001 &537587032444796728
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17968,11 +18044,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5471503995926735994, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: spriteAbierto
-      value:
+      value: 
       objectReference: {fileID: 792602605, guid: ec9a5df3b0e2ef148b730f8823240c7c, type: 3}
     - target: {fileID: 5471503995926735994, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: spriteCerrado
-      value:
+      value: 
       objectReference: {fileID: 1549616354, guid: 6028f947f92af8644bc2868efa8bab04, type: 3}
     - target: {fileID: 6879500261274508643, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_Name
@@ -18028,7 +18104,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8219211289584552058, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_Sprite
-      value:
+      value: 
       objectReference: {fileID: 1549616354, guid: 6028f947f92af8644bc2868efa8bab04, type: 3}
     - target: {fileID: 8219211289584552058, guid: 1392158fd9620e04dbec78fe8205a7c3, type: 3}
       propertyPath: m_DrawMode
@@ -18061,3 +18137,26 @@ SceneRoots:
   - {fileID: 242172785}
   - {fileID: 1776202084}
   - {fileID: 904780039}
+
+--- !u!95 &2245000001
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1234259220}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e80fa47193804cfab069b9d6d9859449, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

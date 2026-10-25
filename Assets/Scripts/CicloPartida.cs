@@ -98,6 +98,10 @@ public class CicloPartida : MonoBehaviour
         if (presentacionVS != null)
             yield return presentacionVS.Mostrar(duracionVS, duracionAperturaVS);
 
+        AnimacionJugador animacionEntrada1 = jugador1.GetComponent<AnimacionJugador>();
+        AnimacionJugador animacionEntrada2 = jugador2.GetComponent<AnimacionJugador>();
+        animacionEntrada1?.MostrarEntrada(true);
+        animacionEntrada2?.MostrarEntrada(true);
         for (int numero = 3; numero >= 1; numero--)
         {
             yield return cuentaRegresiva.Mostrar(numero.ToString(), 1f);
@@ -106,6 +110,8 @@ public class CicloPartida : MonoBehaviour
         EnCurso = true;
         Time.timeScale = 1f;
         yield return cuentaRegresiva.Mostrar("GO!", 0.6f);
+        animacionEntrada1?.MostrarEntrada(false);
+        animacionEntrada2?.MostrarEntrada(false);
     }
 
     private void Update()
