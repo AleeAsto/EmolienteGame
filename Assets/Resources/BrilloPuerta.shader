@@ -34,11 +34,12 @@ Shader "Emoliente/BrilloPuerta"
             }
             half4 frag(Varyings input) : SV_Target
             {
-                half4 sprite = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, input.uv);
-                // No blanquear la tinta: el brillo solo sale de las zonas claras.
-                half luminosidad = dot(sprite.rgb, half3(0.2126h, 0.7152h, 0.0722h));
-                half mascara = smoothstep(0.55h, 0.95h, luminosidad);
-                return half4(input.color.rgb, sprite.a * mascara * input.color.a);
+                // Calcular la caida en el shader: no depender del alfa de una
+                // textura generada en runtime para ocultar el rectangulo.
+                float2 centro = input.uv * 2.0 - 1.0;
+                half caida = saturate(1.0 - dot(centro, centro));
+                caida *= caida;
+                return half4(input.color.rgb, caida * input.color.a);
             }
             ENDHLSL
         }

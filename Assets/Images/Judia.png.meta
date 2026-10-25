@@ -1,0 +1,826 @@
+fileFormatVersion: 2
+guid: 5ec8d622705dc8e46aadc9c72f9ae2d9
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7768734458274919229
+    second: Judia_0
+  - first:
+      213: -4181140896449893512
+    second: Judia_1
+  - first:
+      213: -8335304323274055400
+    second: Judia_2
+  - first:
+      213: -1030777320356017786
+    second: Judia_3
+  - first:
+      213: -6271727401053623731
+    second: Judia_4
+  - first:
+      213: -6897536361096924832
+    second: Judia_5
+  - first:
+      213: 3278177618154751185
+    second: Judia_6
+  - first:
+      213: -1915988615855341894
+    second: Judia_7
+  - first:
+      213: -747558621434467907
+    second: Judia_8
+  - first:
+      213: -2521571660660243811
+    second: Judia_9
+  - first:
+      213: 694154906710609926
+    second: Judia_10
+  - first:
+      213: -2862893628285911677
+    second: Judia_11
+  - first:
+      213: 5518896348407018870
+    second: Judia_12
+  - first:
+      213: -7098277682367571868
+    second: Judia_13
+  - first:
+      213: -3183192810875430055
+    second: Judia_14
+  - first:
+      213: -8626878115099446787
+    second: Judia_15
+  - first:
+      213: 5744948615930754737
+    second: Judia_16
+  - first:
+      213: 7924914350931699315
+    second: Judia_17
+  - first:
+      213: 4367130112160145110
+    second: Judia_18
+  - first:
+      213: -1684146811114565981
+    second: Judia_19
+  - first:
+      213: 6011061993299391852
+    second: Judia_20
+  - first:
+      213: 5981789118803884400
+    second: Judia_21
+  - first:
+      213: -5785787944082371088
+    second: Judia_22
+  - first:
+      213: -1722700267190869119
+    second: Judia_23
+  - first:
+      213: -4674461019153942897
+    second: Judia_24
+  - first:
+      213: 830401794537777650
+    second: Judia_25
+  - first:
+      213: -6536853314691800455
+    second: Judia_26
+  - first:
+      213: -2764492285365752344
+    second: Judia_27
+  - first:
+      213: 1097122284363641452
+    second: Judia_28
+  - first:
+      213: -9183498933598276850
+    second: Judia_29
+  - first:
+      213: 8527159799354632477
+    second: Judia_30
+  - first:
+      213: 132355728689153426
+    second: Judia_31
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 16384
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 12
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Judia_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1660
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3cccf24bb29ef2490800000000000000
+      internalID: -7768734458274919229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Judia_1
+      rect:
+        serializedVersion: 2
+        x: 388
+        y: 1660
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87bee3fd18a99f5c0800000000000000
+      internalID: -4181140896449893512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Judia_2
+      rect:
+        serializedVersion: 2
+        x: 776
+        y: 1660
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 811e87c51ec035c80800000000000000
+      internalID: -8335304323274055400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Judia_3
+      rect:
+        serializedVersion: 2
+        x: 1164
+        y: 1660
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68986a90d71f1b1f0800000000000000
+      internalID: -1030777320356017786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Judia_4
+      rect:
+        serializedVersion: 2
+        x: 1552
+        y: 1660
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4a6d14682956f8a0800000000000000
+      internalID: -6271727401053623731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Judia_5
+      rect:
+        serializedVersion: 2
+        x: 1940
+        y: 1660
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0613a7b69370740a0800000000000000
+      internalID: -6897536361096924832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Judia_6
+      rect:
+        serializedVersion: 2
+        x: 2328
+        y: 1660
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d400c8dc2d6e7d20800000000000000
+      internalID: 3278177618154751185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Judia_7
+      rect:
+        serializedVersion: 2
+        x: 2716
+        y: 1660
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: abeff36518a0965e0800000000000000
+      internalID: -1915988615855341894
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Judia_8
+      rect:
+        serializedVersion: 2
+        x: 3104
+        y: 1660
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db92e90056320a5f0800000000000000
+      internalID: -747558621434467907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Judia_9
+      rect:
+        serializedVersion: 2
+        x: 3492
+        y: 1660
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9287aa3fe3910dd0800000000000000
+      internalID: -2521571660660243811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Judia_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1272
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6009499b53222a900800000000000000
+      internalID: 694154906710609926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Judia_11
+      rect:
+        serializedVersion: 2
+        x: 388
+        y: 1272
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38df940d965f448d0800000000000000
+      internalID: -2862893628285911677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Judia_12
+      rect:
+        serializedVersion: 2
+        x: 776
+        y: 1272
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 675300f0dfe079c40800000000000000
+      internalID: 5518896348407018870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Judia_13
+      rect:
+        serializedVersion: 2
+        x: 1164
+        y: 1272
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 468d5616e0add7d90800000000000000
+      internalID: -7098277682367571868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Judia_14
+      rect:
+        serializedVersion: 2
+        x: 1552
+        y: 1272
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95b5138f00703d3d0800000000000000
+      internalID: -3183192810875430055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Judia_15
+      rect:
+        serializedVersion: 2
+        x: 1940
+        y: 1272
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df1f7ecbf0c274880800000000000000
+      internalID: -8626878115099446787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Judia_16
+      rect:
+        serializedVersion: 2
+        x: 2328
+        y: 1272
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b6bc6104582abf40800000000000000
+      internalID: 5744948615930754737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Judia_17
+      rect:
+        serializedVersion: 2
+        x: 2716
+        y: 1272
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 376edaa3d93fafd60800000000000000
+      internalID: 7924914350931699315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Judia_18
+      rect:
+        serializedVersion: 2
+        x: 3104
+        y: 1272
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6de973fe2b92b9c30800000000000000
+      internalID: 4367130112160145110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Judia_19
+      rect:
+        serializedVersion: 2
+        x: 3492
+        y: 1272
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3aec8e5f565b0a8e0800000000000000
+      internalID: -1684146811114565981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Judia_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 884
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c653671f8059b6350800000000000000
+      internalID: 6011061993299391852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Judia_21
+      rect:
+        serializedVersion: 2
+        x: 388
+        y: 884
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0793a9bb285930350800000000000000
+      internalID: 5981789118803884400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Judia_22
+      rect:
+        serializedVersion: 2
+        x: 776
+        y: 884
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0fd8b3fe480c4bfa0800000000000000
+      internalID: -5785787944082371088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Judia_23
+      rect:
+        serializedVersion: 2
+        x: 1164
+        y: 884
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1832e97fb3db718e0800000000000000
+      internalID: -1722700267190869119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Judia_24
+      rect:
+        serializedVersion: 2
+        x: 1552
+        y: 884
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f863bec287af02fb0800000000000000
+      internalID: -4674461019153942897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Judia_25
+      rect:
+        serializedVersion: 2
+        x: 1940
+        y: 884
+        width: 388
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f96540580e268b00800000000000000
+      internalID: 830401794537777650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: b5bd84bfb12406a46986425a57af22da
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":388.0,"y":388.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      Judia_0: -7768734458274919229
+      Judia_1: -4181140896449893512
+      Judia_10: 694154906710609926
+      Judia_11: -2862893628285911677
+      Judia_12: 5518896348407018870
+      Judia_13: -7098277682367571868
+      Judia_14: -3183192810875430055
+      Judia_15: -8626878115099446787
+      Judia_16: 5744948615930754737
+      Judia_17: 7924914350931699315
+      Judia_18: 4367130112160145110
+      Judia_19: -1684146811114565981
+      Judia_2: -8335304323274055400
+      Judia_20: 6011061993299391852
+      Judia_21: 5981789118803884400
+      Judia_22: -5785787944082371088
+      Judia_23: -1722700267190869119
+      Judia_24: -4674461019153942897
+      Judia_25: 830401794537777650
+      Judia_3: -1030777320356017786
+      Judia_4: -6271727401053623731
+      Judia_5: -6897536361096924832
+      Judia_6: 3278177618154751185
+      Judia_7: -1915988615855341894
+      Judia_8: -747558621434467907
+      Judia_9: -2521571660660243811
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
