@@ -5,12 +5,14 @@ using UnityEngine;
 public class AlmaEstudiante : MonoBehaviour
 {
     [SerializeField, Min(1)] private int valorAlmas = 10;
+    [SerializeField] private bool esRaro;
     private bool agotado;
     private float tiempoAgotado;
     private bool asustado;
     private AlmasJugador ocupante;
 
     public int ValorAlmas => valorAlmas;
+    public bool EsRaro => esRaro;
     public bool Asustado => asustado;
     public bool Agotado => agotado;
     public float SegundosAgotado => agotado ? Mathf.Max(0f, Time.time - tiempoAgotado) : 0f;
@@ -38,7 +40,7 @@ public class AlmaEstudiante : MonoBehaviour
             return;
 
         ocupante = null;
-        if (!agotado && !asustado)
+        if (!agotado && !asustado && !esRaro)
         {
             asustado = true;
             GetComponent<EstudiantePasillo>()?.HuirDe(jugador.transform.position);
@@ -55,6 +57,8 @@ public class AlmaEstudiante : MonoBehaviour
         tiempoAgotado = Time.time;
         ocupante = null;
         jugador.Recibir(Mathf.Max(1, valorAlmas));
+        if (esRaro)
+            jugador.GetComponent<ManoCartasJugador>()?.RecibirRecompensaRaro();
         EstadoCambiado?.Invoke();
         return true;
     }

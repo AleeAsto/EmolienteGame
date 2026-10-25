@@ -242,6 +242,30 @@ public class SistemaCartas : MonoBehaviour
         return entregadas;
     }
 
+    public bool EntregarPorEstudianteRaro(ManoCartasJugador jugador)
+    {
+        if (!EnCurso || (jugador != jugador1 && jugador != jugador2) ||
+            jugador.EspaciosOcupados >= ManoCartasJugador.Capacidad)
+            return false;
+
+        bool segundaMitad = partida.DuracionSegundos - partida.TiempoRestante >= partida.DuracionSegundos * 0.5f;
+        if (!segundaMitad || jugador.TienePotente)
+            return EntregarCarta(jugador, potente: false);
+
+        // El raro garantiza potente desde la mitad, independientemente del
+        // umbral configurable de las entregas por desventaja.
+        CargarCatalogo();
+        var potentes = System.Array.FindAll(catalogo, carta => carta != null && carta.EsPotente);
+        if (potentes.Length == 0)
+            return EntregarCarta(jugador, potente: false);
+
+        DefinicionCarta elegida = potentes[Random.Range(0, potentes.Length)];
+        if (!jugador.ReservarEntrega(elegida))
+            return false;
+        Encolar(new Lanzamiento { jugador = jugador, carta = elegida, frame = Time.frameCount, esEntrega = true });
+        return true;
+    }
+
     public bool EntregarCarta(ManoCartasJugador jugador, bool debug = false, bool? potente = null, EfectoCarta? efecto = null)
     {
         CargarCatalogo();

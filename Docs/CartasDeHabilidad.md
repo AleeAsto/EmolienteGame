@@ -150,8 +150,9 @@ pendientes. Las cartas recibidas se conservan aunque cambie el lider.
   `CartaAceleracionPotente.asset` y `CartaPesadezPotente.asset` son las variantes
   con `Potente` activo, costo 40 y duracion 20 s.
 - `ManoCartasJugador`: inventario, seleccion, controles y validacion del costo.
-  `Recibir` sera la entrada para los futuros NPC especiales; devuelve false con mano
-  llena o fuera de partida.
+  `RecibirRecompensaRaro` conecta la extraccion completa de un raro con el reparto:
+  basica antes de mitad y potente desde la mitad, o basica si ya hay una potente.
+  Una mano llena no recibe carta; se cuentan tambien las reservas en animacion.
 - `SistemaCartas`: entrega por desventaja, cola central y aplicacion de la habilidad
   al objetivo al terminar el vuelo.
 - `VistaCartas`: Canvas de runtime que se ajusta a los rectangulos de ambas camaras;

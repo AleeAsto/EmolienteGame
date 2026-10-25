@@ -20,6 +20,44 @@ en Build Settings. Contiene el objeto `Estudiantes`,
 con un `GeneradorEstudiantes` conectado a `ZoneMov`, `CameraP1` y `CameraP2`.
 El prefab `Assets/Prefabs/Estudiante.prefab` usa un sprite provisional.
 
+## Estudiantes raros
+
+`Assets/Prefabs/EstudianteRaro.prefab` es una variante con tinte dorado y cinco
+brillos animados. Entrega 30 almas al completar la extraccion, ademas de los
+puntos por segundo habituales; con el drenaje base de 3 s, una extraccion
+completa sin interrupciones suma 36 (30 + 6). La recompensa completa se entrega
+una sola vez. Despues se agota, se vuelve gris y desaparece en 2 s, como el normal.
+
+Al completar el drenaje tambien entrega una carta aleatoria al jugador que lo
+termino: basica antes de mitad de partida y potente desde la mitad exacta
+(90 s transcurridos en una ronda de 180 s). Si ya tiene una potente, incluso
+en animacion de entrega, recibe una basica. Con tres cupos ocupados no entrega
+carta; las 30 almas se conservan. Los cupos incluyen cartas pendientes en animacion.
+La potente usa su animacion habitual y reserva su cupo antes de empezar.
+Cancelar el drenaje no da carta; cada raro completo solo puede recompensar una vez.
+
+`AlmaEstudiante/Es Raro` evita que se asuste al interrumpir: se libera, conserva
+su sentido de marcha y vuelve a caminar. Puede drenarlo de nuevo cualquiera de
+los jugadores; el progreso de ese intento vuelve a cero. Los normales conservan
+su huida al cancelar. Perfume y Bomba siguen afectando a ambos tipos.
+
+En `GeneradorEstudiantes`, `Raros Por Partida` vale 3 y `Multiplicador Velocidad
+Raro` vale 1.25: se aplica al mismo rango base de velocidad. El prefab raro esta
+separado de la poblacion normal, de modo que no aparece al comenzar ni se elige
+para los estudiantes falsos de Confusion.
+
+Se programan tres momentos aleatorios separados usando la duracion de la ronda.
+En una ronda de 180 s, sus ventanas aproximadas son 26-52, 68-94 y 110-136 s
+transcurridos. Cada raro consume una de esas tres apariciones, aunque luego
+salga del pasillo sin ser drenado. Se respetan el limite simultaneo, la separacion
+y las zonas fuera de ambas camaras. Si no hay espacio o cupo, se reintenta cada
+0.5 s con prioridad sobre los normales; no se descarta la aparicion pendiente.
+La pausa no avanza la programacion ni los brillos.
+
+Para probar sin esperar, durante Play abre el menu contextual de
+`Estudiantes/GeneradorEstudiantes` y usa `Adelantar siguiente raro (Play)`.
+Adelanta uno de los tres pendientes, sin crear apariciones adicionales.
+
 ## Ajustes en el Inspector
 
 - En `Estudiantes`: poblacion inicial (10), limite simultaneo (16), intervalo
@@ -56,7 +94,7 @@ configurada en el Renderer2D, para mantener juntos los sprites de cada personaje
 
 ## Controles de succion
 
-P1 usa WASD y mantiene **E** para drenar. P2 usa IJKL o flechas y mantiene **O**.
+P1 usa WASD y mantiene **X** para drenar. P2 usa IJKL o flechas y mantiene **N**.
 Las acciones `Jugador1/Succionar` y `Jugador2/Succionar` estan en
 `Assets/Settings/ControlesJugadores.inputactions`.
 
@@ -110,7 +148,7 @@ directamente a `AlmasJugador` de P1/P2 mediante `CantidadCambiada`.
   conservan su cooldown. Se comprueba el recorrido entre frames para detectar
   tambien los circulos que se cruzan entre dos actualizaciones.
 - Cada ataque solo puede impactar una vez. Atacar cancela la propia succion;
-  hay que volver a pulsar E/O para empezar a drenar de nuevo.
+  hay que volver a pulsar X/N para empezar a drenar de nuevo.
 - Cada golpe aceptado quita hasta 5 almas a la victima, sin bajar de cero ni
   transferirlas al atacante. Los choques y los golpes ignorados por invulnerabilidad
   no quitan almas. `Almas Perdidas Por Golpe` se ajusta en `CombatePvP`.

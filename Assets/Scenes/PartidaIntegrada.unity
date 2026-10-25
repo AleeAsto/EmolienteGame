@@ -4841,6 +4841,10 @@ MonoBehaviour:
   - {fileID: 1040551876}
   prefabsEstudiantes:
   - {fileID: 1707020731826580904, guid: 107e496a2a8a3bf4696b9cf88bd50f37, type: 3}
+  partida: {fileID: 2063603545}
+  prefabRaro: {fileID: 1707020731826580904, guid: 2c434cb1ec837a1478dc4946329bc9ba, type: 3}
+  rarosPorPartida: 3
+  multiplicadorVelocidadRaro: 1.25
   estudiantesIniciales: 10
   maximoEstudiantes: 16
   intervaloAparicion: {x: 2, y: 4}

@@ -59,6 +59,8 @@ public class ManoCartasJugador : MonoBehaviour
         return true;
     }
 
+    public bool RecibirRecompensaRaro() => sistema != null && sistema.EntregarPorEstudianteRaro(this);
+
     private bool PuedeRecibir(DefinicionCarta carta) => carta != null && EspaciosOcupados < Capacidad &&
         sistema != null && sistema.EnCurso && (!carta.EsPotente || !TienePotente);
 

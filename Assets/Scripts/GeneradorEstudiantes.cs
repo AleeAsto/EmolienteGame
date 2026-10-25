@@ -10,6 +10,12 @@ public class GeneradorEstudiantes : MonoBehaviour
     [SerializeField] private Camera[] camarasJugadores;
     [SerializeField] private EstudiantePasillo[] prefabsEstudiantes;
 
+    [Header("Estudiantes raros")]
+    [SerializeField] private CicloPartida partida;
+    [SerializeField] private EstudiantePasillo prefabRaro;
+    [SerializeField, Min(0)] private int rarosPorPartida = 3;
+    [SerializeField, Min(1f)] private float multiplicadorVelocidadRaro = 1.25f;
+
     [Header("Poblacion")]
     [SerializeField, Min(0)] private int estudiantesIniciales = 10;
     [SerializeField, Min(1)] private int maximoEstudiantes = 16;
@@ -28,6 +34,9 @@ public class GeneradorEstudiantes : MonoBehaviour
     private readonly List<Vector2> intervalosOcultos = new List<Vector2>();
     private readonly List<Vector3> candidatos = new List<Vector3>();
     private float proximaAparicion;
+    private float[] momentosRaros = System.Array.Empty<float>();
+    private float proximoIntentoRaro;
+    public int RarosGenerados { get; private set; }
     public Vector2 RangoVelocidad => rangoVelocidad;
     public EstudiantePasillo ModeloVisual => prefabsEstudiantes != null && prefabsEstudiantes.Length > 0
         ? prefabsEstudiantes[Random.Range(0, prefabsEstudiantes.Length)] : null;
@@ -60,6 +69,7 @@ public class GeneradorEstudiantes : MonoBehaviour
         }
 
         ProgramarAparicion();
+        ProgramarRaros();
     }
 
     private void LateUpdate()
@@ -67,10 +77,21 @@ public class GeneradorEstudiantes : MonoBehaviour
         if (Time.timeScale <= 0f)
             return;
 
-        if (Time.time < proximaAparicion)
-            return;
-
-        ProgramarAparicion();
+        bool raroPendiente = partida != null && partida.EnCurso && !partida.Terminada &&
+            RarosGenerados < momentosRaros.Length &&
+            partida.DuracionSegundos - partida.TiempoRestante >= momentosRaros[RarosGenerados];
+        if (raroPendiente)
+        {
+            if (Time.time < proximoIntentoRaro)
+                return;
+            proximoIntentoRaro = Time.time + 0.5f;
+        }
+        else
+        {
+            if (Time.time < proximaAparicion)
+                return;
+            ProgramarAparicion();
+        }
         if (CantidadActiva >= maximoEstudiantes)
             return;
 
@@ -128,8 +149,40 @@ public class GeneradorEstudiantes : MonoBehaviour
 
             Vector3 seleccionado = candidatos[elegido];
             candidatos.RemoveAt(elegido);
-            if (IntentarCrear(new Vector2(seleccionado.x, seleccionado.y), zona))
+            if (IntentarCrear(new Vector2(seleccionado.x, seleccionado.y), zona, raroPendiente))
+            {
+                if (raroPendiente)
+                {
+                    RarosGenerados++;
+                    ProgramarAparicion();
+                }
                 return;
+            }
+        }
+    }
+
+    private void ProgramarRaros()
+    {
+        if (partida == null)
+            foreach (GameObject raiz in gameObject.scene.GetRootGameObjects())
+            {
+                partida = raiz.GetComponentInChildren<CicloPartida>();
+                if (partida != null) break;
+            }
+
+        RarosGenerados = 0;
+        if (partida == null || prefabRaro == null || !prefabRaro.GetComponent<AlmaEstudiante>().EsRaro)
+        {
+            momentosRaros = System.Array.Empty<float>();
+            return;
+        }
+
+        momentosRaros = new float[Mathf.Max(0, rarosPorPartida)];
+        for (int i = 0; i < momentosRaros.Length; i++)
+        {
+            // Ventanas separadas, con tiempo para encontrar incluso al ultimo raro.
+            float fraccion = Mathf.Lerp(0.1f, 0.8f, (i + Random.Range(0.2f, 0.8f)) / momentosRaros.Length);
+            momentosRaros[i] = partida.DuracionSegundos * fraccion;
         }
     }
 
@@ -138,6 +191,16 @@ public class GeneradorEstudiantes : MonoBehaviour
         float minima = Mathf.Max(0.1f, Mathf.Min(intervaloAparicion.x, intervaloAparicion.y));
         float maxima = Mathf.Max(minima, Mathf.Max(intervaloAparicion.x, intervaloAparicion.y));
         proximaAparicion = Time.time + Random.Range(minima, maxima);
+    }
+
+    [ContextMenu("Adelantar siguiente raro (Play)")]
+    private void AdelantarSiguienteRaro()
+    {
+        if (!Application.isPlaying || partida == null || !partida.EnCurso || partida.Terminada ||
+            RarosGenerados >= momentosRaros.Length)
+            return;
+        momentosRaros[RarosGenerados] = partida.DuracionSegundos - partida.TiempoRestante;
+        proximoIntentoRaro = 0f;
     }
 
     private bool ReferenciasValidas()
@@ -188,7 +251,7 @@ public class GeneradorEstudiantes : MonoBehaviour
         }
     }
 
-    private bool IntentarCrear(Vector2 intervalo, Bounds zona)
+    private bool IntentarCrear(Vector2 intervalo, Bounds zona, bool raro = false)
     {
         estudiantes.RemoveAll(estudiante => estudiante == null);
         float margen = Mathf.Min(margenPies, zona.extents.y);
@@ -208,12 +271,13 @@ public class GeneradorEstudiantes : MonoBehaviour
             if (!libre)
                 continue;
 
-            EstudiantePasillo prefab = prefabsEstudiantes[Random.Range(0, prefabsEstudiantes.Length)];
+            EstudiantePasillo prefab = raro ? prefabRaro : prefabsEstudiantes[Random.Range(0, prefabsEstudiantes.Length)];
             EstudiantePasillo nuevo = Instantiate(prefab, posicion, Quaternion.identity, transform);
             float minima = Mathf.Max(0.1f, Mathf.Min(rangoVelocidad.x, rangoVelocidad.y));
             float maxima = Mathf.Max(minima, Mathf.Max(rangoVelocidad.x, rangoVelocidad.y));
+            float velocidad = Random.Range(minima, maxima) * (raro ? Mathf.Max(1f, multiplicadorVelocidadRaro) : 1f);
             nuevo.ConfigurarRecorrido(Random.value < 0.5f ? -1f : 1f,
-                Random.Range(minima, maxima), zona.min.x - margenSalida, zona.max.x + margenSalida, zonaPasillo);
+                velocidad, zona.min.x - margenSalida, zona.max.x + margenSalida, zonaPasillo);
             estudiantes.Add(nuevo);
             return true;
         }
