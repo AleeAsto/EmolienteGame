@@ -148,6 +148,10 @@ public class SistemaCartas : MonoBehaviour
             if (Keyboard.current.uKey.wasPressedThisFrame) EntregarCarta(jugador2, true, forzarPotente, EfectoCarta.Perfume);
             if (Keyboard.current.rKey.wasPressedThisFrame) EntregarCarta(jugador1, true, forzarPotente, EfectoCarta.BombaApestosa);
             if (Keyboard.current.pKey.wasPressedThisFrame) EntregarCarta(jugador2, true, forzarPotente, EfectoCarta.BombaApestosa);
+            if (Keyboard.current.digit1Key.wasPressedThisFrame) EntregarCarta(jugador1, true, false, EfectoCarta.Latigo);
+            if (Keyboard.current.digit2Key.wasPressedThisFrame) EntregarCarta(jugador2, true, false, EfectoCarta.Latigo);
+            if (Keyboard.current.digit3Key.wasPressedThisFrame) EntregarCarta(jugador1, true, false, EfectoCarta.IntercambioPosicion);
+            if (Keyboard.current.digit4Key.wasPressedThisFrame) EntregarCarta(jugador2, true, false, EfectoCarta.IntercambioPosicion);
             if (Keyboard.current.bKey.wasPressedThisFrame)
             {
                 jugador1.Almas.Recibir(100f);
@@ -323,6 +327,30 @@ public class SistemaCartas : MonoBehaviour
         else if (carta.Efecto == EfectoCarta.Perfume || carta.Efecto == EfectoCarta.BombaApestosa)
             objetivo?.AplicarOlor(carta.Efecto == EfectoCarta.BombaApestosa, carta.DuracionEfecto,
                 carta.RadioOlor, carta.MultiplicadorRetirada, carta.MultiplicadorAtraccion);
+        else if (carta.Efecto == EfectoCarta.Latigo)
+            objetivo?.GetComponent<MarcaLatigoJugador>()?.Aplicar(lanzador.GetComponent<AtaqueJugador>(),
+                carta.DuracionEfecto, carta.AlmasExtraLatigo, carta.EmpujonLatigo);
+        else if (carta.Efecto == EfectoCarta.IntercambioPosicion)
+            IntercambiarPosiciones();
+    }
+
+    private void IntercambiarPosiciones()
+    {
+        var movimiento1 = jugador1.GetComponent<MovimientoJugador2D>();
+        var movimiento2 = jugador2.GetComponent<MovimientoJugador2D>();
+        Vector3 posicion1 = jugador1.transform.position;
+        Vector3 posicion2 = jugador2.transform.position;
+        foreach (var jugador in new[] { jugador1, jugador2 })
+        {
+            jugador.GetComponent<SuccionJugador>()?.CancelarSuccion();
+            jugador.GetComponent<AtaqueJugador>()?.CancelarAtaque();
+            jugador.Cerrar();
+            jugador.GetComponent<UsarPuertaJugador>()?.BloquearHastaSoltarArriba();
+        }
+        movimiento1.Teletransportar(posicion2);
+        movimiento2.Teletransportar(posicion1);
+        camara1.GetComponent<CamaraPasillo>()?.ActualizarSeguimiento();
+        camara2.GetComponent<CamaraPasillo>()?.ActualizarSeguimiento();
     }
 
     private void CancelarPresentaciones()

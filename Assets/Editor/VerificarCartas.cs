@@ -113,7 +113,19 @@ public static class VerificarCartas
             foreach (string campo in new[] { "partida", "jugador1", "jugador2", "camara1", "camara2" })
                 Exigir(serializado.FindProperty(campo).objectReferenceValue != null, "Referencia " + campo);
             var catalogo = serializado.FindProperty("catalogo");
-            Exigir(catalogo.arraySize == 10 && catalogo.GetArrayElementAtIndex(0).objectReferenceValue == carta &&
+            var latigo = AssetDatabase.LoadAssetAtPath<DefinicionCarta>("Assets/Cartas/CartaLatigo.asset");
+            var swap = AssetDatabase.LoadAssetAtPath<DefinicionCarta>("Assets/Cartas/CartaSwapPosicion.asset");
+            Exigir(latigo != null && latigo.Efecto == EfectoCarta.Latigo && !latigo.EsPotente &&
+                latigo.PuntosNecesarios == 20f && latigo.DuracionEfecto == 8f &&
+                latigo.AlmasExtraLatigo == 40f && latigo.EmpujonLatigo == 2f,
+                "Latigo normal: costo 20, marca 8 s, extra 40 y empujon 2");
+            Exigir(swap != null && swap.Efecto == EfectoCarta.IntercambioPosicion && !swap.EsPotente &&
+                swap.PuntosNecesarios == 20f && swap.EsInstantanea && swap.DuracionEfecto == 0f,
+                "Swap normal: costo 20 y efecto instantaneo");
+            Exigir(System.Array.IndexOf(((CatalogoCartas)serializado.FindProperty("catalogoCompartido").objectReferenceValue).Cartas, latigo) >= 0 &&
+                System.Array.IndexOf(((CatalogoCartas)serializado.FindProperty("catalogoCompartido").objectReferenceValue).Cartas, swap) >= 0,
+                "Latigo y swap disponibles en catalogo compartido");
+            Exigir(catalogo.arraySize == 12 && catalogo.GetArrayElementAtIndex(0).objectReferenceValue == carta &&
                 catalogo.GetArrayElementAtIndex(1).objectReferenceValue == pesadez &&
                 catalogo.GetArrayElementAtIndex(2).objectReferenceValue == aceleracionPotente &&
                 catalogo.GetArrayElementAtIndex(3).objectReferenceValue == pesadezPotente &&
@@ -219,12 +231,13 @@ public static class VerificarCartas
             Propiedad(partida, "TiempoRestante", 10f);
             Evaluar(sistema, p1, p2);
             Exigir(p1.Cantidad == 2, "No entregar en ultimos diez segundos");
+            VerificarSwapLatigo(sistema, p1, p2, latigo, swap);
             Propiedad(partida, "Terminada", true);
             Exigir(!p1.Recibir(carta), "No entregar despues del final");
 
             VerificarRepartos(sistema, partida, p1, p2, carta, pesadez, aceleracionPotente, pesadezPotente);
             VerificarSeguimiento(escena);
-            const string mensaje = "OK: radio 10, atraccion 1.5x y retirada 1.6x, giro de estudiantes, halo, renovacion y absorcion en curso; catalogo, Confusion, repartos y camaras.";
+            const string mensaje = "OK: swap, cancelacion y puertas; latigo, dano extra unico e invulnerabilidad; radio 10, atraccion 1.5x, retirada 1.6x; catalogo de doce, Confusion, repartos y camaras.";
             Directory.CreateDirectory("Temp");
             File.WriteAllText(Resultado, mensaje);
             Debug.Log(mensaje);
@@ -243,6 +256,82 @@ public static class VerificarCartas
     private static void Exigir(bool condicion, string mensaje)
     {
         if (!condicion) throw new InvalidOperationException(mensaje);
+    }
+
+    private static void VerificarSwapLatigo(SistemaCartas sistema, ManoCartasJugador p1, ManoCartasJugador p2,
+        DefinicionCarta latigo, DefinicionCarta swap)
+    {
+        var movimiento1 = p1.GetComponent<MovimientoJugador2D>();
+        var movimiento2 = p2.GetComponent<MovimientoJugador2D>();
+        var ataque1 = p1.GetComponent<AtaqueJugador>();
+        var ataque2 = p2.GetComponent<AtaqueJugador>();
+        var estado2 = p2.GetComponent<EstadoCombateJugador>();
+        var marca = p2.GetComponent<MarcaLatigoJugador>();
+        foreach (MonoBehaviour componente in new MonoBehaviour[] { movimiento1, movimiento2,
+            p1.GetComponent<EstadoCombateJugador>(), estado2, ataque1, ataque2 })
+            componente.GetType().GetMethod("Awake", BindingFlags.NonPublic | BindingFlags.Instance).Invoke(componente, null);
+        Vector3 original1 = p1.transform.position;
+        Vector3 original2 = p2.transform.position;
+        float puntosOriginales = p2.Almas.Cantidad;
+        var aplicar = typeof(SistemaCartas).GetMethod("AplicarCarta", BindingFlags.NonPublic | BindingFlags.Instance);
+        try
+        {
+            p2.Almas.Perder(p2.Almas.Cantidad);
+            p2.Almas.Recibir(100f);
+            aplicar.Invoke(sistema, new object[] { p1, latigo });
+            Exigir(marca != null && marca.PerteneceA(ataque1) && !marca.Consumir(ataque2), "Latigo pertenece al lanzador");
+            CombatePvP combate = null;
+            foreach (GameObject raiz in p1.gameObject.scene.GetRootGameObjects())
+                if (combate == null) combate = raiz.GetComponentInChildren<CombatePvP>();
+            Exigir(combate != null, "Coordinador de combate presente");
+            float perdidaNormal = (float)LeerCampo(combate, "almasPerdidasPorGolpe");
+            var golpear = typeof(CombatePvP).GetMethod("AplicarGolpe", BindingFlags.NonPublic | BindingFlags.Instance);
+            golpear.Invoke(combate, new object[] { ataque1, ataque2, false });
+            Exigir(Mathf.Approximately(p2.Almas.Cantidad, 100f - perdidaNormal - latigo.AlmasExtraLatigo) &&
+                !marca.EstaMarcado, "Golpe aceptado aplica extra y consume marca una sola vez");
+            aplicar.Invoke(sistema, new object[] { p1, latigo });
+            float antes = p2.Almas.Cantidad;
+            golpear.Invoke(combate, new object[] { ataque1, ataque2, false });
+            Exigir(p2.Almas.Cantidad == antes && marca.EstaMarcado,
+                "Invulnerabilidad impide dano extra sin consumir la marca");
+            Campo(estado2, "invulnerabilidadRestante", 0f);
+            Campo(estado2, "aturdimientoRestante", 0f);
+            Campo(marca, "finMarca", Time.time - 1f);
+            golpear.Invoke(combate, new object[] { ataque1, ataque2, false });
+            Exigir(Mathf.Approximately(p2.Almas.Cantidad, antes - perdidaNormal), "Marca expirada no agrega dano");
+
+            Vector3 centro = movimiento1.ZonaMovimiento.bounds.center;
+            movimiento1.Teletransportar(centro + Vector3.left * 3f);
+            movimiento2.Teletransportar(centro + Vector3.right * 3f);
+            Vector3 origen1 = p1.transform.position;
+            Vector3 origen2 = p2.transform.position;
+            movimiento1.Empujar(Vector2.right);
+            movimiento2.Empujar(Vector2.left);
+            Campo(ataque1, "impactoConsumido", false);
+            Propiedad(ataque1, "EstaAtacando", true);
+            Propiedad(p1, "MenuAbierto", true);
+            Propiedad(p2, "MenuAbierto", true);
+            aplicar.Invoke(sistema, new object[] { p1, swap });
+            Exigir(Vector3.Distance(p1.transform.position, origen2) < 0.001f &&
+                Vector3.Distance(p2.transform.position, origen1) < 0.001f, "Swap intercambia ambas posiciones");
+            Exigir(!ataque1.EstaAtacando && !p1.MenuAbierto && !p2.MenuAbierto &&
+                (Vector2)LeerCampo(movimiento1, "empujonPendiente") == Vector2.zero &&
+                (Vector2)LeerCampo(movimiento2, "empujonPendiente") == Vector2.zero,
+                "Swap cancela golpe, menus y empujones pendientes");
+            foreach (ManoCartasJugador jugador in new[] { p1, p2 })
+            {
+                var puerta = jugador.GetComponent<UsarPuertaJugador>();
+                if (puerta != null) Exigir((bool)LeerCampo(puerta, "requiereSoltar"), "Swap evita teletransporte encadenado por puerta");
+            }
+        }
+        finally
+        {
+            marca?.Limpiar();
+            Campo(estado2, "invulnerabilidadRestante", 0f);
+            Campo(estado2, "aturdimientoRestante", 0f);
+            movimiento1.Teletransportar(original1); movimiento2.Teletransportar(original2);
+            p2.Almas.Perder(p2.Almas.Cantidad); p2.Almas.Recibir(puntosOriginales);
+        }
     }
 
     private static void VerificarOlores(SistemaCartas sistema, ManoCartasJugador p1, ManoCartasJugador p2,

@@ -97,9 +97,18 @@ public class CombatePvP : MonoBehaviour
     {
         atacante.ConsumirImpacto();
         float stun = succionaba ? atacante.StunSuccionando : atacante.StunNormal;
-        if (victima.Estado.RecibirGolpe(stun, DireccionEmpujon(atacante, victima) * atacante.Empujon) &&
-            victima.TryGetComponent<AlmasJugador>(out var almas))
-            almas.Perder(almasPerdidasPorGolpe);
+        var marca = victima.GetComponent<MarcaLatigoJugador>();
+        bool marcado = marca != null && marca.PerteneceA(atacante);
+        float empujon = marcado ? marca.Empujon : atacante.Empujon;
+        float extra = marcado ? marca.AlmasExtra : 0f;
+        if (!victima.Estado.RecibirGolpe(stun, DireccionEmpujon(atacante, victima) * empujon))
+            return;
+
+        float perdida = almasPerdidasPorGolpe;
+        if (marcado && marca.Consumir(atacante))
+            perdida += extra;
+        if (victima.TryGetComponent<AlmasJugador>(out var almas))
+            almas.Perder(perdida);
     }
 
     private static Vector2 DireccionEmpujon(AtaqueJugador atacante, AtaqueJugador victima)

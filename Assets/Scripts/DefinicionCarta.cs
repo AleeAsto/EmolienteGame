@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public enum DestinoCarta { Propio, Rival }
-public enum EfectoCarta { Ninguno, Velocidad, Confusion, Perfume, BombaApestosa }
+public enum EfectoCarta { Ninguno, Velocidad, Confusion, Perfume, BombaApestosa, Latigo, IntercambioPosicion }
 
 [CreateAssetMenu(menuName = "Emoliente/Carta", fileName = "Carta")]
 public class DefinicionCarta : ScriptableObject
@@ -20,6 +20,8 @@ public class DefinicionCarta : ScriptableObject
     [SerializeField, Min(0.5f)] private float radioOlor = 10f;
     [SerializeField, Min(1f)] private float multiplicadorRetirada = 1.6f;
     [SerializeField, Min(1f)] private float multiplicadorAtraccion = 1.5f;
+    [SerializeField, Min(0f)] private float almasExtraLatigo = 40f;
+    [SerializeField, Min(0f)] private float empujonLatigo = 2f;
 
     public string Identificador => identificador;
     public string Titulo => titulo;
@@ -31,7 +33,11 @@ public class DefinicionCarta : ScriptableObject
     public DestinoCarta Destino => destino;
     public EfectoCarta Efecto => efecto;
     public float MultiplicadorVelocidad => Mathf.Max(0.1f, multiplicadorVelocidad);
-    public float DuracionEfecto => Mathf.Max(0.1f, duracionEfecto);
+    public bool EsInstantanea => efecto == EfectoCarta.IntercambioPosicion;
+    public float DuracionEfecto => EsInstantanea ? 0f : Mathf.Max(0.1f, duracionEfecto);
+    public string DuracionVisible => EsInstantanea ? "Instantanea" : $"{DuracionEfecto:0.#} s";
+    public float AlmasExtraLatigo => Mathf.Max(0f, almasExtraLatigo);
+    public float EmpujonLatigo => Mathf.Max(0f, empujonLatigo);
     public float RadioOlor => Mathf.Max(0.5f, radioOlor);
     public float MultiplicadorRetirada => Mathf.Max(1f, multiplicadorRetirada);
     public float MultiplicadorAtraccion => Mathf.Max(1f, multiplicadorAtraccion);
@@ -42,5 +48,7 @@ public class DefinicionCarta : ScriptableObject
         : efecto == EfectoCarta.Confusion
             ? $"Estudiantes falsos\ny mano oculta\n{DuracionEfecto:0.#} segundos"
             : efecto == EfectoCarta.Perfume ? $"Atrae estudiantes\nRadio {RadioOlor:0.#}\n{DuracionEfecto:0.#} segundos"
-            : efecto == EfectoCarta.BombaApestosa ? $"Aleja estudiantes\nRadio {RadioOlor:0.#}\n{DuracionEfecto:0.#} segundos" : "Sin efecto";
+            : efecto == EfectoCarta.BombaApestosa ? $"Aleja estudiantes\nRadio {RadioOlor:0.#}\n{DuracionEfecto:0.#} segundos"
+            : efecto == EfectoCarta.Latigo ? $"Marca al rival {DuracionEfecto:0.#} s\nProximo golpe: -{AlmasExtraLatigo:0.#} almas extra\nEmpujon {EmpujonLatigo:0.#}"
+            : efecto == EfectoCarta.IntercambioPosicion ? "Intercambia posiciones\ncon el rival\nSin limite de distancia" : "Sin efecto";
 }

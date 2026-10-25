@@ -1,6 +1,6 @@
 # Cartas de habilidad
 
-La escena de prueba es `Assets/Scenes/ActionCards.unity`. Abrirla y pulsar Play.
+La escena principal de prueba es `Assets/Scenes/PartidaIntegrada.unity`. Abrirla y pulsar Play.
 Para Confusion, usar `Assets/Scenes/ConfusionCard.unity`.
 `Assets/Scenes/PartidaIntegrada.unity` combina las cartas actuales con el mapa
 ampliado, las cuatro puertas y la profesora, y es la escena habilitada en Build Settings.
@@ -26,6 +26,9 @@ tienen `ManoCartasJugador` usan pulsacion corta/mantener para golpear o abrir ca
   distinguir 8 s de 20 s sin necesitar ver la parte inferior de la descripcion.
 - B suma 100 puntos a cada jugador por pulsacion, con las mismas condiciones
   de los atajos de desarrollo.
+- 1/2 entregan Latigo a P1/P2; 3/4 entregan Swap de posicion a P1/P2.
+  Son solo normales. Se usan desde la mano como las demas cartas: mantener C/M,
+  elegir con A/D o J/L y confirmar con X/N (controles actuales de absorcion).
 - F/U entregan Perfume a P1/P2; R/P entregan Bomba apestosa a P1/P2.
   Mantener Shift con esos atajos entrega la version potente. Ya no hay un atajo
   especifico de Confusion; sigue disponible en el catalogo aleatorio de G/H.
@@ -135,7 +138,7 @@ pendientes. Las cartas recibidas se conservan aunque cambie el lider.
 
 ## Assets y responsabilidades
 
-- `Assets/Resources/CatalogoCartas.asset`: catalogo compartido con las cinco normales
+- `Assets/Resources/CatalogoCartas.asset`: catalogo compartido con las siete normales
   y las cinco potentes. `SistemaCartas` lo carga automaticamente al iniciar y tras
   una recarga de scripts. La lista antigua guardada en una escena deja de decidir
   que cartas salen. `Catalogo Compartido` permite asignar otro catalogo explicitamente.
@@ -255,3 +258,31 @@ al finalizar la ronda o desactivar el sistema y sus duraciones respetan la pausa
 
 F/U entregan Perfume a P1/P2; R/P entregan Bomba a P1/P2. Shift elige potente.
 N queda libre para la absorcion de P2, sin generar cartas al pulsarlo.
+
+## Latigo y swap de posicion
+
+Ambas son cartas normales de 20 almas, incluidas en el catalogo compartido
+(12 cartas en total). El costo se cobra al confirmar; el efecto ocurre cuando
+termina la animacion habitual. No hay versiones potentes.
+
+Latigo aplica al rival una marca visible durante 8 s, sin limite de distancia.
+Un rotulo rojo LATIGO con contador aparece sobre el objetivo, visible para ambos.
+El siguiente golpe PvP aceptado del lanzador consume la marca: quita las 5 almas
+habituales mas 40 extra (45 en total), sin transferirlas y sin bajar de cero,
+y empuja 2 unidades en vez de 0.3. Conserva el stun normal de 2 s o 5 s si
+la victima estaba succionando. El empujon es suave y respeta el limite del pasillo.
+
+Fallar, chocar golpes o golpear a alguien invulnerable no consume la marca.
+La profesora tampoco la consume. La marca expira sin premio al cumplir 8 s;
+reaplicarla renueva el plazo sin apilar el bonus. Su tiempo se congela en pausa.
+Se limpia al terminar la partida o desactivar el jugador/sistema.
+En CartaLatigo se ajustan duracion, Almas Extra Latigo y Empujon Latigo.
+
+Swap de posicion intercambia las posiciones actuales de ambos jugadores,
+incluso si estan lejos o el rival esta aturdido/invulnerable. Cancela los golpes
+y las succiones de ambos, libera sus estudiantes y limpia los empujones pendientes.
+Conserva almas, cartas, direccion, stun, invulnerabilidad, marcas y otros efectos.
+Las camaras siguen inmediatamente las nuevas posiciones. No altera el cooldown
+de las puertas ni lo consume; exige soltar arriba antes de entrar en una puerta
+tras el intercambio. El rotulo de la carta muestra Instantanea en vez de una
+duracion de buff. Si ambos lanzan swap, se resuelven por la cola habitual.
