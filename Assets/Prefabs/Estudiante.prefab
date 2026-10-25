@@ -124,6 +124,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9143153349551004172}
+  - component: {fileID: 2100000040}
   - component: {fileID: 8138033017448996726}
   - component: {fileID: 7060334864065365615}
   - component: {fileID: 4549604474527273111}
@@ -274,3 +275,17 @@ MonoBehaviour:
   alto: 0.14
   margenCabeza: 0.25
   colorProgreso: {r: 0.4, g: 0.9, b: 1, a: 1}
+
+--- !u!114 &2100000040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6921681024193535356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b461d48155e69429d9905a2c7e9524e, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::OrdenProfundidadPersonaje
+  referenciaPies: {fileID: 7060334864065365615}

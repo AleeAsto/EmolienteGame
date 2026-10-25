@@ -8,7 +8,7 @@ public class SuccionJugador : MonoBehaviour
 {
     [SerializeField] private InputActionReference succionar;
     [SerializeField, Min(0.1f)] private float alcance = 2.2f;
-    [Tooltip("Desplazamiento vertical del centro en unidades del mundo. Positivo sube; negativo baja.")]
+    [Tooltip("Desplazamiento vertical desde los pies en unidades del mundo. Positivo sube; negativo baja.")]
     [SerializeField] private float offsetVertical;
     [Tooltip("Separacion del estudiante frente al jugador durante la absorcion.")]
     [SerializeField, Min(0f)] private float distanciaAlineacion = 1.9f;
@@ -27,10 +27,21 @@ public class SuccionJugador : MonoBehaviour
     private ManoCartasJugador cartas;
     private EfectosJugador efectos;
     private MovimientoJugador2D movimiento;
+    private bool intentoConsumido;
     public InputAction AccionSuccionar => accionSuccionar;
 
     public AlmaEstudiante Objetivo => objetivo;
-    private Vector3 CentroSuccion => transform.position + Vector3.up * offsetVertical;
+    private Vector3 CentroSuccion
+    {
+        get
+        {
+            // Tambien resolver en el editor para que el Gizmo coincida con el juego.
+            if (movimiento == null) movimiento = GetComponent<MovimientoJugador2D>();
+            BoxCollider2D pies = GetComponent<BoxCollider2D>();
+            Vector3 centro = pies != null ? pies.transform.TransformPoint(pies.offset) : transform.position;
+            return centro + Vector3.up * offsetVertical;
+        }
+    }
     public Vector3 PosicionAlineacion =>
         (movimiento != null ? movimiento.PosicionPies : transform.position) +
         Vector3.up * offsetVerticalAlineacion + Vector3.right *
@@ -41,6 +52,15 @@ public class SuccionJugador : MonoBehaviour
     public float Progreso01 => objetivo != null
         ? Mathf.Clamp01(tiempoAcumulado / DuracionDrenajeActual)
         : 0f;
+
+    public Vector3 LimitarAlineacion(Vector3 posicion)
+    {
+        // El punto que detecta la succion debe permanecer dentro del radio,
+        // incluso si los pies o la escala de cada jugador son distintos.
+        Vector2 desplazamiento = (Vector2)(posicion - CentroSuccion);
+        Vector2 limitado = Vector2.ClampMagnitude(desplazamiento, alcance * 0.9f);
+        return new Vector3(CentroSuccion.x + limitado.x, CentroSuccion.y + limitado.y, posicion.z);
+    }
 
     private void Awake()
     {
@@ -74,6 +94,9 @@ public class SuccionJugador : MonoBehaviour
         if (Time.timeScale <= 0f)
             return;
 
+        if (accionSuccionar == null || !accionSuccionar.IsPressed() || !Application.isFocused)
+            intentoConsumido = false;
+
         if (!Application.isFocused || almas == null || !almas.isActiveAndEnabled ||
             accionSuccionar == null || !accionSuccionar.IsPressed() ||
             (estadoCombate != null && estadoCombate.EstaAturdido) ||
@@ -86,8 +109,8 @@ public class SuccionJugador : MonoBehaviour
 
         if (objetivo == null)
         {
-            // Una pulsacion inicia un solo drenaje; mantener no encadena estudiantes.
-            if (!accionSuccionar.WasPressedThisFrame())
+            // Buscar mientras se mantiene pulsado, pero consumir solo un objetivo por pulsacion.
+            if (intentoConsumido)
                 return;
 
             objetivo = BuscarEstudianteCercano();
@@ -95,6 +118,7 @@ public class SuccionJugador : MonoBehaviour
                 ? ((Vector2)(objetivo.transform.position - CentroSuccion)).sqrMagnitude : alcance * alcance;
             if (efectos != null && efectos.IntentarDisiparFantasma(CentroSuccion, distanciaReal))
             {
+                intentoConsumido = true;
                 objetivo = null;
                 return;
             }
@@ -103,6 +127,7 @@ public class SuccionJugador : MonoBehaviour
                 objetivo = null;
                 return;
             }
+            intentoConsumido = true;
             tiempoAcumulado = 0f;
         }
 
@@ -171,6 +196,7 @@ public class SuccionJugador : MonoBehaviour
         CancelarSuccion();
         accionSuccionar?.Disable();
         accionSuccionar = null;
+        intentoConsumido = false;
     }
 
     private void OnDrawGizmosSelected()

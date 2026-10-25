@@ -10,11 +10,13 @@ public class OrdenProfundidadPersonaje : MonoBehaviour
 {
     [SerializeField, Tooltip("Caja que marca donde apoya los pies el personaje.")]
     private BoxCollider2D referenciaPies;
+    [SerializeField, Tooltip("Ajuste fino del punto de profundidad. Positivo lo sube; negativo lo baja.")]
+    private float offsetAlturaPies;
 
     private static readonly List<OrdenProfundidadPersonaje> personajes = new List<OrdenProfundidadPersonaje>();
     private SortingGroup grupo;
-    private float AlturaPies => referenciaPies != null
-        ? referenciaPies.transform.TransformPoint(referenciaPies.offset).y : transform.position.y;
+    private float AlturaPies => (referenciaPies != null
+        ? referenciaPies.bounds.min.y : transform.position.y) + offsetAlturaPies;
 
     private void OnEnable()
     {
@@ -27,8 +29,7 @@ public class OrdenProfundidadPersonaje : MonoBehaviour
     private void LateUpdate()
     {
         if (grupo == null) return;
-        // Rangos consecutivos conservan el suelo debajo y los efectos (orden 30)
-        // encima de los tres actores, sin modificar los colliders ni los sprites.
+        // Ordenar por la base de los pies, independientemente de la altura de la caja.
         int orden = 10;
         float altura = AlturaPies;
         int indicePropio = personajes.IndexOf(this);

@@ -88,6 +88,7 @@ public class EstudiantePasillo : MonoBehaviour
                 // Alinear la referencia de los pies, no los pivotes de los sprites.
                 if (cuerpo != null)
                     destino -= cuerpo.transform.TransformPoint(cuerpo.offset) - transform.position;
+                destino = succion.LimitarAlineacion(destino);
                 destino.z = transform.position.z;
                 Vector3 siguiente = Vector3.MoveTowards(transform.position, destino,
                     Mathf.Max(0.1f, velocidadAlineacion) * delta);
