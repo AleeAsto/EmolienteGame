@@ -8,6 +8,23 @@ using UnityEngine.UI;
 [DefaultExecutionOrder(-100)]
 public class CicloPartida : MonoBehaviour
 {
+    public static int VictoriasJugador1 { get; private set; }
+    public static int VictoriasJugador2 { get; private set; }
+    public static bool MostrarVictorias { get; private set; }
+    private static bool siguienteEsRevancha;
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    public static void ReiniciarVictorias()
+    {
+        VictoriasJugador1 = VictoriasJugador2 = 0;
+        MostrarVictorias = siguienteEsRevancha = false;
+    }
+
+    public static void PrepararRevancha()
+    {
+        siguienteEsRevancha = true;
+    }
+
     [SerializeField, Min(1f)] private float duracionSegundos = 180f;
     [SerializeField] private AlmasJugador jugador1;
     [SerializeField] private AlmasJugador jugador2;
@@ -39,6 +56,13 @@ public class CicloPartida : MonoBehaviour
 
     private void Awake()
     {
+        if (siguienteEsRevancha)
+        {
+            siguienteEsRevancha = false;
+            MostrarVictorias = true;
+        }
+        else ReiniciarVictorias();
+
         if (jugador1 == null || jugador2 == null || textoTiempo == null || cuentaRegresiva == null)
         {
             Debug.LogError("Asigna ambos jugadores, el timer y el texto de cuenta regresiva.", this);
@@ -105,6 +129,8 @@ public class CicloPartida : MonoBehaviour
         float puntos1 = jugador1.Cantidad;
         float puntos2 = jugador2.Cantidad;
         int ganador = Mathf.Approximately(puntos1, puntos2) ? 0 : (puntos1 > puntos2 ? 1 : 2);
+        if (ganador == 1) VictoriasJugador1++;
+        else if (ganador == 2) VictoriasJugador2++;
         string resultado = ganador == 0 ? "Empate" : $"El jugador {ganador} gano";
         Debug.Log($"Fin de la partida. {resultado}. P1: {puntos1:0.#} | P2: {puntos2:0.#}", this);
         PartidaTerminada?.Invoke(ganador);
@@ -113,7 +139,12 @@ public class CicloPartida : MonoBehaviour
                 ganador == 1 ? nombreJugador1 : nombreJugador2, Revancha, VolverMenu));
     }
 
-    private void Revancha() => TransicionEscena.Cargar(gameObject.scene.name, true);
+    private void Revancha()
+    {
+        if (TransicionEscena.EnCurso) return;
+        PrepararRevancha();
+        TransicionEscena.Cargar(gameObject.scene.name, true);
+    }
 
     private void VolverMenu()
     {

@@ -79,6 +79,7 @@ public class MenuPrincipal : MonoBehaviour
             return;
         }
         cargando = true;
+        CicloPartida.ReiniciarVictorias();
         estado.text = "Cargando partida…";
         foreach (Button boton in pantallas[0].GetComponentsInChildren<Button>())
             boton.interactable = false;

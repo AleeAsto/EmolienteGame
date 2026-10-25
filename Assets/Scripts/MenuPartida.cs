@@ -126,6 +126,7 @@ public class MenuPartida : MonoBehaviour
             return;
         }
         cargando = true;
+        if (reiniciarMusica) CicloPartida.PrepararRevancha();
         foreach (var boton in GetComponentsInChildren<Button>(true)) boton.interactable = false;
         PlayerPrefs.Save();
         Time.timeScale = 1f;
