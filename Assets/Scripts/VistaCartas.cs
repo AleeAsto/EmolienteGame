@@ -10,7 +10,11 @@ public class VistaCartas : MonoBehaviour
     private readonly RectTransform[,] huecos = new RectTransform[2, 3];
     private readonly Image[,] imagenes = new Image[2, 3];
     private readonly Text[,] textos = new Text[2, 3];
+    private readonly Image[,] fondosEstado = new Image[2, 3];
     private readonly Outline[,] bordes = new Outline[2, 3];
+    private static readonly Vector2 TamanoCarta = new Vector2(150f, 250f);
+    private static readonly Vector2 TamanoVuelo = new Vector2(228f, 380f);
+    private const float PrimerHueco = 100f, Separacion = 160f;
     private readonly DefinicionCarta[,] cartasAnteriores = new DefinicionCarta[2, 3];
     private readonly Vector2[,] inicioMezcla = new Vector2[2, 3];
     private readonly bool[] confusionAnterior = new bool[2];
@@ -81,19 +85,27 @@ public class VistaCartas : MonoBehaviour
             {
                 huecos[i, j] = Rect("Carta" + (j + 1), paneles[i]);
                 huecos[i, j].anchorMin = huecos[i, j].anchorMax = new Vector2(esquina, 0f);
-                huecos[i, j].sizeDelta = new Vector2(170, 236);
-                huecos[i, j].anchoredPosition = new Vector2(0f, -236f);
+                huecos[i, j].sizeDelta = TamanoCarta;
+                huecos[i, j].anchoredPosition = new Vector2(0f, -250f);
                 imagenes[i, j] = huecos[i, j].gameObject.AddComponent<Image>();
                 imagenes[i, j].raycastTarget = false;
+                imagenes[i, j].preserveAspect = true;
                 bordes[i, j] = huecos[i, j].gameObject.AddComponent<Outline>();
                 bordes[i, j].effectColor = colores[i];
                 bordes[i, j].effectDistance = new Vector2(3f, -3f);
                 bordes[i, j].enabled = false;
-                textos[i, j] = Texto("Frente", huecos[i, j], 20);
-                textos[i, j].alignment = TextAnchor.UpperCenter;
+                RectTransform etiqueta = Rect("EstadoCarta", huecos[i, j]);
+                etiqueta.anchorMin = etiqueta.anchorMax = new Vector2(0.5f, 1f);
+                etiqueta.pivot = new Vector2(0.5f, 0f);
+                etiqueta.anchoredPosition = new Vector2(0f, 3f);
+                etiqueta.sizeDelta = new Vector2(150f, 28f);
+                fondosEstado[i, j] = FondoFicha(etiqueta);
+                textos[i, j] = Texto("Precio", etiqueta, 20);
+                textos[i, j].resizeTextForBestFit = true;
+                textos[i, j].resizeTextMinSize = 12; textos[i, j].resizeTextMaxSize = 20;
                 Estirar(textos[i, j].rectTransform);
-                textos[i, j].rectTransform.offsetMin = new Vector2(14f, 14f);
-                textos[i, j].rectTransform.offsetMax = new Vector2(-14f, -14f);
+                textos[i, j].rectTransform.offsetMin = new Vector2(4f, 2f);
+                textos[i, j].rectTransform.offsetMax = new Vector2(-4f, -2f);
             }
         }
         capaVuelo = Rect("CapaVuelo", raiz);
@@ -106,6 +118,7 @@ public class VistaCartas : MonoBehaviour
         presentacion.anchorMin = presentacion.anchorMax = Vector2.zero;
         imagenPresentacion = presentacion.gameObject.AddComponent<Image>();
         imagenPresentacion.raycastTarget = false;
+        imagenPresentacion.preserveAspect = true;
         bordePresentacion = presentacion.gameObject.AddComponent<Outline>();
         bordePresentacion.effectColor = new Color(1f, 0.8f, 0.2f);
         bordePresentacion.effectDistance = new Vector2(5f, -5f);
@@ -115,8 +128,19 @@ public class VistaCartas : MonoBehaviour
         Canvas canvasVuelo = capaVuelo.gameObject.AddComponent<Canvas>();
         canvasVuelo.overrideSorting = true;
         canvasVuelo.sortingOrder = 300;
-        textoPresentacion = Texto("Frente", presentacion, 26);
+        RectTransform etiquetaVuelo = Rect("EtiquetaVuelo", presentacion);
+        etiquetaVuelo.anchorMin = etiquetaVuelo.anchorMax = new Vector2(0.5f, 1f);
+        etiquetaVuelo.pivot = new Vector2(0.5f, 0f);
+        etiquetaVuelo.anchoredPosition = new Vector2(0f, 6f);
+        etiquetaVuelo.sizeDelta = new Vector2(190f, 32f);
+        FondoFicha(etiquetaVuelo);
+        textoPresentacion = Texto("Frente", etiquetaVuelo, 21);
+        textoPresentacion.color = Color.white;
+        textoPresentacion.resizeTextForBestFit = true;
+        textoPresentacion.resizeTextMinSize = 16; textoPresentacion.resizeTextMaxSize = 21;
         Estirar(textoPresentacion.rectTransform);
+        textoPresentacion.rectTransform.offsetMin = new Vector2(4f, 2f);
+        textoPresentacion.rectTransform.offsetMax = new Vector2(-4f, -2f);
         OcultarPresentacion();
     }
 
@@ -156,9 +180,9 @@ public class VistaCartas : MonoBehaviour
                 if (!visible) continue;
                 bool seleccionada = mano.MenuAbierto && mano.Seleccion == j;
                 bool esRecibida = recibida && j == mano.IndiceRecibida;
-                // Mitad del recorrido anterior desde el reposo: -82 + (206 + 82) / 2.
-                float y = seleccionada ? 62f : esRecibida ? 124f : -82f;
-                float x = i == 0 ? 124f + j * 116f : -124f - (mano.Cantidad - 1 - j) * 116f;
+                // Elevar la mano abierta y mostrar brevemente las cartas recibidas.
+                float y = mano.MenuAbierto ? (seleccionada ? 165f : 140f) : esRecibida ? 124f : -82f;
+                float x = i == 0 ? PrimerHueco + j * Separacion : -PrimerHueco - (mano.Cantidad - 1 - j) * Separacion;
                 Vector2 destino = new Vector2(x, y) * escalaDiseno;
                 destino.y += elevacionMano;
                 if (animandoMano[i])
@@ -183,29 +207,23 @@ public class VistaCartas : MonoBehaviour
                 }
                 float suavizado = 1f - Mathf.Exp(-18f * Time.deltaTime);
                 float escalaCarta = Mathf.Lerp(huecos[i, j].localScale.y,
-                    escalaDiseno * (seleccionada ? 1.18f : 1f), suavizado);
+                    escalaDiseno * (seleccionada ? 1.08f : 1f), suavizado);
                 huecos[i, j].localScale = new Vector3(escalaCarta * anchoGiro, escalaCarta, 1f);
                 DefinicionCarta carta = mano.Cartas[j];
                 cartasAnteriores[i, j] = carta;
-                imagenes[i, j].sprite = reverso ? carta.Reverso : carta.Frente;
+                imagenes[i, j].sprite = reverso
+                    ? (seleccionada ? carta.Reverso : carta.ReversoMano)
+                    : (seleccionada || esRecibida ? carta.Frente : carta.FrenteMano);
                 bool suficiente = mano.Almas.Cantidad >= carta.PuntosNecesarios;
                 float brillo = (reverso || suficiente ? 1f : 0.72f) *
-                    (mano.MenuAbierto && !seleccionada ? 0.45f : 1f);
-                Color colorCarta = (reverso ? Color.white : carta.ColorCarta) * brillo;
-                colorCarta.a = 1f;
-                imagenes[i, j].color = colorCarta;
-                textos[i, j].text = reverso
-                    ? ""
-                    : $"{(carta.EsPotente ? "POTENTE ★" : "NORMAL")} · {carta.DuracionVisible}\nCosto {carta.PuntosNecesarios:0.#}\n\n{carta.TituloVisible}\n\n{carta.Descripcion}";
-                textos[i, j].color = reverso ? Color.white :
-                    suficiente ? new Color(0.12f, 0.16f, 0.22f) : new Color(0.48f, 0.12f, 0.1f);
-                if (mano.MenuAbierto && !seleccionada)
-                {
-                    Color tinta = textos[i, j].color * 0.55f;
-                    tinta.a = 1f;
-                    textos[i, j].color = tinta;
-                }
-                bordes[i, j].enabled = seleccionada;
+                    (mano.MenuAbierto && !seleccionada ? 0.72f : 1f);
+                imagenes[i, j].color = new Color(brillo, brillo, brillo, 1f);
+                fondosEstado[i, j].enabled = !reverso;
+                textos[i, j].text = reverso ? "" :
+                    $"{carta.PuntosNecesarios:0.#} almas";
+                textos[i, j].color = suficiente ? Color.white : new Color(1f, 0.62f, 0.55f);
+                bordes[i, j].effectColor = !reverso && carta.EsPotente ? new Color(1f, 0.8f, 0.2f) : colores[i];
+                bordes[i, j].enabled = seleccionada || (!reverso && carta.EsPotente);
             }
             // La seleccion se dibuja por encima de sus vecinas al elevarse.
             if (mano.MenuAbierto && mano.Cantidad > 0)
@@ -213,6 +231,14 @@ public class VistaCartas : MonoBehaviour
             else if (recibida)
                 huecos[i, mano.IndiceRecibida].SetAsLastSibling();
         }
+    }
+
+    private static Image FondoFicha(RectTransform rect)
+    {
+        Image fondo = rect.gameObject.AddComponent<Image>();
+        fondo.color = new Color(0.035f, 0.02f, 0.025f, 0.94f);
+        fondo.raycastTarget = false;
+        return fondo;
     }
 
     private void IniciarTransicionMano(int jugador, ManoCartasJugador mano, bool confundido)
@@ -313,12 +339,12 @@ public class VistaCartas : MonoBehaviour
         }
         presentacion.gameObject.SetActive(true);
         presentacion.anchoredPosition = posicion;
-        presentacion.sizeDelta = new Vector2(230, 320) * escala;
+        presentacion.sizeDelta = TamanoVuelo * escala;
         imagenPresentacion.sprite = frente ? carta.Frente : carta.Reverso;
-        imagenPresentacion.color = carta.ColorCarta;
+        imagenPresentacion.color = Color.white;
         bordePresentacion.enabled = carta.EsPotente;
-        textoPresentacion.gameObject.SetActive(frente);
-        textoPresentacion.text = $"{carta.TituloVisible}\n\nCosto {carta.PuntosNecesarios:0.#}\n\n{carta.Descripcion}\nP{origen + 1}";
+        textoPresentacion.transform.parent.gameObject.SetActive(frente);
+        textoPresentacion.text = $"{carta.PuntosNecesarios:0.#} almas";
     }
 
     public void AnimarEntregaPotente(ManoCartasJugador jugador, DefinicionCarta carta, float tiempo,
@@ -334,12 +360,13 @@ public class VistaCartas : MonoBehaviour
             paneles[indice].rect.width / 510f), 0.3f, 1f);
         // La carta aun no esta en la mano. Reservar el cupo impide llenarlo durante el giro.
         int hueco = Mathf.Min(2, jugador.Cantidad + indiceEntrega);
-        float x = indice == 0 ? 124f + hueco * 116f : -124f - indiceEntrega * 116f;
-        float y = jugador.MenuAbierto ? -82f : 124f;
+        float x = indice == 0 ? PrimerHueco + hueco * Separacion : -PrimerHueco - indiceEntrega * Separacion;
+        float y = jugador.MenuAbierto ? 140f : 124f;
         Vector3 localDestino = new Vector3(x * escalaDiseno, y * escalaDiseno, 0f);
         // La mano usa esquinas distintas: TransformPoint espera coordenadas desde su pivote central.
         localDestino.x += indice == 0 ? paneles[indice].rect.xMin : paneles[indice].rect.xMax;
         localDestino.y += paneles[indice].rect.yMin;
+        if (viewport.yMin > 0f) localDestino.y += 28f;
         Vector3 destinoLocal = raiz.InverseTransformPoint(paneles[indice].TransformPoint(localDestino));
         Vector2 destino = new Vector2(destinoLocal.x - raiz.rect.xMin, destinoLocal.y - raiz.rect.yMin);
         float giro = Mathf.Clamp01((tiempo - 0.25f) / 1f);
@@ -347,17 +374,17 @@ public class VistaCartas : MonoBehaviour
         bool frente = coseno >= 0f;
         float llegada = Mathf.SmoothStep(0f, 1f, (tiempo - 1.6f) / 0.6f);
         float aparicion = Mathf.SmoothStep(0.15f, 1f, tiempo / 0.25f);
-        float escala = Mathf.Lerp(aparicion, 170f / 230f * escalaDiseno, llegada);
+        float escala = Mathf.Lerp(aparicion, TamanoCarta.x / TamanoVuelo.x * escalaDiseno, llegada);
         presentacion.gameObject.SetActive(true);
         presentacion.anchoredPosition = Vector2.Lerp(centro, destino, llegada);
-        presentacion.sizeDelta = new Vector2(230f, 320f) * escala;
+        presentacion.sizeDelta = TamanoVuelo * escala;
         presentacion.localScale = new Vector3(Mathf.Max(0.02f, Mathf.Abs(coseno)), 1f, 1f);
         presentacion.localRotation = Quaternion.Euler(0f, 0f, Mathf.Sin(giro * Mathf.PI * 2f) * 8f);
         imagenPresentacion.sprite = frente ? carta.Frente : carta.Reverso;
-        imagenPresentacion.color = carta.ColorCarta;
+        imagenPresentacion.color = Color.white;
         bordePresentacion.enabled = true;
-        textoPresentacion.gameObject.SetActive(frente);
-        textoPresentacion.text = $"{carta.TituloVisible}\n\nCosto {carta.PuntosNecesarios:0.#}\n\n{carta.Descripcion}";
+        textoPresentacion.transform.parent.gameObject.SetActive(frente);
+        textoPresentacion.text = $"{carta.PuntosNecesarios:0.#} almas";
     }
 
     public void OcultarPresentacion()
