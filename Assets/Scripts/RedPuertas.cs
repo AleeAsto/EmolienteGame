@@ -55,6 +55,7 @@ public class RedPuertas : MonoBehaviour
         // elijan la misma salida. La puerta de entrada queda disponible.
         salida.ActivarCooldown(duracionBloqueoSalida);
         jugador.TransportarA(salida.PosicionSalida, entrada.PosicionSalida);
+        AudioJuego.Instancia?.UsarPuerta();
         return true;
     }
 }

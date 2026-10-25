@@ -382,7 +382,7 @@ public class VistaCartas : MonoBehaviour
     {
         for (int i = 0; i < flashSwap.Length; i++)
         {
-            if (flashSwap[i] == null) continue;
+            if (flashSwap[i] == null || camaras[i] == null) continue;
             RectTransform rect = flashSwap[i].rectTransform;
             rect.anchorMin = camaras[i].rect.min;
             rect.anchorMax = camaras[i].rect.max;

@@ -302,6 +302,7 @@ public class SistemaCartas : MonoBehaviour
     {
         if (EnCurso && carta != null && (jugador == jugador1 || jugador == jugador2))
         {
+            AudioJuego.Instancia?.UsarCarta();
             Encolar(new Lanzamiento { jugador = jugador, carta = carta, frame = Time.frameCount,
                 origenPantalla = vista != null ? vista.ObtenerOrigenLanzamiento(jugador) : Vector2.one * 0.5f });
         }

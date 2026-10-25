@@ -33,6 +33,7 @@ public class MovimientoJugador2D : MonoBehaviour
     private float tiempoDash;
     private float duracionDash;
     public bool EstaEnDash { get; private set; }
+    public bool EstaCaminando { get; private set; }
 
     private void Awake()
     {
@@ -72,6 +73,7 @@ public class MovimientoJugador2D : MonoBehaviour
 
     private void Update()
     {
+        EstaCaminando = false;
         if (Time.timeScale <= 0f || EnPuerta)
             return;
 
@@ -108,7 +110,10 @@ public class MovimientoJugador2D : MonoBehaviour
             rapidezLanzamiento = 0f;
         float multiplicador = efectos != null ? efectos.MultiplicadorVelocidad : 1f;
         Vector3 destino = transform.position + (Vector3)(entrada * velocidad * multiplicador * Time.deltaTime + empujon);
+        Vector3 anterior = transform.position;
         transform.position = LimitarPosicion(destino);
+        EstaCaminando = entrada.sqrMagnitude > 0.01f &&
+            Vector2.Dot((Vector2)(transform.position - anterior), entrada) > 0.00001f;
     }
 
     public void Empujar(Vector2 desplazamiento)
@@ -141,6 +146,7 @@ public class MovimientoJugador2D : MonoBehaviour
 
     public void Teletransportar(Vector3 destino)
     {
+        EstaCaminando = false;
         CancelarDash();
         empujonPendiente = Vector2.zero;
         rapidezLanzamiento = 0f;
@@ -172,6 +178,7 @@ public class MovimientoJugador2D : MonoBehaviour
 
     private void OnDisable()
     {
+        EstaCaminando = false;
         accionMovimiento?.Disable();
         accionMovimiento = null;
         empujonPendiente = Vector2.zero;
