@@ -13,7 +13,7 @@ tienen `ManoCartasJugador` usan pulsacion corta/mantener para golpear o abrir ca
 | --- | ---: | ---: |
 | Aceleracion | 10 | 25 |
 | Pesadez | 10 | 20 |
-| Perfume | 10 | 20 |
+| Perfume | 5 | 15 |
 | Bomba apestosa | 10 | 20 |
 | Confusion | 10 | 20 |
 | Golpe fuerte | 10 | 20 |
@@ -255,17 +255,19 @@ mano con C/M y confirmar con el boton de absorcion configurado. No tiene atajo p
 ## Perfume y Bomba apestosa
 
 La carta Perfume es verde (buff) y su efecto visual rosa. Se aplica al lanzador y atrae estudiantes disponibles dentro de
-10 unidades, caminando a 1.5x de su rapidez habitual. Esperan en distintos puntos alrededor del jugador, dentro del alcance
+12 unidades, caminando a 1.5x de su rapidez habitual. Esperan en distintos puntos alrededor del jugador, dentro del alcance
 de absorcion. La carta Bomba apestosa es roja (debuff), con efecto visual verde, y se aplica al rival: los estudiantes se
 alejan caminando un 60 % mas rapido (1.6x), sin entrar en huida permanente.
 Con la bomba giran horizontalmente para alejarse y conservan ese nuevo sentido al
 salir del alcance o terminar el efecto, retomando su rapidez normal. No se empujan
 contra los bordes verticales ni se quedan detenidos en el limite de ZoneMov.
 
-Normal: 20 puntos, 8 segundos. Potente: 40 puntos, 20 segundos. Solo cambia la
-duracion; radio e intensidad son iguales. Renovar una normal no acorta una potente.
-El alcance de las auras es invisible. Solo se ve un halo difuminado alrededor de la
-silueta del personaje: rosa para Perfume, verde para Bomba, sin anillos ni lineas de olor.
+Perfume: 5 almas la normal y 15 la potente. Bomba: 10 la normal y 20 la potente.
+Normal: 8 segundos. Potente: 20 segundos. Solo cambia la duracion; radio e intensidad
+son iguales. Renovar una normal no acorta una potente.
+El alcance de las auras es invisible. Perfume tiene un halo rosa mas visible con
+corazones y destellos ascendentes; Bomba conserva el halo verde de la silueta.
+Las particulas siguen al personaje, se pausan con la partida y desaparecen al terminar el efecto.
 Si un jugador tiene ambos efectos, Bomba domina mientras coinciden. Ante varios
 jugadores se sigue el olor mas cercano; en igualdad de distancia gana Bomba.
 

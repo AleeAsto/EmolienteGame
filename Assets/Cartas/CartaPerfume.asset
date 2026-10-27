@@ -18,7 +18,7 @@ MonoBehaviour:
   reverso: {fileID: -660288226, guid: eb1323b5a21f15c47beeb12925214f71, type: 3}
   frenteMano: {fileID: 866663626, guid: c47beb6626d6c314fb7fd0993c3b9bdf, type: 3}
   reversoMano: {fileID: -443000808, guid: 84b150331300c234eb2b39b3cc464bab, type: 3}
-  puntosNecesarios: 10
+  puntosNecesarios: 5
   destino: 0
   efecto: 3
   multiplicadorVelocidad: 1
