@@ -82,8 +82,13 @@ public class PresentacionVersus : MonoBehaviour
                 Estirar(contador.rectTransform, 6f);
             }
         }
-        Text nombreGanador = Texto("NombreGanador", contenido, ganador == 0 ? "MISMA PUNTUACION" : nombre, 54);
-        Ubicar(nombreGanador.rectTransform, new Vector2(0.2f, 0.29f), new Vector2(0.8f, 0.38f));
+        string detalle = ConfiguracionPartida.ContraCPU ? ConfiguracionPartida.ResultadoCPU(ganador) :
+            ganador == 0 ? "MISMA PUNTUACION" : nombre;
+        Text nombreGanador = Texto("NombreGanador", contenido, detalle, 54);
+        nombreGanador.resizeTextForBestFit = true;
+        nombreGanador.resizeTextMinSize = 20;
+        nombreGanador.resizeTextMaxSize = 54;
+        Ubicar(nombreGanador.rectTransform, new Vector2(0.12f, 0.29f), new Vector2(0.88f, 0.38f));
         Text titulo = Texto("Winner", contenido, ganador == 0 ? "EMPATE" : "¡VICTORIA!", 118);
         titulo.fontStyle = FontStyle.BoldAndItalic;
         titulo.color = new Color(1f, 0.9f, 0.62f);

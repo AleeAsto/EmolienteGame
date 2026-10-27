@@ -14,6 +14,7 @@ public class AuraOlorJugador : MonoBehaviour
     private float retirada = 1.6f;
     private float atraccion = 1.5f;
     private readonly List<Halo> halos = new List<Halo>();
+    private VisualPerfumeJugador visualPerfume;
     private class Halo
     {
         public SpriteRenderer fuente;
@@ -119,6 +120,18 @@ public class AuraOlorJugador : MonoBehaviour
     private void LateUpdate()
     {
         bool bomba = TieneMalOlor;
+        bool perfumeVisible = TienePerfume && !bomba;
+        if (perfumeVisible && visualPerfume == null && Application.isPlaying)
+        {
+            var visual = new GameObject("PerfumeVisual", typeof(VisualPerfumeJugador));
+            visual.transform.SetParent(transform, false);
+            visual.layer = gameObject.layer;
+            visualPerfume = visual.GetComponent<VisualPerfumeJugador>();
+            Transform modelo = transform.Find("Sprite");
+            visualPerfume.Inicializar(modelo != null ? modelo.GetComponentInChildren<SpriteRenderer>() :
+                GetComponentInChildren<SpriteRenderer>());
+        }
+        if (visualPerfume != null) visualPerfume.Actualizar(perfumeVisible);
         if (!bomba && !TienePerfume) { Ocultar(); return; }
         if (halos.Count == 0) CrearVisual();
         Color color = bomba ? new Color(0.5f, 0.95f, 0.25f) : new Color(1f, 0.45f, 0.75f);
@@ -134,7 +147,7 @@ public class AuraOlorJugador : MonoBehaviour
             halo.copia.sortingOrder = halo.fuente.sortingOrder - 1;
             halo.copia.transform.localPosition = halo.fuente.transform.InverseTransformVector(
                 (Vector3)(halo.desplazamiento * pulso));
-            Color tinte = color; tinte.a = halo.opacidad * halo.fuente.color.a;
+            Color tinte = color; tinte.a = halo.opacidad * halo.fuente.color.a * (bomba ? 1f : 1.6f);
             halo.copia.color = tinte;
         }
     }
@@ -168,6 +181,7 @@ public class AuraOlorJugador : MonoBehaviour
     private void Ocultar()
     {
         foreach (Halo halo in halos) if (halo.copia != null) halo.copia.enabled = false;
+        if (visualPerfume != null) visualPerfume.Actualizar(false);
     }
 
     public void Limpiar() { finPerfume = finBomba = 0f; Ocultar(); }
@@ -182,5 +196,9 @@ public class AuraOlorJugador : MonoBehaviour
             if (Application.isPlaying) Destroy(halo.copia.gameObject); else DestroyImmediate(halo.copia.gameObject);
         }
         halos.Clear();
+        if (visualPerfume != null)
+        {
+            if (Application.isPlaying) Destroy(visualPerfume.gameObject); else DestroyImmediate(visualPerfume.gameObject);
+        }
     }
 }

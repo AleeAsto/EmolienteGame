@@ -24,4 +24,11 @@ public static class ConfiguracionPartida
 
     public static string NombreDificultad(DificultadCPU dificultad) =>
         dificultad == DificultadCPU.Facil ? "FACIL" : dificultad == DificultadCPU.Dificil ? "DIFICIL" : "NORMAL";
+
+    public static string ResultadoCPU(int ganador)
+    {
+        string resultado = ganador == 1 ? "VENCISTE A LA CPU" :
+            ganador == 2 ? "GANO LA CPU" : "EMPATE CONTRA CPU";
+        return resultado + " - " + NombreDificultad(Dificultad);
+    }
 }

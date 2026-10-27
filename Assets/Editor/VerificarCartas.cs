@@ -71,7 +71,7 @@ public static class VerificarCartas
                 AssetDatabase.ImportAsset(ruta, ImportAssetOptions.ForceUpdate);
                 cartasOlor[i] = AssetDatabase.LoadAssetAtPath<DefinicionCarta>(ruta);
                 Exigir(cartasOlor[i] != null && cartasOlor[i].DuracionEfecto == (i % 2 == 0 ? 8f : 20f) &&
-                    cartasOlor[i].PuntosNecesarios == (i % 2 == 0 ? 10f : 20f) && cartasOlor[i].RadioOlor == 12f &&
+                    cartasOlor[i].PuntosNecesarios == (i < 2 ? (i == 0 ? 5f : 15f) : (i == 2 ? 10f : 20f)) && cartasOlor[i].RadioOlor == 12f &&
                     cartasOlor[i].MultiplicadorAtraccion == 1.5f && cartasOlor[i].MultiplicadorRetirada == 1.6f,
                     "Assets de olor: radio 12, atraccion 1.5x y retirada 1.6x");
             }
