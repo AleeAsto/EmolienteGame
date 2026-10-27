@@ -14,12 +14,14 @@ public class AnimacionJugador : MonoBehaviour
     private int estadoActual;
     private bool mostrandoEntrada;
     private bool estabaAtacando;
+    private bool golpeRecibido;
     private AnimatorUpdateMode modoAnterior;
     private static readonly int Idle = Animator.StringToHash("Base Layer.Idle");
     private static readonly int IdleAlternativo = Animator.StringToHash("Base Layer.Idle2");
     private static readonly int Run = Animator.StringToHash("Base Layer.Run");
     private static readonly int Talk = Animator.StringToHash("Base Layer.Talk");
     private static readonly int Attack = Animator.StringToHash("Base Layer.attack");
+    private static readonly int Stun = Animator.StringToHash("Base Layer.Stun");
 
     private void Awake()
     {
@@ -29,6 +31,16 @@ public class AnimacionJugador : MonoBehaviour
         ataque = GetComponent<AtaqueJugador>();
         estado = GetComponent<EstadoCombateJugador>();
         animador.applyRootMotion = false;
+    }
+
+    private void OnEnable()
+    {
+        if (estado != null) estado.Interrumpido += AlRecibirGolpe;
+    }
+
+    private void AlRecibirGolpe()
+    {
+        if (estado != null && estado.EstaAturdido) golpeRecibido = true;
     }
 
     private void LateUpdate()
@@ -49,11 +61,14 @@ public class AnimacionJugador : MonoBehaviour
         bool atacando = ataque != null && ataque.EstaAtacando;
         bool iniciaAtaque = atacando && !estabaAtacando;
         estabaAtacando = atacando;
+        bool iniciaStun = golpeRecibido;
+        golpeRecibido = false;
         int siguiente;
         if (estado != null && estado.EstaAturdido)
         {
             tiempoQuieto = 0f;
-            siguiente = IdleAlternativo;
+            siguiente = iniciaStun || (estadoActual == Stun &&
+                animador.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f) ? Stun : IdleAlternativo;
         }
         else if (iniciaAtaque || (estadoActual == Attack &&
             animador.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f))
@@ -83,7 +98,8 @@ public class AnimacionJugador : MonoBehaviour
         }
 
         // No reiniciar el clip cada frame: dejarlo avanzar y repetir normalmente.
-        if (siguiente == estadoActual && !(iniciaAtaque && siguiente == Attack)) return;
+        if (siguiente == estadoActual && !(iniciaAtaque && siguiente == Attack) &&
+            !(iniciaStun && siguiente == Stun)) return;
         estadoActual = siguiente;
         animador.Play(siguiente, 0, 0f);
     }
@@ -108,5 +124,10 @@ public class AnimacionJugador : MonoBehaviour
         }
     }
 
-    private void OnDisable() => MostrarEntrada(false);
+    private void OnDisable()
+    {
+        if (estado != null) estado.Interrumpido -= AlRecibirGolpe;
+        golpeRecibido = false;
+        MostrarEntrada(false);
+    }
 }
