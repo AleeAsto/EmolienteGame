@@ -12,6 +12,7 @@ public class VisualLatigoJugador : MonoBehaviour
     public void Inicializar(AtaqueJugador propietario)
     {
         ataque = propietario;
+        gameObject.AddComponent<FlechaRivalLatigo>().Inicializar(propietario);
         foreach (SpriteRenderer sprite in GetComponentsInChildren<SpriteRenderer>())
             if (sprite.enabled && sprite.gameObject.activeInHierarchy && sprite.sprite != null)
             {

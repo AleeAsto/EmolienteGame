@@ -52,6 +52,13 @@ public class SistemaCartas : MonoBehaviour
     public bool EnCurso => isActiveAndEnabled && partida != null && partida.EnCurso &&
         !partida.Terminada && Time.timeScale > 0f;
     public float TiempoMantener => tiempoMantener;
+    public float DuracionUso(DefinicionCarta carta) => VistaCartas.DuracionAnimacion(duracionVistaFrente, duracionGiro) /
+        (carta != null && carta.Efecto == EfectoCarta.IntercambioPosicion ? 2f : 1f);
+
+    public bool TieneUsoPendiente(ManoCartasJugador jugador, EfectoCarta efecto) =>
+        cola.Exists(l => !l.esEntrega && l.jugador == jugador && l.carta.Efecto == efecto) ||
+        usosActivos.Exists(u => !u.lanzamiento.esEntrega && u.lanzamiento.jugador == jugador &&
+            u.lanzamiento.carta.Efecto == efecto);
 
     private struct Lanzamiento
     {

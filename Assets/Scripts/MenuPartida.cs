@@ -105,7 +105,8 @@ public class MenuPartida : MonoBehaviour
         opciones.SetActive(false);
         AudioJuego.Instancia?.PausarEfectos(true);
         if (partida.TieneVictoriaPersonalizada) return;
-        tituloResultado.text = ganador == 0 ? "EMPATE" : $"GANA JUGADOR {ganador}";
+        tituloResultado.text = ganador == 0 ? "EMPATE" :
+            ganador == 2 && ConfiguracionPartida.ContraCPU ? "GANA LA CPU" : $"GANA JUGADOR {ganador}";
         tituloResultado.color = ganador == 0 ? new Color32(244, 187, 83, 255) :
             ganador == 1 ? new Color32(120, 197, 255, 255) : new Color32(255, 117, 117, 255);
         puntuacion1.text = jugador1.Cantidad.ToString("0.#");

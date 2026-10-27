@@ -74,7 +74,8 @@ public class PresentacionVersus : MonoBehaviour
                     new Vector2(i == 0 ? 0.48f : 0.75f, 0.46f));
                 Imagen(fondo, new Color(0.02f, 0.015f, 0.025f, 0.8f));
                 int victorias = i == 0 ? CicloPartida.VictoriasJugador1 : CicloPartida.VictoriasJugador2;
-                Text contador = Texto("Contador", fondo, $"Jugador {i + 1} · Victorias: {victorias}", 28);
+                string jugador = i == 1 && ConfiguracionPartida.ContraCPU ? "CPU" : $"Jugador {i + 1}";
+                Text contador = Texto("Contador", fondo, $"{jugador} · Victorias: {victorias}", 28);
                 contador.resizeTextForBestFit = true;
                 contador.resizeTextMinSize = 12;
                 contador.resizeTextMaxSize = 28;

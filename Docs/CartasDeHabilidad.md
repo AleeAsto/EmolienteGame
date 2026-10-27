@@ -7,6 +7,24 @@ ampliado, las cuatro puertas y la profesora, y es la escena habilitada en Build 
 La escena anterior conserva sus controles originales; solo los jugadores que
 tienen `ManoCartasJugador` usan pulsacion corta/mantener para golpear o abrir cartas.
 
+## Balance actual
+
+| Carta | Basica | Potente |
+| --- | ---: | ---: |
+| Aceleracion | 10 | 25 |
+| Pesadez | 10 | 20 |
+| Perfume | 10 | 20 |
+| Bomba apestosa | 10 | 20 |
+| Confusion | 10 | 20 |
+| Golpe fuerte | 10 | 20 |
+| Swap | 10 | - |
+
+Costos en almas. Perfume y Bomba tienen radio 12 en ambas variantes (antes 10).
+Las duraciones, multiplicadores y premios de los estudiantes se conservan.
+Golpe fuerte muestra una flecha roja animada en la vista del lanzador mientras
+el rival marcado queda fuera de su camara. Se oculta al entrar en camara,
+al pausar y al terminar o consumirse la marca.
+
 ## Probar
 
 - P1: mantener C durante 0.35 s para abrir; A/D para elegir; boton de absorcion para usar.
@@ -139,7 +157,7 @@ pendientes. Las cartas recibidas se conservan aunque cambie el lider.
 ## Assets y responsabilidades
 
 - `Assets/Resources/CatalogoCartas.asset`: catalogo compartido con las siete normales
-  y las cinco potentes. `SistemaCartas` lo carga automaticamente al iniciar y tras
+  y las seis potentes. `SistemaCartas` lo carga automaticamente al iniciar y tras
   una recarga de scripts. La lista antigua guardada en una escena deja de decidir
   que cartas salen. `Catalogo Compartido` permite asignar otro catalogo explicitamente.
 
@@ -149,7 +167,7 @@ pendientes. Las cartas recibidas se conservan aunque cambie el lider.
   Cambiar sus sprites reemplaza el arte
   provisional sin tocar codigo. El costo se dibuja como texto encima del frente.
   `CartaAceleracionPotente.asset` y `CartaPesadezPotente.asset` son las variantes
-  con `Potente` activo, costo 40 y duracion 20 s.
+  con `Potente` activo, costo 25 para Aceleracion y 20 para Pesadez, y duracion 20 s.
 - `ManoCartasJugador`: inventario, seleccion, controles y validacion del costo.
   `RecibirRecompensaRaro` conecta la extraccion completa de un raro con el reparto:
   basica antes de mitad y potente desde la mitad, o basica si ya hay una potente.
@@ -262,9 +280,9 @@ N queda libre para la absorcion de P2, sin generar cartas al pulsarlo.
 
 ## Latigo y swap de posicion
 
-Ambas son cartas normales de 20 almas, incluidas en el catalogo compartido
-(12 cartas en total). El costo se cobra al confirmar; el efecto ocurre cuando
-termina la animacion habitual. No hay versiones potentes.
+Ambas tienen una carta normal de 10 almas, incluida en el catalogo compartido
+(13 cartas en total). El costo se cobra al confirmar; el efecto ocurre cuando
+termina la animacion habitual. Swap no tiene variante potente; Golpe fuerte si tiene una.
 
 Latigo aplica al rival una marca visible durante 8 s, sin limite de distancia.
 Un rotulo rojo LATIGO con contador aparece sobre el objetivo, visible para ambos.
@@ -308,7 +326,7 @@ de las puertas ni lo consume; exige soltar arriba antes de entrar en una puerta
 tras el intercambio. El rotulo de la carta muestra Instantanea en vez de una
 duracion de buff. Si ambos lanzan swap, se resuelven por la cola habitual.
 
-Golpe fuerte reemplaza el nombre de Latigo. Normal: costo 20, marca 8 s, 40 almas extra (45 de dano total) y empujon de 7 unidades en 0.65 s. Potente: costo 40, marca 10 s, 60 almas extra (65 de dano total) y lanzamiento hasta el extremo horizontal del pasillo en 0.65 s. Solo consume la marca al acertar. 1 entrega la normal a ambos; Shift+1 entrega la potente. Las entregas normales reservan potentes para la segunda mitad.
+Golpe fuerte reemplaza el nombre de Latigo. Normal: costo 10, marca 8 s, 40 almas extra (45 de dano total) y empujon de 7 unidades en 0.65 s. Potente: costo 20, marca 10 s, 60 almas extra (65 de dano total) y lanzamiento hasta el extremo horizontal del pasillo en 0.65 s. Solo consume la marca al acertar. 1 entrega la normal a ambos; Shift+1 entrega la potente. Las entregas normales reservan potentes para la segunda mitad.
 
 Uso de cartas: animacion de 1.9 s (despegue 0.4, entrada 0.45, frente 0.15, un giro de 0.4 y salida 0.5). Los usos se animan en paralelo y se distribuyen horizontalmente centrados, con transicion suave al entrar o salir otra carta. Cada efecto se aplica al terminar su propia animacion.
 

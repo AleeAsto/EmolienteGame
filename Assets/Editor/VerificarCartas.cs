@@ -71,9 +71,9 @@ public static class VerificarCartas
                 AssetDatabase.ImportAsset(ruta, ImportAssetOptions.ForceUpdate);
                 cartasOlor[i] = AssetDatabase.LoadAssetAtPath<DefinicionCarta>(ruta);
                 Exigir(cartasOlor[i] != null && cartasOlor[i].DuracionEfecto == (i % 2 == 0 ? 8f : 20f) &&
-                    cartasOlor[i].PuntosNecesarios == (i % 2 == 0 ? 20f : 40f) && cartasOlor[i].RadioOlor == 10f &&
+                    cartasOlor[i].PuntosNecesarios == (i % 2 == 0 ? 10f : 20f) && cartasOlor[i].RadioOlor == 12f &&
                     cartasOlor[i].MultiplicadorAtraccion == 1.5f && cartasOlor[i].MultiplicadorRetirada == 1.6f,
-                    "Assets de olor: radio 10, atraccion 1.5x y retirada 1.6x");
+                    "Assets de olor: radio 12, atraccion 1.5x y retirada 1.6x");
             }
             Exigir(confusion != null && confusion.Efecto == EfectoCarta.Confusion && confusion.DuracionEfecto == 10f &&
                 confusionPotente != null && confusionPotente.EsPotente && confusionPotente.DuracionEfecto == 16f,
@@ -81,15 +81,15 @@ public static class VerificarCartas
             Exigir(aceleracionPotente != null && pesadezPotente != null &&
                 aceleracionPotente.EsPotente && pesadezPotente.EsPotente &&
                 aceleracionPotente.DuracionEfecto == 20f && pesadezPotente.DuracionEfecto == 20f &&
-                aceleracionPotente.PuntosNecesarios == 40f && pesadezPotente.PuntosNecesarios == 40f &&
+                aceleracionPotente.PuntosNecesarios == 25f && pesadezPotente.PuntosNecesarios == 20f &&
                 aceleracionPotente.MultiplicadorVelocidad == carta.MultiplicadorVelocidad &&
                 pesadezPotente.MultiplicadorVelocidad == pesadez.MultiplicadorVelocidad,
-                $"Potentes: 40 puntos, 20 segundos e intensidad normal. A: {aceleracionPotente?.EsPotente}, {aceleracionPotente?.PuntosNecesarios}, {aceleracionPotente?.DuracionEfecto}, {aceleracionPotente?.MultiplicadorVelocidad}; P: {pesadezPotente?.EsPotente}, {pesadezPotente?.PuntosNecesarios}, {pesadezPotente?.DuracionEfecto}, {pesadezPotente?.MultiplicadorVelocidad}");
+                $"Potentes: Aceleracion 25, Pesadez 20 puntos, 20 segundos e intensidad normal. A: {aceleracionPotente?.EsPotente}, {aceleracionPotente?.PuntosNecesarios}, {aceleracionPotente?.DuracionEfecto}, {aceleracionPotente?.MultiplicadorVelocidad}; P: {pesadezPotente?.EsPotente}, {pesadezPotente?.PuntosNecesarios}, {pesadezPotente?.DuracionEfecto}, {pesadezPotente?.MultiplicadorVelocidad}");
             Exigir(carta != null && carta.Frente != null && carta.Reverso != null, "Definicion y ambos sprites validos");
             Exigir(pesadez != null && pesadez.Frente != null && pesadez.Reverso != null, "Sprites de Pesadez validos");
-            Exigir(carta.PuntosNecesarios == 20f && pesadez.PuntosNecesarios == 20f &&
+            Exigir(carta.PuntosNecesarios == 10f && pesadez.PuntosNecesarios == 10f &&
                 carta.DuracionEfecto == 8f && pesadez.DuracionEfecto == 8f,
-                "Cartas normales: costo 20 y duracion 8 segundos");
+                "Cartas normales: costo 10 y duracion 8 segundos");
             Exigir(carta.Destino == DestinoCarta.Propio && carta.MultiplicadorVelocidad > 1f &&
                 pesadez.Destino == DestinoCarta.Rival && pesadez.MultiplicadorVelocidad < 1f,
                 $"Buff propio y debuff rival configurados: {carta.Destino} x{carta.MultiplicadorVelocidad}, {pesadez.Destino} x{pesadez.MultiplicadorVelocidad}");
@@ -115,15 +115,15 @@ public static class VerificarCartas
             var catalogo = serializado.FindProperty("catalogo");
             var latigo = AssetDatabase.LoadAssetAtPath<DefinicionCarta>("Assets/Cartas/CartaLatigo.asset");
             var golpePotente = AssetDatabase.LoadAssetAtPath<DefinicionCarta>("Assets/Cartas/CartaGolpeFuertePotente.asset");
-            Exigir(golpePotente != null && golpePotente.EsPotente && golpePotente.EmpujaHastaExtremo && golpePotente.PuntosNecesarios == 40f && golpePotente.DuracionEfecto == 10f && golpePotente.AlmasExtraLatigo == 60f, "Golpe fuerte potente: costo 40, marca 10 s, extra 60 y empuje al extremo");
+            Exigir(golpePotente != null && golpePotente.EsPotente && golpePotente.EmpujaHastaExtremo && golpePotente.PuntosNecesarios == 20f && golpePotente.DuracionEfecto == 10f && golpePotente.AlmasExtraLatigo == 60f, "Golpe fuerte potente: costo 20, marca 10 s, extra 60 y empuje al extremo");
             var swap = AssetDatabase.LoadAssetAtPath<DefinicionCarta>("Assets/Cartas/CartaSwapPosicion.asset");
             Exigir(latigo != null && latigo.Efecto == EfectoCarta.Latigo && !latigo.EsPotente &&
-                latigo.PuntosNecesarios == 20f && latigo.DuracionEfecto == 8f &&
+                latigo.PuntosNecesarios == 10f && latigo.DuracionEfecto == 8f &&
                 latigo.AlmasExtraLatigo == 40f && latigo.EmpujonLatigo == 7f,
-                "Latigo normal: costo 20, marca 8 s, extra 40 y empujon 7");
+                "Latigo normal: costo 10, marca 8 s, extra 40 y empujon 7");
             Exigir(swap != null && swap.Efecto == EfectoCarta.IntercambioPosicion && !swap.EsPotente &&
-                swap.PuntosNecesarios == 20f && swap.EsInstantanea && swap.DuracionEfecto == 0f,
-                "Swap normal: costo 20 y efecto instantaneo");
+                swap.PuntosNecesarios == 10f && swap.EsInstantanea && swap.DuracionEfecto == 0f,
+                "Swap normal: costo 10 y efecto instantaneo");
             Exigir(System.Array.IndexOf(((CatalogoCartas)serializado.FindProperty("catalogoCompartido").objectReferenceValue).Cartas, latigo) >= 0 &&
                 System.Array.IndexOf(((CatalogoCartas)serializado.FindProperty("catalogoCompartido").objectReferenceValue).Cartas, swap) >= 0,
                 "Latigo y swap disponibles en catalogo compartido");
@@ -239,7 +239,7 @@ public static class VerificarCartas
 
             VerificarRepartos(sistema, partida, p1, p2, carta, pesadez, aceleracionPotente, pesadezPotente);
             VerificarSeguimiento(escena);
-            const string mensaje = "OK: swap, cancelacion y puertas; latigo, dano extra unico e invulnerabilidad; radio 10, atraccion 1.5x, retirada 1.6x; catalogo de trece, Confusion, repartos y camaras.";
+            const string mensaje = "OK: swap, cancelacion y puertas; latigo, dano extra unico e invulnerabilidad; radio 12, atraccion 1.5x, retirada 1.6x; catalogo de trece, Confusion, repartos y camaras.";
             Directory.CreateDirectory("Temp");
             File.WriteAllText(Resultado, mensaje);
             Debug.Log(mensaje);
@@ -442,9 +442,18 @@ public static class VerificarCartas
             Exigir(alma.IntentarOcupar(p1.Almas), "Reservar absorcion en curso");
             aplicar.Invoke(sistema, new object[] { p1, cartas[2] });
             Vector3 ocupado = npc.transform.position;
+            var succion = p1.GetComponent<SuccionJugador>();
+            _ = succion.OrigenSuccion;
+            Vector3 alineacion = succion.PosicionAlineacion;
+            var piesNPC = npc.GetComponent<BoxCollider2D>();
+            if (piesNPC != null) alineacion -= piesNPC.transform.TransformPoint(piesNPC.offset) - ocupado;
+            alineacion = succion.LimitarAlineacion(alineacion);
+            alineacion.z = ocupado.z;
+            float distanciaAntes = Vector3.Distance(ocupado, alineacion);
             avanzar.Invoke(estudiante, new object[] { 0.5f });
-            Exigir(npc.transform.position == ocupado && alma.Ocupante == p1.Almas && !alma.Asustado,
-                "Bomba no interrumpe absorcion ni asusta permanentemente");
+            Exigir(alma.Ocupante == p1.Almas && !alma.Asustado &&
+                (distanciaAntes < 0.01f || Vector3.Distance(npc.transform.position, alineacion) < distanciaAntes - 0.001f),
+                "Bomba conserva la absorcion y permite alinear el estudiante sin asustarlo");
             Campo(a2, "finBomba", Time.time - 1f);
             Exigir(!AuraOlorJugador.Resolver(inicio, p1.gameObject.scene, out _, out _, out _), "Olor expira");
         }

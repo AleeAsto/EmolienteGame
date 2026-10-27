@@ -42,7 +42,9 @@ public class MenuPrincipal : MonoBehaviour
             var controles = pantallas[pantallaActual].GetComponent<ConfiguracionControlesUI>();
             if (controles != null && controles.ProcesarEscape()) return;
             ReproducirBoton();
-            GuardarOpciones();
+            if (pantallaActual == 5) Mostrar(4);
+            else if (pantallaActual == 4) Mostrar(0);
+            else GuardarOpciones();
         }
     }
 
@@ -115,6 +117,28 @@ public class MenuPrincipal : MonoBehaviour
 
     public void Jugar()
     {
+        if (pantallas.Length > 4) Mostrar(4);
+        else JugarPvP();
+    }
+
+    public void ElegirCPU() => Mostrar(5);
+
+    public void JugarPvP()
+    {
+        if (cargando) return;
+        ConfiguracionPartida.ElegirPvP();
+        CargarPartida();
+    }
+
+    public void JugarCPU(int dificultad)
+    {
+        if (cargando || dificultad < 0 || dificultad > 2) return;
+        ConfiguracionPartida.ElegirCPU((DificultadCPU)dificultad);
+        CargarPartida();
+    }
+
+    private void CargarPartida()
+    {
         if (cargando) return;
         if (!Application.CanStreamedLevelBeLoaded(escenaPartida))
         {
@@ -124,7 +148,7 @@ public class MenuPrincipal : MonoBehaviour
         cargando = true;
         CicloPartida.ReiniciarVictorias();
         estado.text = "Cargando partida…";
-        foreach (Button boton in pantallas[0].GetComponentsInChildren<Button>())
+        foreach (Button boton in GetComponentsInChildren<Button>(true))
             boton.interactable = false;
         PlayerPrefs.Save();
         Time.timeScale = 1f;

@@ -34,6 +34,14 @@ public class IlusionesConfusionJugador : MonoBehaviour
 
     public int Cantidad => fantasmas.Count;
 
+    // La CPU percibe los mismos senuelos que aparecen en su pantalla.
+    public void CopiarObjetivosVisibles(List<Transform> destinos)
+    {
+        foreach (Fantasma fantasma in fantasmas)
+            if (fantasma.objeto != null && !fantasma.consumido && !fantasma.retirando && fantasma.opacidad >= 0.15f)
+                destinos.Add(fantasma.objeto.transform);
+    }
+
     public void Inicializar(EfectosJugador estado, Camera vista, BoxCollider2D pasillo,
         GeneradorEstudiantes estudiantes, int capaPrivada)
     {

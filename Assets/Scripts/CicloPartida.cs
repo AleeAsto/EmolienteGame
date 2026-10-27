@@ -71,6 +71,12 @@ public class CicloPartida : MonoBehaviour
         }
 
         TiempoRestante = Mathf.Max(1f, duracionSegundos);
+        if (ConfiguracionPartida.ContraCPU)
+        {
+            nombreJugador2 = ConfiguracionPartida.NombreRival;
+            var cpu = jugador2.gameObject.AddComponent<ControladorCPU>();
+            cpu.Inicializar(this, jugador1, ConfiguracionPartida.Dificultad);
+        }
         ActualizarTexto();
         controlaTiempo = true;
         Time.timeScale = 0f;

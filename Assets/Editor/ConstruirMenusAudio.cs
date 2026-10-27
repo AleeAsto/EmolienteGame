@@ -103,6 +103,7 @@ public static class ConstruirMenusAudio
         datos.FindProperty("escenaPartida").stringValue = "PartidaAudioMenus";
         datos.ApplyModifiedPropertiesWithoutUndo();
         IntegrarArteFinal.AplicarMenu(menu);
+        ConstruirModoCPU.Aplicar(menu);
         EditorSceneManager.SaveScene(escena);
     }
 

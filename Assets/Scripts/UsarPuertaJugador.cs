@@ -26,6 +26,7 @@ public class UsarPuertaJugador : MonoBehaviour
         ? colliderPies.transform.TransformPoint(colliderPies.offset)
         : transform.position;
     private bool requiereSoltar;
+    private EntradaJugador entradaJugador;
     private float proximoUso;
     public bool EstaViajando { get; private set; }
     private Transform visual;
@@ -39,10 +40,12 @@ public class UsarPuertaJugador : MonoBehaviour
 
     public bool PuedeUsar => !EstaViajando && isActiveAndEnabled && Time.timeScale > 0f && CooldownRestante <= 0f &&
         movimiento != null && movimiento.isActiveAndEnabled &&
+        (succion == null || !succion.EstaAbsorbiendo) &&
         (estado == null || !estado.EstaAturdido) && (cartas == null || !cartas.BloqueaSuccion);
 
     private void Awake()
     {
+        entradaJugador = EntradaJugador.Obtener(this);
         movimiento = GetComponent<MovimientoJugador2D>();
         if (colliderPies == null)
             colliderPies = GetComponent<BoxCollider2D>();
@@ -64,11 +67,11 @@ public class UsarPuertaJugador : MonoBehaviour
 
     private void Update()
     {
-        if (EstaViajando || !Application.isFocused || movimiento.AccionMovimiento == null)
+        if (EstaViajando || !entradaJugador.TieneFoco)
             return;
 
-        Vector2 entrada = movimiento.AccionMovimiento.ReadValue<Vector2>();
-        bool arriba = entrada.y > 0.5f;
+        Vector2 entrada = entradaJugador.LeerMovimiento(movimiento.AccionMovimiento);
+        bool arriba = entradaJugador.EsCPU ? entradaJugador.PuertaCPU : entrada.y > 0.5f;
         if (!arriba)
         {
             requiereSoltar = false;
@@ -77,17 +80,18 @@ public class UsarPuertaJugador : MonoBehaviour
 
         // Las diagonales no activan puertas. Tras viajar,
         // hay que soltar la direccion para evitar encadenar otro viaje.
-        if (!requiereSoltar && Mathf.Abs(entrada.x) < 0.01f)
+        if (!requiereSoltar && (entradaJugador.EsCPU || Mathf.Abs(entrada.x) < 0.01f))
             IntentarUsarPuerta();
     }
 
     public bool IntentarUsarPuerta()
     {
-        if (requiereSoltar || !Application.isFocused || movimiento == null || movimiento.AccionMovimiento == null)
+        if (requiereSoltar || !entradaJugador.TieneFoco || movimiento == null)
             return false;
 
-        Vector2 entrada = movimiento.AccionMovimiento.ReadValue<Vector2>();
-        return entrada.y > 0.5f && Mathf.Abs(entrada.x) < 0.01f &&
+        Vector2 entrada = entradaJugador.LeerMovimiento(movimiento.AccionMovimiento);
+        bool arriba = entradaJugador.EsCPU ? entradaJugador.PuertaCPU : entrada.y > 0.5f && Mathf.Abs(entrada.x) < 0.01f;
+        return arriba &&
             red != null && red.IntentarTransportar(this);
     }
 
@@ -201,7 +205,7 @@ public class UsarPuertaJugador : MonoBehaviour
 
     private void OnApplicationFocus(bool foco)
     {
-        if (!foco)
+        if (!foco && (entradaJugador == null || !entradaJugador.EsCPU))
             requiereSoltar = true;
     }
 

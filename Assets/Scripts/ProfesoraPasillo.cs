@@ -24,6 +24,9 @@ public class ProfesoraPasillo : MonoBehaviour
     private float direccion;
     private float esperaRestante;
     private bool enRecorrido;
+    public bool EnRecorrido => enRecorrido && isActiveAndEnabled;
+    public Vector2 VelocidadRecorrido => Vector2.right * direccion * velocidad;
+    public Bounds AreaContacto => zonaContacto != null ? zonaContacto.bounds : new Bounds(transform.position, Vector3.zero);
 
     private void Start()
     {

@@ -9,6 +9,17 @@ public class ZonaDanoJugador : MonoBehaviour
 
     public Vector3 Centro => caja.transform.TransformPoint(caja.offset);
     public bool Disponible => isActiveAndEnabled && caja != null && caja.isActiveAndEnabled;
+    public Bounds Limites
+    {
+        get
+        {
+            if (!Disponible) return new Bounds(transform.position, Vector3.zero);
+            ObtenerEsquinas();
+            Bounds limites = new Bounds(esquinas[0], Vector3.zero);
+            for (int i = 1; i < esquinas.Length; i++) limites.Encapsulate(esquinas[i]);
+            return limites;
+        }
+    }
 
     private void ObtenerEsquinas()
     {

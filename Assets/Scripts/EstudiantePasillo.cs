@@ -23,6 +23,7 @@ public class EstudiantePasillo : MonoBehaviour
     private BoxCollider2D cuerpo;
 
     public float Direccion => direccion;
+    public Vector2 VelocidadRecorrido => alma != null && !alma.EstaOcupado ? Vector2.right * direccion * velocidad : Vector2.zero;
     public bool SpriteMiraDerecha => spriteMiraDerecha;
     public bool Alineandose { get; private set; }
     public float OpacidadAgotado => alma != null && alma.Agotado

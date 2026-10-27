@@ -53,6 +53,7 @@ public class AtaqueJugador : MonoBehaviour
     private MarcaLatigoJugador objetivoLatigo;
     private bool usandoLatigo;
     private Vector3 puntoLatigo;
+    private EntradaJugador entradaJugador;
     public InputAction AccionGolpear => accionGolpear;
 
     public bool EstaAtacando { get; private set; }
@@ -61,6 +62,7 @@ public class AtaqueJugador : MonoBehaviour
     public bool PuedeChocar => EstaAtacando && !impactoConsumido && !EnDash;
     private bool EnDash => movimiento != null && movimiento.EstaEnDash;
     public bool TieneLatigo => objetivoLatigo != null && objetivoLatigo.PerteneceA(this);
+    public Transform ObjetivoLatigo => TieneLatigo ? objetivoLatigo.transform : null;
     public bool EsAtaqueLatigo => EstaAtacando && usandoLatigo;
     public bool MostrarApuntadoLatigo => TieneLatigo && !EstaAtacando && !estado.EstaAturdido &&
         (cartas == null || !cartas.MenuAbierto);
@@ -74,6 +76,9 @@ public class AtaqueJugador : MonoBehaviour
         EnAreaLatigo(objetivoLatigo.GetComponent<EstadoCombateJugador>().ZonaDano, PuntoLatigo) &&
         recargaRestante <= 0f && !objetivoLatigo.GetComponent<EstadoCombateJugador>().EsInvulnerable;
     public float RecargaRestante => recargaRestante;
+    public float AlcanceNormal => alcance;
+    public float PreparacionSegundos => Mathf.Min(preparacionGolpe, duracionGolpe * 0.25f);
+    public float DuracionDashLatigo => duracionDashLatigo;
     public float Direccion => direccion;
     public float RadioGolpe => radioGolpe;
     public float ToleranciaY => toleranciaY;
@@ -97,6 +102,7 @@ public class AtaqueJugador : MonoBehaviour
 
     private void Awake()
     {
+        entradaJugador = EntradaJugador.Obtener(this);
         movimiento = GetComponent<MovimientoJugador2D>();
         succion = GetComponent<SuccionJugador>();
         estado = GetComponent<EstadoCombateJugador>();
@@ -157,7 +163,7 @@ public class AtaqueJugador : MonoBehaviour
             }
         }
 
-        if (cartas == null && Application.isFocused && accionGolpear != null && accionGolpear.WasPressedThisFrame())
+        if (cartas == null && !entradaJugador.EsCPU && Application.isFocused && accionGolpear != null && accionGolpear.WasPressedThisFrame())
             IntentarAtacar();
     }
 
@@ -193,9 +199,10 @@ public class AtaqueJugador : MonoBehaviour
     {
         ZonaDanoJugador objetivo = otro.Estado.ZonaDano;
         if (objetivo == null || !objetivo.Disponible) return false;
+        float frente = EstaAtacando || movimiento == null ? direccion : movimiento.DireccionHorizontal;
         if (usandoLatigo)
             return (objetivo.Centro.x - OrigenPiso.x) * direccion >= -0.05f && EnAreaLatigo(objetivo, puntoLatigo);
-        Vector2 centro = (Vector2)OrigenPiso + Vector2.right * direccion * alcance * 0.5f;
+        Vector2 centro = (Vector2)OrigenPiso + Vector2.right * frente * alcance * 0.5f;
         return objetivo.IntersectaRectangulo(centro, new Vector2(alcance, toleranciaY * 2f));
     }
 
@@ -289,7 +296,7 @@ public class AtaqueJugador : MonoBehaviour
 
     private void OnApplicationFocus(bool enfocado)
     {
-        if (!enfocado)
+        if (!enfocado && (entradaJugador == null || !entradaJugador.EsCPU))
             CancelarAtaque();
     }
 

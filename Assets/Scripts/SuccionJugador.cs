@@ -30,9 +30,23 @@ public class SuccionJugador : MonoBehaviour
     private EfectosJugador efectos;
     private MovimientoJugador2D movimiento;
     private bool intentoConsumido;
+    private EntradaJugador entradaJugador;
     public InputAction AccionSuccionar => accionSuccionar;
 
     public AlmaEstudiante Objetivo => objetivo;
+    public bool EstaAbsorbiendo => objetivo != null;
+    public bool RequiereSoltar => intentoConsumido && objetivo == null;
+    public float TiempoRestanteDrenaje => objetivo != null ?
+        (1f - Progreso01) * DuracionDrenajeActual / Mathf.Max(0.1f, efectos != null ? efectos.MultiplicadorVelocidad : 1f) : 0f;
+    public float DuracionPara(AlmaEstudiante estudiante) => Mathf.Max(0.1f, tiempoDrenaje) *
+        (estudiante != null ? estudiante.MultiplicadorTiempoDrenaje : 1f) /
+        Mathf.Max(0.1f, efectos != null ? efectos.MultiplicadorVelocidad : 1f);
+    public bool EnAlcance(Vector3 posicion, float margen = 0f)
+    {
+        float radio = Mathf.Max(0.1f, alcance - Mathf.Max(0f, margen));
+        return DistanciaAlcanceCuadrada(posicion) <= radio * radio;
+    }
+    public Vector3 OrigenSuccion => CentroSuccion;
     private Vector3 CentroSuccion
     {
         get
@@ -76,6 +90,7 @@ public class SuccionJugador : MonoBehaviour
 
     private void Awake()
     {
+        entradaJugador = EntradaJugador.Obtener(this);
         almas = GetComponent<AlmasJugador>();
         estadoCombate = GetComponent<EstadoCombateJugador>();
         ataque = GetComponent<AtaqueJugador>();
@@ -106,11 +121,12 @@ public class SuccionJugador : MonoBehaviour
         if (Time.timeScale <= 0f)
             return;
 
-        if (accionSuccionar == null || !accionSuccionar.IsPressed() || !Application.isFocused)
+        bool pulsado = entradaJugador.LeerSuccion(accionSuccionar);
+        if (!pulsado || !entradaJugador.TieneFoco)
             intentoConsumido = false;
 
-        if ((movimiento != null && movimiento.EnPuerta) || !Application.isFocused || almas == null || !almas.isActiveAndEnabled ||
-            accionSuccionar == null || !accionSuccionar.IsPressed() ||
+        if ((movimiento != null && movimiento.EnPuerta) || !entradaJugador.TieneFoco || almas == null || !almas.isActiveAndEnabled ||
+            !pulsado ||
             (estadoCombate != null && estadoCombate.EstaAturdido) ||
             (ataque != null && ataque.EstaAtacando) ||
             (cartas != null && cartas.BloqueaSuccion))
@@ -197,7 +213,7 @@ public class SuccionJugador : MonoBehaviour
 
     private void OnApplicationFocus(bool enfocado)
     {
-        if (!enfocado)
+        if (!enfocado && (entradaJugador == null || !entradaJugador.EsCPU))
             CancelarSuccion();
     }
 

@@ -13,13 +13,13 @@ public class DefinicionCarta : ScriptableObject
     [SerializeField] private Sprite frenteMano;
     [SerializeField] private Sprite reversoMano;
     [Tooltip("Costo en puntos: se descuenta al confirmar el uso.")]
-    [SerializeField, Min(0f)] private float puntosNecesarios = 20f;
+    [SerializeField, Min(0f)] private float puntosNecesarios = 10f;
     [SerializeField] private DestinoCarta destino;
     [SerializeField] private EfectoCarta efecto;
     [SerializeField, Min(0.1f)] private float multiplicadorVelocidad = 1f;
     [SerializeField, Min(0.1f)] private float duracionEfecto = 8f;
     [SerializeField] private bool potente;
-    [SerializeField, Min(0.5f)] private float radioOlor = 10f;
+    [SerializeField, Min(0.5f)] private float radioOlor = 12f;
     [SerializeField, Min(1f)] private float multiplicadorRetirada = 1.6f;
     [SerializeField, Min(1f)] private float multiplicadorAtraccion = 1.5f;
     [SerializeField, Min(0f)] private float almasExtraLatigo = 40f;

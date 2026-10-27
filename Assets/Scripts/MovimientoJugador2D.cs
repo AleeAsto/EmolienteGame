@@ -19,6 +19,8 @@ public class MovimientoJugador2D : MonoBehaviour
     private EstadoCombateJugador estadoCombate;
     private Vector2 empujonPendiente;
     private float rapidezLanzamiento;
+    private EntradaJugador entradaJugador;
+    private SuccionJugador succion;
 
     public float DireccionHorizontal { get; private set; } = 1f;
     public InputAction AccionMovimiento => accionMovimiento;
@@ -34,9 +36,12 @@ public class MovimientoJugador2D : MonoBehaviour
     private float duracionDash;
     public bool EstaEnDash { get; private set; }
     public bool EstaCaminando { get; private set; }
+    public float VelocidadActual => velocidad * (efectos != null ? efectos.MultiplicadorVelocidad : 1f);
 
     private void Awake()
     {
+        entradaJugador = EntradaJugador.Obtener(this);
+        succion = GetComponent<SuccionJugador>();
         cuerpo = GetComponent<BoxCollider2D>();
         estadoCombate = GetComponent<EstadoCombateJugador>();
         cartas = GetComponent<ManoCartasJugador>();
@@ -92,10 +97,11 @@ public class MovimientoJugador2D : MonoBehaviour
             }
         }
 
-        Vector2 entrada = Application.isFocused && accionMovimiento != null &&
+        Vector2 entrada = entradaJugador.TieneFoco &&
             (estadoCombate == null || !estadoCombate.EstaAturdido) &&
+            (succion == null || !succion.EstaAbsorbiendo) &&
             (cartas == null || !cartas.MenuAbierto)
-            ? Vector2.ClampMagnitude(accionMovimiento.ReadValue<Vector2>(), 1f)
+            ? Vector2.ClampMagnitude(entradaJugador.LeerMovimiento(accionMovimiento), 1f)
             : Vector2.zero;
         if (Mathf.Abs(entrada.x) > 0.01f)
         {
@@ -119,6 +125,13 @@ public class MovimientoJugador2D : MonoBehaviour
     public void Empujar(Vector2 desplazamiento)
     {
         empujonPendiente += desplazamiento;
+    }
+
+    public void MirarHacia(float direccion)
+    {
+        if (Mathf.Abs(direccion) < 0.01f || (estadoCombate != null && estadoCombate.EstaAturdido)) return;
+        DireccionHorizontal = Mathf.Sign(direccion);
+        ActualizarOrientacion();
     }
 
     private void ActualizarOrientacion()
@@ -159,6 +172,7 @@ public class MovimientoJugador2D : MonoBehaviour
     public bool IniciarDash(Vector3 destino, float duracion)
     {
         if (!isActiveAndEnabled || Time.timeScale <= 0f ||
+            (succion != null && succion.EstaAbsorbiendo) ||
             (estadoCombate != null && estadoCombate.EstaAturdido))
             return false;
 

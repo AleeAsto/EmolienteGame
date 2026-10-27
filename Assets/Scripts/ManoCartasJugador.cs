@@ -20,8 +20,12 @@ public class ManoCartasJugador : MonoBehaviour
     private int direccionAnterior;
     private float siguienteSeleccion;
     private int frameBloqueado = -1;
+    private EntradaJugador entradaJugador;
 
     public bool MenuAbierto { get; private set; }
+    public float TiempoApertura => sistema != null ? sistema.TiempoMantener : 0.35f;
+    public float TiempoHastaEfecto(DefinicionCarta carta) => TiempoApertura + (sistema != null ? sistema.DuracionUso(carta) : 0f);
+    public bool TieneCartaEnActivacion(EfectoCarta efecto) => sistema != null && sistema.TieneUsoPendiente(this, efecto);
     public bool BloqueaSuccion => MenuAbierto || frameBloqueado == Time.frameCount;
     public int Seleccion { get; private set; }
     public int Cantidad => cartas.Count;
@@ -38,6 +42,7 @@ public class ManoCartasJugador : MonoBehaviour
 
     public void Inicializar(SistemaCartas controlador)
     {
+        entradaJugador = EntradaJugador.Obtener(this);
         sistema = controlador;
         almas = GetComponent<AlmasJugador>();
         movimiento = GetComponent<MovimientoJugador2D>();
@@ -101,6 +106,9 @@ public class ManoCartasJugador : MonoBehaviour
     private void Update()
     {
         if (sistema == null)
+            return;
+        // La CPU solicita las mismas operaciones publicas, sin leer el teclado de P2.
+        if (entradaJugador.EsCPU)
             return;
         if (!sistema.EnCurso || !Application.isFocused || estado.EstaAturdido ||
             (GetComponent<UsarPuertaJugador>() != null && GetComponent<UsarPuertaJugador>().EstaViajando))
@@ -173,7 +181,8 @@ public class ManoCartasJugador : MonoBehaviour
 
     public bool IntentarUsar()
     {
-        if (!MenuAbierto || sistema == null || !sistema.EnCurso || estado.EstaAturdido || Cantidad == 0)
+        if (!MenuAbierto || sistema == null || !sistema.EnCurso || estado.EstaAturdido || Cantidad == 0 ||
+            (movimiento != null && movimiento.EnPuerta))
             return false;
         DefinicionCarta carta = cartas[Seleccion];
         if (!almas.IntentarGastar(carta.PuntosNecesarios))
@@ -204,6 +213,20 @@ public class ManoCartasJugador : MonoBehaviour
         MenuAbierto = false;
         frameBloqueado = Time.frameCount;
         Cambiada?.Invoke();
+    }
+
+    public bool AbrirParaCPU(int indice)
+    {
+        if (entradaJugador == null || !entradaJugador.EsCPU || sistema == null || !sistema.EnCurso ||
+            estado.EstaAturdido || movimiento.EnPuerta || ataque.EstaAtacando || indice < 0 || indice >= Cantidad)
+            return false;
+        succion.CancelarSuccion();
+        MenuAbierto = true;
+        RecibidaHasta = 0f;
+        Seleccion = indice;
+        AudioJuego.Instancia?.CambiarCarta();
+        Cambiada?.Invoke();
+        return true;
     }
 
     private void MostrarAviso(string mensaje)
